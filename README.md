@@ -54,7 +54,7 @@ All paths are relative, managed via the `here` package (`here()` / `here("Data",
 |---|---|---|
 | Bloc0_DataPrep | Matrix loading (BPCells), LUAD/LUSC separation, patient-level clinical metadata | Done |
 | Bloc1_QC | Quality control plots and filtering (per-arm thresholds) | Done |
-| Bloc2_Norm_HVG_PCA | Normalization, highly variable genes, PCA | To do |
+| Bloc2_Norm_HVG_PCA | Normalization, highly variable genes, PCA | Done |
 | Bloc3_Harmony | Batch integration | To do |
 | Bloc4_Clustering_UMAP | Clustering, UMAP visualization | To do |
 | Bloc5_Annotation_TME | TME annotation (canonical markers as primary reference, SingleR fine labels as cross-check) | To do |
@@ -84,6 +84,14 @@ Each block's methodology, chosen parameters, and rationale will be documented in
   - LUSC: nFeature_RNA [200–4300], nCount_RNA [1000–26000], percent.mt < 10%
 - **Verification**: cells removed per pathological response group checked post-filtering to confirm no group was disproportionately affected. LUAD: MPR -1.8%, non-MPR -2.7%, pCR -1.4%. LUSC: MPR -3.1%, non-MPR -3.0%, pCR -2.5%, unclassified ("unknowm") -2.5%. Comparable removal rates across groups in both histologies support the validity of uniform thresholds for the downstream MPR vs non-MPR comparison.
 
+### Bloc2_Norm_HVG_PCA
+
+- **Normalization**: LogNormalize (scale factor 10,000), standard method.
+- **Highly variable genes**: 3,000 HVGs selected (vst method), above the Seurat default of 2,000. Rationale verified against `major_cell_type` metadata: the dataset is CD45+ sorted (B cell, Myeloid cell, T/NK cell only; no epithelial population), so the increased HVG count is intended to better capture fine-grained heterogeneity within immune subpopulations (e.g. TAM subtypes, CD8 states), not epithelial diversity as originally assumed in the inherited script.
+- **Scaling**: applied to HVGs only, not the full gene set, to limit memory usage.
+- **PCA**: 50 components computed; number of PCs to retain for downstream analysis determined from the per-PC variance explained rather than visual inspection alone, using the point where successive PCs contribute a near-negligible marginal variance (<0.1%).
+- **PC1 diagnostic**: correlation with nCount_RNA checked to rule out a purely technical (sequencing depth) origin for the dominant component (LUAD: r=-0.48; LUSC: r=0.49, both moderate, not indicative of a purely technical artifact); correlation with percent.mt was negligible in both arms (LUAD: r≈0; LUSC: r=-0.05).
+- **PCs retained**: 20 for both LUAD and LUSC, slightly beyond the strict elbow (~PC17-18) to reduce the risk of losing signal from rare subpopulations of interest (TAM, CD8 substates).
 
 ## Tools and Methods
 
