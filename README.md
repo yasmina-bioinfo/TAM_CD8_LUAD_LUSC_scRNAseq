@@ -52,8 +52,8 @@ All paths are relative, managed via the `here` package (`here()` / `here("Data",
 
 | Block | Content | Status |
 |---|---|---|
-| Bloc0_DataPrep | Matrix loading (BPCells), LUAD/LUSC separation, patient-level clinical metadata | To do |
-| Bloc1_QC | Quality control plots and filtering (per-arm thresholds) | To do |
+| Bloc0_DataPrep | Matrix loading (BPCells), LUAD/LUSC separation, patient-level clinical metadata | Done |
+| Bloc1_QC | Quality control plots and filtering (per-arm thresholds) | Done |
 | Bloc2_Norm_HVG_PCA | Normalization, highly variable genes, PCA | To do |
 | Bloc3_Harmony | Batch integration | To do |
 | Bloc4_Clustering_UMAP | Clustering, UMAP visualization | To do |
@@ -74,6 +74,16 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 - **Clinical metadata**: one row per patient, deduplicated by `sampleID`. A known typo (`"unknowm"` instead of `"unknown"`) in `pathological_response` was kept as-is for traceability rather than silently corrected.
 - **Response categories**: LUAD has 3 response categories (MPR, non-MPR, pCR). LUSC has 4, including one patient labeled `"unknowm"` (unclassified). This patient is retained in all data and score calculations, but excluded from MPR vs non-MPR statistical comparisons and main figures, same treatment as pCR (see ROADMAP.md).
 - **Total cell count cross-check**: LUAD (336,685) + LUSC (918,064) = 1,254,749 cells, matching the full unfiltered metadata row count.
+
+### Bloc1_QC 
+
+- **Metrics**: nFeature_RNA, nCount_RNA, and percent.mt (mitochondrial content, `^MT-` pattern) computed per cell, after minimal Seurat object creation filters (`min.cells=3`, `min.features=200`).
+- **Threshold selection**: thresholds based on the 99th percentile of each metric's distribution, computed separately for LUAD and LUSC (never copied across histologies), and uniform across all patients and pathological response groups within each histology. Differentiating thresholds by response group was explicitly avoided, since `pathological_response` is the primary comparison axis (MPR vs non-MPR); group-specific thresholds risk introducing an artificial bias into that comparison.
+- **Thresholds applied**:
+  - LUAD: nFeature_RNA [200–5000], nCount_RNA [1000–28000], percent.mt < 10%
+  - LUSC: nFeature_RNA [200–4300], nCount_RNA [1000–26000], percent.mt < 10%
+- **Verification**: cells removed per pathological response group checked post-filtering to confirm no group was disproportionately affected. LUAD: MPR -1.8%, non-MPR -2.7%, pCR -1.4%. LUSC: MPR -3.1%, non-MPR -3.0%, pCR -2.5%, unclassified ("unknowm") -2.5%. Comparable removal rates across groups in both histologies support the validity of uniform thresholds for the downstream MPR vs non-MPR comparison.
+
 
 ## Tools and Methods
 
