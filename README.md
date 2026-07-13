@@ -55,7 +55,7 @@ All paths are relative, managed via the `here` package (`here()` / `here("Data",
 | Bloc0_DataPrep | Matrix loading (BPCells), LUAD/LUSC separation, patient-level clinical metadata | Done |
 | Bloc1_QC | Quality control plots and filtering (per-arm thresholds) | Done |
 | Bloc2_Norm_HVG_PCA | Normalization, highly variable genes, PCA | Done |
-| Bloc3_Harmony | Batch integration | To do |
+| Bloc3_Harmony | Batch integration | Done |
 | Bloc4_Clustering_UMAP | Clustering, UMAP visualization | To do |
 | Bloc5_Annotation_TME | TME annotation (canonical markers as primary reference, SingleR fine labels as cross-check) | To do |
 | Bloc6_CD8 | ProjecTILs CD8 subtyping, TCR clonality (scRepertoire), UCell signature scoring, CollecTRI regulon activity | To do |
@@ -92,6 +92,11 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 - **PCA**: 50 components computed; number of PCs to retain for downstream analysis determined from the per-PC variance explained rather than visual inspection alone, using the point where successive PCs contribute a near-negligible marginal variance (<0.1%).
 - **PC1 diagnostic**: correlation with nCount_RNA checked to rule out a purely technical (sequencing depth) origin for the dominant component (LUAD: r=-0.48; LUSC: r=0.49, both moderate, not indicative of a purely technical artifact); correlation with percent.mt was negligible in both arms (LUAD: r≈0; LUSC: r=-0.05).
 - **PCs retained**: 20 for both LUAD and LUSC, slightly beyond the strict elbow (~PC17-18) to reduce the risk of losing signal from rare subpopulations of interest (TAM, CD8 substates).
+
+### Bloc3_Harmony
+
+- **Batch correction**: Harmony (`group.by.vars = "sampleID"`), correcting for inter-patient technical variation, applied on the 20 PCs retained in Bloc2.
+- **Verification**: correlation with nCount_RNA and percent.mt checked on the Harmony embedding (unchanged from pre-Harmony PCA for nCount_RNA, as Harmony corrects patient-level batch effects, not sequencing depth). Patient-level dispersion (SD of per-patient mean coordinate) compared before/after Harmony as a proxy for integration quality: LUAD 5.86→5.44 (-7%), LUSC 5.09→4.66 (-8.4%). Modest reduction in both arms; final assessment of integration quality deferred to visual inspection of the UMAP colored by patient (Bloc4).
 
 ## Tools and Methods
 

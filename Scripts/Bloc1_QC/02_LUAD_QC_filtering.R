@@ -17,8 +17,7 @@ seu <- readRDS(IN_OBJ)
 message("Cells before filtering: ", ncol(seu))
 
 # Uniform thresholds, based on 99th percentile of the full LUAD distribution
-# (see CAHIER_METHODOLOGIQUE.md for rationale). Never differentiated by
-# pathological_response, to avoid biasing the MPR vs non-MPR comparison.
+# Never differentiated by pathological_response, to avoid biasing the MPR vs non-MPR comparison.
 MIN_FEATURES <- 200
 MAX_FEATURES <- 5000
 MIN_COUNTS   <- 1000
