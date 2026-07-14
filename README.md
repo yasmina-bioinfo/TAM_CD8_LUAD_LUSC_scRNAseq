@@ -56,7 +56,7 @@ All paths are relative, managed via the `here` package (`here()` / `here("Data",
 | Bloc1_QC | Quality control plots and filtering (per-arm thresholds) | Done |
 | Bloc2_Norm_HVG_PCA | Normalization, highly variable genes, PCA | Done |
 | Bloc3_Harmony | Batch integration | Done |
-| Bloc4_Clustering_UMAP | Clustering, UMAP visualization | To do |
+| Bloc4_Clustering_UMAP | Clustering, UMAP visualization | Done |
 | Bloc5_Annotation_TME | TME annotation (canonical markers as primary reference, SingleR fine labels as cross-check) | To do |
 | Bloc6_CD8 | ProjecTILs CD8 subtyping, TCR clonality (scRepertoire), UCell signature scoring, CollecTRI regulon activity | To do |
 | Bloc7_TAM | TAM subtyping, UCell signature scoring, CollecTRI regulon activity | To do |
@@ -97,6 +97,11 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 
 - **Batch correction**: Harmony (`group.by.vars = "sampleID"`), correcting for inter-patient technical variation, applied on the 20 PCs retained in Bloc2.
 - **Verification**: correlation with nCount_RNA and percent.mt checked on the Harmony embedding (unchanged from pre-Harmony PCA for nCount_RNA, as Harmony corrects patient-level batch effects, not sequencing depth). Patient-level dispersion (SD of per-patient mean coordinate) compared before/after Harmony as a proxy for integration quality: LUAD 5.86→5.44 (-7%), LUSC 5.09→4.66 (-8.4%). Modest reduction in both arms; final assessment of integration quality deferred to visual inspection of the UMAP colored by patient (Bloc4).
+
+### Bloc4_Clustering_UMAP
+- **Clustering**: `FindNeighbors` / `FindClusters` on the Harmony embedding (not raw PCA), 20 dimensions, resolution 0.5 as a conservative starting point for global TME clustering (19 clusters LUAD, 22 clusters LUSC).
+- **UMAP**: computed on the Harmony embedding, same 20 dimensions.
+- **Integration quality check**: patient distribution visually inspected on the UMAP; well-mixed colors across all major cell islands in both LUAD and LUSC, no patient-dominated isolated cluster. One small isolated cluster in LUAD was investigated (multiple patients present, none dominant), ruling out an integration artifact in favor of a genuine shared biological subgroup, to be characterized during TME annotation. 
 
 ## Tools and Methods
 
