@@ -46,5 +46,11 @@ p_vln <- VlnPlot(seu_qc, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"
 ggsave(file.path(OUT_FIG, "02_LUSC_QC_violin_post_filter.png"), p_vln,
        width = 12, height = 4, dpi = 300, bg = "white")
 
+# Convert from BPCells (disk-backed, path-dependent) to standard in-memory
+# sparse matrix. Makes the object portable across OS/environments (WSL,
+# Windows) from this point onward, avoiding BPCells path-breakage when
+# switching environments.
+seu_qc[["RNA"]]$counts <- as(seu_qc[["RNA"]]$counts, "dgCMatrix")
+
 saveRDS(seu_qc, file.path(OUT_OBJ, "02_LUSC_seu_qc.rds"))
 message("DONE Script 02 — LUSC QC filtering")

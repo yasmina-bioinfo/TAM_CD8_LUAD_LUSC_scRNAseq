@@ -64,6 +64,19 @@ All paths are relative, managed via the `here` package (`here()` / `here("Data",
 
 Each block's methodology, chosen parameters, and rationale will be documented in this README once the block is stabilized and just before its commit.
 
+## Tools and Methods
+
+| Tool | Role in the project | Reference | Block |
+|---|---|---|---|
+| BPCells | Disk-backed matrix loading, avoids RAM overload | Parikh et al., Satija Lab | Bloc0 |
+| Harmony | Batch integration | Korsunsky et al., 2019, *Nature Methods* | Bloc3 |
+| SingleR | TME annotation (fine-grained labels, cross-check against canonical markers) | Aran et al., 2019, *Nature Immunology* | Bloc5 |
+| ProjecTILs | CD8 subtyping via reference atlas projection | Andreatta, Carmona et al., 2021, *Nature Communications* | Bloc6 |
+| scRepertoire | TCR clonality analysis | Yang, Safina, Nguyen, Tuong, Borcherding, 2025, *PLOS Computational Biology* | Bloc6 |
+| UCell | Gene signature scoring (CD8 and TAM) | Andreatta & Carmona, 2021, *Computational and Structural Biotechnology Journal* | Bloc6, Bloc7 |
+| decoupleR + CollecTRI | Transcription factor activity inference (CD8 and TAM) | decoupleR: Badia-i-Mompel et al., 2022, *Bioinformatics Advances* — CollecTRI: Müller-Dott et al., 2023, *Nucleic Acids Research* | Bloc6, Bloc7 |
+| MultiNicheNet | Differential cell-cell communication, multi-sample multi-condition design | Browaeys et al., 2023, *bioRxiv* | Bloc8 |
+
 ## Methodology
 
 ### Bloc0_DataPrep
@@ -83,38 +96,58 @@ Each block's methodology, chosen parameters, and rationale will be documented in
   - LUAD: nFeature_RNA [200–5000], nCount_RNA [1000–28000], percent.mt < 10%
   - LUSC: nFeature_RNA [200–4300], nCount_RNA [1000–26000], percent.mt < 10%
 - **Verification**: cells removed per pathological response group checked post-filtering to confirm no group was disproportionately affected. LUAD: MPR -1.8%, non-MPR -2.7%, pCR -1.4%. LUSC: MPR -3.1%, non-MPR -3.0%, pCR -2.5%, unclassified ("unknowm") -2.5%. Comparable removal rates across groups in both histologies support the validity of uniform thresholds for the downstream MPR vs non-MPR comparison.
+- **Object portability**: raw counts converted from BPCells (disk-backed) to standard in-memory sparse matrix (`dgCMatrix`) at the end of QC filtering, ensuring downstream objects remain portable across operating systems/environments, independent of the original BPCells storage path.
 
-### Bloc2_Norm_HVG_PCA
+### Bloc2_Norm_HVG_PCA — Methodology
 
 - **Normalization**: LogNormalize (scale factor 10,000), standard method.
 - **Highly variable genes**: 3,000 HVGs selected (vst method), above the Seurat default of 2,000. Rationale verified against `major_cell_type` metadata: the dataset is CD45+ sorted (B cell, Myeloid cell, T/NK cell only; no epithelial population), so the increased HVG count is intended to better capture fine-grained heterogeneity within immune subpopulations (e.g. TAM subtypes, CD8 states), not epithelial diversity as originally assumed in the inherited script.
+- **Cell cycle regression**: cell cycle phase scored (`CellCycleScoring`, Seurat's built-in S/G2M gene sets) and regressed out during scaling (`vars.to.regress = c("S.Score", "G2M.Score")`). Added after initial clustering (pre-regression) revealed a cluster driven entirely by proliferation markers (TYMS, RRM2, AURKB, UBE2C) mixing multiple cell lineages rather than reflecting a single biological identity.
 - **Scaling**: applied to HVGs only, not the full gene set, to limit memory usage.
-- **PCA**: 50 components computed; number of PCs to retain for downstream analysis determined from the per-PC variance explained rather than visual inspection alone, using the point where successive PCs contribute a near-negligible marginal variance (<0.1%).
-- **PC1 diagnostic**: correlation with nCount_RNA checked to rule out a purely technical (sequencing depth) origin for the dominant component (LUAD: r=-0.48; LUSC: r=0.49, both moderate, not indicative of a purely technical artifact); correlation with percent.mt was negligible in both arms (LUAD: r≈0; LUSC: r=-0.05).
-- **PCs retained**: 20 for both LUAD and LUSC, slightly beyond the strict elbow (~PC17-18) to reduce the risk of losing signal from rare subpopulations of interest (TAM, CD8 substates).
+- **PCA**: 50 components computed; number of PCs to retain determined from per-PC variance explained, using the point where successive PCs contribute near-negligible marginal variance (<0.1%).
+- **PC1 diagnostic**: correlation with nCount_RNA checked to rule out a purely technical origin for the dominant component (LUAD, post-regression: r=-0.50, PC1=30.4% variance); correlation with percent.mt negligible (r≈0).
+- **PCs retained**: 20 for LUAD (post-regression), consistent with the pre-regression choice; margin beyond the observed elbow (~PC15-16) to preserve signal from rare subpopulations.
 
 ### Bloc3_Harmony
 
 - **Batch correction**: Harmony (`group.by.vars = "sampleID"`), correcting for inter-patient technical variation, applied on the 20 PCs retained in Bloc2.
-- **Verification**: correlation with nCount_RNA and percent.mt checked on the Harmony embedding (unchanged from pre-Harmony PCA for nCount_RNA, as Harmony corrects patient-level batch effects, not sequencing depth). Patient-level dispersion (SD of per-patient mean coordinate) compared before/after Harmony as a proxy for integration quality: LUAD 5.86→5.44 (-7%), LUSC 5.09→4.66 (-8.4%). Modest reduction in both arms; final assessment of integration quality deferred to visual inspection of the UMAP colored by patient (Bloc4).
+- **Verification**: patient-level dispersion (SD of per-patient mean coordinate) compared before/after Harmony as a proxy for integration quality. LUAD (post cell-cycle regression): 5.72→5.03 (-12%), an improvement over the pre-regression result (-7%), consistent with Harmony correcting more effectively on a PC1 signal less confounded by proliferation.
 
 ### Bloc4_Clustering_UMAP
-- **Clustering**: `FindNeighbors` / `FindClusters` on the Harmony embedding (not raw PCA), 20 dimensions, resolution 0.5 as a conservative starting point for global TME clustering (19 clusters LUAD, 22 clusters LUSC).
+
+- **Clustering**: `FindNeighbors`/`FindClusters` on the Harmony embedding, 20 dimensions, resolution 0.5. LUAD (post cell-cycle regression): 18 clusters, down from 19 pre-regression, consistent with the disappearance of the mixed-lineage proliferation cluster.
 - **UMAP**: computed on the Harmony embedding, same 20 dimensions.
-- **Integration quality check**: patient distribution visually inspected on the UMAP; well-mixed colors across all major cell islands in both LUAD and LUSC, no patient-dominated isolated cluster. One small isolated cluster in LUAD was investigated (multiple patients present, none dominant), ruling out an integration artifact in favor of a genuine shared biological subgroup, to be characterized during TME annotation. 
+- **Integration quality check**: patient distribution visually inspected on the UMAP; well-mixed colors across all major cell islands, no patient-dominated isolated cluster identified.
+- **Note**: LUSC has not yet been re-run with cell cycle regression at time of writing; LUSC section to be updated once completed.
 
-## Tools and Methods
+### Bloc5_Annotation_TME
 
-| Tool | Role in the project | Reference | Block |
-|---|---|---|---|
-| BPCells | Disk-backed matrix loading, avoids RAM overload | Parikh et al., Satija Lab | Bloc0 |
-| Harmony | Batch integration | Korsunsky et al., 2019, *Nature Methods* | Bloc3 |
-| SingleR | TME annotation (fine-grained labels, cross-check against canonical markers) | Aran et al., 2019, *Nature Immunology* | Bloc5 |
-| ProjecTILs | CD8 subtyping via reference atlas projection | Andreatta, Carmona et al., 2021, *Nature Communications* | Bloc6 |
-| scRepertoire | TCR clonality analysis | Yang, Safina, Nguyen, Tuong, Borcherding, 2025, *PLOS Computational Biology* | Bloc6 |
-| UCell | Gene signature scoring (CD8 and TAM) | Andreatta & Carmona, 2021, *Computational and Structural Biotechnology Journal* | Bloc6, Bloc7 |
-| decoupleR + CollecTRI | Transcription factor activity inference (CD8 and TAM) | decoupleR: Badia-i-Mompel et al., 2022, *Bioinformatics Advances* — CollecTRI: Müller-Dott et al., 2023, *Nucleic Acids Research* | Bloc6, Bloc7 |
-| MultiNicheNet | Differential cell-cell communication, multi-sample multi-condition design | Browaeys et al., 2023, *bioRxiv* | Bloc8 |
+**LUAD**
+
+- **Marker-based annotation**: `FindAllMarkers` (Wilcoxon test via `presto`), top10 markers per cluster reviewed manually against canonical immune markers (see MARKERS_CANONICAL_REFERENCE.md). 18 clusters (post cell-cycle regression) annotated into 17 homogeneous cell types; one cluster (cycling cells, mixed lineage) left unresolved by this method alone.
+- **SingleR cross-check**: `MonacoImmuneData` reference (immune-only, appropriate for this CD45+ sorted dataset), `label.fine` as primary cross-check. Strong concordance with manual annotation; apparent disagreements traced to categories absent from the reference (TRM, exhausted CD4, ILC3, GC B cell, macrophage, mast cell — a peripheral-blood-derived reference lacks tissue-resident cell categories).
+- **Mixed cluster resolution**: the unresolved cluster's CD8 cells (identified via SingleR label) were further characterized by a targeted `FindAllMarkers` comparison across their SingleR-assigned subgroups, without presupposing correspondence to existing CD8 categories (avoiding confirmation bias). This revealed three additional CD8 states not previously captured: PDCD1+ exhausted, TCF7+ naive/memory, and KLRC2+ NK-like terminal, all cycling.
+- **Consensus**: manual annotation retained for homogeneous clusters; cell-level SingleR/targeted resolution applied only to the mixed cluster. 0 unannotated cells.
+- **Statistical comparison**: global chi-squared test on the full composition table (MPR vs non-MPR; pCR retained through annotation but excluded from statistical comparisons, see Results for total CD8/TAM cell counts). Targeted proportion tests (`prop.test`) performed for B cell (sampling-artifact check) and for the CD8/TAM categories central to this study's hypothesis.
+
+**LUSC**
+- *Not yet completed. LUAD annotation completed first per project workflow (each histology processed fully through Bloc5-Bloc8 before starting the next)*
+
+
+
+## Preliminary Observations 
+
+### Bloc5_Annotation_TME
+
+**LUAD**
+- 18 clusters identified post cell-cycle regression, annotated into 20 immune populations (17 homogeneous + 3 additional cycling CD8 substates resolved from one mixed cluster).
+- TME composition differs significantly between MPR and non-MPR (chi-squared, p < 2.2e-16).
+- B cell proportion markedly higher in MPR (41.2% vs 18.1%), consistent with a distinct GC B cell cluster suggesting possible tertiary lymphoid structures.
+- Macrophage/TAM (C1Q+/lipid-associated) proportion nearly 3x higher in non-MPR (12.2% vs 4.6%), the largest effect size among tested categories.
+- CD8 T (LAG3+ exhausted/TRM) also higher in non-MPR (12.4% vs 8.8%); CD8 T (GZMK+ effector/memory) shows a statistically significant but modest difference (12.4% vs 11.4%).
+- Total CD8 T cells across all states: 80,615 cells, spanning 5 distinct populations.
+
+
 
 ## Discussion
 

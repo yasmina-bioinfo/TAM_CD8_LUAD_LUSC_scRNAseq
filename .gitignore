@@ -6,3 +6,4 @@ Data/*.mtx
 .Rproj.user/
 renv/library/
 renv/staging/
+.RDataTmp
