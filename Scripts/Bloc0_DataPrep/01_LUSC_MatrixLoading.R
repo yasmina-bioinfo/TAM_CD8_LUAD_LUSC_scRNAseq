@@ -45,6 +45,11 @@ if (ncol(mat_lusc) != length(lusc_ids$cellID)) {
 message("Filtered cell count matches Script 00 reference. OK.")
 
 message("Saving LUSC matrix to disk...")
+# Remove existing output directory if present: write_matrix_dir() refuses
+# to overwrite an existing folder (BPCells limitation), so this ensures
+# the script can be safely re-run without manual cleanup.
+unlink(OUT_DIR, recursive = TRUE, force = TRUE)
+
 write_matrix_dir(mat_lusc, OUT_DIR)
 message("Saved: Objects/01_LUSC_matrix_BPCells/")
 message("DONE Script 01 — LUSC matrix loading")

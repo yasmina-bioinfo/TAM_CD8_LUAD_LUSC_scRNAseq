@@ -7,3 +7,6 @@ Data/*.mtx
 renv/library/
 renv/staging/
 .RDataTmp
+.RDataTmp*
+log_*.txt
+test_*.R

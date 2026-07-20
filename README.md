@@ -57,7 +57,7 @@ All paths are relative, managed via the `here` package (`here()` / `here("Data",
 | Bloc2_Norm_HVG_PCA | Normalization, highly variable genes, PCA | Done |
 | Bloc3_Harmony | Batch integration | Done |
 | Bloc4_Clustering_UMAP | Clustering, UMAP visualization | Done |
-| Bloc5_Annotation_TME | TME annotation (canonical markers as primary reference, SingleR fine labels as cross-check) | To do |
+| Bloc5_Annotation_TME | TME annotation (canonical markers as primary reference, SingleR fine labels as cross-check) | Done |
 | Bloc6_CD8 | ProjecTILs CD8 subtyping, TCR clonality (scRepertoire), UCell signature scoring, CollecTRI regulon activity | To do |
 | Bloc7_TAM | TAM subtyping, UCell signature scoring, CollecTRI regulon activity | To do |
 | Bloc8_Communication | MultiNicheNet differential cell-cell communication (LUAD vs LUSC) | To do |
@@ -89,7 +89,6 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 - **Total cell count cross-check**: LUAD (336,685) + LUSC (918,064) = 1,254,749 cells, matching the full unfiltered metadata row count.
 
 ### Bloc1_QC 
-
 - **Metrics**: nFeature_RNA, nCount_RNA, and percent.mt (mitochondrial content, `^MT-` pattern) computed per cell, after minimal Seurat object creation filters (`min.cells=3`, `min.features=200`).
 - **Threshold selection**: thresholds based on the 99th percentile of each metric's distribution, computed separately for LUAD and LUSC (never copied across histologies), and uniform across all patients and pathological response groups within each histology. Differentiating thresholds by response group was explicitly avoided, since `pathological_response` is the primary comparison axis (MPR vs non-MPR); group-specific thresholds risk introducing an artificial bias into that comparison.
 - **Thresholds applied**:
@@ -97,28 +96,27 @@ Each block's methodology, chosen parameters, and rationale will be documented in
   - LUSC: nFeature_RNA [200–4300], nCount_RNA [1000–26000], percent.mt < 10%
 - **Verification**: cells removed per pathological response group checked post-filtering to confirm no group was disproportionately affected. LUAD: MPR -1.8%, non-MPR -2.7%, pCR -1.4%. LUSC: MPR -3.1%, non-MPR -3.0%, pCR -2.5%, unclassified ("unknowm") -2.5%. Comparable removal rates across groups in both histologies support the validity of uniform thresholds for the downstream MPR vs non-MPR comparison.
 - **Object portability**: raw counts converted from BPCells (disk-backed) to standard in-memory sparse matrix (`dgCMatrix`) at the end of QC filtering, ensuring downstream objects remain portable across operating systems/environments, independent of the original BPCells storage path.
+- **Response group filtering**: following QC filtering, cells are restricted to `pathological_response %in% c("MPR", "non-MPR")`. pCR patients (and the single "unknowm"-labeled LUSC patient) are excluded from this point onward in both histologies, since neither is used in any downstream scoring or comparison beyond a descriptive pCR/total ratio per histology (reported separately from clinical metadata, not from the filtered Seurat object). Cell counts after filtering: LUAD 268,615 cells (MPR 50,914 / non-MPR 217,701, from 328,854 before filtering); LUSC 478,223 cells (MPR 183,956 / non-MPR 294,267, from 892,413 before filtering).
 
-### Bloc2_Norm_HVG_PCA — Methodology
-
+### Bloc2_Norm_HVG_PCA
 - **Normalization**: LogNormalize (scale factor 10,000), standard method.
-- **Highly variable genes**: 3,000 HVGs selected (vst method), above the Seurat default of 2,000. Rationale verified against `major_cell_type` metadata: the dataset is CD45+ sorted (B cell, Myeloid cell, T/NK cell only; no epithelial population), so the increased HVG count is intended to better capture fine-grained heterogeneity within immune subpopulations (e.g. TAM subtypes, CD8 states), not epithelial diversity as originally assumed in the inherited script.
-- **Cell cycle regression**: cell cycle phase scored (`CellCycleScoring`, Seurat's built-in S/G2M gene sets) and regressed out during scaling (`vars.to.regress = c("S.Score", "G2M.Score")`). Added after initial clustering (pre-regression) revealed a cluster driven entirely by proliferation markers (TYMS, RRM2, AURKB, UBE2C) mixing multiple cell lineages rather than reflecting a single biological identity.
-- **Scaling**: applied to HVGs only, not the full gene set, to limit memory usage.
-- **PCA**: 50 components computed; number of PCs to retain determined from per-PC variance explained, using the point where successive PCs contribute near-negligible marginal variance (<0.1%).
-- **PC1 diagnostic**: correlation with nCount_RNA checked to rule out a purely technical origin for the dominant component (LUAD, post-regression: r=-0.50, PC1=30.4% variance); correlation with percent.mt negligible (r≈0).
-- **PCs retained**: 20 for LUAD (post-regression), consistent with the pre-regression choice; margin beyond the observed elbow (~PC15-16) to preserve signal from rare subpopulations.
+- **Highly variable genes**: 3,000 HVGs for both LUAD and LUSC (vst method), above the Seurat default of 2,000. Verified against `major_cell_type` metadata (CD45+ sorted dataset, no epithelial compartment), intended to better capture fine-grained heterogeneity within immune subpopulations. LUSC initially used a reduced HVG count (2,000) as a temporary computational constraint on the larger pre-filtering dataset; unified to 3,000 (matching LUAD) once the response-group filtering (see Bloc1_QC) reduced the LUSC cell count enough to remove this constraint.
+- **Cell cycle regression**: not applied to either histology. Initially applied to LUAD only, then reassessed: regression reduced but did not fully resolve a mixed-lineage proliferation cluster (a residual mixed cluster still required post-hoc resolution via SingleR — see Bloc5), so it did not provide a complete solution even where it succeeded technically. On LUSC, regression additionally caused repeated memory allocation failures on the larger dataset. Since post-hoc SingleR resolution alone proved sufficient on LUAD, regression was dropped entirely for consistency across both histologies.
+- **Scaling**: applied to HVGs only, not the full gene set, to limit memory usage. The dense scaled matrix (`scale.data`) is discarded from the object immediately after PCA, since it is not required by any downstream step (Harmony, clustering, UMAP, `FindAllMarkers`, SingleR all operate on the PCA/Harmony embedding or on the normalized sparse matrix).
+- **PCA**: 50 components computed for both arms; number of PCs to retain determined from per-PC variance explained, using the point where successive PCs contribute a near-negligible marginal variance (<0.1%).
+- **PC1 diagnostic**: correlation with nCount_RNA checked to rule out a purely technical origin for the dominant component (LUAD: r=-0.50, 30.8% variance; LUSC: r=0.48, 28.9% variance — both moderate, not indicative of a purely technical artifact); correlation with percent.mt negligible in both arms (LUAD r≈-0.02; LUSC r≈-0.06).
+- **PCs retained**: 20 for both LUAD and LUSC, slightly beyond the strict elbow (~PC12-13) to reduce the risk of losing signal from rare subpopulations of interest (TAM, CD8 substates). Cumulative 20-PC variance: 82.4% (LUAD), 82.4% (LUSC).
 
 ### Bloc3_Harmony
 
 - **Batch correction**: Harmony (`group.by.vars = "sampleID"`), correcting for inter-patient technical variation, applied on the 20 PCs retained in Bloc2.
-- **Verification**: patient-level dispersion (SD of per-patient mean coordinate) compared before/after Harmony as a proxy for integration quality. LUAD (post cell-cycle regression): 5.72→5.03 (-12%), an improvement over the pre-regression result (-7%), consistent with Harmony correcting more effectively on a PC1 signal less confounded by proliferation.
+- **Verification**: patient-level dispersion (SD of per-patient mean coordinate) compared before/after Harmony as a proxy for integration quality. LUAD (post cell-cycle regression): 5.72→5.03 (-12%), an improvement over the pre-regression result (-7%), consistent with Harmony correcting more effectively on a PC1 signal less confounded by proliferation. LUSC (no regression, 2,000 HVGs): 4.78→4.33 (-9.4%), consistent with LUAD despite the methodological differences, supporting the robustness of the integration step itself.
 
 ### Bloc4_Clustering_UMAP
 
-- **Clustering**: `FindNeighbors`/`FindClusters` on the Harmony embedding, 20 dimensions, resolution 0.5. LUAD (post cell-cycle regression): 18 clusters, down from 19 pre-regression, consistent with the disappearance of the mixed-lineage proliferation cluster.
+- **Clustering**: `FindNeighbors`/`FindClusters` on the Harmony embedding (not raw PCA), 20 dimensions, resolution 0.5 as a conservative starting point for global TME clustering (18 clusters LUAD post-regression; 22 clusters LUSC, no regression).
 - **UMAP**: computed on the Harmony embedding, same 20 dimensions.
-- **Integration quality check**: patient distribution visually inspected on the UMAP; well-mixed colors across all major cell islands, no patient-dominated isolated cluster identified.
-- **Note**: LUSC has not yet been re-run with cell cycle regression at time of writing; LUSC section to be updated once completed.
+- **Integration quality check**: patient distribution visually inspected on the UMAP; well-mixed colors across all major cell islands in both LUAD and LUSC, no patient-dominated isolated cluster identified. One small isolated cluster was investigated in each cohort (multiple patients present in both cases, none dominant), ruling out an integration artifact in favor of a genuine shared biological subgroup, to be characterized during TME annotation.
 
 ### Bloc5_Annotation_TME
 

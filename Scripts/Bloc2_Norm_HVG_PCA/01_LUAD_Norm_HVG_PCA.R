@@ -8,7 +8,7 @@ suppressPackageStartupMessages({
   library(ggplot2)
 })
 
-IN_OBJ  <- here("Objects", "02_LUAD_seu_qc.rds")
+IN_OBJ  <- here("Objects", "03_LUAD_seu_resp.rds")
 OUT_OBJ <- here("Objects")
 OUT_FIG <- here("Results", "Bloc2_Norm_HVG_PCA", "Figures")
 dir.create(OUT_FIG, showWarnings = FALSE, recursive = TRUE)
@@ -33,20 +33,8 @@ seu <- FindVariableFeatures(seu, selection.method = "vst",
                             nfeatures = 3000, verbose = FALSE)
 message("HVGs selected: ", length(VariableFeatures(seu)))
 
-# Cell cycle scoring, to regress out proliferation signal before PCA.
-# Added after Bloc5 annotation revealed a cluster (cluster 11) mixing
-# multiple cell lineages, driven by cell-cycle genes rather than lineage
-# identity (see CAHIER_METHODOLOGIQUE.md, Bloc5 Script 01).
-message("Scoring cell cycle phase...")
-s.genes   <- cc.genes.updated.2019$s.genes
-g2m.genes <- cc.genes.updated.2019$g2m.genes
-seu <- CellCycleScoring(seu, s.features = s.genes, g2m.features = g2m.genes,
-                        set.ident = FALSE)
-
 message("Scaling HVGs...")
-seu <- ScaleData(seu, features = VariableFeatures(seu),
-                 vars.to.regress = c("S.Score", "G2M.Score"),
-                 verbose = FALSE)
+seu <- ScaleData(seu, features = VariableFeatures(seu), verbose = FALSE)
 
 message("Running PCA...")
 seu <- RunPCA(seu, features = VariableFeatures(seu), npcs = 50, verbose = FALSE)
@@ -60,6 +48,9 @@ print(p_elbow)
 
 ggsave(file.path(OUT_FIG, "01_LUAD_ElbowPlot.png"), p_elbow,
        width = 6, height = 4, dpi = 300, bg = "white")
+
+seu[["RNA"]]$scale.data <- NULL
+gc()
 
 saveRDS(seu, file.path(OUT_OBJ, "01_LUAD_seu_pca.rds"))
 message("DONE Script 01 — LUAD Normalization/HVG/PCA")
