@@ -22,6 +22,7 @@ message("Running Harmony batch correction...")
 seu <- RunHarmony(seu,
                   group.by.vars = "sampleID",
                   dims.use      = 1:20,
+                  project.dim   = FALSE,
                   verbose       = FALSE)
 
 saveRDS(seu, file.path(OUT_OBJ, "01_LUSC_seu_harmony.rds"))

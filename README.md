@@ -108,15 +108,13 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 - **PCs retained**: 20 for both LUAD and LUSC, slightly beyond the strict elbow (~PC12-13) to reduce the risk of losing signal from rare subpopulations of interest (TAM, CD8 substates). Cumulative 20-PC variance: 82.4% (LUAD), 82.4% (LUSC).
 
 ### Bloc3_Harmony
-
 - **Batch correction**: Harmony (`group.by.vars = "sampleID"`), correcting for inter-patient technical variation, applied on the 20 PCs retained in Bloc2.
-- **Verification**: patient-level dispersion (SD of per-patient mean coordinate) compared before/after Harmony as a proxy for integration quality. LUAD (post cell-cycle regression): 5.72→5.03 (-12%), an improvement over the pre-regression result (-7%), consistent with Harmony correcting more effectively on a PC1 signal less confounded by proliferation. LUSC (no regression, 2,000 HVGs): 4.78→4.33 (-9.4%), consistent with LUAD despite the methodological differences, supporting the robustness of the integration step itself.
+- **Verification**: patient-level dispersion (SD of per-patient mean coordinate) compared before/after Harmony as a proxy for integration quality. LUAD: 5.93→5.40 (-8.9%). LUSC: 5.53→5.03 (-9.0%). Comparable reductions across both histologies support the robustness of the integration step.
 
 ### Bloc4_Clustering_UMAP
-
-- **Clustering**: `FindNeighbors`/`FindClusters` on the Harmony embedding (not raw PCA), 20 dimensions, resolution 0.5 as a conservative starting point for global TME clustering (18 clusters LUAD post-regression; 22 clusters LUSC, no regression).
+- **Clustering**: `FindNeighbors`/`FindClusters` on the Harmony embedding (not raw PCA), 20 dimensions, resolution 0.5 as a conservative starting point for global TME clustering (17 clusters LUAD; 21 clusters LUSC).
 - **UMAP**: computed on the Harmony embedding, same 20 dimensions.
-- **Integration quality check**: patient distribution visually inspected on the UMAP; well-mixed colors across all major cell islands in both LUAD and LUSC, no patient-dominated isolated cluster identified. One small isolated cluster was investigated in each cohort (multiple patients present in both cases, none dominant), ruling out an integration artifact in favor of a genuine shared biological subgroup, to be characterized during TME annotation.
+- **Integration quality check**: patient distribution visually inspected on the UMAP; well-mixed colors across all major cell islands in both LUAD and LUSC, no patient-dominated isolated cluster identified in LUSC. One small isolated cluster in LUAD (cluster 15, 526 cells total) showed partial dominance by a single patient (59% of the cluster's cells). This patient's total cell count and median detected-gene count were both above the 75th percentile across all patients, while mitochondrial content remained within the normal range, suggesting the pattern reflects a well-captured, high-complexity patient sample rather than a batch integration artifact. Biological interpretation deferred to TME annotation (Bloc5).
 
 ### Bloc5_Annotation_TME
 
