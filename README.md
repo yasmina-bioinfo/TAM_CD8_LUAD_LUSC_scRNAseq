@@ -119,29 +119,29 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 ### Bloc5_Annotation_TME
 
 **LUAD**
-
-- **Marker-based annotation**: `FindAllMarkers` (Wilcoxon test via `presto`), top10 markers per cluster reviewed manually against canonical immune markers (see MARKERS_CANONICAL_REFERENCE.md). 18 clusters (post cell-cycle regression) annotated into 17 homogeneous cell types; one cluster (cycling cells, mixed lineage) left unresolved by this method alone.
-- **SingleR cross-check**: `MonacoImmuneData` reference (immune-only, appropriate for this CD45+ sorted dataset), `label.fine` as primary cross-check. Strong concordance with manual annotation; apparent disagreements traced to categories absent from the reference (TRM, exhausted CD4, ILC3, GC B cell, macrophage, mast cell — a peripheral-blood-derived reference lacks tissue-resident cell categories).
-- **Mixed cluster resolution**: the unresolved cluster's CD8 cells (identified via SingleR label) were further characterized by a targeted `FindAllMarkers` comparison across their SingleR-assigned subgroups, without presupposing correspondence to existing CD8 categories (avoiding confirmation bias). This revealed three additional CD8 states not previously captured: PDCD1+ exhausted, TCF7+ naive/memory, and KLRC2+ NK-like terminal, all cycling.
-- **Consensus**: manual annotation retained for homogeneous clusters; cell-level SingleR/targeted resolution applied only to the mixed cluster. 0 unannotated cells.
-- **Statistical comparison**: global chi-squared test on the full composition table (MPR vs non-MPR; pCR retained through annotation but excluded from statistical comparisons, see Results for total CD8/TAM cell counts). Targeted proportion tests (`prop.test`) performed for B cell (sampling-artifact check) and for the CD8/TAM categories central to this study's hypothesis.
+- **Marker-based annotation**: `FindAllMarkers` (Wilcoxon test via `presto`), top10 markers per cluster reviewed manually against canonical immune markers (see MARKERS_CANONICAL_REFERENCE.md, restructured as a project-agnostic cell-type dictionary). 17 clusters (filtered MPR/non-MPR object, no cell-cycle regression — see Bloc2) annotated into 13 homogeneous cell types directly from markers, plus 2 further clusters confirmed via SingleR family-level cross-check despite a cell-cycle-dominated marker profile (15 clusters resolved by this stage). Two clusters (6 and 11) left unresolved by cluster-level methods alone: cluster 6 mixes several mature lineages (no cell-cycle signal), cluster 11 mixes multiple lineages under a dominant cell-cycle signal.
+- **SingleR cross-check**: `MonacoImmuneData` reference (immune-only, appropriate for this CD45+ sorted dataset), `label.fine` as primary cross-check. For each ambiguous cluster, the full distribution of per-cell `SingleR_fine` labels was examined (not just the majority label): clusters with ≥95% of cells concordant within a single biological family were confirmed despite an inconclusive cluster-level marker profile; clusters with several families represented at substantial proportions were flagged for cell-level resolution. Several `MonacoImmuneData` labels were found to be misleading given the reference's peripheral-blood origin (e.g. "Progenitor cells" corresponding to ILC3, confirmed via KIT/RORC/TNFSF11/SPINK2 expression and near-absent CD34/CD38; tissue macrophages alternately labeled "Myeloid dendritic cells" or "Intermediate monocytes" depending on the cell, both resolving to the same lipid-associated TAM signature on marker verification) — every disagreement was resolved by checking actual marker expression rather than trusting the label name.
+- **Mixed cluster resolution**: for clusters 6 and 11, cells were grouped by their individual `SingleR_fine` label (labels below a minimum-cell threshold excluded as statistically unreliable for a robust `FindAllMarkers` call, verified empirically rather than assumed), then a targeted `FindAllMarkers` was run per subgroup without presupposing correspondence to existing categories (avoiding confirmation bias). Cluster 6 resolved into 8 lineages (NK cell, two γδ T subtypes, two additional CD8 T states, MAIT cell, terminal-effector CD4 T, and ILC3). Cluster 11 resolved into 10 lineages under a shared cell-cycle signal, including a CD8 T state (KLRC2+/KIR2DL4+/ZNF683+, NK-like terminal phenotype) matching the equivalent population independently characterized in the prior pipeline run — supporting the robustness of this signal across pipeline versions.
+- **Consensus**: manual/SingleR-confirmed annotation retained for the 15 homogeneous clusters; cell-level resolution applied to clusters 6 and 11, yielding 33 distinct populations in total (`annotation_consensus`, full granularity, used for downstream Bloc6/7 extraction). A residual 0.16% of cells (labels below the reliability threshold, unverified by markers) assigned to an explicit "Other" category rather than an unverified label. 0 unannotated cells. A simplified `annotation_display` (categories ≥500 cells shown individually, smaller ones grouped into "Other", <1.2% of cells) is used for the summary figure only and does not affect downstream extraction.
+- **Statistical comparison**: global chi-squared test on the full composition table (MPR vs non-MPR; pCR and the single "unknowm"-labeled patient are no longer present in the object at this stage — excluded upstream at the end of Bloc1 QC, see Bloc1_QC). Targeted proportion tests (`prop.test`) performed for B cell (sampling-artifact check) and for the CD8/TAM categories central to this study's hypothesis, computed both per individual subtype and pooled across all CD8/TAM states combined.
 
 **LUSC**
 - *Not yet completed. LUAD annotation completed first per project workflow (each histology processed fully through Bloc5-Bloc8 before starting the next)*
 
 
 
-## Preliminary Observations 
+## Preliminary Observations
 
 ### Bloc5_Annotation_TME
 
 **LUAD**
-- 18 clusters identified post cell-cycle regression, annotated into 20 immune populations (17 homogeneous + 3 additional cycling CD8 substates resolved from one mixed cluster).
-- TME composition differs significantly between MPR and non-MPR (chi-squared, p < 2.2e-16).
-- B cell proportion markedly higher in MPR (41.2% vs 18.1%), consistent with a distinct GC B cell cluster suggesting possible tertiary lymphoid structures.
-- Macrophage/TAM (C1Q+/lipid-associated) proportion nearly 3x higher in non-MPR (12.2% vs 4.6%), the largest effect size among tested categories.
-- CD8 T (LAG3+ exhausted/TRM) also higher in non-MPR (12.4% vs 8.8%); CD8 T (GZMK+ effector/memory) shows a statistically significant but modest difference (12.4% vs 11.4%).
-- Total CD8 T cells across all states: 80,615 cells, spanning 5 distinct populations.
+- 17 clusters identified (filtered MPR/non-MPR object, no cell-cycle regression), annotated into 33 distinct immune populations (15 clusters resolved directly by markers or SingleR family-level confirmation; 2 mixed clusters resolved at the cell level into 8 and 10 additional lineages respectively).
+- TME composition differs significantly between MPR and non-MPR (chi-squared, X² = 15,413, df = 21, p < 2.2e-16).
+- B cell proportion markedly higher in MPR (41.2% vs 18.0%), consistent with a distinct GC B cell population suggesting possible tertiary lymphoid structures.
+- Macrophage/TAM (all lipid-associated states combined) proportion nearly 3x higher in non-MPR (8.2% vs 3.0%), the largest relative effect size among tested categories — consistent in direction and magnitude with the prior pipeline run despite the different population (pCR excluded) and annotation granularity.
+- CD8 T (LAG3+ exhausted/TRM) also higher in non-MPR (11.6% vs 8.3%); CD8 T (GZMK+ effector/memory) shows a statistically significant but modest difference (13.1% vs 12.1%). Across all CD8 states combined, non-MPR shows a higher overall CD8 proportion (27.0% vs 21.5%).
+- Total CD8 T cells across all states: 69,808 cells, spanning 6 distinct populations. Total Macrophage/TAM cells across all states: 19,295 cells, spanning 2 distinct populations (main and cycling).
+- The biological pattern (B cell enrichment in MPR; TAM and exhausted CD8 enrichment in non-MPR) closely reproduces the prior pipeline run, supporting robustness of the signal independent of the specific annotation method or the presence/absence of pCR patients in the object.
 
 
 

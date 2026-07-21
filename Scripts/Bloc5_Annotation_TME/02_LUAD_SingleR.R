@@ -3,7 +3,7 @@
 # GSE243013 — Bloc5_Annotation_TME, Script 02: SingleR annotation (LUAD)
 # Reference: MonacoImmuneData (immune-only, appropriate for this
 # CD45+ sorted dataset). label.fine is the primary cross-check tool
-# against canonical marker annotation (see ROADMAP.md).
+# against canonical marker annotation.
 # ============================================================
 suppressPackageStartupMessages({
   library(here)

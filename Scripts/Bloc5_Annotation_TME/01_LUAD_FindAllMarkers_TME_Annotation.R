@@ -7,6 +7,7 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(readr)
   library(here)
+  library(presto)
 })
 
 # -----------------------------
@@ -42,8 +43,7 @@ message("Cells: ", ncol(seu),
 # min.pct = 0.25: gene must be detected in at least 25% of cells in the cluster
 # logfc.threshold = 0.25: minimum log2 fold-change
 # test.use = "wilcox": Wilcoxon rank-sum test (standard, RAM-friendly)
-# # NOTE: JoinLayers() required before FindAllMarkers() in Seurat v5
-# Runtime: ~15-20 min on 336,685 cells LUAD with 16GB RAM after joining layers
+# NOTE: JoinLayers() required before FindAllMarkers() in Seurat v5
 message("Running FindAllMarkers (this may take a while)...")
 markers <- FindAllMarkers(
   object          = seu,

@@ -1,12 +1,12 @@
 #!/usr/bin/env Rscript
 # ============================================================
 # GSE243013 — Bloc5_Annotation_TME, Script 05: TME visualization (LUAD)
-# UMAP + barplot with simplified display categories (20 main categories +
-# "Other (cycling, minor)" for rare residual cluster-11 labels). Full
-# annotation_consensus (all labels) preserved in the saved object for
-# downstream analysis. Statistics restricted to MPR vs non-MPR; pCR
-# retained through clustering/annotation for diversity, excluded from
-# response-group comparisons onward.
+# UMAP + barplot with simplified display categories (categories with
+# >= 500 cells shown individually, smaller ones grouped into "Other").
+# Full annotation_consensus (all 33 labels) preserved in the saved object
+# for downstream Bloc6/7 analysis. Statistics on MPR vs non-MPR — pCR
+# already excluded from the object since end of Bloc1 QC, no filtering
+# needed at this stage.
 # Input:  Objects/04_LUAD_seu_annotated.rds
 # ============================================================
 suppressPackageStartupMessages({
@@ -31,50 +31,48 @@ message("Cells: ", ncol(seu))
 # 1) Simplified display category (visualization only; full
 #    annotation_consensus untouched for downstream use)
 # -----------------------------
-main_categories <- c(
-  "B cell", "CD4 T (naive/memory)", "CD8 T (GZMK+ effector/memory)",
-  "CD8 T (LAG3+ exhausted/TRM)", "Macrophage/TAM (C1Q+/lipid-associated)",
-  "Treg", "NK cell", "CD4 T (CXCL13+ exhausted/Tfh-like)",
-  "Monocyte (classical, profile A)", "Plasma cell", "Mast cell",
-  "Neutrophil", "DC (mature/migratory, mregDC)", "ILC3", "pDC", "GC B cell",
-  "Monocyte (classical, profile B)",
-  "CD8 T (PDCD1+ exhausted, cycling)", "CD8 T (TCF7+ naive/memory, cycling)",
-  "CD8 T (KLRC2+ NK-like terminal, cycling)"
-)
+# Categories with >= 500 cells shown individually; smaller categories
+# grouped into "Other" for figure readability only (annotation_consensus,
+# used for downstream Bloc6/7 extraction, is untouched by this threshold)
+DISPLAY_MIN_CELLS <- 500
+
+counts_consensus <- table(seu$annotation_consensus)
+main_categories  <- names(counts_consensus)[counts_consensus >= DISPLAY_MIN_CELLS]
 
 seu$annotation_display <- ifelse(
   seu$annotation_consensus %in% main_categories,
   seu$annotation_consensus,
-  "Other (cycling, minor)"
+  "Other (< 500 cells)"
 )
 message("Display categories:")
-print(table(seu$annotation_display))
+print(sort(table(seu$annotation_display), decreasing = TRUE))
 
 # -----------------------------
 # 2) Color palette, organized by lineage
 # -----------------------------
 tme_colors <- c(
-  "B cell"                                     = "#33a02c",
-  "GC B cell"                                  = "#74c476",
-  "Plasma cell"                                = "#006d2c",
-  "CD4 T (naive/memory)"                       = "#a6cee3",
-  "CD4 T (CXCL13+ exhausted/Tfh-like)"         = "#6baed6",
-  "Treg"                                       = "#08519c",
-  "CD8 T (GZMK+ effector/memory)"              = "#f4a582",
-  "CD8 T (LAG3+ exhausted/TRM)"                = "#D73027",
-  "CD8 T (PDCD1+ exhausted, cycling)"          = "#B2182B",
-  "CD8 T (TCF7+ naive/memory, cycling)"        = "#FCAE91",
-  "CD8 T (KLRC2+ NK-like terminal, cycling)"   = "#67001F",
-  "NK cell"                                    = "#e6550d",
-  "ILC3"                                       = "#fdae6b",
-  "Macrophage/TAM (C1Q+/lipid-associated)"     = "#a63603",
-  "Monocyte (classical, profile A)"            = "#fd8d3c",
-  "Monocyte (classical, profile B)"            = "#FFD700",
-  "DC (mature/migratory, mregDC)"              = "#BCBD22",
-  "pDC"                                        = "#17BECF",
-  "Mast cell"                                  = "#c994c7",
-  "Neutrophil"                                 = "#969696",
-  "Other (cycling, minor)"                     = "#d9d9d9"
+  "B cell"                                       = "#33a02c",
+  "GC B cell"                                    = "#74c476",
+  "Plasma cell"                                  = "#006d2c",
+  "CD4 T (naive/memory)"                         = "#a6cee3",
+  "CD4 T (CXCL13+ exhausted/Tfh-like)"           = "#6baed6",
+  "Treg"                                         = "#08519c",
+  "Treg (cycling)"                               = "#4292c6",
+  "CD8 T (GZMK+ effector/memory)"                = "#fdbb84",
+  "CD8 T (LAG3+ exhausted/TRM)"                  = "#D73027",
+  "CD8 T (cytotoxic effector/memory, cycling)"   = "#7f0000",
+  "CD8 T (terminal effector, cluster 6)"         = "#B2182B",
+  "CD8 T (effector memory, cluster 6 variant)"   = "#fee08b",
+  "NK cell"                                      = "#984ea3",
+  "T γδ (Vδ1/non-Vδ2)"                           = "#f781bf",
+  "T γδ (Vδ2)"                                   = "#c51b8a",
+  "Macrophage/TAM (C1Q+/lipid-associated)"       = "#a63603",
+  "Macrophage/TAM (lipid-associated, cycling)"   = "#e6550d",
+  "Monocyte classique (S100A8/9+/FCN1+)"         = "#807dba",
+  "DC (cDC2, CD1A+/FCER1A+)"                     = "#BCBD22",
+  "pDC"                                          = "#17BECF",
+  "Mast cell"                                    = "#c994c7",
+  "Other (< 500 cells)"                          = "#d9d9d9"
 )
 
 seu$annotation_display <- factor(seu$annotation_display, levels = names(tme_colors))
@@ -96,13 +94,12 @@ print(DimPlot(seu, reduction = "umap", group.by = "annotation_display",
 dev.off()
 
 # -----------------------------
-# 4) UMAP split by response (MPR vs non-MPR only, pCR excluded)
+# 4) UMAP split by response (MPR vs non-MPR — only groups present in
+# the object, pCR already excluded upstream at Bloc1 QC)
 # -----------------------------
-seu_resp <- subset(seu, subset = pathological_response %in% c("MPR", "non-MPR"))
-
 png(file.path(OUT_FIG, "05_LUAD_UMAP_split_response.png"),
     width = 14, height = 6, units = "in", res = 300)
-print(DimPlot(seu_resp, reduction = "umap", group.by = "annotation_display",
+print(DimPlot(seu, reduction = "umap", group.by = "annotation_display",
               split.by = "pathological_response", cols = tme_colors,
               label = FALSE, pt.size = 0.1, raster = FALSE) +
         theme_classic() +
@@ -113,12 +110,11 @@ print(DimPlot(seu_resp, reduction = "umap", group.by = "annotation_display",
               legend.key.size = unit(0.4, "cm"),
               legend.title = element_blank()))
 dev.off()
-message("Saved: UMAP figures")
 
 # -----------------------------
-# 5) Barplot: proportions, MPR vs non-MPR only
+# 5) Barplot: proportions, MPR vs non-MPR (only groups present in the object)
 # -----------------------------
-df_prop <- seu_resp@meta.data %>%
+df_prop <- seu@meta.data %>%
   filter(!is.na(annotation_display), !is.na(pathological_response)) %>%
   count(pathological_response, annotation_display, name = "n") %>%
   group_by(pathological_response) %>%
@@ -139,30 +135,102 @@ p_bar <- ggplot(df_prop, aes(x = pathological_response, y = prop, fill = annotat
         plot.caption = element_text(size = 8, face = "italic", hjust = 0)) +
   guides(fill = guide_legend(ncol = 1))
 
+# Format p-value for display (avoid showing literal "0")
+p_display <- ifelse(chisq_res$p.value < 2.2e-16, "p < 2.2e-16", 
+                    formatC(chisq_res$p.value, format = "e", digits = 2))
+
+p_bar <- p_bar +
+  labs(caption = paste0("Chi-squared test: X² = ", round(chisq_res$statistic, 0),
+                        ", df = ", chisq_res$parameter, ", ", p_display))
+
 ggsave(file.path(OUT_FIG, "05_LUAD_Barplot_proportions.png"), p_bar,
        width = 9, height = 7, dpi = 300, bg = "white")
+
 message("Saved: barplot")
 
 # -----------------------------
-# 6) Statistical tests, MPR vs non-MPR only
+# 6) Statistical tests (MPR vs non-MPR — only groups present in the object)
 # -----------------------------
 message("Running statistical tests (MPR vs non-MPR)...")
-cont_table <- table(seu_resp$annotation_display, seu_resp$pathological_response)
+cont_table <- table(seu$annotation_display, seu$pathological_response)
 
 chisq_res <- chisq.test(cont_table)
 message("Chi-2 test p-value: ", chisq_res$p.value)
 
+# R's floating-point precision floors extremely small p-values to exactly
+# 0 on export — not a literal p=0, but below representable precision.
+# Report using the standard convention already used in the previous
+# pipeline run (p < 2.2e-16, R's machine epsilon).
+p_report <- ifelse(chisq_res$p.value == 0, "< 2.2e-16", 
+                   formatC(chisq_res$p.value, format = "e", digits = 3))
+
 chisq_summary <- data.frame(
   statistic = unname(chisq_res$statistic),
   df        = unname(chisq_res$parameter),
-  p.value   = unname(chisq_res$p.value)
+  p.value   = p_report
 )
+
 dir.create(OUT_TAB, showWarnings = FALSE, recursive = TRUE)
 fwrite(chisq_summary, file.path(OUT_TAB, "05_LUAD_chisq_test.csv"))
 message("Saved: chi-2 test")
 
 # -----------------------------
-# 7) Save final object
+# 7) Targeted proportion tests, MPR vs non-MPR
+# Categories selected before seeing results, to avoid selectively testing
+# what looks visually striking after the fact:
+# - B cell: sampling-artifact check (MPR has few patients)
+# - CD8 and TAM: central narrative categories of this study's hypothesis
+# Combined categories (all CD8 / all TAM states pooled) computed from
+# annotation_consensus (full granularity), for comparability with the
+# single-category narrative framing used in the previous pipeline run.
+# -----------------------------
+message("Running targeted proportion tests...")
+
+prop_test_category <- function(seu, category_name, group_col, label = category_name) {
+  cat_table <- table(seu@meta.data[[group_col]] == category_name, seu$pathological_response)
+  res <- prop.test(cat_table["TRUE", ], colSums(cat_table))
+  data.frame(
+    category    = label,
+    prop_MPR    = unname(res$estimate[1]),
+    prop_nonMPR = unname(res$estimate[2]),
+    p.value     = unname(res$p.value)
+  )
+}
+
+prop_test_combined <- function(seu, flag_col, label) {
+  cat_table <- table(seu@meta.data[[flag_col]], seu$pathological_response)
+  res <- prop.test(cat_table["TRUE", ], colSums(cat_table))
+  data.frame(
+    category    = label,
+    prop_MPR    = unname(res$estimate[1]),
+    prop_nonMPR = unname(res$estimate[2]),
+    p.value     = unname(res$p.value)
+  )
+}
+
+results_individual <- dplyr::bind_rows(
+  prop_test_category(seu, "B cell", "annotation_display"),
+  prop_test_category(seu, "CD8 T (GZMK+ effector/memory)", "annotation_display"),
+  prop_test_category(seu, "CD8 T (LAG3+ exhausted/TRM)", "annotation_display"),
+  prop_test_category(seu, "Macrophage/TAM (C1Q+/lipid-associated)", "annotation_display")
+)
+
+seu$is_CD8_any <- grepl("^CD8 T", seu$annotation_consensus)
+seu$is_TAM_any <- grepl("^Macrophage/TAM", seu$annotation_consensus)
+
+results_combined <- dplyr::bind_rows(
+  prop_test_combined(seu, "is_CD8_any", "CD8 T (all states combined)"),
+  prop_test_combined(seu, "is_TAM_any", "Macrophage/TAM (all states combined)")
+)
+
+prop_results <- dplyr::bind_rows(results_individual, results_combined)
+print(prop_results)
+
+fwrite(prop_results, file.path(OUT_TAB, "05_LUAD_proportion_tests.csv"))
+message("Saved: targeted proportion tests")
+
+# -----------------------------
+# 8) Save final object
 # -----------------------------
 saveRDS(seu, here("Objects", "05_LUAD_seu_final.rds"))
 message("DONE Script 05 — LUAD TME visualization")

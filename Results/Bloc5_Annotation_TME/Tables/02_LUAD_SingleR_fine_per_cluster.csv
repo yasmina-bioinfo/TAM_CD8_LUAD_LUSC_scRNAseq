@@ -1,313 +1,271 @@
 Cluster,SingleR,Freq
-1,Central memory CD8 T cells,2621
-2,Central memory CD8 T cells,3004
-3,Central memory CD8 T cells,449
-4,Central memory CD8 T cells,5
-5,Central memory CD8 T cells,32
-6,Central memory CD8 T cells,4
-7,Central memory CD8 T cells,247
-11,Central memory CD8 T cells,30
-12,Central memory CD8 T cells,1
-14,Central memory CD8 T cells,2
+1,Central memory CD8 T cells,1799
+2,Central memory CD8 T cells,2664
+3,Central memory CD8 T cells,383
+4,Central memory CD8 T cells,31
+6,Central memory CD8 T cells,5
+8,Central memory CD8 T cells,129
+11,Central memory CD8 T cells,43
 1,Classical monocytes,1
-4,Classical monocytes,7194
-8,Classical monocytes,6159
-9,Classical monocytes,1
-10,Classical monocytes,23
-11,Classical monocytes,14
-12,Classical monocytes,196
-17,Classical monocytes,274
-0,Effector memory CD8 T cells,22
-1,Effector memory CD8 T cells,2236
-2,Effector memory CD8 T cells,20955
-3,Effector memory CD8 T cells,28466
-4,Effector memory CD8 T cells,81
-5,Effector memory CD8 T cells,273
-6,Effector memory CD8 T cells,976
-7,Effector memory CD8 T cells,2157
-8,Effector memory CD8 T cells,16
-9,Effector memory CD8 T cells,10
-10,Effector memory CD8 T cells,1
-11,Effector memory CD8 T cells,2046
-12,Effector memory CD8 T cells,44
-14,Effector memory CD8 T cells,5
-15,Effector memory CD8 T cells,1
-0,Exhausted B cells,6487
+5,Classical monocytes,5128
+7,Classical monocytes,6472
+9,Classical monocytes,198
+11,Classical monocytes,3
+12,Classical monocytes,16
+13,Classical monocytes,68
+16,Classical monocytes,1
+0,Effector memory CD8 T cells,4
+1,Effector memory CD8 T cells,1387
+2,Effector memory CD8 T cells,17627
+3,Effector memory CD8 T cells,22582
+4,Effector memory CD8 T cells,207
+6,Effector memory CD8 T cells,625
+7,Effector memory CD8 T cells,2
+8,Effector memory CD8 T cells,1622
+9,Effector memory CD8 T cells,4
+11,Effector memory CD8 T cells,3098
+13,Effector memory CD8 T cells,25
+14,Effector memory CD8 T cells,1
+16,Effector memory CD8 T cells,2
+0,Exhausted B cells,5403
 1,Exhausted B cells,21
-2,Exhausted B cells,4
+2,Exhausted B cells,6
 3,Exhausted B cells,2
-4,Exhausted B cells,8
-5,Exhausted B cells,27
-6,Exhausted B cells,5
-7,Exhausted B cells,8
-9,Exhausted B cells,637
-10,Exhausted B cells,1
-11,Exhausted B cells,317
-13,Exhausted B cells,11
-14,Exhausted B cells,5
-15,Exhausted B cells,2
-16,Exhausted B cells,210
-1,Follicular helper T cells,2637
-5,Follicular helper T cells,105
-7,Follicular helper T cells,2873
-8,Follicular helper T cells,1
-11,Follicular helper T cells,26
-12,Follicular helper T cells,2
-1,Intermediate monocytes,11
-2,Intermediate monocytes,4
+4,Exhausted B cells,28
+5,Exhausted B cells,3
+6,Exhausted B cells,8
+7,Exhausted B cells,1
+8,Exhausted B cells,7
+9,Exhausted B cells,13
+10,Exhausted B cells,576
+11,Exhausted B cells,361
+12,Exhausted B cells,1
+13,Exhausted B cells,5
+15,Exhausted B cells,213
+16,Exhausted B cells,30
+1,Follicular helper T cells,3017
+4,Follicular helper T cells,124
+7,Follicular helper T cells,1
+8,Follicular helper T cells,1647
+11,Follicular helper T cells,34
+1,Intermediate monocytes,10
+2,Intermediate monocytes,3
 3,Intermediate monocytes,1
-4,Intermediate monocytes,11264
-6,Intermediate monocytes,2
-7,Intermediate monocytes,3
-8,Intermediate monocytes,4310
-9,Intermediate monocytes,2
-10,Intermediate monocytes,18
-11,Intermediate monocytes,111
-12,Intermediate monocytes,126
-13,Intermediate monocytes,28
-14,Intermediate monocytes,6
-15,Intermediate monocytes,8
-17,Intermediate monocytes,75
+4,Intermediate monocytes,2
+5,Intermediate monocytes,8441
+6,Intermediate monocytes,6
+7,Intermediate monocytes,3760
+9,Intermediate monocytes,2089
+10,Intermediate monocytes,1
+11,Intermediate monocytes,235
+12,Intermediate monocytes,15
+13,Intermediate monocytes,386
+14,Intermediate monocytes,8
 1,Low-density basophils,2
-10,Low-density basophils,3993
-14,Low-density basophils,1
-4,Low-density neutrophils,50
-8,Low-density neutrophils,2247
-10,Low-density neutrophils,3
-11,Low-density neutrophils,3
-12,Low-density neutrophils,1762
-0,MAIT cells,4
-1,MAIT cells,6008
-2,MAIT cells,4693
-3,MAIT cells,793
-4,MAIT cells,8
-5,MAIT cells,53
-6,MAIT cells,128
-7,MAIT cells,497
-8,MAIT cells,2
-9,MAIT cells,1
-10,MAIT cells,4
-11,MAIT cells,33
+6,Low-density basophils,3
+12,Low-density basophils,3463
+7,Low-density neutrophils,1632
+12,Low-density neutrophils,3
+13,Low-density neutrophils,1
+0,MAIT cells,2
+1,MAIT cells,4358
+2,MAIT cells,3880
+3,MAIT cells,669
+4,MAIT cells,43
+6,MAIT cells,463
+8,MAIT cells,278
+9,MAIT cells,2
+10,MAIT cells,1
+11,MAIT cells,70
 12,MAIT cells,1
-14,MAIT cells,456
-0,Myeloid dendritic cells,145
-1,Myeloid dendritic cells,24
-4,Myeloid dendritic cells,12581
-5,Myeloid dendritic cells,2
-6,Myeloid dendritic cells,2
-8,Myeloid dendritic cells,707
-9,Myeloid dendritic cells,13
-10,Myeloid dendritic cells,77
-11,Myeloid dendritic cells,94
-12,Myeloid dendritic cells,46
-13,Myeloid dendritic cells,1583
-14,Myeloid dendritic cells,35
-15,Myeloid dendritic cells,124
-17,Myeloid dendritic cells,10
-0,Naive B cells,4597
-1,Naive B cells,9
-2,Naive B cells,2
+0,Myeloid dendritic cells,126
+1,Myeloid dendritic cells,19
+2,Myeloid dendritic cells,1
+4,Myeloid dendritic cells,2
+5,Myeloid dendritic cells,4070
+6,Myeloid dendritic cells,20
+7,Myeloid dendritic cells,852
+9,Myeloid dendritic cells,7701
+10,Myeloid dendritic cells,6
+11,Myeloid dendritic cells,109
+12,Myeloid dendritic cells,60
+13,Myeloid dendritic cells,780
+14,Myeloid dendritic cells,28
+0,Naive B cells,3996
+1,Naive B cells,8
+2,Naive B cells,6
 3,Naive B cells,2
-4,Naive B cells,8
-5,Naive B cells,6
-6,Naive B cells,14
-7,Naive B cells,1
-9,Naive B cells,10
-10,Naive B cells,3
-11,Naive B cells,24
-12,Naive B cells,9
-13,Naive B cells,2
-14,Naive B cells,16
-16,Naive B cells,214
-1,Naive CD4 T cells,666
-5,Naive CD4 T cells,1
-7,Naive CD4 T cells,16
-9,Naive CD4 T cells,1
-1,Naive CD8 T cells,168
-2,Naive CD8 T cells,8
-7,Naive CD8 T cells,2
+4,Naive B cells,7
+5,Naive B cells,5
+6,Naive B cells,27
+7,Naive B cells,9
+9,Naive B cells,6
+10,Naive B cells,10
+11,Naive B cells,30
+12,Naive B cells,3
+15,Naive B cells,237
+1,Naive CD4 T cells,526
+2,Naive CD4 T cells,1
+4,Naive CD4 T cells,2
+8,Naive CD4 T cells,1
+1,Naive CD8 T cells,130
+2,Naive CD8 T cells,11
 0,Natural killer cells,1
-1,Natural killer cells,56
-2,Natural killer cells,175
-3,Natural killer cells,117
-4,Natural killer cells,16
-6,Natural killer cells,10143
-7,Natural killer cells,8
+1,Natural killer cells,30
+2,Natural killer cells,182
+3,Natural killer cells,83
+6,Natural killer cells,7620
+8,Natural killer cells,2
 9,Natural killer cells,3
-11,Natural killer cells,171
-12,Natural killer cells,3
-13,Natural killer cells,4
-14,Natural killer cells,674
-17,Natural killer cells,1
-0,Non-switched memory B cells,34336
-1,Non-switched memory B cells,4
-2,Non-switched memory B cells,2
-4,Non-switched memory B cells,12
-5,Non-switched memory B cells,7
-6,Non-switched memory B cells,1
+10,Natural killer cells,2
+11,Natural killer cells,309
+13,Natural killer cells,3
+16,Natural killer cells,1
+0,Non-switched memory B cells,26979
+1,Non-switched memory B cells,5
+2,Non-switched memory B cells,4
+4,Non-switched memory B cells,7
+5,Non-switched memory B cells,3
+6,Non-switched memory B cells,3
 7,Non-switched memory B cells,1
-9,Non-switched memory B cells,97
-10,Non-switched memory B cells,5
-11,Non-switched memory B cells,31
-12,Non-switched memory B cells,1
-13,Non-switched memory B cells,5
-14,Non-switched memory B cells,3
-16,Non-switched memory B cells,49
-0,Non-Vd2 gd T cells,7
-1,Non-Vd2 gd T cells,240
-2,Non-Vd2 gd T cells,1959
-3,Non-Vd2 gd T cells,2196
-4,Non-Vd2 gd T cells,14
-5,Non-Vd2 gd T cells,16
-6,Non-Vd2 gd T cells,4151
-7,Non-Vd2 gd T cells,42
-8,Non-Vd2 gd T cells,1
-9,Non-Vd2 gd T cells,4
+8,Non-switched memory B cells,1
+9,Non-switched memory B cells,10
+10,Non-switched memory B cells,84
+11,Non-switched memory B cells,34
+12,Non-switched memory B cells,4
+13,Non-switched memory B cells,3
+15,Non-switched memory B cells,64
+16,Non-switched memory B cells,3
+0,Non-Vd2 gd T cells,2
+1,Non-Vd2 gd T cells,112
+2,Non-Vd2 gd T cells,1528
+3,Non-Vd2 gd T cells,1584
+4,Non-Vd2 gd T cells,15
+6,Non-Vd2 gd T cells,2871
+7,Non-Vd2 gd T cells,1
+8,Non-Vd2 gd T cells,21
+9,Non-Vd2 gd T cells,3
 10,Non-Vd2 gd T cells,1
-11,Non-Vd2 gd T cells,202
-12,Non-Vd2 gd T cells,2
-13,Non-Vd2 gd T cells,2
-14,Non-Vd2 gd T cells,59
+11,Non-Vd2 gd T cells,315
+16,Non-Vd2 gd T cells,2
 1,Non classical monocytes,2
-4,Non classical monocytes,23
-6,Non classical monocytes,1
-8,Non classical monocytes,572
+5,Non classical monocytes,13
+7,Non classical monocytes,472
+9,Non classical monocytes,16
 11,Non classical monocytes,7
-12,Non classical monocytes,4
-13,Non classical monocytes,2
-17,Non classical monocytes,18
-1,Plasmablasts,3
-4,Plasmablasts,9
-5,Plasmablasts,21
-7,Plasmablasts,8
-9,Plasmablasts,7776
-11,Plasmablasts,11
-0,Plasmacytoid dendritic cells,2
+13,Non classical monocytes,1
+1,Plasmablasts,2
+4,Plasmablasts,22
+8,Plasmablasts,7
+10,Plasmablasts,7069
+11,Plasmablasts,13
+13,Plasmablasts,1
+16,Plasmablasts,153
 1,Plasmacytoid dendritic cells,5
-4,Plasmacytoid dendritic cells,23
-9,Plasmacytoid dendritic cells,4
-10,Plasmacytoid dendritic cells,1
-11,Plasmacytoid dendritic cells,13
-13,Plasmacytoid dendritic cells,7
-14,Plasmacytoid dendritic cells,1
-15,Plasmacytoid dendritic cells,723
-0,Progenitor cells,4
-1,Progenitor cells,32
-2,Progenitor cells,1
-4,Progenitor cells,69
-5,Progenitor cells,1
-6,Progenitor cells,3
-9,Progenitor cells,13
-10,Progenitor cells,451
-11,Progenitor cells,19
-13,Progenitor cells,1
-14,Progenitor cells,83
-15,Progenitor cells,7
-0,Switched memory B cells,28941
-1,Switched memory B cells,21
+5,Plasmacytoid dendritic cells,1
+6,Plasmacytoid dendritic cells,1
+9,Plasmacytoid dendritic cells,26
+10,Plasmacytoid dendritic cells,4
+11,Plasmacytoid dendritic cells,21
+12,Plasmacytoid dendritic cells,1
+13,Plasmacytoid dendritic cells,4
+14,Plasmacytoid dendritic cells,631
+0,Progenitor cells,3
+1,Progenitor cells,25
+4,Progenitor cells,1
+6,Progenitor cells,74
+9,Progenitor cells,1
+10,Progenitor cells,4
+11,Progenitor cells,30
+12,Progenitor cells,411
+13,Progenitor cells,3
+14,Progenitor cells,6
+0,Switched memory B cells,23660
+1,Switched memory B cells,22
 2,Switched memory B cells,8
-3,Switched memory B cells,2
-4,Switched memory B cells,5
-5,Switched memory B cells,15
-6,Switched memory B cells,5
-7,Switched memory B cells,7
-9,Switched memory B cells,324
-10,Switched memory B cells,1
-11,Switched memory B cells,41
-13,Switched memory B cells,9
-14,Switched memory B cells,5
-16,Switched memory B cells,9
-0,T regulatory cells,2
-1,T regulatory cells,4729
-2,T regulatory cells,22
-3,T regulatory cells,6
-4,T regulatory cells,14
-5,T regulatory cells,20493
-7,T regulatory cells,3910
-9,T regulatory cells,9
-10,T regulatory cells,1
-11,T regulatory cells,872
-12,T regulatory cells,24
+3,Switched memory B cells,3
+4,Switched memory B cells,16
+5,Switched memory B cells,1
+6,Switched memory B cells,11
+8,Switched memory B cells,3
+9,Switched memory B cells,11
+10,Switched memory B cells,281
+11,Switched memory B cells,53
+13,Switched memory B cells,1
+15,Switched memory B cells,12
+16,Switched memory B cells,6
+1,T regulatory cells,3905
+2,T regulatory cells,18
+3,T regulatory cells,7
+4,T regulatory cells,17988
+6,T regulatory cells,4
+7,T regulatory cells,4
+8,T regulatory cells,2419
+10,T regulatory cells,2
+11,T regulatory cells,1037
 13,T regulatory cells,1
-14,T regulatory cells,9
-0,Terminal effector CD4 T cells,2
-1,Terminal effector CD4 T cells,164
-2,Terminal effector CD4 T cells,504
-3,Terminal effector CD4 T cells,145
-4,Terminal effector CD4 T cells,1
-5,Terminal effector CD4 T cells,7
-6,Terminal effector CD4 T cells,572
-7,Terminal effector CD4 T cells,84
-8,Terminal effector CD4 T cells,1
-11,Terminal effector CD4 T cells,7
-12,Terminal effector CD4 T cells,2
-13,Terminal effector CD4 T cells,1
-14,Terminal effector CD4 T cells,1
-1,Terminal effector CD8 T cells,57
-2,Terminal effector CD8 T cells,1872
-3,Terminal effector CD8 T cells,2169
+16,T regulatory cells,1
+0,Terminal effector CD4 T cells,1
+1,Terminal effector CD4 T cells,99
+2,Terminal effector CD4 T cells,306
+3,Terminal effector CD4 T cells,121
+4,Terminal effector CD4 T cells,5
+6,Terminal effector CD4 T cells,256
+8,Terminal effector CD4 T cells,69
+9,Terminal effector CD4 T cells,1
+11,Terminal effector CD4 T cells,14
+1,Terminal effector CD8 T cells,36
+2,Terminal effector CD8 T cells,1649
+3,Terminal effector CD8 T cells,1779
 4,Terminal effector CD8 T cells,1
-5,Terminal effector CD8 T cells,1
-6,Terminal effector CD8 T cells,2370
-7,Terminal effector CD8 T cells,2
-9,Terminal effector CD8 T cells,1
-11,Terminal effector CD8 T cells,22
-12,Terminal effector CD8 T cells,1
-14,Terminal effector CD8 T cells,2
-0,Th1 cells,1
-1,Th1 cells,3228
-2,Th1 cells,195
-3,Th1 cells,17
-4,Th1 cells,13
-5,Th1 cells,228
-7,Th1 cells,1814
-8,Th1 cells,3
-9,Th1 cells,1
-11,Th1 cells,153
-12,Th1 cells,3
-14,Th1 cells,4
-1,Th1/Th17 cells,14395
-2,Th1/Th17 cells,362
+6,Terminal effector CD8 T cells,1709
+8,Terminal effector CD8 T cells,1
+10,Terminal effector CD8 T cells,1
+11,Terminal effector CD8 T cells,80
+1,Th1 cells,2769
+2,Th1 cells,167
+3,Th1 cells,22
+4,Th1 cells,186
+6,Th1 cells,1
+8,Th1 cells,1087
+11,Th1 cells,172
+16,Th1 cells,1
+1,Th1/Th17 cells,11818
+2,Th1/Th17 cells,396
 3,Th1/Th17 cells,62
-4,Th1/Th17 cells,2
-5,Th1/Th17 cells,573
-6,Th1/Th17 cells,1
-7,Th1/Th17 cells,3912
-9,Th1/Th17 cells,1
+4,Th1/Th17 cells,460
+6,Th1/Th17 cells,22
+7,Th1/Th17 cells,1
+8,Th1/Th17 cells,2549
+9,Th1/Th17 cells,2
 10,Th1/Th17 cells,1
-11,Th1/Th17 cells,17
-12,Th1/Th17 cells,2
-13,Th1/Th17 cells,1
-14,Th1/Th17 cells,24
-1,Th17 cells,4675
-2,Th17 cells,13
-3,Th17 cells,12
-4,Th17 cells,1
-5,Th17 cells,271
-7,Th17 cells,1716
-11,Th17 cells,4
-13,Th17 cells,1
-14,Th17 cells,29
-1,Th2 cells,1794
-2,Th2 cells,3
-5,Th2 cells,30
-7,Th2 cells,366
-10,Th2 cells,1
-11,Th2 cells,2
-14,Th2 cells,27
-0,Vd2 gd T cells,6
-1,Vd2 gd T cells,1892
-2,Vd2 gd T cells,7450
-3,Vd2 gd T cells,2842
-4,Vd2 gd T cells,9
-5,Vd2 gd T cells,27
-6,Vd2 gd T cells,1235
-7,Vd2 gd T cells,125
-8,Vd2 gd T cells,1
-9,Vd2 gd T cells,3
-10,Vd2 gd T cells,1
-11,Vd2 gd T cells,149
-12,Vd2 gd T cells,9
+11,Th1/Th17 cells,35
+12,Th1/Th17 cells,1
+1,Th17 cells,4265
+2,Th17 cells,20
+3,Th17 cells,10
+4,Th17 cells,275
+6,Th17 cells,24
+7,Th17 cells,1
+8,Th17 cells,856
+9,Th17 cells,1
+10,Th17 cells,1
+11,Th17 cells,8
+1,Th2 cells,1486
+2,Th2 cells,5
+4,Th2 cells,33
+6,Th2 cells,29
+8,Th2 cells,126
+11,Th2 cells,3
+12,Th2 cells,1
+1,Vd2 gd T cells,1211
+2,Vd2 gd T cells,6222
+3,Vd2 gd T cells,2282
+4,Vd2 gd T cells,27
+6,Vd2 gd T cells,830
+7,Vd2 gd T cells,3
+8,Vd2 gd T cells,95
+9,Vd2 gd T cells,2
+11,Vd2 gd T cells,267
 13,Vd2 gd T cells,4
-14,Vd2 gd T cells,58
-15,Vd2 gd T cells,1
+14,Vd2 gd T cells,1
