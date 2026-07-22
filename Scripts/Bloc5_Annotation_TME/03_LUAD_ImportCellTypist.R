@@ -5,7 +5,7 @@
 # label used as the primary cross-check, analogous to SingleR_fine in
 # the previous approach), re-attaches them to the Seurat object by cell
 # barcode, and checks the full per-cluster label distribution for ALL
-# 17 clusters systematically (see Framework in FICHE_TECHNIQUE_OUTILS.md
+# 17 clusters systematically
 # — no cluster skipped based on how clean its top10 markers look).
 # Input:  Objects/01_LUAD_seu_clustered.rds
 #         Objects/celltypist_export/LUAD_celltypist_predictions.csv
