@@ -1,11 +1,19 @@
 #!/usr/bin/env Rscript
 # ============================================================
 # GSE243013 — Bloc5_Annotation_TME, Script 03: Resolve mixed clusters (LUAD)
-# Generalized version: works for any mixed cluster identified after
-# SingleR cross-check (clusters 6 and 11 on this run), not limited to
-# CD8 subtypes. For each target cluster, isolates cells, groups them by
-# their individual SingleR_fine label (labels below MIN_CELLS excluded
-# as noise, not merged into larger groups by assumption), and runs
+# Extended after a systematic SingleR_fine concordance check across ALL
+# 17 clusters (not just the ones that looked suspicious from the top10
+# marker list alone) revealed 5 additional mixed clusters beyond the
+# originally identified 6 and 11: clusters 1, 2, 3, 8 fell below the
+# ~95% single-family concordance threshold (64%-84%), and cluster 12
+# showed a notable secondary "Progenitor cells" component requiring the
+# same CD34/CD38 verification already used for cluster 6's ILC3 subgroup.
+# No gray zone tolerated: any cluster below ~95% concordance in a single
+# biological family is resolved at the cell level, regardless of how
+# close to the threshold it appears.
+# For each target cluster, isolates cells, groups them by their
+# individual SingleR_fine label (labels below MIN_CELLS excluded as
+# noise, not merged into larger groups by assumption), and runs
 # FindAllMarkers to reveal actual differential markers between groups —
 # unbiased by prior assumption about what those markers should be.
 # Input:  Objects/02_LUAD_seu_singler.rds
@@ -24,21 +32,16 @@ dir.create(OUT_TAB, showWarnings = FALSE, recursive = TRUE)
 
 message("Loading annotated Seurat object...")
 seu <- readRDS(IN_OBJ)
+message("Cells: ", ncol(seu), " | Clusters: ", length(levels(seu$seurat_clusters)))
 
-# Minimum cells per SingleR_fine label to be treated as its own group;
-# below this threshold, a label likely reflects noise or misassignment
-# rather than a real subpopulation worth its own marker analysis.
-# Raised from 20 to 50 after observing that labels in the 20-30 cell
-# range on cluster 6 produced marker profiles inconsistent with their
-# own SingleR label (e.g. a 20-cell "Myeloid dendritic cells" group
-# showing no myeloid markers at all) — insufficient statistical power
-# for a reliable FindAllMarkers result at that size.
 MIN_CELLS <- 50
 
-
-# Target clusters requiring resolution, identified via SingleR cross-check
-# (see Bloc5 Script02 concordance table)
-TARGET_CLUSTERS <- c("6", "11")
+# Full extended target list: 6 and 11 (originally identified), plus
+# 1, 2, 3, 8, 12 (found on systematic re-check of all 17 clusters'
+# SingleR_fine distribution — see CAHIER_METHODOLOGIQUE.md for the
+# concordance table that led to this correction). No threshold exception
+# made for clusters close to 95% (e.g. cluster 3 at 83.9%).
+TARGET_CLUSTERS <- c("1", "2", "3", "6", "8", "11", "12")
 
 for (cl in TARGET_CLUSTERS) {
   
@@ -50,7 +53,7 @@ for (cl in TARGET_CLUSTERS) {
   
   message("Cluster ", cl, ": ", length(cl_cells), " cells, ",
           length(keep_labels), " labels retained (>= ", MIN_CELLS, " cells)")
-  print(label_counts[keep_labels])
+  print(sort(label_counts[keep_labels], decreasing = TRUE))
   
   target_cells <- cl_cells[seu$SingleR_fine[cl_cells] %in% keep_labels]
   seu_sub <- subset(seu, cells = target_cells)
@@ -66,7 +69,6 @@ for (cl in TARGET_CLUSTERS) {
     slice_head(n = 10) %>%
     select(cluster, gene, avg_log2FC) %>%
     ungroup()
-  print(top10_sub, n = 50)
   
   write_tsv(markers_sub, file.path(OUT_TAB,
                                    paste0("03_LUAD_cluster", cl, "_markers_all.tsv")))
@@ -76,4 +78,4 @@ for (cl in TARGET_CLUSTERS) {
   message("Saved: cluster ", cl, " markers tables")
 }
 
-message("DONE Script 03 — LUAD mixed cluster resolution (clusters 6, 11)")
+message("DONE Script 03 — LUAD mixed cluster resolution (extended, no gray zone)")

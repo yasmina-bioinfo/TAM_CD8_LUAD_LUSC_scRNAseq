@@ -1,0 +1,221 @@
+seurat_clusters,CellTypist_majority,Freq
+0,Memory B cells,55223
+0,Naive B cells,3138
+0,Age-associated B cells,1716
+0,Germinal center B cells,65
+0,Plasma cells,18
+0,Tem/Trm cytotoxic T cells,10
+0,Plasmablasts,2
+0,Tem/Effector helper T cells,2
+0,Macrophages,1
+0,Regulatory T cells,1
+0,Tcm/Naive helper T cells,1
+1,Tem/Effector helper T cells,18676
+1,Regulatory T cells,7172
+1,Tem/Trm cytotoxic T cells,4694
+1,Tcm/Naive helper T cells,3188
+1,Type 1 helper T cells,1577
+1,Follicular helper T cells,850
+1,MAIT cells,608
+1,Trm cytotoxic T cells,129
+1,Epithelial cells,47
+1,ILC3,40
+1,Type 17 helper T cells,31
+1,Memory B cells,27
+1,CRTAM+ gamma-delta T cells,18
+1,CD16- NK cells,3
+1,NK cells,2
+1,Tem/Temra cytotoxic T cells,2
+1,DC2,1
+1,Macrophages,1
+1,Plasma cells,1
+1,Plasmablasts,1
+1,gamma-delta T cells,1
+1,pDC,1
+2,Tem/Trm cytotoxic T cells,26779
+2,Tem/Effector helper T cells,2804
+2,Trm cytotoxic T cells,2026
+2,MAIT cells,1090
+2,Regulatory T cells,562
+2,CRTAM+ gamma-delta T cells,465
+2,Type 1 helper T cells,333
+2,Tem/Temra cytotoxic T cells,178
+2,Tcm/Naive helper T cells,149
+2,NK cells,107
+2,CD16- NK cells,100
+2,CD16+ NK cells,48
+2,Type 17 helper T cells,27
+2,ILC3,13
+2,gamma-delta T cells,12
+2,Memory B cells,10
+2,Follicular helper T cells,1
+3,Tem/Trm cytotoxic T cells,20642
+3,Regulatory T cells,5929
+3,Trm cytotoxic T cells,1685
+3,CRTAM+ gamma-delta T cells,651
+3,Tem/Effector helper T cells,239
+3,gamma-delta T cells,177
+3,NK cells,70
+3,Type 1 helper T cells,59
+3,CD16- NK cells,55
+3,MAIT cells,25
+3,Tem/Temra cytotoxic T cells,22
+3,CD16+ NK cells,17
+3,Type 17 helper T cells,11
+3,Tcm/Naive helper T cells,8
+3,ILC3,1
+3,Memory B cells,1
+4,Regulatory T cells,18332
+4,Tem/Effector helper T cells,749
+4,Tcm/Naive helper T cells,159
+4,Tem/Trm cytotoxic T cells,155
+4,Type 1 helper T cells,52
+4,Follicular helper T cells,22
+4,MAIT cells,5
+4,ILC3,3
+4,Memory B cells,1
+4,Plasmablasts,1
+4,Tem/Temra cytotoxic T cells,1
+4,Trm cytotoxic T cells,1
+4,gamma-delta T cells,1
+5,Macrophages,6009
+5,Alveolar macrophages,5253
+5,Intermediate macrophages,4913
+5,DC2,1272
+5,Classical monocytes,196
+5,Non-classical monocytes,19
+5,Mast cells,3
+6,CD16+ NK cells,3702
+6,CD16- NK cells,3246
+6,Tem/Temra cytotoxic T cells,2457
+6,CRTAM+ gamma-delta T cells,1192
+6,Tem/Trm cytotoxic T cells,1165
+6,ILC3,1031
+6,gamma-delta T cells,745
+6,NK cells,546
+6,Regulatory T cells,157
+6,Trm cytotoxic T cells,150
+6,Tem/Effector helper T cells,128
+6,MAIT cells,65
+6,Type 1 helper T cells,11
+6,Tcm/Naive helper T cells,6
+6,Type 17 helper T cells,5
+6,Mast cells,3
+6,Memory B cells,2
+6,Epithelial cells,1
+7,Classical monocytes,4950
+7,Intermediate macrophages,3788
+7,Macrophages,1753
+7,Non-classical monocytes,1295
+7,Alveolar macrophages,1176
+7,DC2,203
+7,Regulatory T cells,42
+7,Mast cells,2
+7,Tem/Trm cytotoxic T cells,2
+7,Memory B cells,1
+8,Regulatory T cells,9948
+8,Tem/Effector helper T cells,411
+8,Tem/Trm cytotoxic T cells,365
+8,Type 1 helper T cells,82
+8,Tcm/Naive helper T cells,43
+8,Trm cytotoxic T cells,32
+8,Follicular helper T cells,25
+8,Type 17 helper T cells,5
+8,MAIT cells,3
+8,Tem/Temra cytotoxic T cells,2
+8,CRTAM+ gamma-delta T cells,1
+8,ILC3,1
+8,Memory B cells,1
+8,gamma-delta T cells,1
+9,DC2,4276
+9,Macrophages,1924
+9,Alveolar macrophages,937
+9,DC,793
+9,Intermediate macrophages,757
+9,DC1,649
+9,Migratory DCs,631
+9,Classical monocytes,39
+9,Memory B cells,28
+9,Non-classical monocytes,20
+9,Tem/Effector helper T cells,10
+9,Mast cells,6
+9,Age-associated B cells,4
+9,Tem/Trm cytotoxic T cells,4
+9,Plasma cells,3
+9,Plasmablasts,3
+9,Regulatory T cells,2
+9,NK cells,1
+9,Type 1 helper T cells,1
+9,pDC,1
+10,Plasma cells,8000
+10,Memory B cells,26
+10,Tem/Trm cytotoxic T cells,9
+10,Plasmablasts,5
+10,Regulatory T cells,2
+10,Tem/Effector helper T cells,2
+11,Regulatory T cells,1798
+11,Tem/Trm cytotoxic T cells,1738
+11,Plasmablasts,1546
+11,Macrophages,287
+11,Proliferative germinal center B cells,261
+11,gamma-delta T cells,150
+11,Epithelial cells,98
+11,CD16+ NK cells,60
+11,CRTAM+ gamma-delta T cells,58
+11,Age-associated B cells,51
+11,Trm cytotoxic T cells,48
+11,CD16- NK cells,47
+11,NK cells,41
+11,Memory B cells,35
+11,Germinal center B cells,34
+11,Naive B cells,30
+11,Tem/Effector helper T cells,27
+11,Tem/Temra cytotoxic T cells,19
+11,Type 1 helper T cells,14
+11,DC2,12
+11,Tcm/Naive helper T cells,6
+11,MAIT cells,5
+11,DC1,4
+11,Plasma cells,4
+11,Alveolar macrophages,3
+11,ILC3,1
+11,Mast cells,1
+11,Migratory DCs,1
+11,Type 17 helper T cells,1
+11,pDC,1
+12,Mast cells,3967
+12,Intermediate macrophages,7
+12,Macrophages,3
+12,Classical monocytes,1
+12,Memory B cells,1
+12,Tem/Trm cytotoxic T cells,1
+13,Macrophages,1043
+13,DC2,87
+13,Alveolar macrophages,46
+13,DC1,29
+13,Plasmablasts,29
+13,Intermediate macrophages,24
+13,DC,7
+13,Epithelial cells,7
+13,Regulatory T cells,5
+13,Tem/Trm cytotoxic T cells,4
+13,Plasma cells,3
+13,Age-associated B cells,1
+13,Memory B cells,1
+14,pDC,606
+14,DC2,40
+14,Alveolar macrophages,15
+14,ILC3,5
+14,DC1,3
+14,Memory B cells,3
+14,Intermediate macrophages,1
+14,Mast cells,1
+14,Tem/Trm cytotoxic T cells,1
+15,Germinal center B cells,457
+15,Naive B cells,37
+15,Memory B cells,25
+15,Age-associated B cells,4
+15,Proliferative germinal center B cells,3
+16,Plasmablasts,166
+16,Plasma cells,33
+16,Memory B cells,1

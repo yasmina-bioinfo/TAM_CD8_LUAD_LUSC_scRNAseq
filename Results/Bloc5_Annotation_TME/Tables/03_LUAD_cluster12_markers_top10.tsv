@@ -1,0 +1,31 @@
+cluster	gene	avg_log2FC
+Low-density basophils	IL1RL1	0.7391900991907394
+Low-density basophils	GPR65	1.2593908558819518
+Low-density basophils	EPAS1	1.4199598215790967
+Low-density basophils	KIT	0.4638851694610975
+Low-density basophils	SLC24A3	0.552442857066946
+Low-density basophils	TMEM154	0.8871676876633519
+Low-density basophils	FOS	0.6377056457498185
+Low-density basophils	TNIK	0.6581440219924286
+Low-density basophils	CD69	0.5794235548335225
+Low-density basophils	JUNB	0.527418676475615
+Myeloid dendritic cells	CSF1R	8.288397411569925
+Myeloid dendritic cells	TGFBI	7.629278245829801
+Myeloid dendritic cells	CD86	7.8691411890740355
+Myeloid dendritic cells	HCK	6.606413349876433
+Myeloid dendritic cells	OLR1	7.265036984559953
+Myeloid dendritic cells	SLC8A1	7.84481742556221
+Myeloid dendritic cells	FCGBP	9.421482015748214
+Myeloid dendritic cells	CLEC5A	7.449400075295812
+Myeloid dendritic cells	IL1B	5.96869328092838
+Myeloid dendritic cells	CLEC7A	6.521024156202336
+Progenitor cells	HLA-DRB1	1.1131422773885589
+Progenitor cells	HLA-DRA	1.106331955196136
+Progenitor cells	CD74	1.0190653276792463
+Progenitor cells	HLA-DPB1	0.9556024506720857
+Progenitor cells	HLA-DPA1	0.9208270171940597
+Progenitor cells	FHL1	1.1513699836007683
+Progenitor cells	HLA-DRB5	1.3449663307782738
+Progenitor cells	APOE	1.1187508683628091
+Progenitor cells	ALDH1A1	0.868819408103073
+Progenitor cells	HLA-DMA	1.111701987022366

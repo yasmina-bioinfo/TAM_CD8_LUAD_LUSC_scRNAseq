@@ -1,0 +1,44 @@
+annotation_final,n_cells
+CD16- NK cells,155
+CD16+ NK cells,3762
+Classical monocytes,13212
+CRTAM+ gamma-delta T cells,2366
+DC2,10089
+Germinal center B cells,526
+ILC3,1031
+Macrophages,19238
+MAIT cells,1763
+Mast cells,3980
+Memory B cells,60177
+"Other (mixed, minor)",734
+"Other/contamination (cluster 11, CellTypist label: Epithelial cells)",98
+"Other/contamination (cluster 2, CellTypist label: NK cells)",107
+"Other/contamination (cluster 3, CellTypist label: NK cells)",70
+"Other/contamination (cluster 6, CellTypist label: NK cells)",546
+pDC,675
+Plasma cells,8044
+Plasmablasts,200
+Proliferative germinal center B cells,261
+Regulatory T cells,46020
+Tem/Effector helper T cells,2804
+Tem/Temra cytotoxic T cells,2635
+Tem/Trm cytotoxic T cells,55018
+Trm cytotoxic T cells,129
+"Unresolved (cluster 1, CellTypist label: Follicular helper T cells)",850
+"Unresolved (cluster 1, CellTypist label: Tcm/Naive helper T cells)",3188
+"Unresolved (cluster 1, CellTypist label: Tem/Effector helper T cells)",18676
+"Unresolved (cluster 1, CellTypist label: Type 1 helper T cells)",1577
+"Unresolved (cluster 11, CellTypist label: Age-associated B cells)",51
+"Unresolved (cluster 11, CellTypist label: gamma-delta T cells)",150
+"Unresolved (cluster 11, CellTypist label: Plasmablasts)",1546
+"Unresolved (cluster 2, CellTypist label: Tcm/Naive helper T cells)",149
+"Unresolved (cluster 2, CellTypist label: Trm cytotoxic T cells)",2026
+"Unresolved (cluster 2, CellTypist label: Type 1 helper T cells)",333
+"Unresolved (cluster 3, CellTypist label: gamma-delta T cells)",177
+"Unresolved (cluster 3, CellTypist label: Tem/Effector helper T cells)",239
+"Unresolved (cluster 3, CellTypist label: Trm cytotoxic T cells)",1685
+"Unresolved (cluster 3, CellTypist label: Type 1 helper T cells)",59
+"Unresolved (cluster 6, CellTypist label: CD16- NK cells)",3246
+"Unresolved (cluster 6, CellTypist label: gamma-delta T cells)",745
+"Unresolved (cluster 6, CellTypist label: Tem/Effector helper T cells)",128
+"Unresolved (cluster 6, CellTypist label: Trm cytotoxic T cells)",150
