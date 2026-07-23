@@ -164,8 +164,7 @@ df_prop <- seu@meta.data %>%
   mutate(prop = n / sum(n)) %>%
   ungroup()
 
-p_display <- ifelse(chisq_res$p.value < 2.2e-16, "p < 2.2e-16",
-                    formatC(chisq_res$p.value, format = "e", digits = 2))
+p_display <- scales::pvalue(chisq_res$p.value, accuracy = 0.001, add_p = TRUE)
 
 p_bar <- ggplot(df_prop, aes(x = pathological_response, y = prop, fill = annotation_display)) +
   geom_col(width = 0.8, color = "white", linewidth = 0.2) +

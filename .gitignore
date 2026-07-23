@@ -10,3 +10,4 @@ renv/staging/
 .RDataTmp*
 log_*.txt
 test_*.R
+References/

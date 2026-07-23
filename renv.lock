@@ -1297,6 +1297,145 @@
       "Author": "Constantin Ahlmann-Eltze [aut] (<https://orcid.org/0000-0002-3762-068X>), Peter Hickey [aut, cre] (<https://orcid.org/0000-0002-8153-6258>), Hervé Pagès [aut]",
       "Maintainer": "Peter Hickey <peter.hickey@gmail.com>"
     },
+    "ProjecTILs": {
+      "Package": "ProjecTILs",
+      "Version": "3.7.0",
+      "Source": "Local",
+      "Type": "Package",
+      "Title": "Reference-based analysis of scRNA-seq data",
+      "Authors@R": "c( person(given = 'Massimo', family = 'Andreatta', email = 'massimo.andreatta@unige.ch', role = c('aut','cre'), comment = c(ORCID = '0000-0002-8036-2647')), person(given = 'Paul', family = 'Gueguen', email = 'paul.gueguen@fgcz.ethz.ch', role = c('aut'),  comment = c(ORCID = '0000-0003-2930-6073')), person('Josep','Garnica', email = 'josep.garnicacaparros@unige.ch', role = c('aut'), comment = c(ORCID = '0000-0001-9493-1321')),    person(given = 'Santiago', family = 'Carmona', email = 'santiago.carmona@unige.ch', role = c('aut'), comment = c(ORCID = '0000-0002-2495-0671')) )",
+      "Description": "This package implements methods to project single-cell RNA-seq data onto a reference atlas, enabling interpretation of unknown cell transcriptomic states in the the context of known, reference states.",
+      "Depends": [
+        "R(>= 4.3.0)"
+      ],
+      "Imports": [
+        "Seurat(>= 5.0.0)",
+        "SeuratObject(>= 5.0.0)",
+        "uwot",
+        "umap",
+        "Matrix",
+        "BiocParallel",
+        "BiocNeighbors",
+        "patchwork",
+        "reshape2",
+        "ggplot2",
+        "grDevices",
+        "scales",
+        "pracma",
+        "STACAS",
+        "UCell",
+        "scGate",
+        "pheatmap",
+        "RColorBrewer",
+        "dplyr",
+        "tidyr",
+        "jsonlite",
+        "digest"
+      ],
+      "Suggests": [
+        "fastICA",
+        "EnhancedVolcano",
+        "plotly"
+      ],
+      "biocViews": "",
+      "BugReports": "https://github.com/carmonalab/ProjecTILs/issues",
+      "URL": "https://github.com/carmonalab/ProjecTILs",
+      "License": "GPL-3 + file LICENSE",
+      "Encoding": "UTF-8",
+      "LazyData": "true",
+      "LazyDataCompression": "xz",
+      "RoxygenNote": "7.3.3",
+      "RemoteType": "local",
+      "RemoteUrl": "C:\\Users\\yasmi\\Downloads\\carmonalab-ProjecTILs-v3.7.0-0-g1159e17.tar.gz",
+      "NeedsCompilation": "no",
+      "Author": "Massimo Andreatta [aut, cre] (<https://orcid.org/0000-0002-8036-2647>), Paul Gueguen [aut] (<https://orcid.org/0000-0003-2930-6073>), Josep Garnica [aut] (<https://orcid.org/0000-0001-9493-1321>), Santiago Carmona [aut] (<https://orcid.org/0000-0002-2495-0671>)",
+      "Maintainer": "Massimo Andreatta <massimo.andreatta@unige.ch>"
+    },
+    "R.methodsS3": {
+      "Package": "R.methodsS3",
+      "Version": "1.8.2",
+      "Source": "Repository",
+      "Depends": [
+        "R (>= 2.13.0)"
+      ],
+      "Imports": [
+        "utils"
+      ],
+      "Suggests": [
+        "codetools"
+      ],
+      "Title": "S3 Methods Simplified",
+      "Authors@R": "c(person(\"Henrik\", \"Bengtsson\", role=c(\"aut\", \"cre\", \"cph\"), email = \"henrikb@braju.com\"))",
+      "Author": "Henrik Bengtsson [aut, cre, cph]",
+      "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
+      "Description": "Methods that simplify the setup of S3 generic functions and S3 methods.  Major effort has been made in making definition of methods as simple as possible with a minimum of maintenance for package developers.  For example, generic functions are created automatically, if missing, and naming conflict are automatically solved, if possible.  The method setMethodS3() is a good start for those who in the future may want to migrate to S4.  This is a cross-platform package implemented in pure R that generates standard S3 methods.",
+      "License": "LGPL (>= 2.1)",
+      "LazyLoad": "TRUE",
+      "URL": "https://github.com/HenrikBengtsson/R.methodsS3",
+      "BugReports": "https://github.com/HenrikBengtsson/R.methodsS3/issues",
+      "NeedsCompilation": "no",
+      "Repository": "CRAN",
+      "Encoding": "UTF-8"
+    },
+    "R.oo": {
+      "Package": "R.oo",
+      "Version": "1.27.1",
+      "Source": "Repository",
+      "Depends": [
+        "R (>= 2.13.0)",
+        "R.methodsS3 (>= 1.8.2)"
+      ],
+      "Imports": [
+        "methods",
+        "utils"
+      ],
+      "Suggests": [
+        "tools"
+      ],
+      "Title": "R Object-Oriented Programming with or without References",
+      "Authors@R": "c(person(\"Henrik\", \"Bengtsson\", role=c(\"aut\", \"cre\", \"cph\"), email = \"henrikb@braju.com\"))",
+      "Author": "Henrik Bengtsson [aut, cre, cph]",
+      "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
+      "Description": "Methods and classes for object-oriented programming in R with or without references.  Large effort has been made on making definition of methods as simple as possible with a minimum of maintenance for package developers.  The package has been developed since 2001 and is now considered very stable.  This is a cross-platform package implemented in pure R that defines standard S3 classes without any tricks.",
+      "License": "LGPL (>= 2.1)",
+      "LazyLoad": "TRUE",
+      "URL": "https://henrikbengtsson.github.io/R.oo/, https://github.com/HenrikBengtsson/R.oo",
+      "BugReports": "https://github.com/HenrikBengtsson/R.oo/issues",
+      "NeedsCompilation": "no",
+      "Repository": "CRAN",
+      "Encoding": "UTF-8"
+    },
+    "R.utils": {
+      "Package": "R.utils",
+      "Version": "2.13.0",
+      "Source": "Repository",
+      "Depends": [
+        "R (>= 2.14.0)",
+        "R.oo"
+      ],
+      "Imports": [
+        "methods",
+        "utils",
+        "tools",
+        "R.methodsS3"
+      ],
+      "Suggests": [
+        "datasets",
+        "digest (>= 0.6.10)"
+      ],
+      "Title": "Various Programming Utilities",
+      "Authors@R": "c(person(\"Henrik\", \"Bengtsson\", role=c(\"aut\", \"cre\", \"cph\"), email = \"henrikb@braju.com\"))",
+      "Author": "Henrik Bengtsson [aut, cre, cph]",
+      "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
+      "Description": "Utility functions useful when programming and developing R packages.",
+      "License": "LGPL (>= 2.1)",
+      "LazyLoad": "TRUE",
+      "URL": "https://henrikbengtsson.github.io/R.utils/, https://github.com/HenrikBengtsson/R.utils",
+      "BugReports": "https://github.com/HenrikBengtsson/R.utils/issues",
+      "NeedsCompilation": "no",
+      "Repository": "CRAN",
+      "Encoding": "UTF-8"
+    },
     "R6": {
       "Package": "R6",
       "Version": "2.6.1",
@@ -1927,6 +2066,50 @@
       "Maintainer": "Hadley Wickham <hadley@posit.co>",
       "Repository": "CRAN"
     },
+    "STACAS": {
+      "Package": "STACAS",
+      "Version": "2.4.1",
+      "Source": "GitHub",
+      "Type": "Package",
+      "Title": "STACAS: Sub-Type Anchoring Correction for Alignment in Seurat",
+      "Authors@R": "c( person(given = 'Massimo', family = 'Andreatta', email = 'massimo.andreatta@unil.ch', role = c('aut','cre'), comment = c(ORCID = '0000-0002-8036-2647')), person(given = 'Ariel', family = 'Berenstein', email = 'arieljberenstein@gmail.com', role = c('aut'), comment = c(ORCID = '0000-0001-8540-5389')), person(given = 'Josep', family = 'Garnica', email = 'Josep.Garnicacaparros@unige.ch', role = c('aut'), comment = c(ORCID = '0000-0001-9493-1321')), person(given = 'Santiago', family = 'Carmona', email = 'santiago.carmona@unil.ch', role = c('aut'), comment = c(ORCID = '0000-0002-2495-0671')) )",
+      "Description": "This package implements methods for batch correction and integration of scRNA-seq datasets, based on the popular Seurat anchor-based integration framework. In particular, STACAS is optimized for the integration of heterogenous datasets with only limited overlap between cell sub-types (e.g. TIL sets of CD8 from tumor with CD8/CD4 T cells from lymphnode), for which the default Seurat alignment methods would tend to over-correct biological differences. The 2.0 version of our package allows to the users to  incorporate explicit information about cell-types in order to assist the integration process.",
+      "biocViews": "",
+      "Depends": [
+        "R (>= 4.0.0)"
+      ],
+      "Imports": [
+        "Seurat(>= 5.0.0)",
+        "SeuratObject(>= 5.0.0)",
+        "data.table",
+        "pbapply",
+        "ggridges",
+        "colorspace",
+        "R.utils",
+        "ggplot2",
+        "stats",
+        "BiocNeighbors",
+        "BiocParallel"
+      ],
+      "Suggests": [
+        "testthat (>= 3.0.0)",
+        "sf"
+      ],
+      "License": "GPL-3 + file LICENSE",
+      "Encoding": "UTF-8",
+      "LazyData": "false",
+      "RoxygenNote": "7.3.2",
+      "Config/testthat/edition": "3",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "STACAS",
+      "RemoteUsername": "carmonalab",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "ea34e824e17df6316823db0a9b6322af0833e501",
+      "NeedsCompilation": "no",
+      "Author": "Massimo Andreatta [aut, cre] (<https://orcid.org/0000-0002-8036-2647>), Ariel Berenstein [aut] (<https://orcid.org/0000-0001-8540-5389>), Josep Garnica [aut] (<https://orcid.org/0000-0001-9493-1321>), Santiago Carmona [aut] (<https://orcid.org/0000-0002-2495-0671>)",
+      "Maintainer": "Massimo Andreatta <massimo.andreatta@unil.ch>"
+    },
     "ScaledMatrix": {
       "Package": "ScaledMatrix",
       "Version": "1.14.0",
@@ -2142,6 +2325,81 @@
       "Author": "Paul Hoffman [aut] (ORCID: <https://orcid.org/0000-0002-7693-8957>), Rahul Satija [aut, cre] (ORCID: <https://orcid.org/0000-0001-9448-8833>), David Collins [aut] (ORCID: <https://orcid.org/0000-0001-9243-7821>), Yuhan Hao [aut] (ORCID: <https://orcid.org/0000-0002-1810-0822>), Austin Hartman [aut] (ORCID: <https://orcid.org/0000-0001-7278-1852>), Gesmira Molla [aut] (ORCID: <https://orcid.org/0000-0002-8628-5056>), Andrew Butler [aut] (ORCID: <https://orcid.org/0000-0003-3608-0463>), Tim Stuart [aut] (ORCID: <https://orcid.org/0000-0002-3044-0897>), Madeline Kowalski [ctb] (ORCID: <https://orcid.org/0000-0002-5655-7620>), Saket Choudhary [ctb] (ORCID: <https://orcid.org/0000-0001-5202-7633>), Skylar Li [ctb], Longda Jiang [ctb] (ORCID: <https://orcid.org/0000-0003-4964-6497>), Anagha Shenoy [ctb] (ORCID: <https://orcid.org/0000-0002-0537-6862>), Jeff Farrell [ctb], Shiwei Zheng [ctb] (ORCID: <https://orcid.org/0000-0001-6682-6743>), Christoph Hafemeister [ctb] (ORCID: <https://orcid.org/0000-0001-6365-8254>), Patrick Roelli [ctb]",
       "Maintainer": "Rahul Satija <seurat@nygenome.org>",
       "Repository": "CRAN"
+    },
+    "SignatuR": {
+      "Package": "SignatuR",
+      "Version": "0.3.0",
+      "Source": "GitHub",
+      "Title": "Signatures for single-cell data analysis",
+      "Authors@R": "c( person('Massimo', 'Andreatta',  email = 'massimo.andreatta@unil.ch', role = c('aut','cre'), comment = c(ORCID = '0000-0002-8036-2647')), person('Paul', 'Gueguen',  email = 'paul.geuguen@unil.ch', role = c('aut'), comment = c(ORCID = '0000-0003-2930-6073')), person('Santiago', 'Carmona',  email = 'santiago.carmona@unil.ch', role = c('aut'), comment = c(ORCID = '0000-0002-2495-0671')) )",
+      "Description": "A database of useful signatures for single-cell data analysis. Query the existing signatures or use it to organize your own gene sets in a hierarchical structure.",
+      "Depends": [
+        "R(>= 4.1.0)"
+      ],
+      "Imports": [
+        "data.tree",
+        "tools"
+      ],
+      "Suggests": [
+        "DiagrammeR"
+      ],
+      "biocViews": "",
+      "License": "GPL-3",
+      "Encoding": "UTF-8",
+      "LazyData": "FALSE",
+      "Roxygen": "list(markdown = TRUE)",
+      "RoxygenNote": "7.3.2",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "SignatuR",
+      "RemoteUsername": "carmonalab",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "e3d02c6208272b8f29beb90cdb581d3a3bf820f1",
+      "NeedsCompilation": "no",
+      "Author": "Massimo Andreatta [aut, cre] (<https://orcid.org/0000-0002-8036-2647>), Paul Gueguen [aut] (<https://orcid.org/0000-0003-2930-6073>), Santiago Carmona [aut] (<https://orcid.org/0000-0002-2495-0671>)",
+      "Maintainer": "Massimo Andreatta <massimo.andreatta@unil.ch>"
+    },
+    "SingleCellExperiment": {
+      "Package": "SingleCellExperiment",
+      "Version": "1.28.1",
+      "Source": "Bioconductor",
+      "Date": "2024-11-08",
+      "Title": "S4 Classes for Single Cell Data",
+      "Authors@R": "c( person(\"Aaron\", \"Lun\", role=c(\"aut\", \"cph\"), email=\"infinite.monkeys.with.keyboards@gmail.com\"), person(\"Davide\",\"Risso\", role=c(\"aut\",\"cre\", \"cph\"), email=\"risso.davide@gmail.com\"), person(\"Keegan\", \"Korthauer\", role=\"ctb\"), person(\"Kevin\", \"Rue-Albrecht\", role=\"ctb\"), person(\"Luke\", \"Zappia\", role = \"ctb\", comment = c(ORCID = \"0000-0001-7744-8565\", github = \"lazappi\")))",
+      "Depends": [
+        "SummarizedExperiment"
+      ],
+      "Imports": [
+        "methods",
+        "utils",
+        "stats",
+        "S4Vectors",
+        "BiocGenerics",
+        "GenomicRanges",
+        "DelayedArray"
+      ],
+      "Suggests": [
+        "testthat",
+        "BiocStyle",
+        "knitr",
+        "rmarkdown",
+        "Matrix",
+        "scRNAseq (>= 2.9.1)",
+        "Rtsne"
+      ],
+      "biocViews": "ImmunoOncology, DataRepresentation, DataImport, Infrastructure, SingleCell",
+      "Description": "Defines a S4 class for storing data from single-cell experiments. This includes specialized methods to store and retrieve spike-in information, dimensionality reduction coordinates and size factors for each cell, along with the usual metadata for genes and libraries.",
+      "License": "GPL-3",
+      "VignetteBuilder": "knitr",
+      "RoxygenNote": "7.3.1",
+      "git_url": "https://git.bioconductor.org/packages/SingleCellExperiment",
+      "git_branch": "RELEASE_3_20",
+      "git_last_commit": "f3e30fb",
+      "git_last_commit_date": "2024-11-08",
+      "Repository": "Bioconductor 3.20",
+      "NeedsCompilation": "no",
+      "Author": "Aaron Lun [aut, cph], Davide Risso [aut, cre, cph], Keegan Korthauer [ctb], Kevin Rue-Albrecht [ctb], Luke Zappia [ctb] (<https://orcid.org/0000-0001-7744-8565>, lazappi)",
+      "Maintainer": "Davide Risso <risso.davide@gmail.com>"
     },
     "SingleR": {
       "Package": "SingleR",
@@ -2361,6 +2619,57 @@
       "NeedsCompilation": "no",
       "Author": "Hervé Pagès [aut, cre]",
       "Maintainer": "Hervé Pagès <hpages.on.github@gmail.com>"
+    },
+    "UCell": {
+      "Package": "UCell",
+      "Version": "2.10.1",
+      "Source": "Bioconductor",
+      "Type": "Package",
+      "Title": "Rank-based signature enrichment analysis for single-cell data",
+      "Authors@R": "c( person('Massimo', 'Andreatta',  email = 'massimo.andreatta@unil.ch', role = c('aut','cre'), comment = c(ORCID = '0000-0002-8036-2647')), person('Santiago', 'Carmona',  email = 'santiago.carmona@unil.ch', role = c('aut'), comment = c(ORCID = '0000-0002-2495-0671')) )",
+      "Description": "UCell is a package for evaluating gene signatures in single-cell datasets.  UCell signature scores, based on the Mann-Whitney U statistic, are robust to dataset size and heterogeneity, and their calculation demands less computing time and memory than other available methods, enabling the processing of large datasets in a few minutes even on machines with limited computing power. UCell can be applied to any single-cell data matrix, and includes functions to directly interact with SingleCellExperiment and Seurat objects.",
+      "Depends": [
+        "R(>= 4.3.0)"
+      ],
+      "Imports": [
+        "methods",
+        "data.table(>= 1.13.6)",
+        "Matrix",
+        "stats",
+        "BiocParallel",
+        "BiocNeighbors",
+        "SingleCellExperiment",
+        "SummarizedExperiment"
+      ],
+      "Suggests": [
+        "scater",
+        "scRNAseq",
+        "reshape2",
+        "patchwork",
+        "ggplot2",
+        "BiocStyle",
+        "Seurat(>= 5.0.0)",
+        "SeuratObject(>= 5.0.0)",
+        "knitr",
+        "rmarkdown"
+      ],
+      "biocViews": "SingleCell, GeneSetEnrichment, Transcriptomics, GeneExpression, CellBasedAssays",
+      "VignetteBuilder": "knitr",
+      "BugReports": "https://github.com/carmonalab/UCell/issues",
+      "URL": "https://github.com/carmonalab/UCell",
+      "License": "GPL-3 + file LICENSE",
+      "Encoding": "UTF-8",
+      "LazyData": "FALSE",
+      "Roxygen": "list(markdown = TRUE)",
+      "RoxygenNote": "7.3.2",
+      "git_url": "https://git.bioconductor.org/packages/UCell",
+      "git_branch": "RELEASE_3_20",
+      "git_last_commit": "6f88c1f",
+      "git_last_commit_date": "2024-10-31",
+      "Repository": "Bioconductor 3.20",
+      "NeedsCompilation": "no",
+      "Author": "Massimo Andreatta [aut, cre] (<https://orcid.org/0000-0002-8036-2647>), Santiago Carmona [aut] (<https://orcid.org/0000-0002-2495-0671>)",
+      "Maintainer": "Massimo Andreatta <massimo.andreatta@unil.ch>"
     },
     "V8": {
       "Package": "V8",
@@ -3213,6 +3522,60 @@
       "NeedsCompilation": "no",
       "Repository": "CRAN"
     },
+    "colorspace": {
+      "Package": "colorspace",
+      "Version": "2.1-3",
+      "Source": "Repository",
+      "Date": "2026-07-10",
+      "Title": "A Toolbox for Manipulating and Assessing Colors and Palettes",
+      "Authors@R": "c(person(given = \"Ross\", family = \"Ihaka\", role = \"aut\", email = \"ihaka@stat.auckland.ac.nz\"), person(given = \"Paul\", family = \"Murrell\", role = \"aut\", email = \"paul@stat.auckland.ac.nz\", comment = c(ORCID = \"0000-0002-3224-8858\")), person(given = \"Kurt\", family = \"Hornik\", role = \"aut\", email = \"Kurt.Hornik@R-project.org\", comment = c(ORCID = \"0000-0003-4198-9911\")), person(given = c(\"Jason\", \"C.\"), family = \"Fisher\", role = \"aut\", email = \"jfisher@usgs.gov\", comment = c(ORCID = \"0000-0001-9032-8912\")), person(given = \"Reto\", family = \"Stauffer\", role = \"aut\", email = \"Reto.Stauffer@uibk.ac.at\", comment = c(ORCID = \"0000-0002-3798-5507\")), person(given = c(\"Claus\", \"O.\"), family = \"Wilke\", role = \"aut\", email = \"wilke@austin.utexas.edu\", comment = c(ORCID = \"0000-0002-7470-9261\")), person(given = c(\"Claire\", \"D.\"), family = \"McWhite\", role = \"aut\", email = \"claire.mcwhite@utmail.utexas.edu\", comment = c(ORCID = \"0000-0001-7346-3047\")), person(given = \"Achim\", family = \"Zeileis\", role = c(\"aut\", \"cre\"), email = \"Achim.Zeileis@R-project.org\", comment = c(ORCID = \"0000-0003-0918-3766\")))",
+      "Description": "Carries out mapping between assorted color spaces including RGB, HSV, HLS, CIEXYZ, CIELUV, HCL (polar CIELUV), CIELAB, and polar CIELAB. Qualitative, sequential, and diverging color palettes based on HCL colors are provided along with corresponding ggplot2 color scales. Color palette choice is aided by an interactive app (with either a Tcl/Tk or a shiny graphical user interface) and shiny apps with an HCL color picker and a color vision deficiency emulator. Plotting functions for displaying and assessing palettes include color swatches, visualizations of the HCL space, and trajectories in HCL and/or RGB spectrum. Color manipulation functions include: desaturation, lightening/darkening, mixing, and simulation of color vision deficiencies (deutanomaly, protanomaly, tritanomaly). Details can be found on the project web page at <https://colorspace.R-Forge.R-project.org/> and in the accompanying scientific paper: Zeileis et al. (2020, Journal of Statistical Software, <doi:10.18637/jss.v096.i01>).",
+      "Depends": [
+        "R (>= 3.0.0)",
+        "methods"
+      ],
+      "Imports": [
+        "graphics",
+        "grDevices",
+        "stats"
+      ],
+      "Suggests": [
+        "datasets",
+        "utils",
+        "KernSmooth",
+        "MASS",
+        "kernlab",
+        "mvtnorm",
+        "vcd",
+        "tcltk",
+        "shiny",
+        "shinyjs",
+        "ggplot2",
+        "dplyr",
+        "scales",
+        "grid",
+        "png",
+        "jpeg",
+        "knitr",
+        "rmarkdown",
+        "RColorBrewer",
+        "rcartocolor",
+        "scico",
+        "viridis",
+        "wesanderson"
+      ],
+      "VignetteBuilder": "knitr",
+      "License": "BSD_3_clause + file LICENSE",
+      "URL": "https://colorspace.R-Forge.R-project.org/, https://hclwizard.org/",
+      "BugReports": "https://colorspace.R-Forge.R-project.org/contact.html",
+      "LazyData": "yes",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.2",
+      "NeedsCompilation": "yes",
+      "Author": "Ross Ihaka [aut], Paul Murrell [aut] (ORCID: <https://orcid.org/0000-0002-3224-8858>), Kurt Hornik [aut] (ORCID: <https://orcid.org/0000-0003-4198-9911>), Jason C. Fisher [aut] (ORCID: <https://orcid.org/0000-0001-9032-8912>), Reto Stauffer [aut] (ORCID: <https://orcid.org/0000-0002-3798-5507>), Claus O. Wilke [aut] (ORCID: <https://orcid.org/0000-0002-7470-9261>), Claire D. McWhite [aut] (ORCID: <https://orcid.org/0000-0001-7346-3047>), Achim Zeileis [aut, cre] (ORCID: <https://orcid.org/0000-0003-0918-3766>)",
+      "Maintainer": "Achim Zeileis <Achim.Zeileis@R-project.org>",
+      "Repository": "CRAN"
+    },
     "commonmark": {
       "Package": "commonmark",
       "Version": "2.0.0",
@@ -3462,6 +3825,58 @@
       "NeedsCompilation": "yes",
       "Author": "Tyson Barrett [aut, cre] (ORCID: <https://orcid.org/0000-0002-2137-1391>), Matt Dowle [aut], Arun Srinivasan [aut], Jan Gorecki [aut], Michael Chirico [aut] (ORCID: <https://orcid.org/0000-0003-0787-087X>), Toby Hocking [aut] (ORCID: <https://orcid.org/0000-0002-3146-0865>), Benjamin Schwendinger [aut] (ORCID: <https://orcid.org/0000-0003-3315-8114>), Ivan Krylov [aut] (ORCID: <https://orcid.org/0000-0002-0172-3812>), Pasha Stetsenko [ctb], Tom Short [ctb], Steve Lianoglou [ctb], Eduard Antonyan [ctb], Markus Bonsch [ctb], Hugh Parsonage [ctb], Scott Ritchie [ctb], Kun Ren [ctb], Xianying Tan [ctb], Rick Saporta [ctb], Otto Seiskari [ctb], Xianghui Dong [ctb], Michel Lang [ctb], Watal Iwasaki [ctb], Seth Wenchel [ctb], Karl Broman [ctb], Tobias Schmidt [ctb], David Arenburg [ctb], Ethan Smith [ctb], Francois Cocquemas [ctb], Matthieu Gomez [ctb], Philippe Chataignon [ctb], Nello Blaser [ctb], Dmitry Selivanov [ctb], Andrey Riabushenko [ctb], Cheng Lee [ctb], Declan Groves [ctb], Daniel Possenriede [ctb], Felipe Parages [ctb], Denes Toth [ctb], Mus Yaramaz-David [ctb], Ayappan Perumal [ctb], James Sams [ctb], Martin Morgan [ctb], Michael Quinn [ctb], @javrucebo [ctb] (GitHub user), Marc Halperin [ctb], Roy Storey [ctb], Manish Saraswat [ctb], Morgan Jacob [ctb], Michael Schubmehl [ctb], Davis Vaughan [ctb], Leonardo Silvestri [ctb], Jim Hester [ctb], Anthony Damico [ctb], Sebastian Freundt [ctb], David Simons [ctb], Elliott Sales de Andrade [ctb], Cole Miller [ctb], Jens Peder Meldgaard [ctb], Vaclav Tlapak [ctb], Kevin Ushey [ctb], Dirk Eddelbuettel [ctb], Tony Fischetti [ctb], Ofek Shilon [ctb], Vadim Khotilovich [ctb], Hadley Wickham [ctb], Bennet Becker [ctb], Kyle Haynes [ctb], Boniface Christian Kamgang [ctb], Olivier Delmarcell [ctb], Josh O'Brien [ctb], Dereck de Mezquita [ctb], Michael Czekanski [ctb], Dmitry Shemetov [ctb], Nitish Jha [ctb], Joshua Wu [ctb], Iago Giné-Vázquez [ctb], Anirban Chetia [ctb], Doris Amoakohene [ctb], Angel Feliz [ctb], Michael Young [ctb], Mark Seeto [ctb], Philippe Grosjean [ctb], Vincent Runge [ctb], Christian Wia [ctb], Elise Maigné [ctb], Vincent Rocher [ctb], Vijay Lulla [ctb], Aljaž Sluga [ctb], Bill Evans [ctb], Reino Bruner [ctb], @badasahog [ctb] (GitHub user), Vinit Thakur [ctb], Mukul Kumar [ctb], Ildikó Czeller [ctb], Manmita Das [ctb], Tarun Thammisetty [ctb]",
       "Maintainer": "Tyson Barrett <t.barrett88@gmail.com>",
+      "Repository": "CRAN"
+    },
+    "data.tree": {
+      "Package": "data.tree",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "General Purpose Hierarchical Data Structure",
+      "Language": "en-US",
+      "Date": "2025-08-06",
+      "Authors@R": "c( person( \"Russ\", \"Hyde\", role = c(\"ctb\"), comment = \"improve dependencies\" ), person( \"Chris\", \"Hammill\", role = c(\"ctb\"), comment = \"improve getting\" ), person( \"Facundo\", \"Munoz\", role = c(\"ctb\"), comment = \"improve list conversion\" ), person( \"Markus\", \"Wamser\" , role = c(\"ctb\") , comment = \"fixed some typos\" ), person( \"Pierre\", \"Formont\" , role = c(\"ctb\") , comment = \"additional features\" ), person( \"Kent\", \"Russel\" , role = c(\"ctb\") , comment = \"documentation\" ), person( \"Noam\", \"Ross\" , role = c(\"ctb\") , comment = \"fixes\" ), person( \"Duncan\", \"Garmonsway\" , role = c(\"ctb\") , comment = \"fixes\" ), person( \"Christoph\", \"Glur\" , role = c(\"aut\", \"cre\") , comment = \"R interface\" , email = \"christoph.glur@powerpartners.pro\" ) )",
+      "VignetteBuilder": "knitr, rmarkdown",
+      "Imports": [
+        "R6",
+        "stringi",
+        "methods"
+      ],
+      "Suggests": [
+        "Formula",
+        "graphics",
+        "testthat",
+        "knitr",
+        "rmarkdown",
+        "ape",
+        "yaml",
+        "networkD3",
+        "jsonlite",
+        "treemap",
+        "party",
+        "partykit",
+        "doParallel",
+        "foreach",
+        "htmlwidgets",
+        "DiagrammeR (>= 1.0.0)",
+        "mockery",
+        "rpart"
+      ],
+      "Enhances": [
+        "igraph"
+      ],
+      "Description": "Create tree structures from hierarchical data, and traverse the tree in various orders. Aggregate, cumulate, print, plot, convert to and from data.frame and more. Useful for decision trees, machine learning, finance, conversion from and to JSON, and many other applications.",
+      "License": "GPL (>= 2)",
+      "URL": "https://github.com/gluc/data.tree",
+      "BugReports": "https://github.com/gluc/data.tree/issues",
+      "Depends": [
+        "R (>= 3.5)"
+      ],
+      "RoxygenNote": "7.3.2",
+      "Encoding": "UTF-8",
+      "NeedsCompilation": "no",
+      "Author": "Russ Hyde [ctb] (improve dependencies), Chris Hammill [ctb] (improve getting), Facundo Munoz [ctb] (improve list conversion), Markus Wamser [ctb] (fixed some typos), Pierre Formont [ctb] (additional features), Kent Russel [ctb] (documentation), Noam Ross [ctb] (fixes), Duncan Garmonsway [ctb] (fixes), Christoph Glur [aut, cre] (R interface)",
+      "Maintainer": "Christoph Glur <christoph.glur@powerpartners.pro>",
       "Repository": "CRAN"
     },
     "dbplyr": {
@@ -5924,6 +6339,36 @@
       "Repository": "CRAN",
       "Encoding": "UTF-8"
     },
+    "pheatmap": {
+      "Package": "pheatmap",
+      "Version": "1.0.13",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "Pretty Heatmaps",
+      "Date": "2025-06-05",
+      "Authors@R": "person(given = \"Raivo\", family = \"Kolde\", role = c(\"aut\", \"cre\"), email = \"rkolde@gmail.com\")",
+      "Depends": [
+        "R (>= 2.0)"
+      ],
+      "Description": "Implementation of heatmaps that offers more control over dimensions and appearance.",
+      "Imports": [
+        "grid",
+        "RColorBrewer",
+        "scales",
+        "gtable",
+        "stats",
+        "grDevices",
+        "graphics"
+      ],
+      "License": "GPL-2",
+      "Encoding": "UTF-8",
+      "LazyLoad": "yes",
+      "RoxygenNote": "7.3.2",
+      "NeedsCompilation": "no",
+      "Author": "Raivo Kolde [aut, cre]",
+      "Maintainer": "Raivo Kolde <rkolde@gmail.com>",
+      "Repository": "CRAN"
+    },
     "pillar": {
       "Package": "pillar",
       "Version": "1.11.1",
@@ -6158,6 +6603,37 @@
       "Note": "built from Clipper C++ version 6.4.0",
       "NeedsCompilation": "yes",
       "Author": "Angus Johnson [aut] (C++ original, http://www.angusj.com/delphi/clipper.php), Adrian Baddeley [aut, trl, cre], Kurt Hornik [ctb], Brian D. Ripley [ctb], Elliott Sales de Andrade [ctb], Paul Murrell [ctb], Ege Rubak [ctb], Mark Padgham [ctb]",
+      "Repository": "CRAN",
+      "Encoding": "UTF-8"
+    },
+    "pracma": {
+      "Package": "pracma",
+      "Version": "2.4.6",
+      "Source": "Repository",
+      "Type": "Package",
+      "Date": "2025-10-20",
+      "Title": "Practical Numerical Math Functions",
+      "Authors@R": "person(\"Hans W.\", \"Borchers\",  email=\"hwborchers@googlemail.com\",  role=c(\"aut\", \"cre\"))",
+      "Depends": [
+        "R (>= 3.1.0)"
+      ],
+      "Imports": [
+        "graphics",
+        "grDevices",
+        "stats",
+        "utils"
+      ],
+      "Suggests": [
+        "NlcOptim",
+        "quadprog"
+      ],
+      "Description": "Provides a large number of functions from numerical analysis and linear algebra, numerical optimization, differential equations, time series, plus some well-known special mathematical functions. Uses 'MATLAB' function names where appropriate to simplify porting.",
+      "License": "GPL (>= 3)",
+      "ByteCompile": "true",
+      "LazyData": "yes",
+      "NeedsCompilation": "no",
+      "Author": "Hans W. Borchers [aut, cre]",
+      "Maintainer": "Hans W. Borchers <hwborchers@googlemail.com>",
       "Repository": "CRAN",
       "Encoding": "UTF-8"
     },
@@ -6940,6 +7416,50 @@
       "NeedsCompilation": "yes",
       "Author": "Joe Cheng [aut], Timothy Mastny [aut], Richard Iannone [aut] (<https://orcid.org/0000-0003-3925-190X>), Barret Schloerke [aut] (<https://orcid.org/0000-0001-9986-114X>), Carson Sievert [aut, cre] (<https://orcid.org/0000-0002-4958-2844>), Christophe Dervieux [ctb] (<https://orcid.org/0000-0003-4474-2498>), RStudio [cph, fnd], Sass Open Source Foundation [ctb, cph] (LibSass library), Greter Marcel [ctb, cph] (LibSass library), Mifsud Michael [ctb, cph] (LibSass library), Hampton Catlin [ctb, cph] (LibSass library), Natalie Weizenbaum [ctb, cph] (LibSass library), Chris Eppstein [ctb, cph] (LibSass library), Adams Joseph [ctb, cph] (json.cpp), Trifunovic Nemanja [ctb, cph] (utf8.h)",
       "Maintainer": "Carson Sievert <carson@rstudio.com>",
+      "Repository": "CRAN"
+    },
+    "scGate": {
+      "Package": "scGate",
+      "Version": "1.7.2",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "Marker-Based Cell Type Purification for Single-Cell Sequencing Data",
+      "Authors@R": "c( person('Massimo', 'Andreatta', email = 'massimo.andreatta@unige.ch', role = c('aut','cre'), comment = c(ORCID = '0000-0002-8036-2647')),  person('Ariel','Berenstein', email = 'arieljberenstein@gmail.com', role = c('aut'), comment = c(ORCID = '0000-0001-8540-5389')),  person('Josep','Garnica', email = 'josep.garnicacaparros@unige.ch', role = c('aut')),   person('Santiago', 'Carmona', email = 'santiago.carmona@unige.ch', role = c('aut'), comment = c(ORCID = '0000-0002-2495-0671'))  )",
+      "Description": "A common bioinformatics task in single-cell data analysis is to purify a cell type or cell population of interest from heterogeneous datasets. 'scGate' automatizes marker-based purification of specific cell populations, without requiring training data or reference gene expression profiles. Briefly, 'scGate' takes as input: i) a gene expression matrix stored in a 'Seurat' object and ii) a “gating model” (GM), consisting of a set of marker genes that define the cell population of interest. The GM can be as simple as a single marker gene, or a combination of positive and negative markers. More complex GMs can be constructed in a hierarchical fashion, akin to gating strategies employed in flow cytometry. 'scGate' evaluates the strength of signature marker expression in each cell using the rank-based method 'UCell', and then performs k-nearest neighbor (kNN) smoothing by calculating the mean 'UCell' score across neighboring cells. kNN-smoothing aims at compensating for the large degree of sparsity in scRNA-seq data. Finally, a universal threshold over kNN-smoothed signature scores is applied in binary decision trees generated from the user-provided gating model, to annotate cells as either “pure” or “impure”, with respect to the cell population of interest. See the related publication Andreatta et al. (2022) <doi:10.1093/bioinformatics/btac141>.",
+      "biocViews": "",
+      "Depends": [
+        "R (>= 4.3.0)"
+      ],
+      "Imports": [
+        "Seurat (>= 4.0.0)",
+        "UCell (>= 2.6.0)",
+        "dplyr",
+        "stats",
+        "utils",
+        "methods",
+        "patchwork",
+        "ggridges",
+        "colorspace",
+        "reshape2",
+        "ggplot2",
+        "BiocParallel"
+      ],
+      "Suggests": [
+        "ggparty",
+        "partykit",
+        "knitr",
+        "rmarkdown"
+      ],
+      "VignetteBuilder": "knitr",
+      "URL": "https://github.com/carmonalab/scGate",
+      "BugReports": "https://github.com/carmonalab/scGate/issues",
+      "License": "GPL-3",
+      "Encoding": "UTF-8",
+      "LazyData": "true",
+      "RoxygenNote": "7.3.2",
+      "NeedsCompilation": "no",
+      "Author": "Massimo Andreatta [aut, cre] (ORCID: <https://orcid.org/0000-0002-8036-2647>), Ariel Berenstein [aut] (ORCID: <https://orcid.org/0000-0001-8540-5389>), Josep Garnica [aut], Santiago Carmona [aut] (ORCID: <https://orcid.org/0000-0002-2495-0671>)",
+      "Maintainer": "Massimo Andreatta <massimo.andreatta@unige.ch>",
       "Repository": "CRAN"
     },
     "scales": {
@@ -7949,6 +8469,44 @@
       "NeedsCompilation": "yes",
       "Author": "Davis Vaughan [aut, cre], Howard Hinnant [cph] (Author of the included date library), Posit Software, PBC [cph, fnd]",
       "Maintainer": "Davis Vaughan <davis@posit.co>",
+      "Repository": "CRAN"
+    },
+    "umap": {
+      "Package": "umap",
+      "Version": "0.2.10.0",
+      "Source": "Repository",
+      "Title": "Uniform Manifold Approximation and Projection",
+      "Authors@R": "person(\"Tomasz\", \"Konopka\", , \"tokonopka@gmail.com\", role = c(\"aut\", \"cre\"))",
+      "Author": "Tomasz Konopka [aut, cre]",
+      "Maintainer": "Tomasz Konopka <tokonopka@gmail.com>",
+      "Description": "Uniform manifold approximation and projection is a technique for dimension reduction. The algorithm was described by McInnes and Healy (2018) in <arXiv:1802.03426>. This package provides an interface for two implementations. One is written from scratch, including components for nearest-neighbor search and for embedding. The second implementation is a wrapper for 'python' package 'umap-learn' (requires separate installation, see vignette for more details).",
+      "Depends": [
+        "R (>= 3.6.0)"
+      ],
+      "Imports": [
+        "Matrix",
+        "methods",
+        "openssl",
+        "reticulate",
+        "Rcpp (>= 0.12.6)",
+        "RSpectra",
+        "stats"
+      ],
+      "License": "MIT + file LICENSE",
+      "URL": "https://github.com/tkonopka/umap",
+      "BugReports": "https://github.com/tkonopka/umap/issues",
+      "LinkingTo": [
+        "Rcpp"
+      ],
+      "Suggests": [
+        "knitr",
+        "rmarkdown",
+        "testthat"
+      ],
+      "VignetteBuilder": "knitr",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.1.2",
+      "NeedsCompilation": "yes",
       "Repository": "CRAN"
     },
     "utf8": {

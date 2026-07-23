@@ -48,6 +48,8 @@ Results (figures and tables) mirror this structure exactly: same block folder, s
 
 All paths are relative, managed via the `here` package (`here()` / `here("Data", ...)`), for portability across Windows, WSL, and Docker without modification.
 
+---
+
 ## Pipeline
 
 | Block | Content | Status |
@@ -64,6 +66,8 @@ All paths are relative, managed via the `here` package (`here()` / `here("Data",
 
 Each block's methodology, chosen parameters, and rationale will be documented in this README once the block is stabilized and just before its commit.
 
+---
+
 ## Tools and Methods
 
 | Tool | Role in the project | Reference | Block |
@@ -77,6 +81,8 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 | MultiNicheNet | Differential cell-cell communication, multi-sample multi-condition design | Browaeys et al., 2023, *bioRxiv* | Bloc8 |
 | SingleR | *Initially used for TME annotation cross-check; replaced by CellTypist after insufficient robustness for closely related T-cell states (see Methodology)* | Aran et al., 2019, *Nature Immunology* | Bloc5 |
 | CellTypist | TME annotation (cell-level classification, majority-voting consensus), replaces SingleR | Domínguez Conde et al., 2022, *Science* | Bloc5 |
+
+---
 
 ## Methodology
 
@@ -141,6 +147,21 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 - **Final annotation** (`annotation_final`): built entirely from CellTypist, using the model's own terminology without translation to project-specific nomenclature. 478,223 cells, 0 unannotated. One resolved cluster (391 cells, confirmed as Classical monocytes) originated entirely from a single patient and is flagged as a Harmony integration artifact rather than a distinct biological subpopulation, though its cell-level identity remains biologically plausible. Technical lineage flags (`lineage_CD8`, `lineage_TAM`, `lineage_TAM_related`) were built from marker-confirmed labels only, for downstream Bloc6/Bloc7 extraction; LUSC additionally distinguishes "Macrophages" from "Alveolar macrophages" as two separately confirmed labels, both included in `lineage_TAM`.
 - **Display simplification and statistical comparison**: identical approach to LUAD (see above) — display-only grouping of small/unresolved categories, global chi-squared test on the full composition table, and targeted `prop.test` for B cells, CD8, and TAM categories (individual subtypes and pooled marker-confirmed states).
 
+### Bloc6_CD8
+
+**LUAD**
+
+- **CD8 purification strategy**: rather than subsetting on the CellTypist-derived `lineage_CD8` flag, CD8 T cells were re-isolated independently on the full TME object using scGate (`TME_HiRes` model, human), following the same isolation-then-projection strategy used in the official construction of the human CD8 TIL reference atlas (Andreatta et al., 2021, *Nat Commun*; atlas construction pipeline: scGate → UCell cycling/ISG+ removal → STACAS). This avoids circularity with the project's own CellTypist-based annotation and keeps downstream steps methodologically consistent with the reference space used for later ProjecTILs projection.
+- **Performance note**: scGate recalculates a dimensionality reduction at each hierarchical gating level by default; supplying the pre-computed Harmony embedding (`reduction = "harmony"`) instead avoids this recomputation and was necessary for tractable runtime (268,615 cells, ~1h17 with this optimization).
+- **scGate_multi distribution**: Bcell 60,743; CD4T 72,008; CD8T 58,203; Macrophage 18,220; Monocyte 8,876; NK 7,642; panDC 7,709; PlasmaCell 7,237; Mast 3,982; Neutrophils 1,486; Multi (ambiguous) 3,591; unassigned 18,918. Endothelial, Epithelial, and Fibroblast levels returned 0 cells each, consistent with the CD45+-sorted nature of the dataset.
+- **Cross-check against CellTypist**: of the 57,782 cells confirmed as `lineage_CD8` by CellTypist, 41,752 (72.3%) were independently confirmed as pure CD8T by scGate. The 27.7% discordance reflects the different underlying approaches (generic marker-based gating vs. reference-based classification) rather than a methodological error; biological interpretation of this discordance is deferred until after ProjecTILs projection, which uses a CD8-specific reference atlas. `scGate_multi == "CD8T"` (not `lineage_CD8`, and not an intersection/union of the two) was retained as the base population carried forward to the next step, to preserve consistency with the reference atlas construction protocol; `lineage_CD8` is retained as an annotation/cross-validation column only.
+- **Cycling/IFN-high cell removal (UCell)**: applied to the 58,203 scGate-confirmed CD8T cells, using the identical signatures and thresholds from the official CD8 human TIL atlas construction pipeline (`cellCycle.G1S`, `cellCycle.G2M` from SignatuR, Tirosh et al., 2016, *Science*; a manually-defined 4-gene IFN signature — *ISG15, IFI6, IFI44L, MX1* — reported by the atlas authors to perform better with UCell than the full SignatuR IFN signature). Thresholds: `cellCycle.G1S < 0.1`, `cellCycle.G2M < 0.1`, `IFN < 0.25`. 8,616 cells (14.8%) were removed; the IFN criterion accounted for the large majority of flagged cells (6,974, ~81% of cumulative flags) compared to the cell-cycle criteria combined (1,543 + 1,392). 49,587 cells retained for the next step (ProjecTILs projection).
+- **ProjecTILs functional-state projection**: the 49,587 scGate/UCell-purified CD8 cells were projected onto the official human CD8 TIL reference atlas (Andreatta et al., 2021, *Nat Commun*; atlas construction: `carmonalab/CD8_human_TIL_atlas_construction`), using `Run.ProjecTILs()` with `filter.cells = FALSE` (query already pre-purified, per official guidance for pre-filtered data) and `split.by = "sampleID"` (per-patient batch correction, as recommended). All 49,587 cells received a functional-state label (none below the minimum confidence threshold of 0.2); projection confidence (`functional.cluster.conf`) median 0.814.
+- **Cross-validation and identity correction**: crossing `functional.cluster` (ProjecTILs) against `annotation_final` (CellTypist) revealed that 5,293 cells labeled "Regulatory T cells" by CellTypist were projected predominantly to exhausted CD8 states (CD8.TEX 76.6%, CD8.TPEX 11.3%) by ProjecTILs. Raw marker expression on these specific cells (CD8A mean 2.09, 97.1% positive; CD8B mean 1.05, 86.7% positive; vs. CD4 mean 0.097 and FOXP3 mean 0.035, both near-absent despite high nominal detection rates attributable to ambient RNA/dropout noise) confirmed these are genuine CD8 T cells mislabeled by CellTypist, not true regulatory T cells. These cells were reintegrated into the CD8 lineage for downstream analysis. A minor, expected overlap between CD8.TEMRA and NK cells (CD16+/-) was also observed (76.1% of 159 NK cells), consistent with known shared NK-receptor expression in terminally differentiated CD8 T cells, and left uncorrected given the small cell count involved.
+- **CD8 composition by pathological response**: within the revised CD8 lineage (42,349 cells, including the reclassified regulatory-T-cell-labeled cells), the proportion of each ProjecTILs functional state was compared between MPR and non-MPR tumors using a global chi-squared test on the full composition table, followed by targeted `prop.test` per individual state; the same statistical approach used for the Bloc5 TME composition analysis. Color coding reused the official ProjecTILs atlas palette for visual and terminological consistency with the reference atlas. p-value display in all barplots (Bloc5 and Bloc6) was standardized using `scales::pvalue()` rather than a manually defined formatting rule.
+
+---
+
 ## Preliminary Observations
 
 ### Bloc5_Annotation_TME
@@ -166,6 +187,17 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 - One resolved cluster (391 cells) originated entirely from a single patient and is documented as a Harmony integration artifact rather than a distinct biological subpopulation (see Methods).
 
 **Cross-histology comparison**: the direction of the TAM association with response reverses between LUAD (higher in non-MPR) and LUSC (higher in MPR), while the CD8 association is significant but modest in LUAD and essentially absent in LUSC. This pattern is consistent with the hypothesis that CD8 composition is more conserved across histologies than TAM composition, which appears comparatively more variable, a distinction addressed further in Bloc7 (see Discussion).
+
+### Bloc6_CD8
+
+**LUAD**
+
+- Independent scGate-based CD8 isolation (58,203 cells) showed 72.3% agreement with the CellTypist-derived `lineage_CD8` population (57,782 cells; 41,752 cells confirmed by both methods). This level of concordance is considered acceptable at this stage given the methodological differences between the two approaches, but is not yet interpreted biologically; ProjecTILs projection (CD8-specific reference atlas) is expected to help resolve which discordant cells represent genuine CD8 states versus annotation noise from either method.
+- UCell-based removal of cycling and IFN-high cells (official atlas construction thresholds) removed 8,616 cells (14.8%) from the scGate-confirmed CD8T population, leaving 49,587 cells. The IFN criterion accounted for the large majority of flagged cells (~81% of cumulative flags) relative to the cell-cycle criteria — plausibly reflecting an active immune response under neoadjuvant anti-PD-1 treatment, though this is not yet interpreted biologically at this stage.
+- ProjecTILs-based functional states were dominated by CD8.EM (32.2%), CD8.TEX (30.9%), and CD8.CM (26.5%), with CD8.MAIT, CD8.TPEX, CD8.TEMRA, and CD8.NaiveLike each below 3.5%. A cross-validation step identified and corrected a CellTypist labeling error affecting 5,293 cells (10.7% of the projected CD8 population) originally annotated as regulatory T cells but confirmed as genuine CD8 T cells (predominantly exhausted/TEX) by both independent projection and raw marker expression (CD8A/CD8B high, CD4/FOXP3 near-absent). This correction is particularly relevant given the central role of the TEX/TPEX axis in this study's neoadjuvant anti-PD-1 context.
+- CD8 functional-state composition differed significantly between MPR and non-MPR tumors (chi-squared test, χ² = 259.87, df = 6, p < 0.001). The two largest and most significant effects were CD8.CM, enriched in MPR (6.8 percentage points higher), and CD8.TEX, enriched in non-MPR (6.3 percentage points higher) — consistent with a shift toward a less-differentiated, less-exhausted CD8 phenotype in tumors achieving a major pathological response. CD8.TEMRA, CD8.EM, and CD8.MAIT also reached statistical significance but with substantially smaller effect sizes (under 2 percentage points each), a pattern likely reflecting the statistical power of the large cell numbers involved (~42,000 cells) rather than a comparably strong biological effect; this distinction between statistical and practical significance should be addressed explicitly in the Discussion. CD8.NaiveLike and CD8.TPEX showed no detectable difference between conditions.
+
+---
 
 ## Discussion
 
