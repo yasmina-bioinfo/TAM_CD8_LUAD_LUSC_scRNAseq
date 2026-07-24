@@ -16,6 +16,8 @@ suppressPackageStartupMessages({
   library(readr)
 })
 
+data(SignatuR)
+
 IN_OBJ  <- here("Objects", "01_LUAD_seu_scGate.rds")
 OUT_OBJ <- here("Objects", "02_LUAD_seu_ucell.rds")
 OUT_TAB <- here("Results", "Bloc6_CD8", "Tables")

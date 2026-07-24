@@ -1,0 +1,4 @@
+criterion,n_cells_flagged
+cellCycle.G1S >= 0.1,2084
+cellCycle.G2M >= 0.1,2053
+IFN >= 0.25,9908
