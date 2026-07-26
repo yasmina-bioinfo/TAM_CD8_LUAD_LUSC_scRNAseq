@@ -11,3 +11,5 @@ renv/staging/
 log_*.txt
 test_*.R
 References/
+*.pdf
+omnipathr-log/
