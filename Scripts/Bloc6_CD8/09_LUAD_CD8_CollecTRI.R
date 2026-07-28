@@ -89,7 +89,7 @@ deg_stat <- as.data.frame(res) %>%
 
 message("Genes with a valid differential statistic: ", nrow(deg_stat))
 
-# ---- Step 4: CollecTRI network (identical to Script09, reused as-is) ----
+# ---- Step 4: CollecTRI network ----
 collectri_raw <- read_tsv(IN_TCRI, show_col_types = FALSE)
 
 net <- collectri_raw %>%
@@ -123,4 +123,4 @@ print(head(tf_results, 10))
 
 write_csv(tf_results, file.path(OUT_TAB, "09_LUAD_TEX_CollecTRI_pseudobulk_DESeq2.csv"))
 
-message("Script09b (CollecTRI pseudobulk, LUAD) complete. ", Sys.time())
+message("Script09 (CollecTRI pseudobulk, LUAD) complete. ", Sys.time())

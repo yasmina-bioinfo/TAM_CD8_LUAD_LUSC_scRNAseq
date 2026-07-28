@@ -53,14 +53,14 @@ All paths are relative, managed via the `here` package (`here()` / `here("Data",
 ## Pipeline
 
 | Block | Content | Status |
-|---|---|---|
+| --- | --- | --- |
 | Bloc0_DataPrep | Matrix loading (BPCells), LUAD/LUSC separation, patient-level clinical metadata | Done |
 | Bloc1_QC | Quality control plots and filtering (per-arm thresholds) | Done |
 | Bloc2_Norm_HVG_PCA | Normalization, highly variable genes, PCA | Done |
 | Bloc3_Harmony | Batch integration | Done |
 | Bloc4_Clustering_UMAP | Clustering, UMAP visualization | Done |
 | Bloc5_Annotation_TME | TME annotation (CellTypist as primary cell-level method, canonical markers as initial exploratory pass) | Done |
-| Bloc6_CD8 | ProjecTILs CD8 subtyping, UCell signature scoring, CollecTRI regulon activity | To do |
+| Bloc6_CD8 | ProjecTILs CD8 subtyping, UCell signature scoring | TCR-Repertoire | CollecTRI regulon activity | Done |
 | Bloc7_TAM | TAM subtyping, UCell signature scoring, CollecTRI regulon activity | To do |
 | Bloc8_Communication | MultiNicheNet differential cell-cell communication (LUAD vs LUSC) | To do |
 
@@ -71,7 +71,7 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 ## Tools and Methods
 
 | Tool | Role in the project | Reference | Block |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | BPCells | Disk-backed matrix loading, avoids RAM overload | Parikh et al., Satija Lab | Bloc0 |
 | Harmony | Batch integration | Korsunsky et al., 2019, *Nature Methods* | Bloc3 |
 | ProjecTILs | CD8 subtyping via reference atlas projection | Andreatta, Carmona et al., 2021, *Nature Communications* | Bloc6 |
@@ -80,6 +80,7 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 | MultiNicheNet | Differential cell-cell communication, multi-sample multi-condition design | Browaeys et al., 2023, *bioRxiv* | Bloc8 |
 | SingleR | *Initially used for TME annotation cross-check; replaced by CellTypist after insufficient robustness for closely related T-cell states (see Methodology)* | Aran et al., 2019, *Nature Immunology* | Bloc5 |
 | CellTypist | TME annotation (cell-level classification, majority-voting consensus), replaces SingleR | Domínguez Conde et al., 2022, *Science* | Bloc5 |
+| TCR repertoire analysis | Clonal expansion and Shannon diversity within CD8.TEX; clonotypes from the authors' annotation file, metrics computed explicitly (no package defaults) | Expansion threshold: Liu et al., 2025, *Cell* - Shannon bias: Konopiński, 2020, *PeerJ* | Bloc6 |
 
 ---
 
@@ -160,6 +161,9 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 - **Exclusion of CD8.TPEX from functional analyses**: applying the same 10-cell minimum, only 4 MPR patients would have qualified for CD8.TPEX in LUAD, compared with 13 in LUSC. Analysing this state in LUSC alone would have introduced an asymmetric analytical framework between histologies, precluding any meaningful cross-histology comparison, so CD8.TPEX was excluded from both — neither tested nor reported descriptively, to avoid combining tested and untested results within a single argument. This focus on the terminally exhausted state is also consistent with its reported clinical relevance: baseline CD8.TEX proportion has been shown to be higher in non-responders than responders prior to immunotherapy and to independently predict checkpoint inhibitor resistance (Fang et al., 2026).
 - **Transcription factor activity within CD8.TEX (CollecTRI)**: to complement gene-signature scoring with a network-based measure of regulatory activity, transcription factor (TF) activity was inferred using `decoupleR`'s univariate linear model method (`run_ulm`) with the CollecTRI network (Müller-Dott et al., 2023, *Nucleic Acids Research*; ~1,183 human TFs, downloaded directly from static.omnipathdb.org after `decoupleR::get_collectri()` failed due to an unresolved package issue, reformatted to match the expected input, with directionally-ambiguous interactions, 0.4% of the network, excluded). Rather than testing each TF's cell-level activity across patients (which yielded only 5 significant TFs out of 755 tested in an initial analysis, given limited power at n=9-10 MPR patients), a pseudobulk approach was used: raw counts were aggregated per patient within CD8.TEX, a differential expression analysis was run with DESeq2 (MPR vs non-MPR), and `run_ulm` was applied once to the resulting per-gene differential statistic. This approach, recommended in decoupleR's own documentation for this type of comparison, substantially increased sensitivity (67 of 637 TFs significant in LUAD, 10.5%, versus 14 of 649 in LUSC, 2.2%) without introducing repeated per-TF testing across patients. No TFs were pre-selected; all those passing the network's minimum target-gene coverage (`minsize = 5`) were tested.
 - **CD8.TPEX and TF activity**: consistent with its exclusion from signature scoring, CD8.TPEX was not analysed with CollecTRI.
+- **TCR repertoire analysis within CD8.TEX**: to test whether the MPR/non-MPR asymmetry observed in the transcription factor analysis reflects a less-engaged TEX compartment in responders, clonal expansion was assessed using TCR data as a line of evidence independent of gene expression — clone size records past proliferation rather than current transcriptional state. Clonotype assignments were taken directly from the authors' annotation file accompanying GSE243013 (`GSE243013_T_with_TCR_annotation.csv.gz`), joined to the Seurat object by cell barcode; clonotype identifiers are patient-prefixed and non-overlapping across patients (verified: 255,451 clonotypes, none shared). Two complementary metrics were computed per patient within CD8.TEX: (i) the percentage of cells belonging to an expanded clone, using the ≥3-cell threshold defined by the original dataset publication (Liu et al., 2025, *Cell*, STAR Methods), and (ii) Shannon diversity (H = -Σ pᵢ ln pᵢ). Both were calculated explicitly rather than through package defaults, and the pre-computed `expansion` column of the annotation file was deliberately not reused, its underlying threshold being undocumented. The two metrics are non-redundant: the first quantifies the share of the compartment held by proliferating lineages, the second the overall balance of the repertoire.
+- **Denominator and patient threshold for repertoire metrics**: TCR recovery is incomplete and varies between patients (median 74–85% of TEX cells), and several patients yielded no TCR data at all despite substantial TEX cell numbers (LUSC: 7 patients, including one with 468 TEX cells; LUAD: 2 patients). Using all TEX cells as the denominator would have assigned these patients spurious values of 0% expansion and H = 0. Both metrics were therefore computed over TCR-bearing TEX cells only, and patients were required to contribute at least 10 such cells — the same 10-cell minimum applied in the functional scoring analysis, but applied to the TCR-bearing subset rather than to all TEX cells. This retained 44 LUAD patients (9 MPR, 35 non-MPR) and 86 LUSC patients (28 MPR, 58 non-MPR). Per-patient values were compared between MPR and non-MPR using the Wilcoxon rank-sum test with Benjamini-Hochberg correction across the two metrics, consistent with all other patient-level comparisons in Bloc6.
+- **Sampling-depth control and rarefaction**: Shannon diversity is systematically underestimated at low sample size, with the bias increasing as diversity rises (Konopiński, 2020, *PeerJ*). This bias was confirmed within the present data (Spearman correlation between per-patient Shannon and cell number: rho = 0.657, p = 1.3e-06 in LUAD; rho = 0.567, p = 1.3e-08 in LUSC). Sampling depth was therefore compared between response groups before interpreting any diversity difference, and found comparable in both histologies (LUAD: median 153 versus 151 TCR-bearing TEX cells, p = 0.60; LUSC: 99 versus 111, p = 0.40), meaning both groups are subject to the same downward bias and remain comparable. As a sensitivity analysis only — the status of which was fixed before the analysis was run — metrics were additionally recomputed after rarefying all patients to a common depth of 30 cells (100 random draws per patient, averaged). A third sensitivity analysis redefined clone size over all T cells rather than within CD8.TEX, since the source threshold does not specify a reference population. The unrarefied within-TEX analysis remains the primary analysis throughout.
 
 ---
 
@@ -185,7 +189,7 @@ Each block's methodology, chosen parameters, and rationale will be documented in
 **CD8.TPEX rarity (both histologies)**, CD8.TPEX did not receive a formal patient-level significance test, given insufficient cell counts per patient in both histologies (unrelated to pathological response; zero-cell rates were similar between MPR and non-MPR). CD8.TEX, in contrast, supported a full patient-level test.
 
 | | LUAD | LUSC |
-|---|---|---|
+| --- | --- | --- |
 | CD8.TEX — % patients with ≥1 cell | 98.1% | 95.2% |
 | CD8.TEX — of those, % with <10 cells | 7.8% | 7.0% |
 | CD8.TPEX — % patients with ≥1 cell | 88.5% | 82.9% |
@@ -210,9 +214,21 @@ No published study comparing CD8.TPEX abundance between LUAD and LUSC was identi
 - At the patient level (same approach, 101/105 patients retained: 34 MPR, 67 non-MPR), CD8.TEX proportion was significantly higher in non-MPR tumors (median 25.8% versus 11.2%; BH-adjusted p = 0.0135). CD8.CM and CD8.MAIT proportions were also significantly higher in MPR tumors (BH-adjusted p = 0.034 for both). All other states, including CD8.TPEX, were not significant after correction.
 - Within CD8.TEX, UCell-based scoring at the patient level showed the same pattern as LUAD: significantly higher cytotoxicity (median 0.40 versus 0.31; BH-adjusted p < 0.001) and exhaustion (median 0.31 versus 0.22; p = 0.001) in non-MPR tumors, with stemness scores remaining near zero and not differing significantly (p = 0.175). This patient-level result was more consistent between histologies than the corresponding composition analysis, which had reached significance in LUSC but not in LUAD.
 - Transcription factor activity inference identified only 14 of 649 tested transcription factors as significant (2.2 percent), despite a larger patient cohort than LUAD (93 versus 47 patients) — a point to revisit in the Discussion once compared against the literature, rather than assumed to reflect a lack of statistical power. The dominant pattern involved E2F family members and TFDP1 (E2F4, E2F2, TFDP1, E2F1, associated with cell-cycle regulation), together with IRF3 and TBP. STAT1 and EGR1 were the only two transcription factors reaching significance in both histologies; SNAI2 was the only transcription factor significantly more active in MPR tumors.
-  
-**Summary**: across all three analyses of the CD8 lineage (composition, functional scoring, and transcription factor activity), CD8.TEX consistently showed a significant association with pathological response in both histologies for functional scoring and transcription factor activity, while the compositional association was significant in LUSC only. CD8.TPEX was excluded from functional analyses in both histologies due to insufficient cell numbers per patient (see Methods).
 
+**TCR repertoire analysis (both histologies)**: neither clonal expansion nor Shannon diversity within CD8.TEX differed significantly between MPR and non-MPR tumors, in either histology, under any of the three analytical variants (primary within-TEX analysis, rarefaction to common depth, clone size defined over all T cells).
+
+| Histology | Metric | Median MPR | Median non-MPR | BH-adjusted p |
+|---|---|---|---|---|
+| LUAD | % cells in expanded clones | 62.3 | 69.5 | 0.474 |
+| LUAD | Shannon diversity | 3.44 | 3.32 | 0.474 |
+| LUSC | % cells in expanded clones | 70.9 | 63.5 | 0.705 |
+| LUSC | Shannon diversity | 2.50 | 2.81 | 0.196 |
+
+Sensitivity analyses were likewise non-significant (rarefaction to 30 cells: LUAD BH-adjusted p = 0.118 for both metrics, LUSC p = 0.082 and p = 0.084; clone size defined over all T cells, LUAD: p = 0.282). The hypothesis that the TEX compartment is less engaged in responders — advanced to account for the asymmetry in transcription factor activity, where few transcription factors reached significance on the MPR side in either histologym is therefore not supported by the clonal repertoire.
+
+The median differences should not be read as trends: they point in opposite directions between histologies (MPR marginally less expanded in LUAD, marginally more expanded in LUSC) and none approaches significance, a pattern consistent with an absence of signal rather than an undetected effect. Had the larger LUSC MPR group (n = 28) reached significance while the smaller LUAD group (n = 9) did not, limited power would have been a plausible explanation; this is not the case. The asymmetry in transcription factor activity between response groups therefore remains unexplained.
+
+**Summary**: across all three analyses of the CD8 lineage (composition, functional scoring, and transcription factor activity), CD8.TEX consistently showed a significant association with pathological response in both histologies for functional scoring and transcription factor activity, while the compositional association was significant in LUSC only. CD8.TPEX was excluded from functional analyses in both histologies due to insufficient cell numbers per patient (see Methods).
 
 ---
 
