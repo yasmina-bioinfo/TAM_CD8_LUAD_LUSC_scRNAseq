@@ -23,6 +23,10 @@ library(here); library(Seurat); library(dplyr); library(readr); library(tibble)
 set.seed(42)
 
 HISTOLOGY   <- "LUSC"
+IN_OBJ    <- here("Objects", "06_LUSC_seu_functional_scores.rds")
+OUT_TAB   <- here("Results", "Bloc6_CD8", "Tables")
+dir.create(OUT_TAB, recursive = TRUE, showWarnings = FALSE)
+
 MIN_CLONE   <- 3    # Liu et al. 2025
 MIN_CELLS   <- 10   # per patient, TCR-bearing TEX cells only
 
@@ -188,9 +192,9 @@ print(wilcox.test(pct_expanded_global ~ pathological_response, data = res))
 
 # ---- 10. Save ----------------------------------------------------------
 
-write_csv(res,         here("Results", "11_LUSC_TEX_clonal_patient_level.csv"))
-write_csv(tests,       here("Results", "11_LUSC_TEX_clonal_tests.csv"))
-write_csv(rar,         here("Results", "11_LUSC_TEX_clonal_rarefied.csv"))
-write_csv(rar_medians, here("Results", "11_LUSC_TEX_clonal_rarefied_medians.csv"))
+write_csv(res,         file.path(OUT_TAB, "11_LUSC_TEX_clonal_patient_level.csv"))
+write_csv(tests,       file.path(OUT_TAB, "11_LUSC_TEX_clonal_tests.csv"))
+write_csv(rar,         file.path(OUT_TAB, "11_LUSC_TEX_clonal_rarefied.csv"))
+write_csv(rar_medians, file.path(OUT_TAB, "11_LUSC_TEX_clonal_rarefied_medians.csv"))
 
 cat("\nDone —", HISTOLOGY, "\n")
