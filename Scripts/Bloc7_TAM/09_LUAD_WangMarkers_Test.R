@@ -6,13 +6,18 @@
 # EXPLORATORY, POST HOC: this analysis was decided after reading Wang
 # et al. (2022) and observing the marker distribution. Reported as such.
 #
+# Perimeter: full lineage_TAM, comprising gating-confirmed macrophages
+# and transitional cells along the monocyte-to-macrophage continuum,
+# consistent with the perimeter adopted for the functional scoring and
+# for the communication analysis in Bloc8.
+#
 # Critical design point: patients with zero cells assigned to a given
 # marker group must be counted as 0 percent, NOT excluded. Excluding
 # them would drop the most extreme values and bias the comparison —
 # the same pitfall encountered in Bloc5 with count(.drop = FALSE).
 #
-# Input : Objects/07_LUAD_seu_TAM_pure_scored.rds
-# Output: Results/Bloc7_TAM/Tables/09_LUAD_WangMarkers_tests.csv
+# Input : Objects/07_LUAD_seu_TAM_scored.rds
+# Output: Results/Bloc7_TAM/Tables/09_LUAD_WangMarkers_fullLineage_tests.csv
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -21,7 +26,7 @@ suppressPackageStartupMessages({
 })
 
 HISTOLOGY <- "LUAD"
-seu <- readRDS(here("Objects", "07_LUAD_seu_TAM_pure_scored.rds"))
+seu <- readRDS(here("Objects", "07_LUAD_seu_TAM_scored.rds"))
 OUT_TAB <- here("Results", "Bloc7_TAM", "Tables")
 
 MK        <- c("FABP4","FCN1","SPP1","SELENOP")
@@ -31,6 +36,16 @@ MIN_CELLS <- 10   # per patient, assigned cells only
 expr <- as.matrix(GetAssayData(seu, assay = "RNA", layer = "data")[MK, ])
 seu$wang_top <- apply(expr, 2, function(x)
   if (max(x) == 0) NA_character_ else MK[which.max(x)])
+
+# ---- 1b. Overall marker distribution (for comparison with source cohort)
+cat("\n=== cells assigned by highest-expressing marker ===\n")
+print(table(seu$wang_top, useNA = "ifany"))
+
+cat("\nproportions among assigned cells (%):\n")
+print(round(100 * prop.table(table(seu$wang_top)), 1))
+
+cat("\nunassigned:", sum(is.na(seu$wang_top)), "of", ncol(seu),
+    paste0("(", round(100 * mean(is.na(seu$wang_top)), 1), " %)"), "\n")
 
 # ---- 2. Per-patient proportions, with explicit zeros ------------------
 md <- seu@meta.data %>%
@@ -75,7 +90,7 @@ tests <- res %>%
 cat("\n=== TESTS (Wilcoxon patient-level, BH across 4 marker groups) ===\n")
 print(tests)
 
-write_csv(res,   file.path(OUT_TAB, "09_LUAD_WangMarkers_patient_level.csv"))
-write_csv(tests, file.path(OUT_TAB, "09_LUAD_WangMarkers_tests.csv"))
+write_csv(res,   file.path(OUT_TAB, "09_LUAD_WangMarkers_fullLineage_patient_level.csv"))
+write_csv(tests, file.path(OUT_TAB, "09_LUAD_WangMarkers_fullLineage_tests.csv"))
 
 cat("\nScript09 (Wang marker tests,", HISTOLOGY, ") complete.\n")

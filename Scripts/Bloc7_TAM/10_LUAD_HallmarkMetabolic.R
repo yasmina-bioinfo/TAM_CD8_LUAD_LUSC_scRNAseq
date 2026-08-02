@@ -3,9 +3,14 @@
 # Purpose: test whether metabolic programme activity differs between MPR
 # and non-MPR macrophages, using four MSigDB Hallmark gene sets.
 #
-# Status: EXPLORATORY, and the FIFTH characterisation framework tested on
-# this compartment (after the four Cheng axes, the M1 decomposition, and
-# the four Wang subtypes). Declared as such.
+# Status: EXPLORATORY, and the THIRD characterisation framework tested on
+# this compartment (after the four Cheng axes and the four Wang subtype
+# markers). Declared as such.
+#
+# Perimeter: full lineage_TAM, comprising gating-confirmed macrophages
+# and transitional cells along the monocyte-to-macrophage continuum,
+# consistent with the perimeter adopted for the functional scoring and
+# for the communication analysis in Bloc8.
 #
 # Rationale for selecting these four sets, fixed BEFORE any computation:
 # Yang et al. (2021, Front Immunol) show that the two immunosuppressive
@@ -13,7 +18,7 @@
 # phenotype: SPP1+ macrophages rely on glycolysis and promote angiogenesis
 # and matrix remodelling, while CCL18+ macrophages show high fatty acid
 # oxidative phosphorylation. This cohort is dominated by SPP1-assigned
-# macrophages (72.6 percent in LUAD, 44.7 percent in LUAD, Script08).
+# macrophages (66.3 percent in LUAD, 45.3 percent in LUSC, Script08).
 # The remaining 46 Hallmark sets were not tested.
 #
 # PRE-REGISTERED PREDICTION (before computation):
@@ -21,8 +26,8 @@
 #   MPR     -> HIGHER oxidative phosphorylation and fatty acid metabolism
 #   Falsification: no difference on any of the four
 #
-# Input : Objects/07_LUAD_seu_TAM_pure_scored.rds
-# Output: Results/Bloc7_TAM/Tables/10_LUAD_Hallmark_metabolic_*.csv
+# Input : Objects/07_LUAD_seu_TAM_scored.rds
+# Output: Results/Bloc7_TAM/Tables/10_LUAD_Hallmark_metabolic_fullLineage_*.csv
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -33,7 +38,7 @@ suppressPackageStartupMessages({
 set.seed(42)
 
 HISTOLOGY <- "LUAD"
-seu <- readRDS(here("Objects", "07_LUAD_seu_TAM_pure_scored.rds"))
+seu <- readRDS(here("Objects", "07_LUAD_seu_TAM_scored.rds"))
 OUT_TAB <- here("Results", "Bloc7_TAM", "Tables")
 
 MIN_CELLS <- 10
@@ -106,7 +111,7 @@ print(tests)
 cat("\n=== Spearman correlation between programs (patient-level) ===\n")
 print(round(cor(res[, cols], method = "spearman"), 3))
 
-write_csv(res,   file.path(OUT_TAB, "10_LUAD_Hallmark_metabolic_patient_level.csv"))
-write_csv(tests, file.path(OUT_TAB, "10_LUAD_Hallmark_metabolic_tests.csv"))
+write_csv(res,   file.path(OUT_TAB, "10_LUAD_Hallmark_metabolic_fullLineage_patient_level.csv"))
+write_csv(tests, file.path(OUT_TAB, "10_LUAD_Hallmark_metabolic_fullLineage_tests.csv"))
 
 cat("\nScript10 (Hallmark metabolic,", HISTOLOGY, ") complete.\n")
