@@ -3,7 +3,15 @@
 # Purpose: identify TF whose activity differs between MPR and non-MPR
 # in CD8.TEX, using a pseudobulk + DESeq2 differential signature (one
 # statistic per gene, patient-level comparison already resolved) as
-# input to a single run_ulm call
+# input to a single run_ulm call.
+#
+# Gene filtering: edgeR's filterByExpr (Chen et al., 2016), the
+# recommended strategy for pseudobulk. Same filter as Bloc7, so the two
+# blocs are directly comparable. This replaces an earlier project-specific
+# filter (total counts >= 10), which differed from the one used in Bloc7.
+#
+# Contrast: MPR vs non-MPR, so a positive score means higher activity in
+# responding tumors. Same convention as Bloc7.
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -11,6 +19,7 @@ suppressPackageStartupMessages({
   library(Seurat)
   library(DESeq2)
   library(decoupleR)
+  library(edgeR)
   library(dplyr)
   library(readr)
   library(stringr)
@@ -30,7 +39,7 @@ seu <- readRDS(IN_OBJ)
 
 retained_patients <- seu@meta.data %>%
   filter(lineage_CD8_revised == TRUE, functional.cluster == "CD8.TEX") %>%
-  count(sampleID) %>%
+  dplyr::count(sampleID) %>%
   filter(n >= 10) %>%
   pull(sampleID)
 
@@ -61,11 +70,15 @@ patient_meta <- seu_tex@meta.data %>%
   arrange(match(sampleID, colnames(pseudobulk))) %>%
   column_to_rownames("sampleID")
 
-# Standard practice: remove genes with very low counts across all
-# patients before fitting -- improves dispersion estimation and reduces
-# the multiple-testing burden without affecting the biology of interest.
-keep_genes <- rowSums(pseudobulk) >= 10
-pseudobulk_filt <- pseudobulk[keep_genes, ]
+# Gene filtering with edgeR's filterByExpr (Chen et al., 2016), the
+# recommended strategy for pseudobulk: genes are retained if their counts
+# per million exceed a threshold in a number of samples set by the design.
+# Using CPM rather than raw counts avoids favouring patients contributing
+# more cells. Same filter as Bloc7, so the two blocs are comparable.
+condition <- factor(patient_meta$pathological_response,
+                    levels = c("non-MPR", "MPR"))
+dge <- edgeR::DGEList(counts = pseudobulk, group = condition)
+pseudobulk_filt <- pseudobulk[edgeR::filterByExpr(dge, group = condition), ]
 message("Genes retained after low-count filtering: ", nrow(pseudobulk_filt),
         " / ", nrow(pseudobulk))
 
@@ -79,7 +92,7 @@ dds <- DESeq(dds)
 # Wald statistic per gene: direction + significance in one number,
 # exactly the kind of input the decoupleR authors recommend for run_ulm
 # (equivalent to limma's t-value in their bulk RNA-seq vignette).
-res <- results(dds, contrast = c("pathological_response", "non-MPR", "MPR"))
+res <- results(dds, contrast = c("pathological_response", "MPR", "non-MPR"))
 message("DESeq2 differential analysis done. ", Sys.time())
 
 deg_stat <- as.data.frame(res) %>%
@@ -109,7 +122,7 @@ net <- collectri_raw %>%
 stat_mat <- deg_stat %>%
   tibble::column_to_rownames("gene") %>%
   as.matrix()
-colnames(stat_mat) <- "nonMPR_vs_MPR"
+colnames(stat_mat) <- "MPR_vs_nonMPR"
 
 tf_results <- run_ulm(mat = stat_mat, net = net,
                       .source = 'source', .target = 'target', .mor = 'mor',
