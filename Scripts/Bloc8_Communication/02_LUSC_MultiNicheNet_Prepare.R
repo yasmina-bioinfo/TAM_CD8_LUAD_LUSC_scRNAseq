@@ -8,13 +8,20 @@
 # whose biology has been characterised in this cohort. Widening to NK,
 # Tregs, DC or B cells would produce interactions that could not be
 # interpreted against anything established here.
-#   - Macrophages   : scGate-confirmed, Bloc7
+#   - Macrophages   : full lineage_TAM, comprising scGate-confirmed cells
+#                     and transitional cells along the monocyte-to-
+#                     macrophage continuum. The restriction to
+#                     scGate-confirmed cells applied in Bloc7 followed
+#                     from the Cheng signatures describing macrophage
+#                     states; that constraint does not apply here, and
+#                     transitional cells express ligands and receptors
+#                     like any other
 #   - CD8.TEX       : ProjecTILs functional state, Bloc6
-#   - Monocytes     : lineage_TAM_related, excluded from Bloc7 but
-#                     included here since MultiNicheNet does not use the
-#                     macrophage-specific signatures that motivated their
-#                     exclusion, and they are a real source and target of
-#                     signalling
+#   - Monocytes     : classical monocytes, a distinct population rather
+#                     than a stage of the above continuum. Excluded from
+#                     Bloc7 scoring since the signatures do not describe
+#                     undifferentiated cells, but retained here as a real
+#                     source and target of signalling
 #
 # Parameters: defaults from the official vignette are kept unless stated.
 #   min_cells = 10        : the package default, and the threshold used
@@ -22,9 +29,9 @@
 #   fraction_cutoff = 0.05: package default; authors advise against >0.10
 #   min_sample_prop = 0.50: package default
 #
-# Input : Objects/07_LUSC_seu_TAM_pure_scored.rds  (macrophages)
+# Input : Objects/07_LUSC_seu_TAM_scored.rds       (macrophages)
 #         Objects/06_LUSC_seu_functional_scores.rds (CD8.TEX)
-#         Objects/05_LUSC_seu_annotated.rds          (monocytes)
+#         Objects/05_LUSC_seu_annotated.rds         (monocytes)
 # Output: Objects/08_LUSC_sce_multinichenet.rds
 # ============================================================
 
@@ -47,7 +54,7 @@ MIN_SAMPLE_PROP <- 0.50
 
 # ---- 1. Assemble the three cell groups ---------------------------------
 message("Loading macrophages (scGate-confirmed)... ", Sys.time())
-seu_mac <- readRDS(here("Objects", "07_LUSC_seu_TAM_pure_scored.rds"))
+seu_mac <- readRDS(here("Objects", "07_LUSC_seu_TAM_scored.rds"))
 mac_cells <- colnames(seu_mac)
 rm(seu_mac); gc()
 
@@ -61,7 +68,7 @@ seu     <- readRDS(here("Objects", "05_LUSC_seu_annotated.rds"))
 mono_cells <- colnames(seu)[seu$lineage_TAM_related & !seu$lineage_TAM]
 
 cat("\n=== cells per group ===\n")
-cat("Macrophages (scGate-pure):", length(mac_cells), "\n")
+cat("Macrophages (full lineage_TAM):", length(mac_cells), "\n")
 cat("CD8.TEX:", length(tex_cells), "\n")
 cat("Classical monocytes:", length(mono_cells), "\n")
 
