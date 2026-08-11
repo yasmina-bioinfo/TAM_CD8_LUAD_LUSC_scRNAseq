@@ -70,7 +70,7 @@ p_final <- (panels[[1]] | panels[[2]]) +
     title = "CD8.TEX differential TF activity, MPR vs non-MPR",
     caption = "Dashed line = BH-adjusted p = 0.05. Positive score = higher in responding tumors.",
     theme = theme(plot.title = element_text(size = 12, face = "bold"),
-                  plot.caption = element_text(size = 8, face = "italic", hjust = 0)))
+                  plot.caption = element_text(size = 10, face = "italic", hjust = 0)))
 
 ggsave(file.path(OUT_FIG, "10_CD8TEX_CollecTRI_dotplot.png"),
        plot = p_final, width = 12, height = 6, dpi = 300, bg = "white")

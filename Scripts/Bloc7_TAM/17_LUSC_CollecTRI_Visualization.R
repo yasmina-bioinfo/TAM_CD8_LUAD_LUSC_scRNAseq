@@ -63,7 +63,7 @@ make_panel <- function(g, label) {
                            nrow(df), " tested"),
          x = NULL, y = expression(-log[10](p~value))) +
     theme_classic() +
-    theme(plot.subtitle = element_text(size = 9, face = "bold"),
+    theme(plot.subtitle = element_text(size = 11, face = "bold"),
           legend.position = "none")
 }
 
@@ -74,7 +74,7 @@ p_final <- (panels[[1]] | panels[[2]] | panels[[3]]) +
     title = paste0(HISTOLOGY, " — myeloid differential TF activity, MPR vs non-MPR"),
     caption = "Dashed line = BH-adjusted p = 0.05. Positive score = higher in responding tumors.",
     theme = theme(plot.title = element_text(size = 12, face = "bold"),
-                  plot.caption = element_text(size = 8, face = "italic", hjust = 0)))
+                  plot.caption = element_text(size = 10, face = "italic", hjust = 0)))
 
 ggsave(file.path(OUT_FIG, paste0("17_", HISTOLOGY, "_CollecTRI_dotplot.png")),
        plot = p_final, width = 18, height = 6.5, dpi = 300, bg = "white")

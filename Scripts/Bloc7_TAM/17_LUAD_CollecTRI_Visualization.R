@@ -63,7 +63,7 @@ make_panel <- function(g, label) {
                            nrow(df), " tested"),
          x = NULL, y = expression(-log[10](p~value))) +
     theme_classic() +
-    theme(plot.subtitle = element_text(size = 9, face = "bold"),
+    theme(plot.subtitle = element_text(size = 11, face = "bold"),
           legend.position = "none")
 }
 

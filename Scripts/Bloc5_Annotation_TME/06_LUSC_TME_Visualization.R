@@ -159,7 +159,7 @@ p_bar <- ggplot(df_prop, aes(x = pathological_response, y = prop,
   theme(axis.title.x = element_blank(),
         axis.text.x = element_text(size = 11, face = "bold"),
         plot.subtitle = element_text(size = 12, face = "bold"),
-        legend.text = element_text(size = 8),
+        legend.text = element_text(size = 11),
         legend.key.size = unit(0.3, "cm"),
         legend.title = element_blank()) +
   guides(fill = guide_legend(ncol = 1))
