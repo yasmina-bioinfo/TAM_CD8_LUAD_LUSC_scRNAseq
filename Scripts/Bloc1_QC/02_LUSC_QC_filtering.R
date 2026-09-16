@@ -6,6 +6,8 @@
 suppressPackageStartupMessages({
   library(here)
   library(Seurat)
+  library(ggplot2)
+  library(patchwork)
 })
 
 IN_OBJ  <- here("Objects", "01_LUSC_seu_raw.rds")
@@ -52,5 +54,5 @@ ggsave(file.path(OUT_FIG, "02_LUSC_QC_violin_post_filter.png"), p_vln,
 # switching environments.
 seu_qc[["RNA"]]$counts <- as(seu_qc[["RNA"]]$counts, "dgCMatrix")
 
-saveRDS(seu_qc, file.path(OUT_OBJ, "02_LUSC_seu_qc.rds"))
+saveRDS(seu_qc, file.path(OUT_OBJ, "02_LUSC_seu_qc.rds"), compress = "gzip")
 message("DONE Script 02 — LUSC QC filtering")

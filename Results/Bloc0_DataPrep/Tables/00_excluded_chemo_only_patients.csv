@@ -1,0 +1,10 @@
+sampleID,cancer_type,pathological_response
+P377,LUSC,pCR
+P488,LUSC,MPR
+P271,LUSC,non-MPR
+P224,LUSC,MPR
+P382,LUAD,non-MPR
+P303,LUSC,MPR
+P290,LUSC,pCR
+P276,LUSC,non-MPR
+P355,LUAD,non-MPR

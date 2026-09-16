@@ -34,6 +34,12 @@ meta_clin <- fread(CLIN_FILE)
 meta_join <- merge(meta_map, meta_clin, by = "sampleID", all.x = TRUE)
 meta_join <- meta_join[match(colnames(seu), meta_join$cellID), ]
 seu$sampleID <- meta_join$sampleID
+luad_ids <- readRDS(IDS_FILE)
+if (!setequal(unique(seu$sampleID), luad_ids$sampleID)) {
+  stop("sampleID in Seurat object do not match Script 00 reference list.")
+}
+message("sampleID match Script 00 reference list. OK.")
+
 seu$pathological_response <- meta_join$pathological_response
 
 seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = "^MT-")

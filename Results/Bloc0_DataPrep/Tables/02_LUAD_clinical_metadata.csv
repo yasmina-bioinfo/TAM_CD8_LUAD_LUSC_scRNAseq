@@ -42,7 +42,6 @@ P550,pCR,LUAD,M,64,Tislelizumab,PR
 P70,non-MPR,LUAD,M,71,Sintilimab,SD
 P595,non-MPR,LUAD,M,64,Nivolumab,SD
 P312,non-MPR,LUAD,M,55,Tislelizumab,PR
-P382,non-MPR,LUAD,F,51,No,SD
 P213,MPR,LUAD,M,67,Camrelizumab,PR
 P533,MPR,LUAD,M,56,Tislelizumab,unknowm
 P528,non-MPR,LUAD,M,64,Nivolumab,SD
@@ -58,7 +57,6 @@ P399,MPR,LUAD,M,58,Sintilimab(C2-C3),PR
 P292,MPR,LUAD,M,42,Tislelizumab,PR
 P223,non-MPR,LUAD,M,66,Sintilimab,PR
 P10,non-MPR,LUAD,M,50,Camrelizumab,SD
-P355,non-MPR,LUAD,M,52,No,SD
 P293,pCR,LUAD,M,59,Nivolumab,PR
 P498,pCR,LUAD,M,63,Nivolumab,PR
 P160,MPR,LUAD,F,36,Pembrolizumab,SD

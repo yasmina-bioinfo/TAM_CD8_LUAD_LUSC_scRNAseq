@@ -1,7 +1,6 @@
 sampleID,pathological_response,cancer_type,gender,age,anti-PD1_therapy,radiological_response
 P4,MPR,LUSC,M,64,Tislelizumab,PR
 P9,pCR,LUSC,M,64,Camrelizumab,PR
-P377,pCR,LUSC,M,72,No,PR
 P94,non-MPR,LUSC,M,74,Tislelizumab,SD
 P432,non-MPR,LUSC,M,71,Nivolumab,SD
 P304,pCR,LUSC,M,67,Tislelizumab,PR
@@ -48,7 +47,6 @@ P158,pCR,LUSC,M,59,Tislelizumab,PR
 P412,pCR,LUSC,M,67,Camrelizumab,PR
 P189,non-MPR,LUSC,M,61,Nivolumab,PR
 P199,pCR,LUSC,M,54,Pembrolizumab,CR
-P488,MPR,LUSC,M,72,No,PR
 P185,pCR,LUSC,M,58,Tislelizumab,影像学上非典型肿块影，无法评估
 P23,pCR,LUSC,F,68,Nivolumab,PR
 P106,non-MPR,LUSC,M,57,Camrelizumab,SD
@@ -76,7 +74,6 @@ P469,MPR,LUSC,M,65,Pembrolizumab,PR
 P137,non-MPR,LUSC,M,63,Nivolumab,SD
 P66,non-MPR,LUSC,M,66,Sintilimab,SD
 P1,non-MPR,LUSC,M,62,Camrelizumab,SD
-P271,non-MPR,LUSC,M,58,No,PR
 P454,non-MPR,LUSC,M,54,Tislelizumab,SD
 P473,non-MPR,LUSC,M,45,Sintilimab,SD
 P204,pCR,LUSC,M,50,Pembrolizumab,SD
@@ -123,7 +120,6 @@ P495,non-MPR,LUSC,M,65,Toripalimab,unknowm
 P221,non-MPR,LUSC,F,55,Camrelizumab,SD
 P417,pCR,LUSC,M,56,Pembrolizumab,SD
 P491,non-MPR,LUSC,M,62,Pembrolizumab,PR
-P224,MPR,LUSC,M,46,No,unknowm
 P349,pCR,LUSC,M,64,Nivolumab,PR
 P46,MPR,LUSC,M,55,Camrelizumab,PR
 P92,pCR,LUSC,M,53,Tislelizumab(C2),SD
@@ -148,12 +144,9 @@ P102,pCR,LUSC,M,74,Pembrolizumab,SD
 P125,pCR,LUSC,M,67,Nivolumab,PR
 P35,non-MPR,LUSC,M,57,Tislelizumab,PR
 P278,MPR,LUSC,M,73,Camrelizumab(C2),SD
-P303,MPR,LUSC,M,65,No,unknowm
 P286,pCR,LUSC,M,61,Tislelizumab,PR
 P249,pCR,LUSC,M,71,Sintilimab,PR
 P29,non-MPR,LUSC,M,70,Nivolumab,SD
-P290,pCR,LUSC,M,58,No,PR
-P276,non-MPR,LUSC,M,67,No,PR
 P265,non-MPR,LUSC,M,67,Nivolumab,PR
 P490,non-MPR,LUSC,M,55,Pembrolizumab(C4-C5),SD
 P540,non-MPR,LUSC,M,73,Sintilimab,SD

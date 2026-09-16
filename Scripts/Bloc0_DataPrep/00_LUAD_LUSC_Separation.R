@@ -31,7 +31,7 @@ meta <- fread(META_FILE)
 # -----------------------------
 # 2) Verify expected columns exist before doing anything else
 # -----------------------------
-expected_cols <- c("sampleID", "cellID", "cancer_type", "pathological_response")
+expected_cols <- c("sampleID", "cellID", "cancer_type", "pathological_response", "anti-PD1_therapy")
 missing_cols  <- setdiff(expected_cols, colnames(meta))
 if (length(missing_cols) > 0) {
   stop("Missing expected columns: ", paste(missing_cols, collapse = ", "))
@@ -46,6 +46,32 @@ if (length(unexpected_types) > 0) {
   stop("Unexpected cancer_type value(s) found: ", paste(unexpected_types, collapse = ", "),
        ". Investigate before proceeding; do not silently drop or ignore.")
 }
+
+# -----------------------------
+# 3b) Exclude chemotherapy-only patients (no anti-PD-1)
+# -----------------------------
+# Liu et al. 2025 (Cell): of 343 patients followed, 243 underwent
+# scRNA/TCR-seq — 234 with anti-PD-1 + chemotherapy, 9 with
+# chemotherapy alone. This study concerns anti-PD-1 response only.
+message("Identifying chemotherapy-only patients (no anti-PD-1)...")
+
+chemo_only_ids <- unique(meta[`anti-PD1_therapy` == "No", sampleID])
+
+if (length(chemo_only_ids) != 9) {
+  stop("Expected exactly 9 chemotherapy-only patients, found ", length(chemo_only_ids),
+       ". Investigate before proceeding.")
+}
+
+# Log the excluded patients for traceability before dropping them
+exclusion_log <- unique(meta[sampleID %in% chemo_only_ids,
+                             .(sampleID, cancer_type, pathological_response)])
+fwrite(exclusion_log, file.path(TABLES_DIR, "00_excluded_chemo_only_patients.csv"))
+message("Saved: Results/Bloc0_DataPrep/Tables/00_excluded_chemo_only_patients.csv")
+
+message("Excluding ", length(chemo_only_ids), " chemotherapy-only patients (2 LUAD, 7 LUSC).")
+meta <- meta[!sampleID %in% chemo_only_ids]
+
+
 
 # -----------------------------
 # 4) Build reference ID lists per histology
@@ -65,7 +91,7 @@ lusc_ids <- list(
 # -----------------------------
 # 5) Verification against previously validated counts
 # -----------------------------
-expected_n_patients <- c(LUAD = 63, LUSC = 180)
+expected_n_patients <- c(LUAD = 61, LUSC = 173)
 observed_n_patients <- c(LUAD = length(luad_ids$sampleID), LUSC = length(lusc_ids$sampleID))
 
 message("--- Separation check ---")

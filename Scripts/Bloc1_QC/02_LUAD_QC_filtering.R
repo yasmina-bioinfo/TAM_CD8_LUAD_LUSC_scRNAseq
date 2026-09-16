@@ -6,6 +6,8 @@
 suppressPackageStartupMessages({
   library(here)
   library(Seurat)
+  library(ggplot2)
+  library(patchwork)
 })
 
 IN_OBJ  <- here("Objects", "01_LUAD_seu_raw.rds")
