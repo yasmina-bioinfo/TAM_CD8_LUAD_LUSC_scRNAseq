@@ -1,0 +1,51 @@
+cluster	gene	avg_log2FC
+Plasma cells	FKBP11	1.6525590675484414
+Plasma cells	SSR4	1.7255306728040467
+Plasma cells	HSP90B1	1.724720173379747
+Plasma cells	XBP1	1.777208228256212
+Plasma cells	MZB1	1.5360634904332575
+Plasma cells	PRDM1	1.753829208333048
+Plasma cells	DERL3	2.2557657715101156
+Plasma cells	CKAP4	2.633154218389662
+Plasma cells	MYDGF	1.6794598983466764
+Plasma cells	TENT5C	1.6572641068238514
+Proliferative germinal center B cells	TUBB	2.0349423399646205
+Proliferative germinal center B cells	HMGB2	1.9280520146826383
+Proliferative germinal center B cells	STMN1	1.9571343338418843
+Proliferative germinal center B cells	TUBA1B	1.878597997772014
+Proliferative germinal center B cells	DEK	1.7848416150062478
+Proliferative germinal center B cells	HMGN2	1.7994187309691676
+Proliferative germinal center B cells	CFL1	1.3978212535301808
+Proliferative germinal center B cells	ACTB	1.4088307715902753
+Proliferative germinal center B cells	HMGB1	1.293361627822443
+Proliferative germinal center B cells	CALM2	1.5975471100136198
+Plasmablasts	FKBP11	2.734991233893558
+Plasmablasts	MZB1	2.3475200521500343
+Plasmablasts	SSR4	1.9882584534283825
+Plasmablasts	XBP1	2.1098589453101875
+Plasmablasts	FKBP2	2.427605547041204
+Plasmablasts	HSP90B1	1.9720225283823338
+Plasmablasts	RRBP1	2.7170483108326904
+Plasmablasts	SDF2L1	2.262358272099102
+Plasmablasts	ZBP1	2.738844778484175
+Plasmablasts	PRDM1	2.216188223451586
+Memory B cells	CCR7	2.8176153190610607
+Memory B cells	CAPG	2.1587646915354033
+Memory B cells	RPL34	1.0333783339471134
+Memory B cells	RPS6	0.9734751951157223
+Memory B cells	RPS12	1.0025753474173937
+Memory B cells	RPL11	0.8934616264582429
+Memory B cells	RPL9	1.1491182412604832
+Memory B cells	EEF1A1	0.9204159225273258
+Memory B cells	RPS27A	0.919274301972302
+Memory B cells	RPS23	0.8372629820019952
+Germinal center B cells	TMEM123	1.4454561815905231
+Germinal center B cells	RRAS2	1.6197130395101038
+Germinal center B cells	RHOH	1.3000395905144873
+Germinal center B cells	IRF8	1.4260431180039148
+Germinal center B cells	RAPGEF5	1.8031213855298338
+Germinal center B cells	PRPSAP2	1.4177185173889055
+Germinal center B cells	ELL3	1.5987467788068541
+Germinal center B cells	MEF2B	1.7574325013930183
+Germinal center B cells	LINC01857	2.014541689668614
+Germinal center B cells	MARCKSL1	1.2396989286828581

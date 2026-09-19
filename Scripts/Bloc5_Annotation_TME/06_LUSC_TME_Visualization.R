@@ -35,75 +35,60 @@ seu <- readRDS(IN_OBJ)
 message("Cells: ", ncol(seu))
 
 # -----------------------------
-# 1) Simplified display category (visualization only)
+# 1) Simplified display category (visualization only) — unchanged
 # -----------------------------
 DISPLAY_MIN_CELLS <- 500
 
 labels_raw <- as.character(seu$annotation_final)
-
 labels_grouped <- labels_raw
 labels_grouped[grepl("^Unresolved", labels_raw)] <- "Minor/unresolved categories"
 labels_grouped[grepl("^Other/contamination", labels_raw)] <- "Non-immune contamination"
 labels_grouped[labels_raw == "Other (mixed, minor)"] <- "Minor/unresolved categories"
 
-# CellTypist assigns most LUSC macrophages to an alveolar label; these
-# cells are grouped with macrophages for display, their identity as
-# recruited rather than tissue-resident TAMs being established by
-# marker examination (see Methods).
-labels_grouped[labels_raw == "Alveolar macrophages"] <- "Macrophages"
-
 counts_display <- table(labels_grouped)
-main_categories <- names(counts_display)[counts_display >= DISPLAY_MIN_CELLS]
+main_categories <- names(counts_display)[
+  counts_display >= DISPLAY_MIN_CELLS | names(counts_display) == "Non-immune contamination"
+]
 
 labels_final <- labels_grouped
 labels_final[!(labels_grouped %in% main_categories)] <- "Minor/unresolved categories"
-
 seu$annotation_display <- labels_final
 
 message("Final display categories:")
 print(sort(table(seu$annotation_display), decreasing = TRUE))
 
 # -----------------------------
-# 2) Color palette — saturation reflects analytical priority
+# 2) Color palette — unchanged
 # -----------------------------
 tme_colors <- c(
-  # --- Cells of interest: CD8 cytotoxic/effector (saturated) ---
   "Tem/Trm cytotoxic T cells"     = "#B2182B",
   "Tem/Temra cytotoxic T cells"   = "#67001F",
-  "Trm cytotoxic T cells"         = "#8B0000",
-  
-  # --- Cells of interest: Macrophage/TAM (saturated) ---
-  "Macrophages"                   = "#D94701",
-  
-  # --- Other confirmed T/NK/ILC populations (moderate) ---
-  "Regulatory T cells"            = "#6BAED6",
   "Tem/Effector helper T cells"   = "#9ECAE1",
-  "Tcm/Naive helper T cells"      = "#C6DBEF",
-  "Type 17 helper T cells"        = "#B3CDE3",
+  "Regulatory T cells"            = "#6BAED6",
+  "Tcm/Naive helper T cells"      = "#4292C6",
+  "Type 1 helper T cells"         = "#2171B5",
   "CRTAM+ gamma-delta T cells"    = "#C994C7",
   "MAIT cells"                    = "#DE9ED6",
-  "CD16+ NK cells"                = "#807DBA",
-  "CD16- NK cells"                = "#9E9AC8",
   "ILC3"                          = "#BCBD22",
-  
-  # --- Confirmed myeloid (non-TAM) and B/plasma (moderate) ---
+  "CD16+ NK cells"                = "#807DBA",
+  "Macrophages"                   = "#D94701",
   "Classical monocytes"           = "#FDBE85",
+  "Non-classical monocytes"       = "#FD8D3C",
   "DC2"                           = "#E6AB02",
+  "DC1"                           = "#B15928",
+  "Migratory DCs"                 = "#FDD0A2",
   "pDC"                           = "#17BECF",
   "Mast cells"                    = "#DDA0DD",
   "Memory B cells"                = "#41AB5D",
   "Plasma cells"                  = "#006D2C",
-  "Germinal center B cells"       = "#A1D99B",
-  
-  # --- Non-immune contamination and minor/unresolved categories ---
-  "Non-immune contamination"    = "#8C8C8C",
-  "Minor/unresolved categories" = "#D9D9D9"
+  "Non-immune contamination"      = "#8C8C8C",
+  "Minor/unresolved categories"   = "#D9D9D9"
 )
 
 seu$annotation_display <- factor(seu$annotation_display, levels = names(tme_colors))
 
 # -----------------------------
-# 3) UMAP: final annotation
+# 3-4) UMAPs — unchanged
 # -----------------------------
 message("Generating UMAP...")
 png(file.path(OUT_FIG, "06_LUSC_UMAP_final_annotation.png"),
@@ -118,9 +103,6 @@ print(DimPlot(seu, reduction = "umap", group.by = "annotation_display",
               legend.title = element_blank()))
 dev.off()
 
-# -----------------------------
-# 4) UMAP split by response (MPR vs non-MPR)
-# -----------------------------
 png(file.path(OUT_FIG, "06_LUSC_UMAP_split_response.png"),
     width = 16, height = 7, units = "in", res = 300)
 print(DimPlot(seu, reduction = "umap", group.by = "annotation_display",
@@ -136,25 +118,32 @@ print(DimPlot(seu, reduction = "umap", group.by = "annotation_display",
 dev.off()
 
 # -----------------------------
-# 5) Panel A — descriptive barplot, NO test
-# Cumulative proportions across all cells of each group. Shown for
-# overview only: cells from one patient are not independent, so no
-# statistic is attached to this display.
+# 5) Panel A — descriptive barplots, NO test
+# Two versions saved: (1) full composition including Unresolved/
+# contamination bins, kept for internal reference and traceability;
+# (2) composition among marker-confirmed cells only, used in the
+# manuscript for readability — the Confirmed/Unresolved/Contamination
+# percentages are reported as text alongside this second figure, not
+# encoded in it.
+# Cells from one patient are not independent, so no statistic is
+# attached to either display.
 # -----------------------------
-df_prop <- seu@meta.data %>%
+
+# --- Version 1: full composition (all cells, all bins) ---
+df_prop_full <- seu@meta.data %>%
   filter(!is.na(annotation_display), !is.na(pathological_response)) %>%
   count(pathological_response, annotation_display, name = "n") %>%
   group_by(pathological_response) %>%
   mutate(prop = n / sum(n)) %>%
   ungroup()
 
-p_bar <- ggplot(df_prop, aes(x = pathological_response, y = prop,
-                             fill = annotation_display)) +
+p_bar_full <- ggplot(df_prop_full, aes(x = pathological_response, y = prop,
+                                       fill = annotation_display)) +
   geom_col(width = 0.8, color = "white", linewidth = 0.2) +
   scale_fill_manual(values = tme_colors, drop = TRUE) +
   scale_y_continuous(labels = percent_format(accuracy = 1), limits = c(0, 1.05)) +
   ylab("Cell-type proportion") +
-  labs(subtitle = "A. Cumulative composition (descriptive)") +
+  labs(subtitle = "A. Cumulative composition, all cells (descriptive)") +
   theme_classic() +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_text(size = 11, face = "bold"),
@@ -164,75 +153,86 @@ p_bar <- ggplot(df_prop, aes(x = pathological_response, y = prop,
         legend.title = element_blank()) +
   guides(fill = guide_legend(ncol = 1))
 
-# -----------------------------
-# 6) Patient-level proportions and tests
-# The two compartments characterised downstream.
-# -----------------------------
-message("Computing patient-level proportions...")
+# --- Version 2: marker-confirmed cells only (manuscript figure) ---
+df_prop_confirmed <- seu@meta.data %>%
+  filter(!is.na(annotation_display), !is.na(pathological_response),
+         !(annotation_display %in% c("Non-immune contamination", "Minor/unresolved categories"))) %>%
+  count(pathological_response, annotation_display, name = "n") %>%
+  group_by(pathological_response) %>%
+  mutate(prop = n / sum(n)) %>%
+  ungroup()
 
-cd8_col <- if ("lineage_CD8_revised" %in% colnames(seu@meta.data))
-  "lineage_CD8_revised" else "lineage_CD8"
+p_bar_confirmed <- ggplot(df_prop_confirmed, aes(x = pathological_response, y = prop,
+                                                 fill = annotation_display)) +
+  geom_col(width = 0.8, color = "white", linewidth = 0.2) +
+  scale_fill_manual(values = tme_colors, drop = TRUE) +
+  scale_y_continuous(labels = percent_format(accuracy = 1), limits = c(0, 1.05)) +
+  ylab("Cell-type proportion (marker-confirmed cells only)") +
+  labs(subtitle = "A. Composition among marker-confirmed cells") +
+  theme_classic() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 11, face = "bold"),
+        plot.subtitle = element_text(size = 12, face = "bold"),
+        legend.text = element_text(size = 11),
+        legend.key.size = unit(0.3, "cm"),
+        legend.title = element_blank()) +
+  guides(fill = guide_legend(ncol = 1))
 
-res <- seu@meta.data %>%
+ggsave(file.path(OUT_FIG, paste0("06_", HISTOLOGY, "_TME_composition_barplot_full.png")), p_bar_full,
+       width = 8, height = 9, dpi = 300, bg = "white")
+ggsave(file.path(OUT_FIG, paste0("06_", HISTOLOGY, "_TME_composition_barplot_confirmed.png")), p_bar_confirmed,
+       width = 8, height = 9, dpi = 300, bg = "white")
+message("Saved: both composition barplots (full and confirmed-only)")
+
+# -----------------------------
+# 6) Patient-level proportions and tests — every category shown in the
+# barplot (annotation_display), tested identically. CD8 and TAM are not
+# singled out here: each is computed and tested in its own dedicated
+# block (Bloc6, Bloc7), on its own more rigorously defined population.
+# -----------------------------
+message("Computing patient-level proportions for all displayed TME categories...")
+
+test_groups <- setdiff(levels(seu$annotation_display),
+                       c("Non-immune contamination", "Minor/unresolved categories"))
+
+patient_meta <- seu@meta.data %>%
   as_tibble() %>%
   group_by(sampleID, pathological_response) %>%
-  summarise(n_total = n(),
-            pct_CD8 = 100 * mean(.data[[cd8_col]]),
-            pct_TAM = 100 * mean(lineage_TAM),
-            .groups = "drop") %>%
+  summarise(n_total = n(), .groups = "drop") %>%
   filter(n_total >= MIN_CELLS)
 
-cat("\n=== patients retained (>=", MIN_CELLS, "annotated cells) ===\n")
-print(table(res$pathological_response))
+res_all <- purrr::map_dfr(test_groups, function(grp) {
+  seu@meta.data %>%
+    as_tibble() %>%
+    filter(sampleID %in% patient_meta$sampleID) %>%
+    group_by(sampleID, pathological_response) %>%
+    summarise(pct = 100 * mean(annotation_display == grp), .groups = "drop") %>%
+    mutate(population = grp)
+})
 
-tests <- tibble(
-  population = c("CD8 T cells", "Macrophages"),
-  median_MPR = c(median(res$pct_CD8[res$pathological_response == "MPR"]),
-                 median(res$pct_TAM[res$pathological_response == "MPR"])),
-  median_nonMPR = c(median(res$pct_CD8[res$pathological_response == "non-MPR"]),
-                    median(res$pct_TAM[res$pathological_response == "non-MPR"])),
-  p_value = c(wilcox.test(pct_CD8 ~ pathological_response, data = res)$p.value,
-              wilcox.test(pct_TAM ~ pathological_response, data = res)$p.value)
-) %>%
-  mutate(p_adj = p.adjust(p_value, method = "BH"))
+tests_all <- res_all %>%
+  group_by(population) %>%
+  summarise(
+    median_MPR = median(pct[pathological_response == "MPR"]),
+    median_nonMPR = median(pct[pathological_response == "non-MPR"]),
+    p_value = tryCatch(
+      wilcox.test(pct ~ pathological_response)$p.value,
+      error = function(e) NA_real_
+    ),
+    .groups = "drop"
+  ) %>%
+  mutate(p_adj = p.adjust(p_value, method = "BH")) %>%
+  arrange(p_adj)
 
-cat("\n=== TESTS (Wilcoxon patient-level, BH across the two populations) ===\n")
-print(tests)
+cat("\n=== TESTS (Wilcoxon patient-level, BH across", length(test_groups), "displayed TME categories) ===\n")
+print(tests_all, n = Inf)
 
-fwrite(res,   file.path(OUT_TAB, "06_LUSC_TME_patient_level.csv"))
-fwrite(tests, file.path(OUT_TAB, "06_LUSC_TME_patient_level_tests.csv"))
-
-# -----------------------------
-# 7) Panels B and C — per-patient boxplots with points
-# -----------------------------
-make_box <- function(varname, popname, colour, panel_letter, p_adj_value) {
-  ggplot(res, aes(x = pathological_response, y = .data[[varname]])) +
-    geom_boxplot(outlier.shape = NA, width = 0.55, fill = colour, alpha = 0.35) +
-    geom_jitter(width = 0.15, size = 1.6, alpha = 0.7, colour = colour) +
-    ylab(paste0(popname, " (% of annotated cells)")) +
-    labs(subtitle = paste0(panel_letter, ". ", popname, " per patient"),
-         caption = paste0("Wilcoxon, BH-adjusted P = ",
-                          formatC(p_adj_value, format = "f", digits = 2))) +
-    theme_classic() +
-    theme(axis.title.x = element_blank(),
-          axis.text.x = element_text(size = 11, face = "bold"),
-          plot.subtitle = element_text(size = 12, face = "bold"),
-          plot.caption = element_text(size = 8, face = "italic", hjust = 0))
-}
-
-p_cd8 <- make_box("pct_CD8", "CD8 T cells", "#B2182B", "B", tests$p_adj[1])
-p_tam <- make_box("pct_TAM", "Macrophages", "#D94701", "C", tests$p_adj[2])
-
-p_final <- (p_bar | (p_cd8 / p_tam)) +
-  plot_layout(widths = c(1, 1), guides = "collect") &
-  theme(legend.position = "right")
-
-ggsave(file.path(OUT_FIG, "06_LUSC_TME_composition.png"), p_final,
-       width = 14, height = 9, dpi = 300, bg = "white")
-message("Saved: composition figure (3 panels)")
+fwrite(res_all,   file.path(OUT_TAB, paste0("06_", HISTOLOGY, "_TME_patient_level_all.csv")))
+fwrite(tests_all, file.path(OUT_TAB, paste0("06_", HISTOLOGY, "_TME_patient_level_tests_all.csv")))
 
 # -----------------------------
-# 8) Save final object
+# 7) Save 
 # -----------------------------
-saveRDS(seu, here("Objects", "06_LUSC_seu_final.rds"))
-message("DONE Script 06 — LUSC TME visualization")
+
+saveRDS(seu, here("Objects", paste0("06_", HISTOLOGY, "_seu_final.rds")))
+message("DONE Script 06 — ", HISTOLOGY, " TME visualization")

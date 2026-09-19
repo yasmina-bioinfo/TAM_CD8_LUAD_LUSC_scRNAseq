@@ -1,0 +1,2001 @@
+sampleID,pathological_response,pct,population
+P1,non-MPR,24.0664871824886,Tem/Trm cytotoxic T cells
+P103,non-MPR,33.112582781457,Tem/Trm cytotoxic T cells
+P106,non-MPR,16.2456028141989,Tem/Trm cytotoxic T cells
+P111,non-MPR,12.4362399805684,Tem/Trm cytotoxic T cells
+P115,MPR,8.20833333333333,Tem/Trm cytotoxic T cells
+P118,MPR,23.439706297656,Tem/Trm cytotoxic T cells
+P120,non-MPR,4.21286031042129,Tem/Trm cytotoxic T cells
+P124,MPR,35.0989308098808,Tem/Trm cytotoxic T cells
+P127,non-MPR,13.7951990276512,Tem/Trm cytotoxic T cells
+P131,non-MPR,25.5213055303717,Tem/Trm cytotoxic T cells
+P137,non-MPR,28.5085651422285,Tem/Trm cytotoxic T cells
+P150,MPR,17.045110505601,Tem/Trm cytotoxic T cells
+P159,MPR,35.7142857142857,Tem/Trm cytotoxic T cells
+P16,non-MPR,13.6880165289256,Tem/Trm cytotoxic T cells
+P164,non-MPR,16.3133309378369,Tem/Trm cytotoxic T cells
+P168,MPR,8.95607529948659,Tem/Trm cytotoxic T cells
+P189,non-MPR,23.8059278837078,Tem/Trm cytotoxic T cells
+P192,MPR,20.2356020942408,Tem/Trm cytotoxic T cells
+P200,MPR,27.2463768115942,Tem/Trm cytotoxic T cells
+P206,non-MPR,30.2978723404255,Tem/Trm cytotoxic T cells
+P207,MPR,9.85074626865672,Tem/Trm cytotoxic T cells
+P22,non-MPR,23.2310693385352,Tem/Trm cytotoxic T cells
+P221,non-MPR,15.4399079930995,Tem/Trm cytotoxic T cells
+P227,MPR,25.3220894823144,Tem/Trm cytotoxic T cells
+P235,non-MPR,13.5993011065812,Tem/Trm cytotoxic T cells
+P24,non-MPR,21.1245967122446,Tem/Trm cytotoxic T cells
+P247,non-MPR,2.11774671749259,Tem/Trm cytotoxic T cells
+P257,MPR,6.52058667609118,Tem/Trm cytotoxic T cells
+P259,non-MPR,33.8104639684107,Tem/Trm cytotoxic T cells
+P26,non-MPR,44.1503708698584,Tem/Trm cytotoxic T cells
+P261,non-MPR,29.4452347083926,Tem/Trm cytotoxic T cells
+P264,MPR,34.4951140065147,Tem/Trm cytotoxic T cells
+P265,non-MPR,30.3340149965917,Tem/Trm cytotoxic T cells
+P277,MPR,17.8643631685352,Tem/Trm cytotoxic T cells
+P278,MPR,12.4731182795699,Tem/Trm cytotoxic T cells
+P279,non-MPR,5.56068297185048,Tem/Trm cytotoxic T cells
+P280,non-MPR,10.7737226277372,Tem/Trm cytotoxic T cells
+P281,non-MPR,17.8738317757009,Tem/Trm cytotoxic T cells
+P285,non-MPR,7.28446981075398,Tem/Trm cytotoxic T cells
+P287,non-MPR,33.8637191789141,Tem/Trm cytotoxic T cells
+P29,non-MPR,25.0275877289782,Tem/Trm cytotoxic T cells
+P3,MPR,15.6129032258065,Tem/Trm cytotoxic T cells
+P32,non-MPR,22.3133484162896,Tem/Trm cytotoxic T cells
+P322,MPR,25.405752852322,Tem/Trm cytotoxic T cells
+P323,non-MPR,31.4104413037208,Tem/Trm cytotoxic T cells
+P325,MPR,21.0633058090685,Tem/Trm cytotoxic T cells
+P328,non-MPR,27.2831486434849,Tem/Trm cytotoxic T cells
+P337,MPR,31.3513513513514,Tem/Trm cytotoxic T cells
+P35,non-MPR,42.4343941931882,Tem/Trm cytotoxic T cells
+P367,MPR,9.05055962948668,Tem/Trm cytotoxic T cells
+P371,non-MPR,25.0836120401338,Tem/Trm cytotoxic T cells
+P380,non-MPR,6.73615432482887,Tem/Trm cytotoxic T cells
+P387,non-MPR,31.4285714285714,Tem/Trm cytotoxic T cells
+P391,non-MPR,13.1620822914299,Tem/Trm cytotoxic T cells
+P395,non-MPR,16.8288193531423,Tem/Trm cytotoxic T cells
+P4,MPR,20.2170963364993,Tem/Trm cytotoxic T cells
+P403,non-MPR,17.9012345679012,Tem/Trm cytotoxic T cells
+P405,MPR,14.3840856924254,Tem/Trm cytotoxic T cells
+P414,non-MPR,25.9932375316991,Tem/Trm cytotoxic T cells
+P416,non-MPR,34.5340194396798,Tem/Trm cytotoxic T cells
+P427,MPR,37.5046074456322,Tem/Trm cytotoxic T cells
+P428,non-MPR,28.0141843971631,Tem/Trm cytotoxic T cells
+P432,non-MPR,18.4673366834171,Tem/Trm cytotoxic T cells
+P435,non-MPR,21.7011642949547,Tem/Trm cytotoxic T cells
+P45,MPR,34.3342306895838,Tem/Trm cytotoxic T cells
+P453,MPR,31.5202012262223,Tem/Trm cytotoxic T cells
+P454,non-MPR,15.3745072273325,Tem/Trm cytotoxic T cells
+P457,MPR,15.84013391923,Tem/Trm cytotoxic T cells
+P459,non-MPR,6.93220988127154,Tem/Trm cytotoxic T cells
+P46,MPR,35.6335003579098,Tem/Trm cytotoxic T cells
+P462,non-MPR,29.0993582651029,Tem/Trm cytotoxic T cells
+P463,MPR,4.442053489087,Tem/Trm cytotoxic T cells
+P464,non-MPR,27.4427762736894,Tem/Trm cytotoxic T cells
+P467,non-MPR,7.74748923959828,Tem/Trm cytotoxic T cells
+P469,MPR,30.2445141065831,Tem/Trm cytotoxic T cells
+P471,non-MPR,12.9374337221633,Tem/Trm cytotoxic T cells
+P473,non-MPR,18.6958874458874,Tem/Trm cytotoxic T cells
+P477,non-MPR,4.67153284671533,Tem/Trm cytotoxic T cells
+P482,non-MPR,19.0180965147453,Tem/Trm cytotoxic T cells
+P49,non-MPR,33.8461538461539,Tem/Trm cytotoxic T cells
+P490,non-MPR,32.2493224932249,Tem/Trm cytotoxic T cells
+P491,non-MPR,24.9318801089918,Tem/Trm cytotoxic T cells
+P495,non-MPR,25.3424657534247,Tem/Trm cytotoxic T cells
+P496,non-MPR,24.3713733075435,Tem/Trm cytotoxic T cells
+P511,non-MPR,18.7097657855088,Tem/Trm cytotoxic T cells
+P524,non-MPR,17.8958225889634,Tem/Trm cytotoxic T cells
+P527,non-MPR,31.3683071930773,Tem/Trm cytotoxic T cells
+P540,non-MPR,8.14135540147618,Tem/Trm cytotoxic T cells
+P57,MPR,32.1244333281226,Tem/Trm cytotoxic T cells
+P58,non-MPR,24.8819826907947,Tem/Trm cytotoxic T cells
+P6,MPR,34.2784810126582,Tem/Trm cytotoxic T cells
+P62,MPR,16.4421737111008,Tem/Trm cytotoxic T cells
+P63,non-MPR,27.0635317658829,Tem/Trm cytotoxic T cells
+P66,non-MPR,13.4471166278769,Tem/Trm cytotoxic T cells
+P69,non-MPR,35.7181719260065,Tem/Trm cytotoxic T cells
+P73,non-MPR,19.4011556645071,Tem/Trm cytotoxic T cells
+P84,MPR,4.32269995376791,Tem/Trm cytotoxic T cells
+P90,non-MPR,62.9945580232387,Tem/Trm cytotoxic T cells
+P94,non-MPR,17.4802337573049,Tem/Trm cytotoxic T cells
+P97,non-MPR,19.8881068399206,Tem/Trm cytotoxic T cells
+P1,non-MPR,0.0702329392485075,Tem/Temra cytotoxic T cells
+P103,non-MPR,0.0397350993377483,Tem/Temra cytotoxic T cells
+P106,non-MPR,0,Tem/Temra cytotoxic T cells
+P111,non-MPR,0.194316249696381,Tem/Temra cytotoxic T cells
+P115,MPR,0.1875,Tem/Temra cytotoxic T cells
+P118,MPR,0,Tem/Temra cytotoxic T cells
+P120,non-MPR,0,Tem/Temra cytotoxic T cells
+P124,MPR,0.0491581664003933,Tem/Temra cytotoxic T cells
+P127,non-MPR,0.0151929504709815,Tem/Temra cytotoxic T cells
+P131,non-MPR,0.0302206104563312,Tem/Temra cytotoxic T cells
+P137,non-MPR,0.0942951438000943,Tem/Temra cytotoxic T cells
+P150,MPR,0.0302755071147442,Tem/Temra cytotoxic T cells
+P159,MPR,0,Tem/Temra cytotoxic T cells
+P16,non-MPR,0,Tem/Temra cytotoxic T cells
+P164,non-MPR,0.215594681997844,Tem/Temra cytotoxic T cells
+P168,MPR,0.456360524814604,Tem/Temra cytotoxic T cells
+P189,non-MPR,1.00056635831603,Tem/Temra cytotoxic T cells
+P192,MPR,0.0523560209424084,Tem/Temra cytotoxic T cells
+P200,MPR,0,Tem/Temra cytotoxic T cells
+P206,non-MPR,0,Tem/Temra cytotoxic T cells
+P207,MPR,0,Tem/Temra cytotoxic T cells
+P22,non-MPR,0.0532009221493173,Tem/Temra cytotoxic T cells
+P221,non-MPR,0.143760782058654,Tem/Temra cytotoxic T cells
+P227,MPR,0.046849379245725,Tem/Temra cytotoxic T cells
+P235,non-MPR,0.087361677344205,Tem/Temra cytotoxic T cells
+P24,non-MPR,0.675987094791827,Tem/Temra cytotoxic T cells
+P247,non-MPR,0.0211774671749259,Tem/Temra cytotoxic T cells
+P257,MPR,1.82010955999293,Tem/Temra cytotoxic T cells
+P259,non-MPR,0,Tem/Temra cytotoxic T cells
+P26,non-MPR,0,Tem/Temra cytotoxic T cells
+P261,non-MPR,0,Tem/Temra cytotoxic T cells
+P264,MPR,0,Tem/Temra cytotoxic T cells
+P265,non-MPR,0,Tem/Temra cytotoxic T cells
+P277,MPR,0.16541077007903,Tem/Temra cytotoxic T cells
+P278,MPR,0.161290322580645,Tem/Temra cytotoxic T cells
+P279,non-MPR,0.0230733733271804,Tem/Temra cytotoxic T cells
+P280,non-MPR,0.0583941605839416,Tem/Temra cytotoxic T cells
+P281,non-MPR,0.0389408099688474,Tem/Temra cytotoxic T cells
+P285,non-MPR,0.0150195253829979,Tem/Temra cytotoxic T cells
+P287,non-MPR,0.388679703631726,Tem/Temra cytotoxic T cells
+P29,non-MPR,0.0441403663650408,Tem/Temra cytotoxic T cells
+P3,MPR,0.129032258064516,Tem/Temra cytotoxic T cells
+P32,non-MPR,0,Tem/Temra cytotoxic T cells
+P322,MPR,0,Tem/Temra cytotoxic T cells
+P323,non-MPR,0,Tem/Temra cytotoxic T cells
+P325,MPR,5.02679994205418,Tem/Temra cytotoxic T cells
+P328,non-MPR,0.0382116927779901,Tem/Temra cytotoxic T cells
+P337,MPR,0,Tem/Temra cytotoxic T cells
+P35,non-MPR,0.0186115764005211,Tem/Temra cytotoxic T cells
+P367,MPR,2.25781551524508,Tem/Temra cytotoxic T cells
+P371,non-MPR,0,Tem/Temra cytotoxic T cells
+P380,non-MPR,0.0311138767890479,Tem/Temra cytotoxic T cells
+P387,non-MPR,0.150375939849624,Tem/Temra cytotoxic T cells
+P391,non-MPR,0,Tem/Temra cytotoxic T cells
+P395,non-MPR,0.0262950302392848,Tem/Temra cytotoxic T cells
+P4,MPR,0.316598824061511,Tem/Temra cytotoxic T cells
+P403,non-MPR,0,Tem/Temra cytotoxic T cells
+P405,MPR,0,Tem/Temra cytotoxic T cells
+P414,non-MPR,0.0422654268808115,Tem/Temra cytotoxic T cells
+P416,non-MPR,0,Tem/Temra cytotoxic T cells
+P427,MPR,0.0737191301142646,Tem/Temra cytotoxic T cells
+P428,non-MPR,0.141843971631206,Tem/Temra cytotoxic T cells
+P432,non-MPR,0,Tem/Temra cytotoxic T cells
+P435,non-MPR,0,Tem/Temra cytotoxic T cells
+P45,MPR,0,Tem/Temra cytotoxic T cells
+P453,MPR,0.0157207986165697,Tem/Temra cytotoxic T cells
+P454,non-MPR,0,Tem/Temra cytotoxic T cells
+P457,MPR,0.0627746390458255,Tem/Temra cytotoxic T cells
+P459,non-MPR,0.114898506319418,Tem/Temra cytotoxic T cells
+P46,MPR,0,Tem/Temra cytotoxic T cells
+P462,non-MPR,0.0442575791104227,Tem/Temra cytotoxic T cells
+P463,MPR,0,Tem/Temra cytotoxic T cells
+P464,non-MPR,0,Tem/Temra cytotoxic T cells
+P467,non-MPR,0.143472022955524,Tem/Temra cytotoxic T cells
+P469,MPR,0,Tem/Temra cytotoxic T cells
+P471,non-MPR,0.353481795687522,Tem/Temra cytotoxic T cells
+P473,non-MPR,0,Tem/Temra cytotoxic T cells
+P477,non-MPR,0.0625651720542232,Tem/Temra cytotoxic T cells
+P482,non-MPR,0,Tem/Temra cytotoxic T cells
+P49,non-MPR,0,Tem/Temra cytotoxic T cells
+P490,non-MPR,0,Tem/Temra cytotoxic T cells
+P491,non-MPR,0,Tem/Temra cytotoxic T cells
+P495,non-MPR,0,Tem/Temra cytotoxic T cells
+P496,non-MPR,0,Tem/Temra cytotoxic T cells
+P511,non-MPR,0.0410902616079989,Tem/Temra cytotoxic T cells
+P524,non-MPR,0,Tem/Temra cytotoxic T cells
+P527,non-MPR,0.270416441319632,Tem/Temra cytotoxic T cells
+P540,non-MPR,0,Tem/Temra cytotoxic T cells
+P57,MPR,0,Tem/Temra cytotoxic T cells
+P58,non-MPR,0.03933910306845,Tem/Temra cytotoxic T cells
+P6,MPR,0.126582278481013,Tem/Temra cytotoxic T cells
+P62,MPR,0,Tem/Temra cytotoxic T cells
+P63,non-MPR,0.0500250125062531,Tem/Temra cytotoxic T cells
+P66,non-MPR,0,Tem/Temra cytotoxic T cells
+P69,non-MPR,0.0272034820457019,Tem/Temra cytotoxic T cells
+P73,non-MPR,0.105060409735598,Tem/Temra cytotoxic T cells
+P84,MPR,0.115580212667591,Tem/Temra cytotoxic T cells
+P90,non-MPR,0.0294160906015591,Tem/Temra cytotoxic T cells
+P94,non-MPR,0.137504297009282,Tem/Temra cytotoxic T cells
+P97,non-MPR,0,Tem/Temra cytotoxic T cells
+P1,non-MPR,5.40793632213508,Tem/Effector helper T cells
+P103,non-MPR,0.450331125827815,Tem/Effector helper T cells
+P106,non-MPR,0.0639590661976335,Tem/Effector helper T cells
+P111,non-MPR,0.485790624240952,Tem/Effector helper T cells
+P115,MPR,0.25,Tem/Effector helper T cells
+P118,MPR,0.338887319966111,Tem/Effector helper T cells
+P120,non-MPR,1.55210643015521,Tem/Effector helper T cells
+P124,MPR,0.0491581664003933,Tem/Effector helper T cells
+P127,non-MPR,0.425402613187481,Tem/Effector helper T cells
+P131,non-MPR,0.105772136597159,Tem/Effector helper T cells
+P137,non-MPR,0.33003300330033,Tem/Effector helper T cells
+P150,MPR,0.756887677868604,Tem/Effector helper T cells
+P159,MPR,0,Tem/Effector helper T cells
+P16,non-MPR,1.30423553719008,Tem/Effector helper T cells
+P164,non-MPR,0.53898670499461,Tem/Effector helper T cells
+P168,MPR,1.65430690245294,Tem/Effector helper T cells
+P189,non-MPR,0.113271663205588,Tem/Effector helper T cells
+P192,MPR,0.837696335078534,Tem/Effector helper T cells
+P200,MPR,0.312151616499443,Tem/Effector helper T cells
+P206,non-MPR,0,Tem/Effector helper T cells
+P207,MPR,0.829187396351576,Tem/Effector helper T cells
+P22,non-MPR,0.230537329313708,Tem/Effector helper T cells
+P221,non-MPR,0.718803910293272,Tem/Effector helper T cells
+P227,MPR,0.140548137737175,Tem/Effector helper T cells
+P235,non-MPR,0.320326150262085,Tem/Effector helper T cells
+P24,non-MPR,0.844983868489783,Tem/Effector helper T cells
+P247,non-MPR,0,Tem/Effector helper T cells
+P257,MPR,0.159038699416858,Tem/Effector helper T cells
+P259,non-MPR,0.197433366238894,Tem/Effector helper T cells
+P26,non-MPR,0.0505731625084289,Tem/Effector helper T cells
+P261,non-MPR,0.568990042674253,Tem/Effector helper T cells
+P264,MPR,0.325732899022801,Tem/Effector helper T cells
+P265,non-MPR,0.0681663258350375,Tem/Effector helper T cells
+P277,MPR,0.624885131409667,Tem/Effector helper T cells
+P278,MPR,0.878136200716846,Tem/Effector helper T cells
+P279,non-MPR,1.84586986617443,Tem/Effector helper T cells
+P280,non-MPR,1.78102189781022,Tem/Effector helper T cells
+P281,non-MPR,1.09034267912773,Tem/Effector helper T cells
+P285,non-MPR,0.28537098227696,Tem/Effector helper T cells
+P287,non-MPR,2.125592129236,Tem/Effector helper T cells
+P29,non-MPR,0.132421099095122,Tem/Effector helper T cells
+P3,MPR,5.00645161290323,Tem/Effector helper T cells
+P32,non-MPR,1.32918552036199,Tem/Effector helper T cells
+P322,MPR,0.257110718303069,Tem/Effector helper T cells
+P323,non-MPR,0.0865301413325642,Tem/Effector helper T cells
+P325,MPR,0.289729103288425,Tem/Effector helper T cells
+P328,non-MPR,0.611387084447841,Tem/Effector helper T cells
+P337,MPR,0.235017626321974,Tem/Effector helper T cells
+P35,non-MPR,0.260562069607296,Tem/Effector helper T cells
+P367,MPR,0.463141644152837,Tem/Effector helper T cells
+P371,non-MPR,1.00334448160535,Tem/Effector helper T cells
+P380,non-MPR,0.840074673304294,Tem/Effector helper T cells
+P387,non-MPR,0.300751879699248,Tem/Effector helper T cells
+P391,non-MPR,0.272789270288702,Tem/Effector helper T cells
+P395,non-MPR,0.105180120957139,Tem/Effector helper T cells
+P4,MPR,3.70872908186341,Tem/Effector helper T cells
+P403,non-MPR,0.5331088664422,Tem/Effector helper T cells
+P405,MPR,9.38536087732721,Tem/Effector helper T cells
+P414,non-MPR,0.29585798816568,Tem/Effector helper T cells
+P416,non-MPR,0.571755288736421,Tem/Effector helper T cells
+P427,MPR,0.645042388499816,Tem/Effector helper T cells
+P428,non-MPR,0.260047281323877,Tem/Effector helper T cells
+P432,non-MPR,0.314070351758794,Tem/Effector helper T cells
+P435,non-MPR,0.0970245795601552,Tem/Effector helper T cells
+P45,MPR,1.43922137088424,Tem/Effector helper T cells
+P453,MPR,0.455903159880522,Tem/Effector helper T cells
+P454,non-MPR,0.236530880420499,Tem/Effector helper T cells
+P457,MPR,1.1508683825068,Tem/Effector helper T cells
+P459,non-MPR,0.229797012638836,Tem/Effector helper T cells
+P46,MPR,0.186113099498926,Tem/Effector helper T cells
+P462,non-MPR,0.132772737331268,Tem/Effector helper T cells
+P463,MPR,0.737780510298186,Tem/Effector helper T cells
+P464,non-MPR,0.689145951267536,Tem/Effector helper T cells
+P467,non-MPR,1.72166427546628,Tem/Effector helper T cells
+P469,MPR,0.275862068965517,Tem/Effector helper T cells
+P471,non-MPR,0.141392718275009,Tem/Effector helper T cells
+P473,non-MPR,0.581709956709957,Tem/Effector helper T cells
+P477,non-MPR,0.250260688216893,Tem/Effector helper T cells
+P482,non-MPR,0.971849865951743,Tem/Effector helper T cells
+P49,non-MPR,0,Tem/Effector helper T cells
+P490,non-MPR,1.8970189701897,Tem/Effector helper T cells
+P491,non-MPR,0.136239782016349,Tem/Effector helper T cells
+P495,non-MPR,0,Tem/Effector helper T cells
+P496,non-MPR,0.580270793036751,Tem/Effector helper T cells
+P511,non-MPR,0.479386385426654,Tem/Effector helper T cells
+P524,non-MPR,0.773594636410521,Tem/Effector helper T cells
+P527,non-MPR,0.540832882639264,Tem/Effector helper T cells
+P540,non-MPR,0.111831804965332,Tem/Effector helper T cells
+P57,MPR,0.171955604189464,Tem/Effector helper T cells
+P58,non-MPR,0.2360346184107,Tem/Effector helper T cells
+P6,MPR,1.62025316455696,Tem/Effector helper T cells
+P62,MPR,0.301904319554111,Tem/Effector helper T cells
+P63,non-MPR,0.0667000166750042,Tem/Effector helper T cells
+P66,non-MPR,0.103439358675976,Tem/Effector helper T cells
+P69,non-MPR,0.163220892274211,Tem/Effector helper T cells
+P73,non-MPR,0.402731570653126,Tem/Effector helper T cells
+P84,MPR,0.184928340268146,Tem/Effector helper T cells
+P90,non-MPR,0.0735402265038976,Tem/Effector helper T cells
+P94,non-MPR,0.429700928154005,Tem/Effector helper T cells
+P97,non-MPR,0.072189135535102,Tem/Effector helper T cells
+P1,non-MPR,20.1685590541964,Regulatory T cells
+P103,non-MPR,18.476821192053,Regulatory T cells
+P106,non-MPR,46.1784457946914,Regulatory T cells
+P111,non-MPR,10.9788681078455,Regulatory T cells
+P115,MPR,1.39583333333333,Regulatory T cells
+P118,MPR,16.5489974583451,Regulatory T cells
+P120,non-MPR,29.490022172949,Regulatory T cells
+P124,MPR,18.9504731473516,Regulatory T cells
+P127,non-MPR,17.9884533576421,Regulatory T cells
+P131,non-MPR,24.8564521003324,Regulatory T cells
+P137,non-MPR,11.7397454031117,Regulatory T cells
+P150,MPR,9.65788676960339,Regulatory T cells
+P159,MPR,5.10204081632653,Regulatory T cells
+P16,non-MPR,18.4271694214876,Regulatory T cells
+P164,non-MPR,10.1688825008983,Regulatory T cells
+P168,MPR,8.10039931545921,Regulatory T cells
+P189,non-MPR,12.7808193316972,Regulatory T cells
+P192,MPR,13.1675392670157,Regulatory T cells
+P200,MPR,12.5083612040134,Regulatory T cells
+P206,non-MPR,10.8936170212766,Regulatory T cells
+P207,MPR,6.16915422885572,Regulatory T cells
+P22,non-MPR,26.4408583082107,Regulatory T cells
+P221,non-MPR,28.8671650373778,Regulatory T cells
+P227,MPR,6.32466619817287,Regulatory T cells
+P235,non-MPR,9.84274898078043,Regulatory T cells
+P24,non-MPR,4.60900291903518,Regulatory T cells
+P247,non-MPR,1.56713257094452,Regulatory T cells
+P257,MPR,3.30447075455027,Regulatory T cells
+P259,non-MPR,30.2319842053307,Regulatory T cells
+P26,non-MPR,25.6068779501012,Regulatory T cells
+P261,non-MPR,17.2475106685633,Regulatory T cells
+P264,MPR,18.5342019543974,Regulatory T cells
+P265,non-MPR,12.8152692569871,Regulatory T cells
+P277,MPR,10.4760154383385,Regulatory T cells
+P278,MPR,5.78853046594982,Regulatory T cells
+P279,non-MPR,18.5279187817259,Regulatory T cells
+P280,non-MPR,15.5620437956204,Regulatory T cells
+P281,non-MPR,20.5607476635514,Regulatory T cells
+P285,non-MPR,5.45208771402824,Regulatory T cells
+P287,non-MPR,5.66014818413701,Regulatory T cells
+P29,non-MPR,13.8821452218053,Regulatory T cells
+P3,MPR,5.44516129032258,Regulatory T cells
+P32,non-MPR,38.2352941176471,Regulatory T cells
+P322,MPR,13.7393540093203,Regulatory T cells
+P323,non-MPR,20.3057398327084,Regulatory T cells
+P325,MPR,0.79675503404317,Regulatory T cells
+P328,non-MPR,17.6155903706534,Regulatory T cells
+P337,MPR,19.4124559341951,Regulatory T cells
+P35,non-MPR,12.1347478131398,Regulatory T cells
+P367,MPR,6.29100733307603,Regulatory T cells
+P371,non-MPR,46.4882943143813,Regulatory T cells
+P380,non-MPR,13.4723086496577,Regulatory T cells
+P387,non-MPR,11.5789473684211,Regulatory T cells
+P391,non-MPR,31.8708797453967,Regulatory T cells
+P395,non-MPR,23.1133315803313,Regulatory T cells
+P4,MPR,3.31298055178652,Regulatory T cells
+P403,non-MPR,17.5364758698092,Regulatory T cells
+P405,MPR,2.21882172915073,Regulatory T cells
+P414,non-MPR,16.9484361792054,Regulatory T cells
+P416,non-MPR,23.4419668381933,Regulatory T cells
+P427,MPR,15.7206044968669,Regulatory T cells
+P428,non-MPR,35.5555555555556,Regulatory T cells
+P432,non-MPR,39.3844221105528,Regulatory T cells
+P435,non-MPR,18.4023285899094,Regulatory T cells
+P45,MPR,18.0161524125078,Regulatory T cells
+P453,MPR,20.7200125766389,Regulatory T cells
+P454,non-MPR,44.4940867279895,Regulatory T cells
+P457,MPR,13.5174722745344,Regulatory T cells
+P459,non-MPR,6.74071237073918,Regulatory T cells
+P46,MPR,15.1181102362205,Regulatory T cells
+P462,non-MPR,23.6999336136313,Regulatory T cells
+P463,MPR,8.02336304949278,Regulatory T cells
+P464,non-MPR,14.3736155550086,Regulatory T cells
+P467,non-MPR,53.6585365853659,Regulatory T cells
+P469,MPR,9.95611285266458,Regulatory T cells
+P471,non-MPR,6.75150229763167,Regulatory T cells
+P473,non-MPR,12.0400432900433,Regulatory T cells
+P477,non-MPR,3.92075078206465,Regulatory T cells
+P482,non-MPR,18.75,Regulatory T cells
+P49,non-MPR,27.6923076923077,Regulatory T cells
+P490,non-MPR,17.8861788617886,Regulatory T cells
+P491,non-MPR,18.0926430517711,Regulatory T cells
+P495,non-MPR,16.8949771689498,Regulatory T cells
+P496,non-MPR,15.8607350096712,Regulatory T cells
+P511,non-MPR,21.8463224215861,Regulatory T cells
+P524,non-MPR,24.4455905105725,Regulatory T cells
+P527,non-MPR,28.8263926446728,Regulatory T cells
+P540,non-MPR,28.8526056810557,Regulatory T cells
+P57,MPR,19.0714397373769,Regulatory T cells
+P58,non-MPR,20.2596380802518,Regulatory T cells
+P6,MPR,2.53164556962025,Regulatory T cells
+P62,MPR,13.4463539247562,Regulatory T cells
+P63,non-MPR,43.405035851259,Regulatory T cells
+P66,non-MPR,9.25782260149987,Regulatory T cells
+P69,non-MPR,30.4678998911861,Regulatory T cells
+P73,non-MPR,13.3076518998424,Regulatory T cells
+P84,MPR,2.12667591308368,Regulatory T cells
+P90,non-MPR,9.81026621561994,Regulatory T cells
+P94,non-MPR,11.8425575799244,Regulatory T cells
+P97,non-MPR,11.3878361306623,Regulatory T cells
+P1,non-MPR,0.0117054898747513,Tcm/Naive helper T cells
+P103,non-MPR,1.00662251655629,Tcm/Naive helper T cells
+P106,non-MPR,0.0319795330988168,Tcm/Naive helper T cells
+P111,non-MPR,1.77313577847948,Tcm/Naive helper T cells
+P115,MPR,0.125,Tcm/Naive helper T cells
+P118,MPR,0.367127929963287,Tcm/Naive helper T cells
+P120,non-MPR,0.221729490022173,Tcm/Naive helper T cells
+P124,MPR,0.87255745360698,Tcm/Naive helper T cells
+P127,non-MPR,0.835612275903981,Tcm/Naive helper T cells
+P131,non-MPR,0.166213357509822,Tcm/Naive helper T cells
+P137,non-MPR,2.09020902090209,Tcm/Naive helper T cells
+P150,MPR,0.211928549803209,Tcm/Naive helper T cells
+P159,MPR,2.04081632653061,Tcm/Naive helper T cells
+P16,non-MPR,0.21952479338843,Tcm/Naive helper T cells
+P164,non-MPR,1.47323032698527,Tcm/Naive helper T cells
+P168,MPR,0,Tcm/Naive helper T cells
+P189,non-MPR,2.71851991693411,Tcm/Naive helper T cells
+P192,MPR,0.183246073298429,Tcm/Naive helper T cells
+P200,MPR,0.0445930880713489,Tcm/Naive helper T cells
+P206,non-MPR,0,Tcm/Naive helper T cells
+P207,MPR,0.132669983416252,Tcm/Naive helper T cells
+P22,non-MPR,0.602943784358929,Tcm/Naive helper T cells
+P221,non-MPR,0.143760782058654,Tcm/Naive helper T cells
+P227,MPR,0.421644413211525,Tcm/Naive helper T cells
+P235,non-MPR,0.786255096097845,Tcm/Naive helper T cells
+P24,non-MPR,0.076816715317253,Tcm/Naive helper T cells
+P247,non-MPR,0,Tcm/Naive helper T cells
+P257,MPR,0.318077398833716,Tcm/Naive helper T cells
+P259,non-MPR,0.123395853899309,Tcm/Naive helper T cells
+P26,non-MPR,0.016857720836143,Tcm/Naive helper T cells
+P261,non-MPR,0.106685633001422,Tcm/Naive helper T cells
+P264,MPR,0.0651465798045603,Tcm/Naive helper T cells
+P265,non-MPR,0,Tcm/Naive helper T cells
+P277,MPR,1.0108435949274,Tcm/Naive helper T cells
+P278,MPR,0.483870967741936,Tcm/Naive helper T cells
+P279,non-MPR,0.484540839870789,Tcm/Naive helper T cells
+P280,non-MPR,0.321167883211679,Tcm/Naive helper T cells
+P281,non-MPR,0.350467289719626,Tcm/Naive helper T cells
+P285,non-MPR,0,Tcm/Naive helper T cells
+P287,non-MPR,0.0121462407384914,Tcm/Naive helper T cells
+P29,non-MPR,0.485544030015449,Tcm/Naive helper T cells
+P3,MPR,0.0129032258064516,Tcm/Naive helper T cells
+P32,non-MPR,0.169683257918552,Tcm/Naive helper T cells
+P322,MPR,0.208902458621244,Tcm/Naive helper T cells
+P323,non-MPR,0.374963945774445,Tcm/Naive helper T cells
+P325,MPR,0,Tcm/Naive helper T cells
+P328,non-MPR,1.5284677111196,Tcm/Naive helper T cells
+P337,MPR,0.329024676850764,Tcm/Naive helper T cells
+P35,non-MPR,0.16750418760469,Tcm/Naive helper T cells
+P367,MPR,0.135082979544577,Tcm/Naive helper T cells
+P371,non-MPR,0,Tcm/Naive helper T cells
+P380,non-MPR,0.124455507156192,Tcm/Naive helper T cells
+P387,non-MPR,0.300751879699248,Tcm/Naive helper T cells
+P391,non-MPR,0.363719027051603,Tcm/Naive helper T cells
+P395,non-MPR,1.31475151196424,Tcm/Naive helper T cells
+P4,MPR,0,Tcm/Naive helper T cells
+P403,non-MPR,0.280583613916947,Tcm/Naive helper T cells
+P405,MPR,0,Tcm/Naive helper T cells
+P414,non-MPR,0.0422654268808115,Tcm/Naive helper T cells
+P416,non-MPR,0,Tcm/Naive helper T cells
+P427,MPR,0.663472171028382,Tcm/Naive helper T cells
+P428,non-MPR,0.307328605200946,Tcm/Naive helper T cells
+P432,non-MPR,0.188442211055276,Tcm/Naive helper T cells
+P435,non-MPR,0.226390685640362,Tcm/Naive helper T cells
+P45,MPR,0,Tcm/Naive helper T cells
+P453,MPR,0.361578368181104,Tcm/Naive helper T cells
+P454,non-MPR,0.525624178712221,Tcm/Naive helper T cells
+P457,MPR,1.88323917137476,Tcm/Naive helper T cells
+P459,non-MPR,0.919188050555343,Tcm/Naive helper T cells
+P46,MPR,0.372226198997853,Tcm/Naive helper T cells
+P462,non-MPR,0.0885151582208453,Tcm/Naive helper T cells
+P463,MPR,0.169074700276668,Tcm/Naive helper T cells
+P464,non-MPR,0.172286487816884,Tcm/Naive helper T cells
+P467,non-MPR,0.143472022955524,Tcm/Naive helper T cells
+P469,MPR,0.363636363636364,Tcm/Naive helper T cells
+P471,non-MPR,0.547896783315659,Tcm/Naive helper T cells
+P473,non-MPR,1.25811688311688,Tcm/Naive helper T cells
+P477,non-MPR,1.25130344108446,Tcm/Naive helper T cells
+P482,non-MPR,0,Tcm/Naive helper T cells
+P49,non-MPR,0.512820512820513,Tcm/Naive helper T cells
+P490,non-MPR,0,Tcm/Naive helper T cells
+P491,non-MPR,0.0817438692098093,Tcm/Naive helper T cells
+P495,non-MPR,0.684931506849315,Tcm/Naive helper T cells
+P496,non-MPR,1.35396518375242,Tcm/Naive helper T cells
+P511,non-MPR,0.109574030954664,Tcm/Naive helper T cells
+P524,non-MPR,0.825167612171222,Tcm/Naive helper T cells
+P527,non-MPR,0.405624661979448,Tcm/Naive helper T cells
+P540,non-MPR,0,Tcm/Naive helper T cells
+P57,MPR,0.375175863686103,Tcm/Naive helper T cells
+P58,non-MPR,0.531077891424076,Tcm/Naive helper T cells
+P6,MPR,0.0506329113924051,Tcm/Naive helper T cells
+P62,MPR,0.02322340919647,Tcm/Naive helper T cells
+P63,non-MPR,0.116725029181257,Tcm/Naive helper T cells
+P66,non-MPR,1.21541246444272,Tcm/Naive helper T cells
+P69,non-MPR,0.43525571273123,Tcm/Naive helper T cells
+P73,non-MPR,1.26072491682718,Tcm/Naive helper T cells
+P84,MPR,0.855293573740176,Tcm/Naive helper T cells
+P90,non-MPR,0.382409177820268,Tcm/Naive helper T cells
+P94,non-MPR,1.22035063595737,Tcm/Naive helper T cells
+P97,non-MPR,4.74643566143296,Tcm/Naive helper T cells
+P1,non-MPR,0.0234109797495025,Type 1 helper T cells
+P103,non-MPR,1.84105960264901,Type 1 helper T cells
+P106,non-MPR,0.671570195075152,Type 1 helper T cells
+P111,non-MPR,0.364342968180714,Type 1 helper T cells
+P115,MPR,0.5,Type 1 helper T cells
+P118,MPR,1.4120304998588,Type 1 helper T cells
+P120,non-MPR,0.443458980044346,Type 1 helper T cells
+P124,MPR,0.307238540002458,Type 1 helper T cells
+P127,non-MPR,0.273473108477666,Type 1 helper T cells
+P131,non-MPR,0.589301903898459,Type 1 helper T cells
+P137,non-MPR,0.157158573000157,Type 1 helper T cells
+P150,MPR,0.121102028458977,Type 1 helper T cells
+P159,MPR,3.06122448979592,Type 1 helper T cells
+P16,non-MPR,0,Type 1 helper T cells
+P164,non-MPR,0.574919151994251,Type 1 helper T cells
+P168,MPR,0.285225328009127,Type 1 helper T cells
+P189,non-MPR,0.509722484425146,Type 1 helper T cells
+P192,MPR,0.49738219895288,Type 1 helper T cells
+P200,MPR,0.579710144927536,Type 1 helper T cells
+P206,non-MPR,0,Type 1 helper T cells
+P207,MPR,0,Type 1 helper T cells
+P22,non-MPR,0.549742862209612,Type 1 helper T cells
+P221,non-MPR,0.172512938470385,Type 1 helper T cells
+P227,MPR,0.0702740688685875,Type 1 helper T cells
+P235,non-MPR,0.17472335468841,Type 1 helper T cells
+P24,non-MPR,0.0921800583807036,Type 1 helper T cells
+P247,non-MPR,0.0847098686997035,Type 1 helper T cells
+P257,MPR,0.229722565824351,Type 1 helper T cells
+P259,non-MPR,0.765054294175716,Type 1 helper T cells
+P26,non-MPR,0.0505731625084289,Type 1 helper T cells
+P261,non-MPR,2.56045519203414,Type 1 helper T cells
+P264,MPR,0.293159609120521,Type 1 helper T cells
+P265,non-MPR,0.136332651670075,Type 1 helper T cells
+P277,MPR,1.17625436500643,Type 1 helper T cells
+P278,MPR,0.376344086021505,Type 1 helper T cells
+P279,non-MPR,0.55376095985233,Type 1 helper T cells
+P280,non-MPR,0.204379562043796,Type 1 helper T cells
+P281,non-MPR,0.545171339563863,Type 1 helper T cells
+P285,non-MPR,0.120156203063983,Type 1 helper T cells
+P287,non-MPR,0,Type 1 helper T cells
+P29,non-MPR,2.00838666960936,Type 1 helper T cells
+P3,MPR,0,Type 1 helper T cells
+P32,non-MPR,0.113122171945701,Type 1 helper T cells
+P322,MPR,0.546360276394022,Type 1 helper T cells
+P323,non-MPR,0.490337467551197,Type 1 helper T cells
+P325,MPR,0,Type 1 helper T cells
+P328,non-MPR,0.15284677111196,Type 1 helper T cells
+P337,MPR,0.0940070505287897,Type 1 helper T cells
+P35,non-MPR,0.130281034803648,Type 1 helper T cells
+P367,MPR,0.656117329216519,Type 1 helper T cells
+P371,non-MPR,0,Type 1 helper T cells
+P380,non-MPR,0.482265090230243,Type 1 helper T cells
+P387,non-MPR,0.451127819548872,Type 1 helper T cells
+P391,non-MPR,0.0227324391907252,Type 1 helper T cells
+P395,non-MPR,0.0525900604785696,Type 1 helper T cells
+P4,MPR,0.0452284034373587,Type 1 helper T cells
+P403,non-MPR,0.308641975308642,Type 1 helper T cells
+P405,MPR,0,Type 1 helper T cells
+P414,non-MPR,0.422654268808115,Type 1 helper T cells
+P416,non-MPR,0.228702115494568,Type 1 helper T cells
+P427,MPR,0.258016955399926,Type 1 helper T cells
+P428,non-MPR,0.283687943262411,Type 1 helper T cells
+P432,non-MPR,0.251256281407035,Type 1 helper T cells
+P435,non-MPR,0.582147477360931,Type 1 helper T cells
+P45,MPR,0,Type 1 helper T cells
+P453,MPR,2.98695173714825,Type 1 helper T cells
+P454,non-MPR,0.131406044678055,Type 1 helper T cells
+P457,MPR,0.481272232684662,Type 1 helper T cells
+P459,non-MPR,0.191497510532363,Type 1 helper T cells
+P46,MPR,0.658554044380816,Type 1 helper T cells
+P462,non-MPR,0.287674264217747,Type 1 helper T cells
+P463,MPR,0.384260682446972,Type 1 helper T cells
+P464,non-MPR,0.270735909426532,Type 1 helper T cells
+P467,non-MPR,0.286944045911047,Type 1 helper T cells
+P469,MPR,0.413793103448276,Type 1 helper T cells
+P471,non-MPR,0.459526334393779,Type 1 helper T cells
+P473,non-MPR,0.257034632034632,Type 1 helper T cells
+P477,non-MPR,0.145985401459854,Type 1 helper T cells
+P482,non-MPR,0,Type 1 helper T cells
+P49,non-MPR,0,Type 1 helper T cells
+P490,non-MPR,0.813008130081301,Type 1 helper T cells
+P491,non-MPR,0.163487738419619,Type 1 helper T cells
+P495,non-MPR,0.45662100456621,Type 1 helper T cells
+P496,non-MPR,0.386847195357834,Type 1 helper T cells
+P511,non-MPR,0.424599369949322,Type 1 helper T cells
+P524,non-MPR,0.36101083032491,Type 1 helper T cells
+P527,non-MPR,0.75716603569497,Type 1 helper T cells
+P540,non-MPR,0.0223663609930664,Type 1 helper T cells
+P57,MPR,1.12552759105831,Type 1 helper T cells
+P58,non-MPR,3.81589299763965,Type 1 helper T cells
+P6,MPR,0.0759493670886076,Type 1 helper T cells
+P62,MPR,0.02322340919647,Type 1 helper T cells
+P63,non-MPR,0.16675004168751,Type 1 helper T cells
+P66,non-MPR,0.413757434703905,Type 1 helper T cells
+P69,non-MPR,0.408052230685528,Type 1 helper T cells
+P73,non-MPR,0.280161092628261,Type 1 helper T cells
+P84,MPR,0.0462320850670365,Type 1 helper T cells
+P90,non-MPR,0.264744815414032,Type 1 helper T cells
+P94,non-MPR,4.82983843245101,Type 1 helper T cells
+P97,non-MPR,0.234614690489081,Type 1 helper T cells
+P1,non-MPR,0.479925084864802,CRTAM+ gamma-delta T cells
+P103,non-MPR,1.50993377483444,CRTAM+ gamma-delta T cells
+P106,non-MPR,1.91877198592901,CRTAM+ gamma-delta T cells
+P111,non-MPR,0.485790624240952,CRTAM+ gamma-delta T cells
+P115,MPR,0.3125,CRTAM+ gamma-delta T cells
+P118,MPR,1.12962439988704,CRTAM+ gamma-delta T cells
+P120,non-MPR,0,CRTAM+ gamma-delta T cells
+P124,MPR,2.82659456802261,CRTAM+ gamma-delta T cells
+P127,non-MPR,0.455788514129444,CRTAM+ gamma-delta T cells
+P131,non-MPR,2.68963433061348,CRTAM+ gamma-delta T cells
+P137,non-MPR,0.487191576300487,CRTAM+ gamma-delta T cells
+P150,MPR,0.151377535573721,CRTAM+ gamma-delta T cells
+P159,MPR,2.04081632653061,CRTAM+ gamma-delta T cells
+P16,non-MPR,0.322830578512397,CRTAM+ gamma-delta T cells
+P164,non-MPR,0.53898670499461,CRTAM+ gamma-delta T cells
+P168,MPR,0.342270393610953,CRTAM+ gamma-delta T cells
+P189,non-MPR,1.39701717953559,CRTAM+ gamma-delta T cells
+P192,MPR,0.680628272251309,CRTAM+ gamma-delta T cells
+P200,MPR,0.423634336677815,CRTAM+ gamma-delta T cells
+P206,non-MPR,0.170212765957447,CRTAM+ gamma-delta T cells
+P207,MPR,0.431177446102819,CRTAM+ gamma-delta T cells
+P22,non-MPR,2.21670508955489,CRTAM+ gamma-delta T cells
+P221,non-MPR,0.345025876940771,CRTAM+ gamma-delta T cells
+P227,MPR,0.5621925509487,CRTAM+ gamma-delta T cells
+P235,non-MPR,0.17472335468841,CRTAM+ gamma-delta T cells
+P24,non-MPR,1.65924105085267,CRTAM+ gamma-delta T cells
+P247,non-MPR,0.402371876323592,CRTAM+ gamma-delta T cells
+P257,MPR,0.353419332037462,CRTAM+ gamma-delta T cells
+P259,non-MPR,1.77690029615005,CRTAM+ gamma-delta T cells
+P26,non-MPR,0.28658125421443,CRTAM+ gamma-delta T cells
+P261,non-MPR,0.142247510668563,CRTAM+ gamma-delta T cells
+P264,MPR,0.195439739413681,CRTAM+ gamma-delta T cells
+P265,non-MPR,0.136332651670075,CRTAM+ gamma-delta T cells
+P277,MPR,0.918948722661275,CRTAM+ gamma-delta T cells
+P278,MPR,0.0537634408602151,CRTAM+ gamma-delta T cells
+P279,non-MPR,0.346100599907707,CRTAM+ gamma-delta T cells
+P280,non-MPR,0.204379562043796,CRTAM+ gamma-delta T cells
+P281,non-MPR,0.545171339563863,CRTAM+ gamma-delta T cells
+P285,non-MPR,0.240312406127966,CRTAM+ gamma-delta T cells
+P287,non-MPR,0.0121462407384914,CRTAM+ gamma-delta T cells
+P29,non-MPR,1.72147428823659,CRTAM+ gamma-delta T cells
+P3,MPR,0.193548387096774,CRTAM+ gamma-delta T cells
+P32,non-MPR,0.155542986425339,CRTAM+ gamma-delta T cells
+P322,MPR,0.546360276394022,CRTAM+ gamma-delta T cells
+P323,non-MPR,1.67291606576291,CRTAM+ gamma-delta T cells
+P325,MPR,0.11589164131537,CRTAM+ gamma-delta T cells
+P328,non-MPR,0.11463507833397,CRTAM+ gamma-delta T cells
+P337,MPR,0.681551116333725,CRTAM+ gamma-delta T cells
+P35,non-MPR,0.353619951609901,CRTAM+ gamma-delta T cells
+P367,MPR,2.29641065225782,CRTAM+ gamma-delta T cells
+P371,non-MPR,2.67558528428094,CRTAM+ gamma-delta T cells
+P380,non-MPR,0.466708151835719,CRTAM+ gamma-delta T cells
+P387,non-MPR,1.35338345864662,CRTAM+ gamma-delta T cells
+P391,non-MPR,0.181859513525801,CRTAM+ gamma-delta T cells
+P395,non-MPR,0.184065211674993,CRTAM+ gamma-delta T cells
+P4,MPR,0.757575757575758,CRTAM+ gamma-delta T cells
+P403,non-MPR,0.47699214365881,CRTAM+ gamma-delta T cells
+P405,MPR,0,CRTAM+ gamma-delta T cells
+P414,non-MPR,5.02958579881657,CRTAM+ gamma-delta T cells
+P416,non-MPR,0,CRTAM+ gamma-delta T cells
+P427,MPR,0.276446737928492,CRTAM+ gamma-delta T cells
+P428,non-MPR,2.43498817966903,CRTAM+ gamma-delta T cells
+P432,non-MPR,0.125628140703518,CRTAM+ gamma-delta T cells
+P435,non-MPR,0.646830530401035,CRTAM+ gamma-delta T cells
+P45,MPR,0.0828328846552081,CRTAM+ gamma-delta T cells
+P453,MPR,0.440182361263952,CRTAM+ gamma-delta T cells
+P454,non-MPR,0.341655716162944,CRTAM+ gamma-delta T cells
+P457,MPR,0.544046871730488,CRTAM+ gamma-delta T cells
+P459,non-MPR,0.0574492531597089,CRTAM+ gamma-delta T cells
+P46,MPR,1.05941302791696,CRTAM+ gamma-delta T cells
+P462,non-MPR,1.63753042708564,CRTAM+ gamma-delta T cells
+P463,MPR,0.107592991085152,CRTAM+ gamma-delta T cells
+P464,non-MPR,0.836820083682008,CRTAM+ gamma-delta T cells
+P467,non-MPR,0,CRTAM+ gamma-delta T cells
+P469,MPR,1.11598746081505,CRTAM+ gamma-delta T cells
+P471,non-MPR,0.63626723223754,CRTAM+ gamma-delta T cells
+P473,non-MPR,1.52867965367965,CRTAM+ gamma-delta T cells
+P477,non-MPR,0.208550573514077,CRTAM+ gamma-delta T cells
+P482,non-MPR,0.0167560321715818,CRTAM+ gamma-delta T cells
+P49,non-MPR,0.512820512820513,CRTAM+ gamma-delta T cells
+P490,non-MPR,1.3550135501355,CRTAM+ gamma-delta T cells
+P491,non-MPR,0.844686648501362,CRTAM+ gamma-delta T cells
+P495,non-MPR,0.91324200913242,CRTAM+ gamma-delta T cells
+P496,non-MPR,0.773694390715667,CRTAM+ gamma-delta T cells
+P511,non-MPR,0.575263662511985,CRTAM+ gamma-delta T cells
+P524,non-MPR,0.257864878803507,CRTAM+ gamma-delta T cells
+P527,non-MPR,0.730124391563007,CRTAM+ gamma-delta T cells
+P540,non-MPR,0.268396331916797,CRTAM+ gamma-delta T cells
+P57,MPR,1.07863060809755,CRTAM+ gamma-delta T cells
+P58,non-MPR,1.61290322580645,CRTAM+ gamma-delta T cells
+P6,MPR,0.822784810126582,CRTAM+ gamma-delta T cells
+P62,MPR,0.0928936367858802,CRTAM+ gamma-delta T cells
+P63,non-MPR,0.150075037518759,CRTAM+ gamma-delta T cells
+P66,non-MPR,0.465477114041893,CRTAM+ gamma-delta T cells
+P69,non-MPR,0.816104461371056,CRTAM+ gamma-delta T cells
+P73,non-MPR,2.41638942391875,CRTAM+ gamma-delta T cells
+P84,MPR,0.0231160425335183,CRTAM+ gamma-delta T cells
+P90,non-MPR,1.98558611560524,CRTAM+ gamma-delta T cells
+P94,non-MPR,0.756273633551048,CRTAM+ gamma-delta T cells
+P97,non-MPR,0.19852012272153,CRTAM+ gamma-delta T cells
+P1,non-MPR,0.0819384291232588,MAIT cells
+P103,non-MPR,0.490066225165563,MAIT cells
+P106,non-MPR,0.0959385992964503,MAIT cells
+P111,non-MPR,1.23876609181443,MAIT cells
+P115,MPR,0.375,MAIT cells
+P118,MPR,0.76249646992375,MAIT cells
+P120,non-MPR,0.886917960088692,MAIT cells
+P124,MPR,0.626766621605014,MAIT cells
+P127,non-MPR,1.27620783956244,MAIT cells
+P131,non-MPR,0.211544273194319,MAIT cells
+P137,non-MPR,3.20603488920321,MAIT cells
+P150,MPR,3.96609143203149,MAIT cells
+P159,MPR,1.02040816326531,MAIT cells
+P16,non-MPR,0.129132231404959,MAIT cells
+P164,non-MPR,0.53898670499461,MAIT cells
+P168,MPR,1.99657729606389,MAIT cells
+P189,non-MPR,0.849537474041911,MAIT cells
+P192,MPR,0.785340314136126,MAIT cells
+P200,MPR,0.936454849498328,MAIT cells
+P206,non-MPR,0.0851063829787234,MAIT cells
+P207,MPR,0.796019900497512,MAIT cells
+P22,non-MPR,0.283738251463025,MAIT cells
+P221,non-MPR,0.201265094882116,MAIT cells
+P227,MPR,1.45233075661747,MAIT cells
+P235,non-MPR,0.46592894583576,MAIT cells
+P24,non-MPR,0.50699032109387,MAIT cells
+P247,non-MPR,0,MAIT cells
+P257,MPR,1.73175472698357,MAIT cells
+P259,non-MPR,0.123395853899309,MAIT cells
+P26,non-MPR,0.219150370869858,MAIT cells
+P261,non-MPR,0.533428165007112,MAIT cells
+P264,MPR,2.21498371335505,MAIT cells
+P265,non-MPR,0,MAIT cells
+P277,MPR,2.49954052563867,MAIT cells
+P278,MPR,5.07168458781362,MAIT cells
+P279,non-MPR,0.969081679741578,MAIT cells
+P280,non-MPR,0.992700729927007,MAIT cells
+P281,non-MPR,0.272585669781931,MAIT cells
+P285,non-MPR,0.976269149894863,MAIT cells
+P287,non-MPR,0.0364387222154743,MAIT cells
+P29,non-MPR,4.39196645332156,MAIT cells
+P3,MPR,0.129032258064516,MAIT cells
+P32,non-MPR,0.0565610859728507,MAIT cells
+P322,MPR,0.498152016712197,MAIT cells
+P323,non-MPR,0.230747043553504,MAIT cells
+P325,MPR,0.101405186150949,MAIT cells
+P328,non-MPR,0.878868933893772,MAIT cells
+P337,MPR,0.376028202115159,MAIT cells
+P35,non-MPR,0.539735715615113,MAIT cells
+P367,MPR,1.06136626785025,MAIT cells
+P371,non-MPR,0,MAIT cells
+P380,non-MPR,0.637834474175482,MAIT cells
+P387,non-MPR,0.075187969924812,MAIT cells
+P391,non-MPR,0.136394635144351,MAIT cells
+P395,non-MPR,0.236655272153563,MAIT cells
+P4,MPR,0.293984622342831,MAIT cells
+P403,non-MPR,0.308641975308642,MAIT cells
+P405,MPR,0.0765110941086457,MAIT cells
+P414,non-MPR,1.14116652578191,MAIT cells
+P416,non-MPR,0.171526586620926,MAIT cells
+P427,MPR,0.792480648728345,MAIT cells
+P428,non-MPR,1.04018912529551,MAIT cells
+P432,non-MPR,0.314070351758794,MAIT cells
+P435,non-MPR,0.452781371280724,MAIT cells
+P45,MPR,3.11658728515221,MAIT cells
+P453,MPR,1.8707750353718,MAIT cells
+P454,non-MPR,0.26281208935611,MAIT cells
+P457,MPR,1.61121573550952,MAIT cells
+P459,non-MPR,1.14898506319418,MAIT cells
+P46,MPR,1.37437365783822,MAIT cells
+P462,non-MPR,0.354060632883381,MAIT cells
+P463,MPR,0.584076237319398,MAIT cells
+P464,non-MPR,0.196898843219296,MAIT cells
+P467,non-MPR,0,MAIT cells
+P469,MPR,1.29153605015674,MAIT cells
+P471,non-MPR,1.34323082361258,MAIT cells
+P473,non-MPR,0.541125541125541,MAIT cells
+P477,non-MPR,0.875912408759124,MAIT cells
+P482,non-MPR,0.318364611260054,MAIT cells
+P49,non-MPR,1.02564102564103,MAIT cells
+P490,non-MPR,1.3550135501355,MAIT cells
+P491,non-MPR,1.74386920980926,MAIT cells
+P495,non-MPR,0.91324200913242,MAIT cells
+P496,non-MPR,0.386847195357834,MAIT cells
+P511,non-MPR,0.767018216682646,MAIT cells
+P524,non-MPR,0.464156781846313,MAIT cells
+P527,non-MPR,0.216333153055706,MAIT cells
+P540,non-MPR,0.335495414895996,MAIT cells
+P57,MPR,0.765984055025793,MAIT cells
+P58,non-MPR,0.826121164437451,MAIT cells
+P6,MPR,0.367088607594937,MAIT cells
+P62,MPR,0.394797956339991,MAIT cells
+P63,non-MPR,0.233450058362515,MAIT cells
+P66,non-MPR,1.34471166278769,MAIT cells
+P69,non-MPR,0.516866158868335,MAIT cells
+P73,non-MPR,3.97478550166346,MAIT cells
+P84,MPR,0.231160425335183,MAIT cells
+P90,non-MPR,0.63244594793352,MAIT cells
+P94,non-MPR,2.50945342041939,MAIT cells
+P97,non-MPR,0.739938639234795,MAIT cells
+P1,non-MPR,0.245815287369776,ILC3
+P103,non-MPR,0.264900662251656,ILC3
+P106,non-MPR,0,ILC3
+P111,non-MPR,0.582948749089143,ILC3
+P115,MPR,0.1875,ILC3
+P118,MPR,0.621293419937871,ILC3
+P120,non-MPR,0.665188470066519,ILC3
+P124,MPR,0.319528081602556,ILC3
+P127,non-MPR,1.85353995745974,ILC3
+P131,non-MPR,0.0302206104563312,ILC3
+P137,non-MPR,0.408612289800409,ILC3
+P150,MPR,0.696336663639116,ILC3
+P159,MPR,1.02040816326531,ILC3
+P16,non-MPR,0.516528925619835,ILC3
+P164,non-MPR,0.143729787998563,ILC3
+P168,MPR,0.114090131203651,ILC3
+P189,non-MPR,0.339814989616764,ILC3
+P192,MPR,0.732984293193717,ILC3
+P200,MPR,1.24860646599777,ILC3
+P206,non-MPR,0.425531914893617,ILC3
+P207,MPR,1.26036484245439,ILC3
+P22,non-MPR,0.461074658627416,ILC3
+P221,non-MPR,0.115008625646924,ILC3
+P227,MPR,0.866713516045913,ILC3
+P235,non-MPR,0.786255096097845,ILC3
+P24,non-MPR,0.691350437855277,ILC3
+P247,non-MPR,0.127064803049555,ILC3
+P257,MPR,0.441774165046828,ILC3
+P259,non-MPR,0.0740375123395854,ILC3
+P26,non-MPR,0.0337154416722859,ILC3
+P261,non-MPR,0.462304409672831,ILC3
+P264,MPR,0.325732899022801,ILC3
+P265,non-MPR,0.136332651670075,ILC3
+P277,MPR,0.588127182503216,ILC3
+P278,MPR,0.0896057347670251,ILC3
+P279,non-MPR,0.922934933087217,ILC3
+P280,non-MPR,1.08029197080292,ILC3
+P281,non-MPR,0.233644859813084,ILC3
+P285,non-MPR,0.435566236106939,ILC3
+P287,non-MPR,0.25507105550832,ILC3
+P29,non-MPR,0.176561465460163,ILC3
+P3,MPR,0.658064516129032,ILC3
+P32,non-MPR,0.395927601809955,ILC3
+P322,MPR,0.257110718303069,ILC3
+P323,non-MPR,0.0288433804441881,ILC3
+P325,MPR,0.101405186150949,ILC3
+P328,non-MPR,0.0764233855559801,ILC3
+P337,MPR,0.0940070505287897,ILC3
+P35,non-MPR,0.33500837520938,ILC3
+P367,MPR,0.231570822076418,ILC3
+P371,non-MPR,0,ILC3
+P380,non-MPR,1.86683260734287,ILC3
+P387,non-MPR,0.150375939849624,ILC3
+P391,non-MPR,0.136394635144351,ILC3
+P395,non-MPR,0.394425453589272,ILC3
+P4,MPR,0.293984622342831,ILC3
+P403,non-MPR,0.0841750841750842,ILC3
+P405,MPR,0.204029584289722,ILC3
+P414,non-MPR,0.253592561284869,ILC3
+P416,non-MPR,0.114351057747284,ILC3
+P427,MPR,0.184297825285662,ILC3
+P428,non-MPR,0.0236406619385343,ILC3
+P432,non-MPR,0.125628140703518,ILC3
+P435,non-MPR,0.0323415265200517,ILC3
+P45,MPR,0.0414164423276041,ILC3
+P453,MPR,0.330136770947964,ILC3
+P454,non-MPR,0.420499342969777,ILC3
+P457,MPR,1.69491525423729,ILC3
+P459,non-MPR,0.229797012638836,ILC3
+P46,MPR,0.243378668575519,ILC3
+P462,non-MPR,0.154901526886479,ILC3
+P463,MPR,2.1826006762988,ILC3
+P464,non-MPR,0.467634752645828,ILC3
+P467,non-MPR,0.286944045911047,ILC3
+P469,MPR,1.12852664576803,ILC3
+P471,non-MPR,0.459526334393779,ILC3
+P473,non-MPR,0.689935064935065,ILC3
+P477,non-MPR,0.2711157455683,ILC3
+P482,non-MPR,0.134048257372654,ILC3
+P49,non-MPR,0,ILC3
+P490,non-MPR,0,ILC3
+P491,non-MPR,0.0817438692098093,ILC3
+P495,non-MPR,0.228310502283105,ILC3
+P496,non-MPR,0.193423597678917,ILC3
+P511,non-MPR,0.588960416381318,ILC3
+P524,non-MPR,1.08303249097473,ILC3
+P527,non-MPR,0.351541373715522,ILC3
+P540,non-MPR,0.335495414895996,ILC3
+P57,MPR,0.687822416757855,ILC3
+P58,non-MPR,0.334382376081825,ILC3
+P6,MPR,0.89873417721519,ILC3
+P62,MPR,0.11611704598235,ILC3
+P63,non-MPR,0.0667000166750042,ILC3
+P66,non-MPR,0.543056633048875,ILC3
+P69,non-MPR,0.0816104461371056,ILC3
+P73,non-MPR,0.490281912099457,ILC3
+P84,MPR,0.161812297734628,ILC3
+P90,non-MPR,0.147080453007795,ILC3
+P94,non-MPR,0.103128222756961,ILC3
+P97,non-MPR,0.180472838837755,ILC3
+P1,non-MPR,0.37457567599204,CD16+ NK cells
+P103,non-MPR,0.384105960264901,CD16+ NK cells
+P106,non-MPR,0.383754397185801,CD16+ NK cells
+P111,non-MPR,5.95093514695166,CD16+ NK cells
+P115,MPR,0.916666666666667,CD16+ NK cells
+P118,MPR,1.44027110985597,CD16+ NK cells
+P120,non-MPR,1.10864745011086,CD16+ NK cells
+P124,MPR,0.528450288804228,CD16+ NK cells
+P127,non-MPR,1.92950470981465,CD16+ NK cells
+P131,non-MPR,0.4835297673013,CD16+ NK cells
+P137,non-MPR,4.88763162030489,CD16+ NK cells
+P150,MPR,1.21102028458977,CD16+ NK cells
+P159,MPR,14.2857142857143,CD16+ NK cells
+P16,non-MPR,0.309917355371901,CD16+ NK cells
+P164,non-MPR,5.28206970894718,CD16+ NK cells
+P168,MPR,1.02681118083286,CD16+ NK cells
+P189,non-MPR,5.53143288653955,CD16+ NK cells
+P192,MPR,0.732984293193717,CD16+ NK cells
+P200,MPR,0.312151616499443,CD16+ NK cells
+P206,non-MPR,1.95744680851064,CD16+ NK cells
+P207,MPR,0.464344941956882,CD16+ NK cells
+P22,non-MPR,1.48962582018088,CD16+ NK cells
+P221,non-MPR,4.31282346175963,CD16+ NK cells
+P227,MPR,12.5790583274772,CD16+ NK cells
+P235,non-MPR,3.4944670937682,CD16+ NK cells
+P24,non-MPR,10.2780765094485,CD16+ NK cells
+P247,non-MPR,1.3130029648454,CD16+ NK cells
+P257,MPR,45.7324615656476,CD16+ NK cells
+P259,non-MPR,0.0493583415597236,CD16+ NK cells
+P26,non-MPR,0.219150370869858,CD16+ NK cells
+P261,non-MPR,1.84921763869132,CD16+ NK cells
+P264,MPR,0.162866449511401,CD16+ NK cells
+P265,non-MPR,0.136332651670075,CD16+ NK cells
+P277,MPR,7.29645285793053,CD16+ NK cells
+P278,MPR,0.10752688172043,CD16+ NK cells
+P279,non-MPR,0.323027226580526,CD16+ NK cells
+P280,non-MPR,5.13868613138686,CD16+ NK cells
+P281,non-MPR,1.09034267912773,CD16+ NK cells
+P285,non-MPR,1.14148392910784,CD16+ NK cells
+P287,non-MPR,4.16616057330256,CD16+ NK cells
+P29,non-MPR,1.01522842639594,CD16+ NK cells
+P3,MPR,3.83225806451613,CD16+ NK cells
+P32,non-MPR,1.41402714932127,CD16+ NK cells
+P322,MPR,1.46231721034871,CD16+ NK cells
+P323,non-MPR,0.288433804441881,CD16+ NK cells
+P325,MPR,7.63436187165001,CD16+ NK cells
+P328,non-MPR,3.05693542223921,CD16+ NK cells
+P337,MPR,0.963572267920094,CD16+ NK cells
+P35,non-MPR,1.17252931323283,CD16+ NK cells
+P367,MPR,18.7765341566963,CD16+ NK cells
+P371,non-MPR,0,CD16+ NK cells
+P380,non-MPR,0.466708151835719,CD16+ NK cells
+P387,non-MPR,0.75187969924812,CD16+ NK cells
+P391,non-MPR,0.318254148670152,CD16+ NK cells
+P395,non-MPR,0.420720483828556,CD16+ NK cells
+P4,MPR,15.3211216644052,CD16+ NK cells
+P403,non-MPR,0.505050505050505,CD16+ NK cells
+P405,MPR,0.280540678398368,CD16+ NK cells
+P414,non-MPR,0.338123415046492,CD16+ NK cells
+P416,non-MPR,0.0571755288736421,CD16+ NK cells
+P427,MPR,1.54810173239956,CD16+ NK cells
+P428,non-MPR,1.93853427895981,CD16+ NK cells
+P432,non-MPR,0.565326633165829,CD16+ NK cells
+P435,non-MPR,2.06985769728331,CD16+ NK cells
+P45,MPR,2.44357009732864,CD16+ NK cells
+P453,MPR,0.235811979248546,CD16+ NK cells
+P454,non-MPR,0.394218134034166,CD16+ NK cells
+P457,MPR,5.39861895794099,CD16+ NK cells
+P459,non-MPR,2.25967062428188,CD16+ NK cells
+P46,MPR,1.23120973514674,CD16+ NK cells
+P462,non-MPR,0.376189422438593,CD16+ NK cells
+P463,MPR,0.41500153704273,CD16+ NK cells
+P464,non-MPR,0.762983017474772,CD16+ NK cells
+P467,non-MPR,0.286944045911047,CD16+ NK cells
+P469,MPR,3.54858934169279,CD16+ NK cells
+P471,non-MPR,7.74125132555673,CD16+ NK cells
+P473,non-MPR,0.581709956709957,CD16+ NK cells
+P477,non-MPR,3.04483837330553,CD16+ NK cells
+P482,non-MPR,0.268096514745308,CD16+ NK cells
+P49,non-MPR,0.512820512820513,CD16+ NK cells
+P490,non-MPR,2.1680216802168,CD16+ NK cells
+P491,non-MPR,0.544959128065395,CD16+ NK cells
+P495,non-MPR,0.228310502283105,CD16+ NK cells
+P496,non-MPR,1.74081237911025,CD16+ NK cells
+P511,non-MPR,0.616353924119984,CD16+ NK cells
+P524,non-MPR,0.979886539453326,CD16+ NK cells
+P527,non-MPR,5.35424553812872,CD16+ NK cells
+P540,non-MPR,1.00648624468799,CD16+ NK cells
+P57,MPR,1.34438017820854,CD16+ NK cells
+P58,non-MPR,4.97639653815893,CD16+ NK cells
+P6,MPR,13.8227848101266,CD16+ NK cells
+P62,MPR,0.2322340919647,CD16+ NK cells
+P63,non-MPR,0.48357512089378,CD16+ NK cells
+P66,non-MPR,2.71528316524438,CD16+ NK cells
+P69,non-MPR,1.57780195865071,CD16+ NK cells
+P73,non-MPR,7.86202066188058,CD16+ NK cells
+P84,MPR,1.6412390198798,CD16+ NK cells
+P90,non-MPR,0.294160906015591,CD16+ NK cells
+P94,non-MPR,13.7504297009282,CD16+ NK cells
+P97,non-MPR,2.23786320158816,CD16+ NK cells
+P1,non-MPR,0,Macrophages
+P103,non-MPR,0.675496688741722,Macrophages
+P106,non-MPR,2.65430124720179,Macrophages
+P111,non-MPR,0.121447656060238,Macrophages
+P115,MPR,0.5,Macrophages
+P118,MPR,0.818977689918102,Macrophages
+P120,non-MPR,0,Macrophages
+P124,MPR,1.73282536561386,Macrophages
+P127,non-MPR,0.911577028258888,Macrophages
+P131,non-MPR,2.8105167724388,Macrophages
+P137,non-MPR,0.534339148200534,Macrophages
+P150,MPR,0.968816227671813,Macrophages
+P159,MPR,0,Macrophages
+P16,non-MPR,0.0645661157024794,Macrophages
+P164,non-MPR,5.56952928494431,Macrophages
+P168,MPR,1.93953223046207,Macrophages
+P189,non-MPR,0.547479705493676,Macrophages
+P192,MPR,1.43979057591623,Macrophages
+P200,MPR,0.0445930880713489,Macrophages
+P206,non-MPR,3.31914893617021,Macrophages
+P207,MPR,0.165837479270315,Macrophages
+P22,non-MPR,1.59602766447952,Macrophages
+P221,non-MPR,10.4082806210466,Macrophages
+P227,MPR,0.0702740688685875,Macrophages
+P235,non-MPR,0.378567268491555,Macrophages
+P24,non-MPR,0.0153633430634506,Macrophages
+P247,non-MPR,44.3667937314697,Macrophages
+P257,MPR,0.0883548330093656,Macrophages
+P259,non-MPR,2.56663376110563,Macrophages
+P26,non-MPR,0.202292650033715,Macrophages
+P261,non-MPR,3.62731152204836,Macrophages
+P264,MPR,0.260586319218241,Macrophages
+P265,non-MPR,1.29516019086571,Macrophages
+P277,MPR,0.0183789744532255,Macrophages
+P278,MPR,9.15770609318996,Macrophages
+P279,non-MPR,0.807568066451315,Macrophages
+P280,non-MPR,0.175182481751825,Macrophages
+P281,non-MPR,1.05140186915888,Macrophages
+P285,non-MPR,0.225292880744968,Macrophages
+P287,non-MPR,0.0971699259079315,Macrophages
+P29,non-MPR,1.80975502096667,Macrophages
+P3,MPR,0.0258064516129032,Macrophages
+P32,non-MPR,0.0565610859728507,Macrophages
+P322,MPR,0.128555359151535,Macrophages
+P323,non-MPR,1.41332564176522,Macrophages
+P325,MPR,0.0434593654932638,Macrophages
+P328,non-MPR,0.955292319449752,Macrophages
+P337,MPR,0.658049353701528,Macrophages
+P35,non-MPR,0,Macrophages
+P367,MPR,0.4245465071401,Macrophages
+P371,non-MPR,0,Macrophages
+P380,non-MPR,0.217797137523335,Macrophages
+P387,non-MPR,2.10526315789474,Macrophages
+P391,non-MPR,1.65946806092294,Macrophages
+P395,non-MPR,1.49881672363923,Macrophages
+P4,MPR,0,Macrophages
+P403,non-MPR,1.45903479236813,Macrophages
+P405,MPR,0.612088752869166,Macrophages
+P414,non-MPR,1.26796280642435,Macrophages
+P416,non-MPR,1.0863350485992,Macrophages
+P427,MPR,0.0737191301142646,Macrophages
+P428,non-MPR,0.520094562647754,Macrophages
+P432,non-MPR,0,Macrophages
+P435,non-MPR,1.16429495472186,Macrophages
+P45,MPR,0.0931869952371091,Macrophages
+P453,MPR,0.408740764030813,Macrophages
+P454,non-MPR,0.289093298291721,Macrophages
+P457,MPR,0.125549278091651,Macrophages
+P459,non-MPR,0.421294523171199,Macrophages
+P46,MPR,0.171796707229778,Macrophages
+P462,non-MPR,0.442575791104227,Macrophages
+P463,MPR,0.215185982170304,Macrophages
+P464,non-MPR,0.36918533103618,Macrophages
+P467,non-MPR,5.88235294117647,Macrophages
+P469,MPR,0.338557993730408,Macrophages
+P471,non-MPR,0.0353481795687522,Macrophages
+P473,non-MPR,0.216450216450216,Macrophages
+P477,non-MPR,0.500521376433785,Macrophages
+P482,non-MPR,0.335120643431635,Macrophages
+P49,non-MPR,0,Macrophages
+P490,non-MPR,1.0840108401084,Macrophages
+P491,non-MPR,0.517711171662125,Macrophages
+P495,non-MPR,4.79452054794521,Macrophages
+P496,non-MPR,2.70793036750484,Macrophages
+P511,non-MPR,0.109574030954664,Macrophages
+P524,non-MPR,0.257864878803507,Macrophages
+P527,non-MPR,0,Macrophages
+P540,non-MPR,6.41914560501007,Macrophages
+P57,MPR,0.109426293575113,Macrophages
+P58,non-MPR,0.255704169944925,Macrophages
+P6,MPR,0.0126582278481013,Macrophages
+P62,MPR,6.4328843474222,Macrophages
+P63,non-MPR,3.18492579623145,Macrophages
+P66,non-MPR,0.387897595034911,Macrophages
+P69,non-MPR,0.652883569096844,Macrophages
+P73,non-MPR,0.437751707231658,Macrophages
+P84,MPR,0.0462320850670365,Macrophages
+P90,non-MPR,0.382409177820268,Macrophages
+P94,non-MPR,0.103128222756961,Macrophages
+P97,non-MPR,0.523371232629489,Macrophages
+P1,non-MPR,0,Classical monocytes
+P103,non-MPR,0.211920529801325,Classical monocytes
+P106,non-MPR,2.01471058522546,Classical monocytes
+P111,non-MPR,6.55817342725285,Classical monocytes
+P115,MPR,3.14583333333333,Classical monocytes
+P118,MPR,5.53515955944648,Classical monocytes
+P120,non-MPR,0,Classical monocytes
+P124,MPR,0.405554872803244,Classical monocytes
+P127,non-MPR,1.91431175934366,Classical monocytes
+P131,non-MPR,0.75551526140828,Classical monocytes
+P137,non-MPR,3.42605689140343,Classical monocytes
+P150,MPR,8.5679685134726,Classical monocytes
+P159,MPR,0,Classical monocytes
+P16,non-MPR,0.232438016528926,Classical monocytes
+P164,non-MPR,4.27596119295724,Classical monocytes
+P168,MPR,32.9150028522533,Classical monocytes
+P189,non-MPR,2.22767604304323,Classical monocytes
+P192,MPR,0.366492146596859,Classical monocytes
+P200,MPR,0.579710144927536,Classical monocytes
+P206,non-MPR,5.61702127659575,Classical monocytes
+P207,MPR,0.961857379767828,Classical monocytes
+P22,non-MPR,0.922149317254832,Classical monocytes
+P221,non-MPR,4.02530189764232,Classical monocytes
+P227,MPR,5.57507613024128,Classical monocytes
+P235,non-MPR,6.46476412347117,Classical monocytes
+P24,non-MPR,2.4581348901521,Classical monocytes
+P247,non-MPR,3.91783142736129,Classical monocytes
+P257,MPR,17.5119279024563,Classical monocytes
+P259,non-MPR,0.246791707798618,Classical monocytes
+P26,non-MPR,0.488873904248146,Classical monocytes
+P261,non-MPR,1.60028449502134,Classical monocytes
+P264,MPR,0.651465798045603,Classical monocytes
+P265,non-MPR,12.2017723244717,Classical monocytes
+P277,MPR,2.38926667891932,Classical monocytes
+P278,MPR,27.168458781362,Classical monocytes
+P279,non-MPR,0.946008306414398,Classical monocytes
+P280,non-MPR,3.44525547445256,Classical monocytes
+P281,non-MPR,3.15420560747664,Classical monocytes
+P285,non-MPR,1.50195253829979,Classical monocytes
+P287,non-MPR,3.07299890683833,Classical monocytes
+P29,non-MPR,3.3546678437431,Classical monocytes
+P3,MPR,1.12258064516129,Classical monocytes
+P32,non-MPR,0.21210407239819,Classical monocytes
+P322,MPR,0.658846215651615,Classical monocytes
+P323,non-MPR,1.32679550043265,Classical monocytes
+P325,MPR,21.3675213675214,Classical monocytes
+P328,non-MPR,1.26098586167367,Classical monocytes
+P337,MPR,0.587544065804935,Classical monocytes
+P35,non-MPR,0,Classical monocytes
+P367,MPR,3.93670397529911,Classical monocytes
+P371,non-MPR,0,Classical monocytes
+P380,non-MPR,0.575606720597386,Classical monocytes
+P387,non-MPR,4.81203007518797,Classical monocytes
+P391,non-MPR,1.70493293930439,Classical monocytes
+P395,non-MPR,0.341835393110702,Classical monocytes
+P4,MPR,1.51515151515152,Classical monocytes
+P403,non-MPR,0.841750841750842,Classical monocytes
+P405,MPR,23.5654169854629,Classical monocytes
+P414,non-MPR,1.14116652578191,Classical monocytes
+P416,non-MPR,1.02915951972556,Classical monocytes
+P427,MPR,1.29008477699963,Classical monocytes
+P428,non-MPR,0.969267139479905,Classical monocytes
+P432,non-MPR,0,Classical monocytes
+P435,non-MPR,0.873221216041397,Classical monocytes
+P45,MPR,0.40381031269414,Classical monocytes
+P453,MPR,0.833202326678195,Classical monocytes
+P454,non-MPR,1.39290407358739,Classical monocytes
+P457,MPR,2.13433772755807,Classical monocytes
+P459,non-MPR,48.5829184220605,Classical monocytes
+P46,MPR,0.529706513958483,Classical monocytes
+P462,non-MPR,0.99579552998451,Classical monocytes
+P463,MPR,0.184445127574547,Classical monocytes
+P464,non-MPR,0.36918533103618,Classical monocytes
+P467,non-MPR,0.860832137733142,Classical monocytes
+P469,MPR,0.96551724137931,Classical monocytes
+P471,non-MPR,22.7995758218452,Classical monocytes
+P473,non-MPR,0.784632034632035,Classical monocytes
+P477,non-MPR,17.0802919708029,Classical monocytes
+P482,non-MPR,0.251340482573727,Classical monocytes
+P49,non-MPR,0,Classical monocytes
+P490,non-MPR,3.2520325203252,Classical monocytes
+P491,non-MPR,12.016348773842,Classical monocytes
+P495,non-MPR,1.36986301369863,Classical monocytes
+P496,non-MPR,5.99613152804642,Classical monocytes
+P511,non-MPR,0.479386385426654,Classical monocytes
+P524,non-MPR,1.08303249097473,Classical monocytes
+P527,non-MPR,0,Classical monocytes
+P540,non-MPR,3.73518228584209,Classical monocytes
+P57,MPR,0.812881037986556,Classical monocytes
+P58,non-MPR,2.87175452399685,Classical monocytes
+P6,MPR,2.43037974683544,Classical monocytes
+P62,MPR,1.53274500696702,Classical monocytes
+P63,non-MPR,0.0500250125062531,Classical monocytes
+P66,non-MPR,13.6281355055599,Classical monocytes
+P69,non-MPR,1.4417845484222,Classical monocytes
+P73,non-MPR,9.91069865172474,Classical monocytes
+P84,MPR,29.9815071659732,Classical monocytes
+P90,non-MPR,0.691278129136638,Classical monocytes
+P94,non-MPR,5.32829150910966,Classical monocytes
+P97,non-MPR,6.94820429525356,Classical monocytes
+P1,non-MPR,0,Non-classical monocytes
+P103,non-MPR,0.185430463576159,Non-classical monocytes
+P106,non-MPR,1.11928365845859,Non-classical monocytes
+P111,non-MPR,2.59897983968909,Non-classical monocytes
+P115,MPR,2,Non-classical monocytes
+P118,MPR,0.847218299915278,Non-classical monocytes
+P120,non-MPR,0,Non-classical monocytes
+P124,MPR,0.22121174880177,Non-classical monocytes
+P127,non-MPR,1.39775144333029,Non-classical monocytes
+P131,non-MPR,0.4835297673013,Non-classical monocytes
+P137,non-MPR,1.17868929750118,Non-classical monocytes
+P150,MPR,0.666061156524372,Non-classical monocytes
+P159,MPR,0,Non-classical monocytes
+P16,non-MPR,0.0645661157024794,Non-classical monocytes
+P164,non-MPR,1.04204096298958,Non-classical monocytes
+P168,MPR,0.513405590416429,Non-classical monocytes
+P189,non-MPR,3.13384934868794,Non-classical monocytes
+P192,MPR,0.0261780104712042,Non-classical monocytes
+P200,MPR,0,Non-classical monocytes
+P206,non-MPR,0.680851063829787,Non-classical monocytes
+P207,MPR,0.132669983416252,Non-classical monocytes
+P22,non-MPR,0.567476502926051,Non-classical monocytes
+P221,non-MPR,1.66762507188039,Non-classical monocytes
+P227,MPR,0.421644413211525,Non-classical monocytes
+P235,non-MPR,1.92195690157251,Non-classical monocytes
+P24,non-MPR,2.75003840835766,Non-classical monocytes
+P247,non-MPR,1.8000847098687,Non-classical monocytes
+P257,MPR,1.66107086057607,Non-classical monocytes
+P259,non-MPR,0.444225074037512,Non-classical monocytes
+P26,non-MPR,0.0505731625084289,Non-classical monocytes
+P261,non-MPR,0.711237553342817,Non-classical monocytes
+P264,MPR,0.130293159609121,Non-classical monocytes
+P265,non-MPR,1.0906612133606,Non-classical monocytes
+P277,MPR,4.00661643080316,Non-classical monocytes
+P278,MPR,0.268817204301075,Non-classical monocytes
+P279,non-MPR,0.415320719889248,Non-classical monocytes
+P280,non-MPR,1.1970802919708,Non-classical monocytes
+P281,non-MPR,0.58411214953271,Non-classical monocytes
+P285,non-MPR,0.135175728446981,Non-classical monocytes
+P287,non-MPR,0.109316166646423,Non-classical monocytes
+P29,non-MPR,0.573824762745531,Non-classical monocytes
+P3,MPR,0.658064516129032,Non-classical monocytes
+P32,non-MPR,0.268665158371041,Non-classical monocytes
+P322,MPR,1.70335850875783,Non-classical monocytes
+P323,non-MPR,0.721084511104702,Non-classical monocytes
+P325,MPR,1.47761842677097,Non-classical monocytes
+P328,non-MPR,0.955292319449752,Non-classical monocytes
+P337,MPR,0.0940070505287897,Non-classical monocytes
+P35,non-MPR,0,Non-classical monocytes
+P367,MPR,7.46815901196449,Non-classical monocytes
+P371,non-MPR,0,Non-classical monocytes
+P380,non-MPR,0.0777846919726198,Non-classical monocytes
+P387,non-MPR,1.20300751879699,Non-classical monocytes
+P391,non-MPR,2.04591952716526,Non-classical monocytes
+P395,non-MPR,0.262950302392848,Non-classical monocytes
+P4,MPR,1.14201718679331,Non-classical monocytes
+P403,non-MPR,0.47699214365881,Non-classical monocytes
+P405,MPR,0.739607243050242,Non-classical monocytes
+P414,non-MPR,0.169061707523246,Non-classical monocytes
+P416,non-MPR,0.228702115494568,Non-classical monocytes
+P427,MPR,0.294876520457059,Non-classical monocytes
+P428,non-MPR,0.520094562647754,Non-classical monocytes
+P432,non-MPR,0,Non-classical monocytes
+P435,non-MPR,0.161707632600259,Non-classical monocytes
+P45,MPR,0.279560985711327,Non-classical monocytes
+P453,MPR,0.172928784782267,Non-classical monocytes
+P454,non-MPR,0.131406044678055,Non-classical monocytes
+P457,MPR,2.15526260724001,Non-classical monocytes
+P459,non-MPR,0.0191497510532363,Non-classical monocytes
+P46,MPR,0.486757337151038,Non-classical monocytes
+P462,non-MPR,0.221287895552113,Non-classical monocytes
+P463,MPR,0,Non-classical monocytes
+P464,non-MPR,0,Non-classical monocytes
+P467,non-MPR,0.286944045911047,Non-classical monocytes
+P469,MPR,0.413793103448276,Non-classical monocytes
+P471,non-MPR,2.91622481442206,Non-classical monocytes
+P473,non-MPR,0.432900432900433,Non-classical monocytes
+P477,non-MPR,0.980187695516163,Non-classical monocytes
+P482,non-MPR,0.117292225201072,Non-classical monocytes
+P49,non-MPR,0,Non-classical monocytes
+P490,non-MPR,0,Non-classical monocytes
+P491,non-MPR,0.354223433242507,Non-classical monocytes
+P495,non-MPR,0,Non-classical monocytes
+P496,non-MPR,0.386847195357834,Non-classical monocytes
+P511,non-MPR,0.178057800301329,Non-classical monocytes
+P524,non-MPR,0.0515729757607014,Non-classical monocytes
+P527,non-MPR,0,Non-classical monocytes
+P540,non-MPR,0.670990829791993,Non-classical monocytes
+P57,MPR,1.04736595279037,Non-classical monocytes
+P58,non-MPR,2.32100708103855,Non-classical monocytes
+P6,MPR,1.07594936708861,Non-classical monocytes
+P62,MPR,0.25545750116117,Non-classical monocytes
+P63,non-MPR,0.183425045856261,Non-classical monocytes
+P66,non-MPR,1.21541246444272,Non-classical monocytes
+P69,non-MPR,0.625680087051143,Non-classical monocytes
+P73,non-MPR,2.87165119943968,Non-classical monocytes
+P84,MPR,0.577901063337957,Non-classical monocytes
+P90,non-MPR,0.191204588910134,Non-classical monocytes
+P94,non-MPR,2.47507734616707,Non-classical monocytes
+P97,non-MPR,1.35354629128316,Non-classical monocytes
+P1,non-MPR,0,DC2
+P103,non-MPR,0.874172185430464,DC2
+P106,non-MPR,1.88679245283019,DC2
+P111,non-MPR,2.33179499635657,DC2
+P115,MPR,7.45833333333333,DC2
+P118,MPR,1.58147415984185,DC2
+P120,non-MPR,0,DC2
+P124,MPR,2.55622465282045,DC2
+P127,non-MPR,1.95989061075661,DC2
+P131,non-MPR,0.936838924146268,DC2
+P137,non-MPR,0.832940436900833,DC2
+P150,MPR,4.08719346049046,DC2
+P159,MPR,0,DC2
+P16,non-MPR,0.761880165289256,DC2
+P164,non-MPR,4.92274523895077,DC2
+P168,MPR,5.13405590416429,DC2
+P189,non-MPR,1.07608080045309,DC2
+P192,MPR,3.32460732984293,DC2
+P200,MPR,1.78372352285396,DC2
+P206,non-MPR,4.85106382978723,DC2
+P207,MPR,2.91873963515755,DC2
+P22,non-MPR,1.09948572441922,DC2
+P221,non-MPR,4.22656699252444,DC2
+P227,MPR,0.726165378308737,DC2
+P235,non-MPR,2.12580081537566,DC2
+P24,non-MPR,1.44415424796436,DC2
+P247,non-MPR,6.94620923337569,DC2
+P257,MPR,1.97914825940979,DC2
+P259,non-MPR,0.542941757156959,DC2
+P26,non-MPR,0.370869858395145,DC2
+P261,non-MPR,3.59174964438122,DC2
+P264,MPR,1.00977198697068,DC2
+P265,non-MPR,2.11315610088616,DC2
+P277,MPR,2.84874104024995,DC2
+P278,MPR,5.6989247311828,DC2
+P279,non-MPR,2.07660359944624,DC2
+P280,non-MPR,2.51094890510949,DC2
+P281,non-MPR,2.76479750778816,DC2
+P285,non-MPR,2.47822168819465,DC2
+P287,non-MPR,0.145754888861897,DC2
+P29,non-MPR,1.74354447141911,DC2
+P3,MPR,1.14838709677419,DC2
+P32,non-MPR,0.749434389140272,DC2
+P322,MPR,1.75156676843966,DC2
+P323,non-MPR,8.30689356792616,DC2
+P325,MPR,1.10097059249602,DC2
+P328,non-MPR,1.5284677111196,DC2
+P337,MPR,1.05757931844888,DC2
+P35,non-MPR,0,DC2
+P367,MPR,7.9505982246237,DC2
+P371,non-MPR,0,DC2
+P380,non-MPR,0.777846919726198,DC2
+P387,non-MPR,2.78195488721805,DC2
+P391,non-MPR,0.636508297340305,DC2
+P395,non-MPR,5.1801209571391,DC2
+P4,MPR,1.33423790140208,DC2
+P403,non-MPR,1.79573512906846,DC2
+P405,MPR,4.43764345830145,DC2
+P414,non-MPR,2.62045646661031,DC2
+P416,non-MPR,1.42938822184105,DC2
+P427,MPR,0.608182823442683,DC2
+P428,non-MPR,0.638297872340425,DC2
+P432,non-MPR,0,DC2
+P435,non-MPR,0.323415265200518,DC2
+P45,MPR,0.548767860840754,DC2
+P453,MPR,1.52491746580726,DC2
+P454,non-MPR,1.10381077529566,DC2
+P457,MPR,3.07595731324545,DC2
+P459,non-MPR,2.73841440061279,DC2
+P46,MPR,0.529706513958483,DC2
+P462,non-MPR,1.96946227041381,DC2
+P463,MPR,0.537964955425761,DC2
+P464,non-MPR,2.0428254984002,DC2
+P467,non-MPR,13.6298421807747,DC2
+P469,MPR,1.78056426332288,DC2
+P471,non-MPR,0.830682219865677,DC2
+P473,non-MPR,1.78571428571429,DC2
+P477,non-MPR,12.4504692387904,DC2
+P482,non-MPR,0.787533512064343,DC2
+P49,non-MPR,0,DC2
+P490,non-MPR,3.2520325203252,DC2
+P491,non-MPR,2.31607629427793,DC2
+P495,non-MPR,2.28310502283105,DC2
+P496,non-MPR,0.386847195357834,DC2
+P511,non-MPR,1.05465004793864,DC2
+P524,non-MPR,0.567302733367715,DC2
+P527,non-MPR,0,DC2
+P540,non-MPR,3.5338850369045,DC2
+P57,MPR,1.46943879943724,DC2
+P58,non-MPR,2.08497246262785,DC2
+P6,MPR,1.54430379746835,DC2
+P62,MPR,1.3934045517882,DC2
+P63,non-MPR,0.433550108387527,DC2
+P66,non-MPR,5.84432376519266,DC2
+P69,non-MPR,1.19695321001088,DC2
+P73,non-MPR,4.37751707231658,DC2
+P84,MPR,0.809061488673139,DC2
+P90,non-MPR,0.94131489924989,DC2
+P94,non-MPR,1.75317978686834,DC2
+P97,non-MPR,3.6816459122902,DC2
+P1,non-MPR,0,DC1
+P103,non-MPR,0.0397350993377483,DC1
+P106,non-MPR,0,DC1
+P111,non-MPR,0.145737187272286,DC1
+P115,MPR,0.583333333333333,DC1
+P118,MPR,0.169443659983056,DC1
+P120,non-MPR,0,DC1
+P124,MPR,0.405554872803244,DC1
+P127,non-MPR,0.0911577028258888,DC1
+P131,non-MPR,0.120882441825325,DC1
+P137,non-MPR,0.0471475719000472,DC1
+P150,MPR,0.484408113835907,DC1
+P159,MPR,0,DC1
+P16,non-MPR,0.0129132231404959,DC1
+P164,non-MPR,0.215594681997844,DC1
+P168,MPR,0.171135196805476,DC1
+P189,non-MPR,0.0188786105342647,DC1
+P192,MPR,0.183246073298429,DC1
+P200,MPR,0.178372352285396,DC1
+P206,non-MPR,0,DC1
+P207,MPR,0.132669983416252,DC1
+P22,non-MPR,0.124135485015074,DC1
+P221,non-MPR,0.143760782058654,DC1
+P227,MPR,0.046849379245725,DC1
+P235,non-MPR,0,DC1
+P24,non-MPR,0.184360116761407,DC1
+P247,non-MPR,0.232952138924185,DC1
+P257,MPR,0.229722565824351,DC1
+P259,non-MPR,0.0246791707798618,DC1
+P26,non-MPR,0,DC1
+P261,non-MPR,0.284495021337127,DC1
+P264,MPR,0.0325732899022801,DC1
+P265,non-MPR,0.0681663258350375,DC1
+P277,MPR,0.238926667891932,DC1
+P278,MPR,0.21505376344086,DC1
+P279,non-MPR,0.0461467466543609,DC1
+P280,non-MPR,0.37956204379562,DC1
+P281,non-MPR,0.350467289719626,DC1
+P285,non-MPR,0.64583959146891,DC1
+P287,non-MPR,0.34009474067776,DC1
+P29,non-MPR,0.110350915912602,DC1
+P3,MPR,0.206451612903226,DC1
+P32,non-MPR,0.155542986425339,DC1
+P322,MPR,0.466013176924313,DC1
+P323,non-MPR,0.201903663109316,DC1
+P325,MPR,0.246269737795162,DC1
+P328,non-MPR,0.11463507833397,DC1
+P337,MPR,0.0235017626321974,DC1
+P35,non-MPR,0,DC1
+P367,MPR,0.366653801620996,DC1
+P371,non-MPR,0,DC1
+P380,non-MPR,0.0466708151835719,DC1
+P387,non-MPR,0.526315789473684,DC1
+P391,non-MPR,0.0681973175721755,DC1
+P395,non-MPR,0.210360241914278,DC1
+P4,MPR,0.248756218905473,DC1
+P403,non-MPR,0.140291806958474,DC1
+P405,MPR,0.255036980362153,DC1
+P414,non-MPR,0.338123415046492,DC1
+P416,non-MPR,0.228702115494568,DC1
+P427,MPR,0.147438260228529,DC1
+P428,non-MPR,0.0945626477541371,DC1
+P432,non-MPR,0,DC1
+P435,non-MPR,0,DC1
+P45,MPR,0.176019879892317,DC1
+P453,MPR,0.345857569564534,DC1
+P454,non-MPR,0,DC1
+P457,MPR,0.272023435865244,DC1
+P459,non-MPR,0.459594025277671,DC1
+P46,MPR,0.0286327845382964,DC1
+P462,non-MPR,0.398318211993804,DC1
+P463,MPR,0.13833384568091,DC1
+P464,non-MPR,0.147674132414472,DC1
+P467,non-MPR,0.143472022955524,DC1
+P469,MPR,0.401253918495298,DC1
+P471,non-MPR,0.0176740897843761,DC1
+P473,non-MPR,0.45995670995671,DC1
+P477,non-MPR,0.813347236704901,DC1
+P482,non-MPR,0.117292225201072,DC1
+P49,non-MPR,0,DC1
+P490,non-MPR,0,DC1
+P491,non-MPR,0.572207084468665,DC1
+P495,non-MPR,0.45662100456621,DC1
+P496,non-MPR,0,DC1
+P511,non-MPR,0.410902616079989,DC1
+P524,non-MPR,0.0515729757607014,DC1
+P527,non-MPR,0,DC1
+P540,non-MPR,0.0670990829791993,DC1
+P57,MPR,0.156323276535876,DC1
+P58,non-MPR,0.472069236821401,DC1
+P6,MPR,0.0632911392405063,DC1
+P62,MPR,0.0696702275894101,DC1
+P63,non-MPR,0.0667000166750042,DC1
+P66,non-MPR,0.362037755365917,DC1
+P69,non-MPR,0.163220892274211,DC1
+P73,non-MPR,0.542812116967256,DC1
+P84,MPR,0.092464170134073,DC1
+P90,non-MPR,0.294160906015591,DC1
+P94,non-MPR,0.103128222756961,DC1
+P97,non-MPR,0.180472838837755,DC1
+P1,non-MPR,0,Migratory DCs
+P103,non-MPR,0.0927152317880795,Migratory DCs
+P106,non-MPR,0.287815797889351,Migratory DCs
+P111,non-MPR,0.145737187272286,Migratory DCs
+P115,MPR,0.479166666666667,Migratory DCs
+P118,MPR,0.225924879977408,Migratory DCs
+P120,non-MPR,0,Migratory DCs
+P124,MPR,0.233501290401868,Migratory DCs
+P127,non-MPR,0.182315405651778,Migratory DCs
+P131,non-MPR,0.438198851616803,Migratory DCs
+P137,non-MPR,0.314317146000314,Migratory DCs
+P150,MPR,0.151377535573721,Migratory DCs
+P159,MPR,0,Migratory DCs
+P16,non-MPR,0.0258264462809917,Migratory DCs
+P164,non-MPR,1.04204096298958,Migratory DCs
+P168,MPR,0.399315459212778,Migratory DCs
+P189,non-MPR,0.113271663205588,Migratory DCs
+P192,MPR,0.392670157068063,Migratory DCs
+P200,MPR,0.245261984392419,Migratory DCs
+P206,non-MPR,1.27659574468085,Migratory DCs
+P207,MPR,0.199004975124378,Migratory DCs
+P22,non-MPR,0.602943784358929,Migratory DCs
+P221,non-MPR,0.287521564117309,Migratory DCs
+P227,MPR,0.0702740688685875,Migratory DCs
+P235,non-MPR,0.145602795573675,Migratory DCs
+P24,non-MPR,0.076816715317253,Migratory DCs
+P247,non-MPR,0.402371876323592,Migratory DCs
+P257,MPR,0.106025799611239,Migratory DCs
+P259,non-MPR,0.246791707798618,Migratory DCs
+P26,non-MPR,0.0674308833445718,Migratory DCs
+P261,non-MPR,0.177809388335704,Migratory DCs
+P264,MPR,0.0651465798045603,Migratory DCs
+P265,non-MPR,0.340831629175187,Migratory DCs
+P277,MPR,0.0918948722661275,Migratory DCs
+P278,MPR,0.43010752688172,Migratory DCs
+P279,non-MPR,0.0461467466543609,Migratory DCs
+P280,non-MPR,0.35036496350365,Migratory DCs
+P281,non-MPR,0.661993769470405,Migratory DCs
+P285,non-MPR,0.165214779212977,Migratory DCs
+P287,non-MPR,0.0485849629539658,Migratory DCs
+P29,non-MPR,0.242772015007725,Migratory DCs
+P3,MPR,0.0258064516129032,Migratory DCs
+P32,non-MPR,0.042420814479638,Migratory DCs
+P322,MPR,0.128555359151535,Migratory DCs
+P323,non-MPR,0.374963945774445,Migratory DCs
+P325,MPR,0.246269737795162,Migratory DCs
+P328,non-MPR,0.19105846388995,Migratory DCs
+P337,MPR,0.0235017626321974,Migratory DCs
+P35,non-MPR,0,Migratory DCs
+P367,MPR,0.21227325357005,Migratory DCs
+P371,non-MPR,0,Migratory DCs
+P380,non-MPR,0.0311138767890479,Migratory DCs
+P387,non-MPR,0.150375939849624,Migratory DCs
+P391,non-MPR,0.181859513525801,Migratory DCs
+P395,non-MPR,0.762555876939258,Migratory DCs
+P4,MPR,0.113071008593397,Migratory DCs
+P403,non-MPR,0.0841750841750842,Migratory DCs
+P405,MPR,0.102014792144861,Migratory DCs
+P414,non-MPR,0.084530853761623,Migratory DCs
+P416,non-MPR,0.571755288736421,Migratory DCs
+P427,MPR,0.0368595650571323,Migratory DCs
+P428,non-MPR,0.260047281323877,Migratory DCs
+P432,non-MPR,0,Migratory DCs
+P435,non-MPR,0.0646830530401035,Migratory DCs
+P45,MPR,0.020708221163802,Migratory DCs
+P453,MPR,0.220091180631976,Migratory DCs
+P454,non-MPR,0.131406044678055,Migratory DCs
+P457,MPR,0.397572713956895,Migratory DCs
+P459,non-MPR,0.191497510532363,Migratory DCs
+P46,MPR,0.114531138153185,Migratory DCs
+P462,non-MPR,0.243416685107325,Migratory DCs
+P463,MPR,0,Migratory DCs
+P464,non-MPR,0.36918533103618,Migratory DCs
+P467,non-MPR,0.430416068866571,Migratory DCs
+P469,MPR,0.100313479623824,Migratory DCs
+P471,non-MPR,0.0883704489218805,Migratory DCs
+P473,non-MPR,0.148809523809524,Migratory DCs
+P477,non-MPR,0.604796663190824,Migratory DCs
+P482,non-MPR,0.686997319034853,Migratory DCs
+P49,non-MPR,0,Migratory DCs
+P490,non-MPR,0.2710027100271,Migratory DCs
+P491,non-MPR,0.517711171662125,Migratory DCs
+P495,non-MPR,0.45662100456621,Migratory DCs
+P496,non-MPR,0,Migratory DCs
+P511,non-MPR,0.0410902616079989,Migratory DCs
+P524,non-MPR,0.154718927282104,Migratory DCs
+P527,non-MPR,0,Migratory DCs
+P540,non-MPR,0.402594497875196,Migratory DCs
+P57,MPR,0.0781616382679381,Migratory DCs
+P58,non-MPR,0.137686860739575,Migratory DCs
+P6,MPR,0.113924050632911,Migratory DCs
+P62,MPR,0.18578727357176,Migratory DCs
+P63,non-MPR,0.116725029181257,Migratory DCs
+P66,non-MPR,0.620636152055857,Migratory DCs
+P69,non-MPR,0.0816104461371056,Migratory DCs
+P73,non-MPR,0.157590614603397,Migratory DCs
+P84,MPR,0.0231160425335183,Migratory DCs
+P90,non-MPR,0.147080453007795,Migratory DCs
+P94,non-MPR,0.103128222756961,Migratory DCs
+P97,non-MPR,0.036094567767551,Migratory DCs
+P1,non-MPR,0.0117054898747513,pDC
+P103,non-MPR,0.225165562913907,pDC
+P106,non-MPR,0.127918132395267,pDC
+P111,non-MPR,0.0242895312120476,pDC
+P115,MPR,0.0833333333333333,pDC
+P118,MPR,0.0564812199943519,pDC
+P120,non-MPR,0,pDC
+P124,MPR,0.479292122403834,pDC
+P127,non-MPR,0.151929504709815,pDC
+P131,non-MPR,0,pDC
+P137,non-MPR,0.0471475719000472,pDC
+P150,MPR,0.787163184983348,pDC
+P159,MPR,0,pDC
+P16,non-MPR,0.671487603305785,pDC
+P164,non-MPR,0.215594681997844,pDC
+P168,MPR,0.171135196805476,pDC
+P189,non-MPR,0.585236926562205,pDC
+P192,MPR,0.0261780104712042,pDC
+P200,MPR,0.111482720178372,pDC
+P206,non-MPR,0,pDC
+P207,MPR,0.729684908789387,pDC
+P22,non-MPR,0.461074658627416,pDC
+P221,non-MPR,0.172512938470385,pDC
+P227,MPR,0.0234246896228625,pDC
+P235,non-MPR,0,pDC
+P24,non-MPR,0.199723459824858,pDC
+P247,non-MPR,0.0847098686997035,pDC
+P257,MPR,0.0176709666018731,pDC
+P259,non-MPR,0.0987166831194472,pDC
+P26,non-MPR,0.0674308833445718,pDC
+P261,non-MPR,0.0355618776671408,pDC
+P264,MPR,0.0325732899022801,pDC
+P265,non-MPR,0.136332651670075,pDC
+P277,MPR,0.514611284690314,pDC
+P278,MPR,0.0537634408602151,pDC
+P279,non-MPR,0.0230733733271804,pDC
+P280,non-MPR,0.583941605839416,pDC
+P281,non-MPR,0.623052959501558,pDC
+P285,non-MPR,0.225292880744968,pDC
+P287,non-MPR,0.230778574031337,pDC
+P29,non-MPR,0.0662105495475612,pDC
+P3,MPR,0.348387096774194,pDC
+P32,non-MPR,0.268665158371041,pDC
+P322,MPR,0.385666077454604,pDC
+P323,non-MPR,0.490337467551197,pDC
+P325,MPR,0.11589164131537,pDC
+P328,non-MPR,0.11463507833397,pDC
+P337,MPR,0.0235017626321974,pDC
+P35,non-MPR,0,pDC
+P367,MPR,0.366653801620996,pDC
+P371,non-MPR,0,pDC
+P380,non-MPR,0.124455507156192,pDC
+P387,non-MPR,0.150375939849624,pDC
+P391,non-MPR,0,pDC
+P395,non-MPR,0.473310544307126,pDC
+P4,MPR,0.158299412030755,pDC
+P403,non-MPR,0.168350168350168,pDC
+P405,MPR,0.0255036980362153,pDC
+P414,non-MPR,0.464919695688927,pDC
+P416,non-MPR,0.343053173241852,pDC
+P427,MPR,0.350165868042757,pDC
+P428,non-MPR,0.236406619385343,pDC
+P432,non-MPR,0,pDC
+P435,non-MPR,0.129366106080207,pDC
+P45,MPR,0.134603437564713,pDC
+P453,MPR,0.644552743279359,pDC
+P454,non-MPR,0.26281208935611,pDC
+P457,MPR,0.836995187277673,pDC
+P459,non-MPR,0.191497510532363,pDC
+P46,MPR,0.0143163922691482,pDC
+P462,non-MPR,0.287674264217747,pDC
+P463,MPR,0,pDC
+P464,non-MPR,0.36918533103618,pDC
+P467,non-MPR,0.430416068866571,pDC
+P469,MPR,0.576802507836991,pDC
+P471,non-MPR,0.159066808059385,pDC
+P473,non-MPR,0.243506493506494,pDC
+P477,non-MPR,0.625651720542232,pDC
+P482,non-MPR,0.485924932975871,pDC
+P49,non-MPR,0,pDC
+P490,non-MPR,0,pDC
+P491,non-MPR,0.408719346049046,pDC
+P495,non-MPR,0.45662100456621,pDC
+P496,non-MPR,0.193423597678917,pDC
+P511,non-MPR,0.520476647034653,pDC
+P524,non-MPR,0.0515729757607014,pDC
+P527,non-MPR,0,pDC
+P540,non-MPR,0.111831804965332,pDC
+P57,MPR,0.156323276535876,pDC
+P58,non-MPR,0.11801730920535,pDC
+P6,MPR,0.20253164556962,pDC
+P62,MPR,0.418021365536461,pDC
+P63,non-MPR,0.200100050025012,pDC
+P66,non-MPR,0.310318076027929,pDC
+P69,non-MPR,0.244831338411317,pDC
+P73,non-MPR,0.367711434074593,pDC
+P84,MPR,0.0693481276005548,pDC
+P90,non-MPR,0.0588321812031181,pDC
+P94,non-MPR,0.154692334135442,pDC
+P97,non-MPR,1.33549900739939,pDC
+P1,non-MPR,0,Mast cells
+P103,non-MPR,0.662251655629139,Mast cells
+P106,non-MPR,1.11928365845859,Mast cells
+P111,non-MPR,0.971581248481904,Mast cells
+P115,MPR,1.04166666666667,Mast cells
+P118,MPR,0.960180739903982,Mast cells
+P120,non-MPR,0,Mast cells
+P124,MPR,0.712793412805702,Mast cells
+P127,non-MPR,1.04831358249772,Mast cells
+P131,non-MPR,1.4052583862194,Mast cells
+P137,non-MPR,1.58730158730159,Mast cells
+P150,MPR,2.603693611868,Mast cells
+P159,MPR,0,Mast cells
+P16,non-MPR,0.0516528925619835,Mast cells
+P164,non-MPR,3.95256916996047,Mast cells
+P168,MPR,1.65430690245294,Mast cells
+P189,non-MPR,1.35925995846706,Mast cells
+P192,MPR,4.3717277486911,Mast cells
+P200,MPR,5.08361204013378,Mast cells
+P206,non-MPR,2.21276595744681,Mast cells
+P207,MPR,9.45273631840796,Mast cells
+P22,non-MPR,1.9507004788083,Mast cells
+P221,non-MPR,9.34445083381254,Mast cells
+P227,MPR,1.85055048020614,Mast cells
+P235,non-MPR,2.64997087944089,Mast cells
+P24,non-MPR,0.184360116761407,Mast cells
+P247,non-MPR,1.10122829309615,Mast cells
+P257,MPR,0.583141897861813,Mast cells
+P259,non-MPR,0.937808489634748,Mast cells
+P26,non-MPR,0.303438975050573,Mast cells
+P261,non-MPR,4.76529160739687,Mast cells
+P264,MPR,1.88925081433225,Mast cells
+P265,non-MPR,7.02113156100886,Mast cells
+P277,MPR,4.88880720455799,Mast cells
+P278,MPR,0.573476702508961,Mast cells
+P279,non-MPR,0.184586986617443,Mast cells
+P280,non-MPR,8.11678832116788,Mast cells
+P281,non-MPR,1.24610591900312,Mast cells
+P285,non-MPR,3.46951036347251,Mast cells
+P287,non-MPR,2.74505040689906,Mast cells
+P29,non-MPR,4.65680865151181,Mast cells
+P3,MPR,0.0387096774193548,Mast cells
+P32,non-MPR,0.678733031674208,Mast cells
+P322,MPR,1.23734533183352,Mast cells
+P323,non-MPR,5.16296509950966,Mast cells
+P325,MPR,1.24583514414023,Mast cells
+P328,non-MPR,2.6748184944593,Mast cells
+P337,MPR,1.52761457109283,Mast cells
+P35,non-MPR,0,Mast cells
+P367,MPR,3.87881126978001,Mast cells
+P371,non-MPR,0,Mast cells
+P380,non-MPR,2.41132545115121,Mast cells
+P387,non-MPR,0.300751879699248,Mast cells
+P391,non-MPR,2.22777904069107,Mast cells
+P395,non-MPR,1.05180120957139,Mast cells
+P4,MPR,0.418362731795568,Mast cells
+P403,non-MPR,6.42536475869809,Mast cells
+P405,MPR,9.79342004590666,Mast cells
+P414,non-MPR,2.74725274725275,Mast cells
+P416,non-MPR,2.97312750142939,Mast cells
+P427,MPR,1.95355694802801,Mast cells
+P428,non-MPR,1.27659574468085,Mast cells
+P432,non-MPR,0,Mast cells
+P435,non-MPR,6.5006468305304,Mast cells
+P45,MPR,0.258852764547525,Mast cells
+P453,MPR,1.27338468794215,Mast cells
+P454,non-MPR,2.73324572930355,Mast cells
+P457,MPR,3.36890562879263,Mast cells
+P459,non-MPR,2.33626962849483,Mast cells
+P46,MPR,0.715819613457409,Mast cells
+P462,non-MPR,3.65125027660987,Mast cells
+P463,MPR,1.85982170304334,Mast cells
+P464,non-MPR,8.6143243908442,Mast cells
+P467,non-MPR,0,Mast cells
+P469,MPR,2.60815047021944,Mast cells
+P471,non-MPR,6.20360551431601,Mast cells
+P473,non-MPR,1.20400432900433,Mast cells
+P477,non-MPR,5.90198123044838,Mast cells
+P482,non-MPR,0.56970509383378,Mast cells
+P49,non-MPR,0,Mast cells
+P490,non-MPR,8.94308943089431,Mast cells
+P491,non-MPR,3.70572207084469,Mast cells
+P495,non-MPR,21.2328767123288,Mast cells
+P496,non-MPR,1.74081237911025,Mast cells
+P511,non-MPR,0.794411724421312,Mast cells
+P524,non-MPR,3.50696235172769,Mast cells
+P527,non-MPR,0,Mast cells
+P540,non-MPR,0.984119883694923,Mast cells
+P57,MPR,2.00093793965922,Mast cells
+P58,non-MPR,1.37686860739575,Mast cells
+P6,MPR,0.455696202531646,Mast cells
+P62,MPR,1.6256386437529,Mast cells
+P63,non-MPR,0.133400033350008,Mast cells
+P66,non-MPR,3.33591931730023,Mast cells
+P69,non-MPR,0.190424374319913,Mast cells
+P73,non-MPR,1.9261075118193,Mast cells
+P84,MPR,0.277392510402219,Mast cells
+P90,non-MPR,0.882482718046772,Mast cells
+P94,non-MPR,0.687521485046408,Mast cells
+P97,non-MPR,0.992600613607652,Mast cells
+P1,non-MPR,9.96137188341332,Memory B cells
+P103,non-MPR,14.6225165562914,Memory B cells
+P106,non-MPR,0,Memory B cells
+P111,non-MPR,27.3743016759777,Memory B cells
+P115,MPR,1.29166666666667,Memory B cells
+P118,MPR,22.8466534877153,Memory B cells
+P120,non-MPR,32.1507760532151,Memory B cells
+P124,MPR,7.41059358485929,Memory B cells
+P127,non-MPR,33.3941051352173,Memory B cells
+P131,non-MPR,2.13055303717135,Memory B cells
+P137,non-MPR,17.4131698884174,Memory B cells
+P150,MPR,20.1332122313049,Memory B cells
+P159,MPR,0,Memory B cells
+P16,non-MPR,17.161673553719,Memory B cells
+P164,non-MPR,11.7139777218829,Memory B cells
+P168,MPR,0,Memory B cells
+P189,non-MPR,10.0056635831603,Memory B cells
+P192,MPR,25.9947643979058,Memory B cells
+P200,MPR,36.5440356744705,Memory B cells
+P206,non-MPR,10.1276595744681,Memory B cells
+P207,MPR,48.5903814262023,Memory B cells
+P22,non-MPR,10.7288526334456,Memory B cells
+P221,non-MPR,0,Memory B cells
+P227,MPR,25.8608573436402,Memory B cells
+P235,non-MPR,26.4414676761794,Memory B cells
+P24,non-MPR,5.82270702104778,Memory B cells
+P247,non-MPR,5.4002541296061,Memory B cells
+P257,MPR,4.80650291570949,Memory B cells
+P259,non-MPR,3.89930898321816,Memory B cells
+P26,non-MPR,0,Memory B cells
+P261,non-MPR,9.35277382645804,Memory B cells
+P264,MPR,25.114006514658,Memory B cells
+P265,non-MPR,18.6094069529652,Memory B cells
+P277,MPR,17.4784047050175,Memory B cells
+P278,MPR,6.84587813620072,Memory B cells
+P279,non-MPR,47.0004614674665,Memory B cells
+P280,non-MPR,20.3211678832117,Memory B cells
+P281,non-MPR,11.4096573208723,Memory B cells
+P285,non-MPR,67.9633523580655,Memory B cells
+P287,non-MPR,16.8589821450261,Memory B cells
+P29,non-MPR,13.2200397263297,Memory B cells
+P3,MPR,24.1032258064516,Memory B cells
+P32,non-MPR,11.8071266968326,Memory B cells
+P322,MPR,22.7703679897156,Memory B cells
+P323,non-MPR,4.49956734929334,Memory B cells
+P325,MPR,4.69361147327249,Memory B cells
+P328,non-MPR,14.6732900267482,Memory B cells
+P337,MPR,21.8096357226792,Memory B cells
+P35,non-MPR,26.1492648427322,Memory B cells
+P367,MPR,1.46661520648398,Memory B cells
+P371,non-MPR,0,Memory B cells
+P380,non-MPR,53.3758556316117,Memory B cells
+P387,non-MPR,9.69924812030075,Memory B cells
+P391,non-MPR,5.68310979768129,Memory B cells
+P395,non-MPR,14.0941362082566,Memory B cells
+P4,MPR,3.31298055178652,Memory B cells
+P403,non-MPR,21.7732884399551,Memory B cells
+P405,MPR,4.31012496812038,Memory B cells
+P414,non-MPR,11.5807269653424,Memory B cells
+P416,non-MPR,10.4631217838765,Memory B cells
+P427,MPR,11.8687799483966,Memory B cells
+P428,non-MPR,2.57683215130024,Memory B cells
+P432,non-MPR,16.2688442211055,Memory B cells
+P435,non-MPR,0.937904269081501,Memory B cells
+P45,MPR,15.065230896666,Memory B cells
+P453,MPR,6.86998899544097,Memory B cells
+P454,non-MPR,9.77660972404731,Memory B cells
+P457,MPR,14.0824440259469,Memory B cells
+P459,non-MPR,2.41286863270777,Memory B cells
+P46,MPR,17.7380100214746,Memory B cells
+P462,non-MPR,6.37309139190086,Memory B cells
+P463,MPR,62.2041192745158,Memory B cells
+P464,non-MPR,18.7792271720404,Memory B cells
+P467,non-MPR,0,Memory B cells
+P469,MPR,19.448275862069,Memory B cells
+P471,non-MPR,18.9819724284199,Memory B cells
+P473,non-MPR,29.0178571428572,Memory B cells
+P477,non-MPR,9.30135557872784,Memory B cells
+P482,non-MPR,30.8646112600536,Memory B cells
+P49,non-MPR,0,Memory B cells
+P490,non-MPR,0,Memory B cells
+P491,non-MPR,2.64305177111717,Memory B cells
+P495,non-MPR,0,Memory B cells
+P496,non-MPR,0,Memory B cells
+P511,non-MPR,27.4893850157513,Memory B cells
+P524,non-MPR,27.7462609592574,Memory B cells
+P527,non-MPR,8.62628447809627,Memory B cells
+P540,non-MPR,10.5569223887274,Memory B cells
+P57,MPR,19.9468500859778,Memory B cells
+P58,non-MPR,3.6191974822974,Memory B cells
+P6,MPR,4.9746835443038,Memory B cells
+P62,MPR,7.15281003251277,Memory B cells
+P63,non-MPR,2.56795064198766,Memory B cells
+P66,non-MPR,19.7569175071115,Memory B cells
+P69,non-MPR,7.23612622415669,Memory B cells
+P73,non-MPR,4.9903694624409,Memory B cells
+P84,MPR,47.7115117891817,Memory B cells
+P90,non-MPR,11.075158111487,Memory B cells
+P94,non-MPR,0,Memory B cells
+P97,non-MPR,12.4526258798051,Memory B cells
+P1,non-MPR,0.37457567599204,Plasma cells
+P103,non-MPR,0.754966887417219,Plasma cells
+P106,non-MPR,0,Plasma cells
+P111,non-MPR,1.09302890454214,Plasma cells
+P115,MPR,0.1875,Plasma cells
+P118,MPR,1.89212086981079,Plasma cells
+P120,non-MPR,4.87804878048781,Plasma cells
+P124,MPR,0.245790832001966,Plasma cells
+P127,non-MPR,1.59525979945305,Plasma cells
+P131,non-MPR,0.271985494106981,Plasma cells
+P137,non-MPR,1.66588087380167,Plasma cells
+P150,MPR,0.454132606721163,Plasma cells
+P159,MPR,0,Plasma cells
+P16,non-MPR,1.48502066115703,Plasma cells
+P164,non-MPR,2.55120373697449,Plasma cells
+P168,MPR,0,Plasma cells
+P189,non-MPR,0.207664715876911,Plasma cells
+P192,MPR,0.942408376963351,Plasma cells
+P200,MPR,0.824972129319955,Plasma cells
+P206,non-MPR,14.8085106382979,Plasma cells
+P207,MPR,0.232172470978441,Plasma cells
+P22,non-MPR,0.922149317254832,Plasma cells
+P221,non-MPR,0,Plasma cells
+P227,MPR,1.59287889435465,Plasma cells
+P235,non-MPR,1.63075131042516,Plasma cells
+P24,non-MPR,0.737440467045629,Plasma cells
+P247,non-MPR,0.232952138924185,Plasma cells
+P257,MPR,0.777522530482417,Plasma cells
+P259,non-MPR,6.786771964462,Plasma cells
+P26,non-MPR,0,Plasma cells
+P261,non-MPR,7.32574679943101,Plasma cells
+P264,MPR,2.11726384364821,Plasma cells
+P265,non-MPR,6.33946830265849,Plasma cells
+P277,MPR,1.69086564969675,Plasma cells
+P278,MPR,0.967741935483871,Plasma cells
+P279,non-MPR,1.70742962621135,Plasma cells
+P280,non-MPR,5.10948905109489,Plasma cells
+P281,non-MPR,4.71183800623053,Plasma cells
+P285,non-MPR,0.105136677680985,Plasma cells
+P287,non-MPR,0.485849629539658,Plasma cells
+P29,non-MPR,1.83182520414919,Plasma cells
+P3,MPR,2.94193548387097,Plasma cells
+P32,non-MPR,2.27658371040724,Plasma cells
+P322,MPR,1.02844287321228,Plasma cells
+P323,non-MPR,6.08595327372368,Plasma cells
+P325,MPR,0.318702013617268,Plasma cells
+P328,non-MPR,3.74474589224303,Plasma cells
+P337,MPR,7.49706227967098,Plasma cells
+P35,non-MPR,3.83398473850735,Plasma cells
+P367,MPR,0.906985719799305,Plasma cells
+P371,non-MPR,0,Plasma cells
+P380,non-MPR,1.89794648413192,Plasma cells
+P387,non-MPR,2.63157894736842,Plasma cells
+P391,non-MPR,1.93225733121164,Plasma cells
+P395,non-MPR,1.44622666316066,Plasma cells
+P4,MPR,0.429669832654907,Plasma cells
+P403,non-MPR,2.35690235690236,Plasma cells
+P405,MPR,0.637592450905381,Plasma cells
+P414,non-MPR,9.42519019442096,Plasma cells
+P416,non-MPR,1.71526586620926,Plasma cells
+P427,MPR,0.497604128271286,Plasma cells
+P428,non-MPR,0.591016548463357,Plasma cells
+P432,non-MPR,3.07788944723618,Plasma cells
+P435,non-MPR,3.10478654592497,Plasma cells
+P45,MPR,6.02609235866639,Plasma cells
+P453,MPR,5.36079232825028,Plasma cells
+P454,non-MPR,1.99737187910644,Plasma cells
+P457,MPR,1.48566645741787,Plasma cells
+P459,non-MPR,0.536193029490617,Plasma cells
+P46,MPR,2.41947029348604,Plasma cells
+P462,non-MPR,16.1761451648595,Plasma cells
+P463,MPR,0.537964955425761,Plasma cells
+P464,non-MPR,4.08565099680039,Plasma cells
+P467,non-MPR,0,Plasma cells
+P469,MPR,1.68025078369906,Plasma cells
+P471,non-MPR,1.13114174620007,Plasma cells
+P473,non-MPR,0.487012987012987,Plasma cells
+P477,non-MPR,0.125130344108446,Plasma cells
+P482,non-MPR,14.1923592493298,Plasma cells
+P49,non-MPR,0,Plasma cells
+P490,non-MPR,0,Plasma cells
+P491,non-MPR,1.74386920980926,Plasma cells
+P495,non-MPR,0,Plasma cells
+P496,non-MPR,0,Plasma cells
+P511,non-MPR,4.9856184084372,Plasma cells
+P524,non-MPR,1.95977307890665,Plasma cells
+P527,non-MPR,1.27095727420227,Plasma cells
+P540,non-MPR,5.34556027734288,Plasma cells
+P57,MPR,2.07909957792715,Plasma cells
+P58,non-MPR,1.04248623131393,Plasma cells
+P6,MPR,0.79746835443038,Plasma cells
+P62,MPR,31.4909428704134,Plasma cells
+P63,non-MPR,6.60330165082541,Plasma cells
+P66,non-MPR,1.3188518231187,Plasma cells
+P69,non-MPR,1.19695321001088,Plasma cells
+P73,non-MPR,0.507791980388723,Plasma cells
+P84,MPR,0.624133148404993,Plasma cells
+P90,non-MPR,1.11781144285924,Plasma cells
+P94,non-MPR,0,Plasma cells
+P97,non-MPR,1.6964446850749,Plasma cells

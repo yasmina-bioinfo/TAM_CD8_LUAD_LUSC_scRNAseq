@@ -1,0 +1,51 @@
+cluster	gene	avg_log2FC
+Regulatory T cells	FOXP3	1.8311147694103176
+Regulatory T cells	TNFRSF18	2.095771671904865
+Regulatory T cells	IL32	0.8124450282158078
+Regulatory T cells	CTLA4	1.216361942763649
+Regulatory T cells	CTSC	1.5107910683530497
+Regulatory T cells	LAYN	2.7982561367346155
+Regulatory T cells	CD7	1.0877228361477758
+Regulatory T cells	CARD16	1.206951239212537
+Regulatory T cells	CCR8	3.0012148383706396
+Regulatory T cells	GAPDH	0.8442065888268857
+Tem/Effector helper T cells	KLF2	1.479703827673958
+Tem/Effector helper T cells	CCR7	1.7651197070229627
+Tem/Effector helper T cells	RPS12	0.6083640542368078
+Tem/Effector helper T cells	FTH1	0.8432720278976813
+Tem/Effector helper T cells	RPL32	0.4843393088895924
+Tem/Effector helper T cells	RPL30	0.45314358667703214
+Tem/Effector helper T cells	PABPC1	0.7764720549965558
+Tem/Effector helper T cells	RPS18	0.5147459548464655
+Tem/Effector helper T cells	RPL39	0.4537104648666661
+Tem/Effector helper T cells	RPL13	0.4168374145520364
+Tem/Trm cytotoxic T cells	GZMK	4.608345674774191
+Tem/Trm cytotoxic T cells	GZMA	2.8348910270508565
+Tem/Trm cytotoxic T cells	CCL5	2.802471110573459
+Tem/Trm cytotoxic T cells	RPS12	0.3260347005332216
+Tem/Trm cytotoxic T cells	RPL10	0.3575309378404663
+Tem/Trm cytotoxic T cells	RPS3A	0.42845345449658634
+Tem/Trm cytotoxic T cells	RPS3	0.328094334335578
+Tem/Trm cytotoxic T cells	RPS25	0.35548483651394136
+Tem/Trm cytotoxic T cells	RPS15A	0.29914382716749177
+Tem/Trm cytotoxic T cells	GIMAP7	1.0911397021421467
+Tcm/Naive helper T cells	RPS12	0.9782703911658821
+Tcm/Naive helper T cells	RPS18	0.9252620520268175
+Tcm/Naive helper T cells	RPL13	0.7967056598395548
+Tcm/Naive helper T cells	RPS27A	0.7951491920186546
+Tcm/Naive helper T cells	RPL3	0.8571770333901974
+Tcm/Naive helper T cells	RPL11	0.7832645416158055
+Tcm/Naive helper T cells	RPL34	0.8303621257235809
+Tcm/Naive helper T cells	RPS3	0.7862902147394051
+Tcm/Naive helper T cells	RPS23	0.7400161498078273
+Tcm/Naive helper T cells	RPL32	0.8112928046776942
+Type 1 helper T cells	HSPA6	3.905014738120351
+Type 1 helper T cells	ZFAND2A	2.3988110929827386
+Type 1 helper T cells	HSPA1B	1.7601048076593697
+Type 1 helper T cells	DNAJB1	1.6675721968288997
+Type 1 helper T cells	HSPA1A	1.5794377847909233
+Type 1 helper T cells	HSPB1	1.8280373779525134
+Type 1 helper T cells	BAG3	2.446805150639884
+Type 1 helper T cells	JUN	1.139048736519932
+Type 1 helper T cells	ANXA1	2.520116813040116
+Type 1 helper T cells	FKBP4	1.5924249009638871

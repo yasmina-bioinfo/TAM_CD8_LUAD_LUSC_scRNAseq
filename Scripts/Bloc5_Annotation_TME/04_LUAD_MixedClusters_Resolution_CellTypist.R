@@ -1,20 +1,18 @@
 #!/usr/bin/env Rscript
 # ============================================================
-# GSE243013 — Bloc5_Annotation_TME, Script 04: Resolve mixed clusters (LUAD, CellTypist)
-# Replaces the SingleR-based version (03_LUAD_MixedClusters_Resolution_SingleR.R,
-# archived) after switching to CellTypist for cell-level cross-check —
-# CellTypist trained on a multi-tissue atlas gave clearer separation for
-# closely related T-cell states than a peripheral-blood-only reference.
-# Systematic per-cluster CellTypist_majority concordance check (all 17
-# clusters) identified 5 clusters below the ~95% single-family threshold:
-# 1, 2, 3, 6, 11.
-# For each target cluster, isolates cells, groups them by their individual
+# GSE243013 — Bloc5_Annotation_TME, Script 03: Resolve all clusters (LUAD)
+# Corrected cohort (173 patients). Applied uniformly to all 20 clusters
+# (not just those below a proportion threshold) verifying every
+# CellTypist_majority subgroup individually against its official marker,
+# regardless of its proportion within the parent cluster, avoids the
+# subjectivity of choosing a grouping level (e.g. CD4 vs CD8, Treg vs Th)
+# for a percentage-based threshold.
+# For each cluster, isolates cells, groups them by their individual
 # CellTypist_majority label (labels below MIN_CELLS excluded as noise),
 # and runs FindAllMarkers to reveal actual differential markers between
-# groups — cross-checked against CellTypist's own author-curated marker
-# set per label, rather than trusting the label name alone.
-# Input:  Objects/03_LUAD_seu_celltypist.rds
-# Output: Results/Bloc5_Annotation_TME/Tables/04_LUAD_cluster<N>_markers.tsv
+# groups.
+# Input:  Objects/03_LUAD_seu_celltypist.rds (post-CellTypist import)
+# Output: Results/Bloc5_Annotation_TME/Tables/03_LUAD_cluster<N>_markers.tsv
 # ============================================================
 suppressPackageStartupMessages({
   library(here)
@@ -27,16 +25,14 @@ IN_OBJ  <- here("Objects", "03_LUAD_seu_celltypist.rds")
 OUT_TAB <- here("Results", "Bloc5_Annotation_TME", "Tables")
 dir.create(OUT_TAB, showWarnings = FALSE, recursive = TRUE)
 
-message("Loading CellTypist-annotated Seurat object...")
+message("Loading annotated Seurat object...")
 seu <- readRDS(IN_OBJ)
 message("Cells: ", ncol(seu), " | Clusters: ", length(levels(seu$seurat_clusters)))
 
-MIN_CELLS <- 50
+MIN_CELLS <- 30
 
-# Target clusters identified via systematic CellTypist_majority concordance
-# check on ALL 17 clusters (see 03_LUAD_celltypist_per_cluster.csv) — below
-# ~95% concordance in a single biological family, no gray zone tolerated.
-TARGET_CLUSTERS <- c("1", "2", "3", "6", "11")
+# All 20 clusters
+TARGET_CLUSTERS <- as.character(0:19)
 
 for (cl in TARGET_CLUSTERS) {
   
@@ -59,6 +55,10 @@ for (cl in TARGET_CLUSTERS) {
                                 min.pct = 0.25, logfc.threshold = 0.25)
   message("Total markers found: ", nrow(markers_sub))
   
+  if (nrow(markers_sub) == 0) {
+    message("No markers found for cluster ", cl, " — skipping top10 extraction.")
+    next
+  }
   top10_sub <- markers_sub %>%
     group_by(cluster) %>%
     slice_head(n = 10) %>%
@@ -66,11 +66,11 @@ for (cl in TARGET_CLUSTERS) {
     ungroup()
   
   write_tsv(markers_sub, file.path(OUT_TAB,
-                                   paste0("04_LUAD_cluster", cl, "_markers_CellTypist_all.tsv")))
+                                   paste0("03_LUAD_cluster", cl, "_markers_all.tsv")))
   write_tsv(top10_sub, file.path(OUT_TAB,
-                                 paste0("04_LUAD_cluster", cl, "_markers_CellTypist_top10.tsv")))
+                                 paste0("03_LUAD_cluster", cl, "_markers_top10.tsv")))
   
   message("Saved: cluster ", cl, " markers tables")
 }
 
-message("DONE Script 04 — LUAD mixed cluster resolution (CellTypist)")
+message("DONE Script 03 — LUAD full cluster resolution")

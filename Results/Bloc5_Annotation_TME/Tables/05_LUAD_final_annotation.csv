@@ -1,44 +1,86 @@
 annotation_final,n_cells
-CD16- NK cells,155
-CD16+ NK cells,3762
-Classical monocytes,13212
-CRTAM+ gamma-delta T cells,2366
-DC2,10089
-Germinal center B cells,526
-ILC3,1031
-Macrophages,19238
-MAIT cells,1763
-Mast cells,3980
-Memory B cells,60177
-"Other (mixed, minor)",734
-"Other/contamination (cluster 11, CellTypist label: Epithelial cells)",98
-"Other/contamination (cluster 2, CellTypist label: NK cells)",107
-"Other/contamination (cluster 3, CellTypist label: NK cells)",70
-"Other/contamination (cluster 6, CellTypist label: NK cells)",546
-pDC,675
-Plasma cells,8044
-Plasmablasts,200
-Proliferative germinal center B cells,261
-Regulatory T cells,46020
-Tem/Effector helper T cells,2804
-Tem/Temra cytotoxic T cells,2635
-Tem/Trm cytotoxic T cells,55018
-Trm cytotoxic T cells,129
-"Unresolved (cluster 1, CellTypist label: Follicular helper T cells)",850
-"Unresolved (cluster 1, CellTypist label: Tcm/Naive helper T cells)",3188
-"Unresolved (cluster 1, CellTypist label: Tem/Effector helper T cells)",18676
-"Unresolved (cluster 1, CellTypist label: Type 1 helper T cells)",1577
-"Unresolved (cluster 11, CellTypist label: Age-associated B cells)",51
-"Unresolved (cluster 11, CellTypist label: gamma-delta T cells)",150
-"Unresolved (cluster 11, CellTypist label: Plasmablasts)",1546
-"Unresolved (cluster 2, CellTypist label: Tcm/Naive helper T cells)",149
-"Unresolved (cluster 2, CellTypist label: Trm cytotoxic T cells)",2026
-"Unresolved (cluster 2, CellTypist label: Type 1 helper T cells)",333
-"Unresolved (cluster 3, CellTypist label: gamma-delta T cells)",177
-"Unresolved (cluster 3, CellTypist label: Tem/Effector helper T cells)",239
-"Unresolved (cluster 3, CellTypist label: Trm cytotoxic T cells)",1685
-"Unresolved (cluster 3, CellTypist label: Type 1 helper T cells)",59
-"Unresolved (cluster 6, CellTypist label: CD16- NK cells)",3246
-"Unresolved (cluster 6, CellTypist label: gamma-delta T cells)",745
-"Unresolved (cluster 6, CellTypist label: Tem/Effector helper T cells)",128
-"Unresolved (cluster 6, CellTypist label: Trm cytotoxic T cells)",150
+Age-associated B cells,1174
+CD16+ NK cells,3677
+Classical monocytes,5342
+CRTAM+ gamma-delta T cells,2650
+DC1,669
+DC2,5182
+gamma-delta T cells,174
+Macrophages,11226
+MAIT cells,2112
+Memory B cells,44
+Migratory DCs,607
+NK cells,47
+Non-classical monocytes,39
+"Other (mixed, minor)",4780
+"Other/contamination (cluster 11, CellTypist label: Epithelial cells)",100
+"Other/contamination (cluster 3, CellTypist label: Epithelial cells)",47
+Plasma cells,7403
+Plasmablasts,161
+Regulatory T cells,31814
+Tcm/Naive helper T cells,2594
+Tem/Effector helper T cells,2914
+Tem/Temra cytotoxic T cells,121
+Tem/Trm cytotoxic T cells,55720
+"Unresolved (cluster 0, CellTypist label: Germinal center B cells)",60
+"Unresolved (cluster 0, CellTypist label: Memory B cells)",53945
+"Unresolved (cluster 0, CellTypist label: Naive B cells)",3288
+"Unresolved (cluster 1, CellTypist label: CD16- NK cells)",68
+"Unresolved (cluster 1, CellTypist label: CD16+ NK cells)",31
+"Unresolved (cluster 1, CellTypist label: NK cells)",130
+"Unresolved (cluster 1, CellTypist label: Trm cytotoxic T cells)",1911
+"Unresolved (cluster 1, CellTypist label: Type 1 helper T cells)",252
+"Unresolved (cluster 10, CellTypist label: Alveolar macrophages)",263
+"Unresolved (cluster 10, CellTypist label: DC)",994
+"Unresolved (cluster 10, CellTypist label: Intermediate macrophages)",450
+"Unresolved (cluster 11, CellTypist label: Age-associated B cells)",38
+"Unresolved (cluster 11, CellTypist label: CD16- NK cells)",40
+"Unresolved (cluster 11, CellTypist label: Germinal center B cells)",89
+"Unresolved (cluster 11, CellTypist label: Plasmablasts)",956
+"Unresolved (cluster 11, CellTypist label: Proliferative germinal center B cells)",229
+"Unresolved (cluster 13, CellTypist label: Alveolar macrophages)",55
+"Unresolved (cluster 13, CellTypist label: DC)",434
+"Unresolved (cluster 13, CellTypist label: Intermediate macrophages)",96
+"Unresolved (cluster 13, CellTypist label: Plasmablasts)",55
+"Unresolved (cluster 14, CellTypist label: gamma-delta T cells)",73
+"Unresolved (cluster 14, CellTypist label: ILC3)",880
+"Unresolved (cluster 14, CellTypist label: Tem/Effector helper T cells)",91
+"Unresolved (cluster 15, CellTypist label: Regulatory T cells)",159
+"Unresolved (cluster 15, CellTypist label: Tem/Effector helper T cells)",306
+"Unresolved (cluster 16, CellTypist label: DC2)",32
+"Unresolved (cluster 16, CellTypist label: pDC)",588
+"Unresolved (cluster 17, CellTypist label: Germinal center B cells)",458
+"Unresolved (cluster 17, CellTypist label: Naive B cells)",40
+"Unresolved (cluster 18, CellTypist label: Plasma cells)",33
+"Unresolved (cluster 2, CellTypist label: CD16- NK cells)",61
+"Unresolved (cluster 2, CellTypist label: NK cells)",142
+"Unresolved (cluster 2, CellTypist label: Tem/Temra cytotoxic T cells)",60
+"Unresolved (cluster 2, CellTypist label: Trm cytotoxic T cells)",1523
+"Unresolved (cluster 3, CellTypist label: Follicular helper T cells)",720
+"Unresolved (cluster 3, CellTypist label: ILC3)",35
+"Unresolved (cluster 3, CellTypist label: Tem/Effector helper T cells)",14696
+"Unresolved (cluster 3, CellTypist label: Trm cytotoxic T cells)",390
+"Unresolved (cluster 3, CellTypist label: Type 1 helper T cells)",1128
+"Unresolved (cluster 4, CellTypist label: Alveolar macrophages)",5933
+"Unresolved (cluster 4, CellTypist label: Intermediate macrophages)",5575
+"Unresolved (cluster 4, CellTypist label: Non-classical monocytes)",30
+"Unresolved (cluster 5, CellTypist label: Tcm/Naive helper T cells)",82
+"Unresolved (cluster 5, CellTypist label: Tem/Effector helper T cells)",634
+"Unresolved (cluster 5, CellTypist label: Type 1 helper T cells)",54
+"Unresolved (cluster 6, CellTypist label: Follicular helper T cells)",153
+"Unresolved (cluster 6, CellTypist label: Regulatory T cells)",12204
+"Unresolved (cluster 6, CellTypist label: Tcm/Naive helper T cells)",140
+"Unresolved (cluster 6, CellTypist label: Tem/Effector helper T cells)",1076
+"Unresolved (cluster 6, CellTypist label: Type 1 helper T cells)",175
+"Unresolved (cluster 7, CellTypist label: CD16- NK cells)",2362
+"Unresolved (cluster 7, CellTypist label: gamma-delta T cells)",567
+"Unresolved (cluster 7, CellTypist label: ILC3)",115
+"Unresolved (cluster 7, CellTypist label: NK cells)",982
+"Unresolved (cluster 7, CellTypist label: Tem/Temra cytotoxic T cells)",2243
+"Unresolved (cluster 7, CellTypist label: Trm cytotoxic T cells)",234
+"Unresolved (cluster 8, CellTypist label: Alveolar macrophages)",1113
+"Unresolved (cluster 8, CellTypist label: DC2)",206
+"Unresolved (cluster 8, CellTypist label: Intermediate macrophages)",2145
+"Unresolved (cluster 8, CellTypist label: Non-classical monocytes)",1186
+"Unresolved (cluster 8, CellTypist label: Regulatory T cells)",38
+"Unresolved (cluster 9, CellTypist label: Memory B cells)",31

@@ -34,6 +34,15 @@ message("Cells: ", ncol(seu), " | Genes: ", nrow(seu))
 # -----------------------------
 data_matrix <- GetAssayData(seu, layer = "data")
 message("Matrix class: ", class(data_matrix)[1])
+
+# Force materialization to an in-memory sparse matrix if the layer is
+# still backed by a lazy/disk-linked object (e.g. class "RenameDims"),
+# which lacks a max() method and would fail the sanity check below.
+if (!inherits(data_matrix, "dgCMatrix")) {
+  message("Converting to dgCMatrix...")
+  data_matrix <- as(data_matrix, "dgCMatrix")
+}
+
 message("Matrix dims: ", nrow(data_matrix), " genes x ", ncol(data_matrix), " cells")
 
 # Sanity check before export: confirm this is log-normalized (not raw

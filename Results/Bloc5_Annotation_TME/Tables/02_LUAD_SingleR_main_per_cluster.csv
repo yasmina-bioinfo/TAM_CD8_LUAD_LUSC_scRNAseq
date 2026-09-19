@@ -1,110 +1,120 @@
 Cluster,SingleR,Freq
-0,B cells,60106
-1,B cells,222
-2,B cells,61
-3,B cells,15
-4,B cells,347
-5,B cells,8
-6,B cells,55
-7,B cells,5
-8,B cells,94
-9,B cells,42
-10,B cells,8025
-11,B cells,505
+0,B cells,58429
+1,B cells,63
+2,B cells,14
+3,B cells,184
+4,B cells,12
+5,B cells,337
+6,B cells,110
+7,B cells,10
+8,B cells,4
+9,B cells,7425
+10,B cells,41
+11,B cells,500
 12,B cells,8
-13,B cells,13
-15,B cells,526
-16,B cells,194
-1,Basophils,3
-6,Basophils,5
+13,B cells,10
+14,B cells,38
+15,B cells,1
+17,B cells,519
+18,B cells,190
+3,Basophils,3
 11,Basophils,1
-12,Basophils,3790
-1,CD4+ T cells,25043
-2,CD4+ T cells,269
-3,CD4+ T cells,62
-4,CD4+ T cells,18367
-6,CD4+ T cells,30
-7,CD4+ T cells,7
-8,CD4+ T cells,8246
+12,Basophils,3751
+14,Basophils,7
+1,CD4+ T cells,395
+2,CD4+ T cells,50
+3,CD4+ T cells,20298
+5,CD4+ T cells,17770
+6,CD4+ T cells,11339
+7,CD4+ T cells,1
+8,CD4+ T cells,7
 9,CD4+ T cells,2
 10,CD4+ T cells,2
-11,CD4+ T cells,1233
+11,CD4+ T cells,1220
 12,CD4+ T cells,2
 13,CD4+ T cells,2
+14,CD4+ T cells,29
+15,CD4+ T cells,270
 0,CD8+ T cells,1
-1,CD8+ T cells,2638
-2,CD8+ T cells,15383
-3,CD8+ T cells,10424
-4,CD8+ T cells,202
-6,CD8+ T cells,970
-7,CD8+ T cells,1
-8,CD8+ T cells,555
-9,CD8+ T cells,1
-11,CD8+ T cells,1011
-13,CD8+ T cells,9
+1,CD8+ T cells,13383
+2,CD8+ T cells,11116
+3,CD8+ T cells,2099
+5,CD8+ T cells,198
+6,CD8+ T cells,553
+7,CD8+ T cells,922
+8,CD8+ T cells,1
+9,CD8+ T cells,2
+10,CD8+ T cells,1
+11,CD8+ T cells,963
+13,CD8+ T cells,10
 14,CD8+ T cells,1
-0,Dendritic cells,42
-1,Dendritic cells,33
-2,Dendritic cells,1
-4,Dendritic cells,7
-5,Dendritic cells,1689
-6,Dendritic cells,30
-7,Dendritic cells,307
-8,Dendritic cells,2
-9,Dendritic cells,6894
-10,Dendritic cells,7
-11,Dendritic cells,131
-12,Dendritic cells,48
-13,Dendritic cells,615
-14,Dendritic cells,667
-0,Monocytes,21
-1,Monocytes,17
-2,Monocytes,3
-4,Monocytes,7
-5,Monocytes,15968
-6,Monocytes,4
-7,Monocytes,11253
-8,Monocytes,2
-9,Monocytes,3134
-10,Monocytes,1
-11,Monocytes,260
-12,Monocytes,42
-13,Monocytes,629
-14,Monocytes,3
-16,Monocytes,1
-7,Neutrophils,1634
+15,CD8+ T cells,286
+16,CD8+ T cells,1
+0,Dendritic cells,41
+1,Dendritic cells,1
+3,Dendritic cells,33
+4,Dendritic cells,1905
+5,Dendritic cells,7
+6,Dendritic cells,2
+8,Dendritic cells,239
+9,Dendritic cells,7
+10,Dendritic cells,6067
+11,Dendritic cells,137
+12,Dendritic cells,30
+13,Dendritic cells,887
+14,Dendritic cells,34
+16,Dendritic cells,628
+0,Monocytes,23
+1,Monocytes,1
+3,Monocytes,14
+4,Monocytes,19237
+5,Monocytes,8
+6,Monocytes,2
+8,Monocytes,9378
+9,Monocytes,4
+10,Monocytes,1139
+11,Monocytes,164
+12,Monocytes,41
+13,Monocytes,890
+14,Monocytes,6
+18,Monocytes,1
+19,Monocytes,183
+8,Neutrophils,1634
 12,Neutrophils,3
-13,Neutrophils,1
-1,NK cells,23
-2,NK cells,167
-3,NK cells,113
-4,NK cells,1
-6,NK cells,7640
-8,NK cells,11
-9,NK cells,3
-11,NK cells,296
-13,NK cells,1
-16,NK cells,2
+1,NK cells,155
+2,NK cells,161
+3,NK cells,22
+5,NK cells,1
+6,NK cells,8
+7,NK cells,6953
+10,NK cells,2
+11,NK cells,299
+14,NK cells,441
+15,NK cells,6
+18,NK cells,2
 0,Progenitors,1
-1,Progenitors,13
-6,Progenitors,41
-9,Progenitors,2
-10,Progenitors,7
-11,Progenitors,19
-12,Progenitors,86
-13,Progenitors,1
-14,Progenitors,4
+3,Progenitors,13
+8,Progenitors,1
+9,Progenitors,7
+10,Progenitors,2
+11,Progenitors,20
+12,Progenitors,84
+14,Progenitors,43
+16,Progenitors,1
 0,T cells,6
-1,T cells,9078
-2,T cells,18820
-3,T cells,18978
-4,T cells,551
-6,T cells,5837
-7,T cells,5
-8,T cells,2010
-9,T cells,11
-10,T cells,2
-11,T cells,2925
+1,T cells,18139
+2,T cells,19749
+3,T cells,7686
+4,T cells,1
+5,T cells,599
+6,T cells,2257
+7,T cells,4713
+8,T cells,7
+9,T cells,2
+10,T cells,11
+11,T cells,2843
 12,T cells,1
-13,T cells,15
-16,T cells,3
+13,T cells,14
+14,T cells,580
+15,T cells,514
+18,T cells,3

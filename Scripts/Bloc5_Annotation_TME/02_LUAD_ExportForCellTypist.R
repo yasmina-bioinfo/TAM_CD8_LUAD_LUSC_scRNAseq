@@ -3,8 +3,8 @@
 # GSE243013 — Bloc5_Annotation_TME, Script 02: Export for CellTypist (LUAD)
 # Replaces the previous SingleR-based cross-check (MonacoImmuneData),
 # found insufficiently robust to distinguish closely related T cell
-# states (Th1/Th17/Tfh/MAIT) — see CAHIER_METHODOLOGIQUE.md. Manual
-# export (MatrixMarket format) chosen over an automated Seurat->AnnData
+# states (Th1/Th17/Tfh/MAIT). Manual export (MatrixMarket format) chosen over an
+# automated Seurat->AnnData
 # converter (e.g. SeuratDisk), to keep every step inspectable rather than
 # relying on a black-box conversion — SeuratDisk has known compatibility
 # issues with Seurat v5 objects in the community.

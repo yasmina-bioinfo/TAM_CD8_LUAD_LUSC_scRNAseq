@@ -38,8 +38,7 @@ MIN_CELLS <- 50
 
 # Full extended target list: 6 and 11 (originally identified), plus
 # 1, 2, 3, 8, 12 (found on systematic re-check of all 17 clusters'
-# SingleR_fine distribution — see CAHIER_METHODOLOGIQUE.md for the
-# concordance table that led to this correction). No threshold exception
+# SingleR_fine distribution. No threshold exception
 # made for clusters close to 95% (e.g. cluster 3 at 83.9%).
 TARGET_CLUSTERS <- c("1", "2", "3", "6", "8", "11", "12")
 

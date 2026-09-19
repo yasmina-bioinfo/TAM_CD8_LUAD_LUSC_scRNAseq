@@ -1,0 +1,31 @@
+cluster	gene	avg_log2FC
+Tem/Trm cytotoxic T cells	CCL5	1.005241590791334
+Tem/Trm cytotoxic T cells	GZMK	2.4540360542244093
+Tem/Trm cytotoxic T cells	NKG7	1.1886175068643792
+Tem/Trm cytotoxic T cells	CCL4	1.7949013066395882
+Tem/Trm cytotoxic T cells	GZMA	1.0453850411768215
+Tem/Trm cytotoxic T cells	CST7	1.521462700395304
+Tem/Trm cytotoxic T cells	CD8A	0.9561919159059276
+Tem/Trm cytotoxic T cells	GZMH	1.4479915928599343
+Tem/Trm cytotoxic T cells	LAG3	0.8439010228203163
+Tem/Trm cytotoxic T cells	CCL4L2	1.5287942238783754
+Regulatory T cells	CXCL13	3.2571053133747307
+Regulatory T cells	LAYN	3.501797243330656
+Regulatory T cells	GZMB	1.8910883976949302
+Regulatory T cells	TNFRSF18	2.65905508056795
+Regulatory T cells	TIGIT	1.5832136505290042
+Regulatory T cells	CD7	1.3111616830334554
+Regulatory T cells	GAPDH	0.9901538212148049
+Regulatory T cells	HAVCR2	1.9148151863087886
+Regulatory T cells	ZNF683	1.9637533743863065
+Regulatory T cells	RPS26	1.009778964870522
+Tem/Effector helper T cells	IL7R	1.6898670300138163
+Tem/Effector helper T cells	CCR7	2.1425764202987443
+Tem/Effector helper T cells	LTB	1.6674078177958518
+Tem/Effector helper T cells	LEF1	3.0260886788001806
+Tem/Effector helper T cells	RPL11	0.6103296931018845
+Tem/Effector helper T cells	TCF7	2.0906420112879904
+Tem/Effector helper T cells	RPL32	0.5880142474201824
+Tem/Effector helper T cells	RPS12	0.5123160980045647
+Tem/Effector helper T cells	FXYD5	0.9601727782308824
+Tem/Effector helper T cells	EEF1A1	0.6045457040806497
