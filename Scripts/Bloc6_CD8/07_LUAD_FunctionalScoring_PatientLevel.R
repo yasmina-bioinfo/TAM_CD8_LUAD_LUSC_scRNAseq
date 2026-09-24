@@ -1,11 +1,8 @@
 # ============================================================
-# Bloc6_CD8 — Script07_UCell_FunctionalScoring_PatientLevel_LUAD.R
+# Bloc6_CD8 — 07_LUAD_UCell_FunctionalScoring_PatientLevel.R
 # Purpose: patient-level analysis of CD8.TEX functional scores
 # (cytotoxicity, exhaustion, stemness), restricted to patients with at
 # least 10 CD8.TEX cells (muscat default filtering, Crowell et al. 2020).
-# CD8.TPEX is excluded: only 4 MPR patients would qualify in LUAD, and
-# testing it in LUSC alone would create an asymmetric framework between
-# histologies (see Methods).
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -19,8 +16,13 @@ IN_SCORES <- here("Objects", "06_LUAD_seu_functional_scores.rds")
 OUT_TAB   <- here("Results", "Bloc6_CD8", "Tables")
 dir.create(OUT_TAB, recursive = TRUE, showWarnings = FALSE)
 
+# CD8.TEX cells expected from Script 06 (guard against a wrong input file)
+EXPECTED_TEX_CELLS <- 14865  
+
 message("Loading LUAD functional-score object... ", Sys.time())
 seu_ex <- readRDS(IN_SCORES)
+message("Cells loaded: ", ncol(seu_ex))
+stopifnot(ncol(seu_ex) == EXPECTED_TEX_CELLS)
 
 # ---- Patient inclusion: >=10 CD8.TEX cells per patient ----
 retained_patients <- seu_ex@meta.data %>%
@@ -73,4 +75,4 @@ print(tex_results)
 write_csv(tex_results,
           file.path(OUT_TAB, "07_LUAD_TEX_patientlevel_wilcoxon.csv"))
 
-message("Script07 (patient-level functional scoring, LUAD) complete. ", Sys.time())
+message("Script 07 (patient-level functional scoring, LUAD) complete. ", Sys.time())

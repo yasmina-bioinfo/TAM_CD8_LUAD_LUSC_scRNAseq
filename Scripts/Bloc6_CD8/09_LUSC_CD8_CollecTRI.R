@@ -1,14 +1,17 @@
 # ============================================================
-# Bloc6_CD8 — Script09_CollecTRI_Pseudobulk_LUSC.R
+# Bloc6_CD8 — 09_LUSC_CD8_CollecTRI_Pseudobulk.R
 # Purpose: identify TF whose activity differs between MPR and non-MPR
 # in CD8.TEX, using a pseudobulk + DESeq2 differential signature (one
 # statistic per gene, patient-level comparison already resolved) as
 # input to a single run_ulm call.
 #
+# Population: same threshold and patient set as Script 07 (CD8.TEX
+# cells, patients with >=10 TEX cells), for consistency between the
+# composition, functional-scoring and regulon analyses.
+#
 # Gene filtering: edgeR's filterByExpr (Chen et al., 2016), the
 # recommended strategy for pseudobulk. Same filter as Bloc7, so the two
-# blocs are directly comparable. This replaces an earlier project-specific
-# filter (total counts >= 10), which differed from the one used in Bloc7.
+# blocs are directly comparable.
 #
 # Contrast: MPR vs non-MPR, so a positive score means higher activity in
 # responding tumors. Same convention as Bloc7.
@@ -31,23 +34,28 @@ IN_TCRI <- here("Data", "interactions_collectri_9606.tsv.gz")
 OUT_TAB <- here("Results", "Bloc6_CD8", "Tables")
 dir.create(OUT_TAB, recursive = TRUE, showWarnings = FALSE)
 
+# Patients expected from Script 07 (same threshold, same population)
+EXPECTED_TEX_PATIENTS <- 89   
+
 # ---- Step 1: load CD8 object, restrict to CD8.TEX cells of patients
-# with >=10 TEX cells (identical threshold and patient set as Script07,
+# with >=10 TEX cells (identical threshold and patient set as Script 07,
 # for consistency between the two functional analyses) ----
 message("Loading LUSC CD8 object... ", Sys.time())
 seu <- readRDS(IN_OBJ)
 
 retained_patients <- seu@meta.data %>%
-  filter(lineage_CD8_revised == TRUE, functional.cluster == "CD8.TEX") %>%
+  filter(functional.cluster == "CD8.TEX") %>%
   dplyr::count(sampleID) %>%
   filter(n >= 10) %>%
   pull(sampleID)
 
-seu_tex <- subset(seu, subset = lineage_CD8_revised == TRUE &
-                    functional.cluster == "CD8.TEX" &
+message("Patients retained (>=10 CD8.TEX cells): ", length(retained_patients))
+stopifnot(length(retained_patients) == EXPECTED_TEX_PATIENTS)
+
+seu_tex <- subset(seu, subset = functional.cluster == "CD8.TEX" &
                     sampleID %in% retained_patients)
-message("Patients retained: ", length(retained_patients),
-        " | CD8.TEX cells retained: ", ncol(seu_tex))
+rm(seu); gc()
+message("CD8.TEX cells retained: ", ncol(seu_tex))
 
 # ---- Step 2: pseudobulk aggregation -- sum RAW counts per patient ----
 # AggregateExpression() sums raw counts (not normalized data) across all
@@ -102,7 +110,26 @@ deg_stat <- as.data.frame(res) %>%
 
 message("Genes with a valid differential statistic: ", nrow(deg_stat))
 
-# ---- Step 4: CollecTRI network ----
+# ---- Step 4: download CollecTRI network (once; cached locally) ----
+if (!file.exists(IN_TCRI)) {
+  message("Downloading CollecTRI network (human)...")
+  dir.create(dirname(IN_TCRI), recursive = TRUE, showWarnings = FALSE)
+  collectri_dl <- decoupleR::get_collectri(organism = "human", split_complexes = FALSE)
+  readr::write_tsv(collectri_dl, IN_TCRI)
+  
+  writeLines(c(
+    "Network : CollecTRI (human)",
+    paste("Downloaded via : decoupleR::get_collectri()"),
+    paste("Download date :", Sys.time()),
+    paste("decoupleR version :", as.character(packageVersion("decoupleR"))),
+    paste("Interactions downloaded :", nrow(collectri_dl))
+  ), file.path(OUT_TAB, "09_CollecTRI_run_info.txt"))
+}
+
+message("Loading CollecTRI network from ", IN_TCRI)
+collectri_raw <- read_tsv(IN_TCRI, show_col_types = FALSE)
+
+# ---- Step 5: CollecTRI network ----
 collectri_raw <- read_tsv(IN_TCRI, show_col_types = FALSE)
 
 net <- collectri_raw %>%
@@ -115,7 +142,7 @@ net <- collectri_raw %>%
   ) %>%
   distinct()
 
-# ---- Step 5: run_ulm ONCE on the differential statistic vector ----
+# ---- Step 6: run_ulm ONCE on the differential statistic vector ----
 # mat here is a single-column matrix (genes x 1 "sample", which is really
 # the MPR-vs-non-MPR contrast already resolved by DESeq2) -- not a
 # cell-by-gene matrix as in the earlier per-cell approach.
@@ -136,4 +163,4 @@ print(head(tf_results, 10))
 
 write_csv(tf_results, file.path(OUT_TAB, "09_LUSC_TEX_CollecTRI_pseudobulk_DESeq2.csv"))
 
-message("Script09 (CollecTRI pseudobulk, LUSC) complete. ", Sys.time())
+message("Script 09 (CollecTRI pseudobulk, LUSC) complete. ", Sys.time())

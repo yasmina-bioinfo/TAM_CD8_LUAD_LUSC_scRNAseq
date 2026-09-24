@@ -1,12 +1,15 @@
 # ============================================================
-# Bloc6_CD8 — Script10_Visualization_CollecTRI.R
+# Bloc6_CD8 — 10_CD8TEX_Visualization_CollecTRI.R
 # Purpose: dot plot of differential TF activity in CD8.TEX for both
 # histologies, following the visual convention of the CollecTRI
 # publication: one dot per TF, coloured by activity score, sized
 # inversely to the p-value. No pre-selection of TFs shown.
 #
 # Contrast is MPR vs non-MPR, so a positive score means higher in
-# responding tumors — same convention as Bloc7.
+# responding tumors. Color scale uses the same MPR/non-MPR convention
+# as the rest of Bloc6 (blue #0072B2 / orange #D55E00), applied here
+# as a continuous diverging gradient rather than two discrete groups.
+# No title baked in the figure — used in the preprint text.
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -18,6 +21,9 @@ HISTOLOGIES <- c("LUAD", "LUSC")
 OUT_FIG <- here("Results", "Bloc6_CD8", "Figures")
 dir.create(OUT_FIG, recursive = TRUE, showWarnings = FALSE)
 
+# TFs tested expected from Script 09 (guard against a wrong input file)
+EXPECTED_TF <- c(LUAD = 477, LUSC = 459)
+
 make_panel <- function(hist) {
   
   df <- read_csv(here("Results", "Bloc6_CD8", "Tables",
@@ -25,6 +31,9 @@ make_panel <- function(hist) {
                  show_col_types = FALSE) %>%
     mutate(significant = p_adj_BH < 0.05,
            neg_log10_p = -log10(p_value))
+  
+  message(hist, " — TFs tested: ", nrow(df))
+  stopifnot(nrow(df) == EXPECTED_TF[[hist]])
   
   n_sig <- sum(df$significant)
   
@@ -49,7 +58,8 @@ make_panel <- function(hist) {
     geom_point(aes(size = neg_log10_p, color = score), alpha = 0.7) +
     geom_text_repel(data = label_df, aes(label = source),
                     size = 3.5, max.overlaps = 20, seed = 1) +
-    scale_color_distiller(palette = "PRGn", name = "Activity\nscore",
+    scale_color_gradient2(low = "#D55E00", mid = "grey85", high = "#0072B2",
+                          midpoint = 0, name = "Activity\nscore",
                           limits = c(-max(abs(df$score)), max(abs(df$score)))) +
     scale_size_continuous(range = c(1, 5), guide = "none") +
     { if (!is.na(threshold_y))
@@ -59,20 +69,18 @@ make_panel <- function(hist) {
     labs(subtitle = subtitle, x = NULL,
          y = expression(-log[10](p~value))) +
     theme_classic() +
-    theme(plot.subtitle = element_text(size = 10, face = "bold"),
-          legend.position = "none")
+    theme(plot.subtitle = element_text(size = 10, face = "bold"))
 }
 
 panels <- lapply(HISTOLOGIES, make_panel)
 
 p_final <- (panels[[1]] | panels[[2]]) +
+  plot_layout(guides = "collect") +
   plot_annotation(
-    title = "CD8.TEX differential TF activity, MPR vs non-MPR",
     caption = "Dashed line = BH-adjusted p = 0.05. Positive score = higher in responding tumors.",
-    theme = theme(plot.title = element_text(size = 12, face = "bold"),
-                  plot.caption = element_text(size = 10, face = "italic", hjust = 0)))
+    theme = theme(plot.caption = element_text(size = 10, face = "italic", hjust = 0)))
 
 ggsave(file.path(OUT_FIG, "10_CD8TEX_CollecTRI_dotplot.png"),
        plot = p_final, width = 12, height = 6, dpi = 300, bg = "white")
 
-message("Script10 (CollecTRI dot plot, CD8.TEX) complete.")
+message("Script 10 (CollecTRI dot plot, CD8.TEX) complete.")

@@ -1,0 +1,4 @@
+check,what,value,rule,status
+1a,Patients per response group,MPR 32 / non-MPR 68,MPR 32 / non-MPR 68,PASS
+1b,Each patient is in exactly one batch,max batches per patient = 1,= 1,PASS
+1c,Every cell has a batch and a unique name,cells without batch = 0 ; duplicated cells = 0,0 ; 0,PASS

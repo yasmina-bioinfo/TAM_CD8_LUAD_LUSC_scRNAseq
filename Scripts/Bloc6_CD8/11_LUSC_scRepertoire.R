@@ -1,5 +1,6 @@
 # ============================================================
-# Script11_LUSC — TCR clonal analysis of the CD8.TEX compartment
+# Bloc6_CD8 — 11_LUSC_TCR_ClonalAnalysis.R
+# TCR clonal analysis of the CD8.TEX compartment
 #
 # Input   : Objects/06_LUSC_seu_functional_scores.rds
 #           Data/GSE243013_T_with_TCR_annotation.csv.gz
@@ -16,40 +17,46 @@
 #
 # PRIMARY analysis   : unrarefied, within-TEX, % expanded + Shannon
 # SENSITIVITY checks : Gini-Simpson, rarefaction, global clone definition
+#
+# NOTE: this is the first run of this exact denominator (TCR-bearing
+# TEX cells) on the corrected cohort. Patient counts and per-patient
+# TCR-library coverage have not been verified elsewhere in this
+# pipeline — read them from this run's own output, not from memory.
+#
+# All count() calls are namespaced dplyr::count() — matrixStats also
+# exports a count() that masks dplyr's when loaded first in the session.
 # ============================================================
 
 library(here); library(Seurat); library(dplyr); library(readr); library(tibble)
 
 set.seed(42)
 
-HISTOLOGY   <- "LUSC"
-IN_OBJ    <- here("Objects", "06_LUSC_seu_functional_scores.rds")
+HISTOLOGY <- "LUSC"
+IN_OBJ    <- here("Objects", paste0("06_", HISTOLOGY, "_seu_functional_scores.rds"))
+IN_TCR    <- here("Data", "GSE243013_T_with_TCR_annotation.csv.gz")
 OUT_TAB   <- here("Results", "Bloc6_CD8", "Tables")
 dir.create(OUT_TAB, recursive = TRUE, showWarnings = FALSE)
 
-MIN_CLONE   <- 3    # Liu et al. 2025
-MIN_CELLS   <- 10   # per patient, TCR-bearing TEX cells only
+MIN_CLONE <- 3    # Liu et al. 2025
+MIN_CELLS <- 10   # per patient, TCR-bearing TEX cells only
+
+# CD8.TEX cells expected from Script 06 (guard against a wrong input file)
+EXPECTED_TEX_CELLS <- 21571   
 
 # ---- Helper functions --------------------------------------------------
 
-# True Shannon entropy: H = -sum(p_i * ln p_i)
-# NOT n_distinct/n — that ratio ignores clone size imbalance entirely.
 shannon_H <- function(clono) {
   p <- table(clono)
   p <- p / sum(p)
   as.numeric(-sum(p * log(p)))
 }
 
-# Gini-Simpson index: 1 - sum(p_i^2)
-# Same family as Shannon (captures both richness and evenness), ranked
-# most robust to subsampling by Mika et al. 2025. Sensitivity check only.
 gini_simpson <- function(clono) {
   p <- table(clono)
   p <- p / sum(p)
   as.numeric(1 - sum(p^2))
 }
 
-# Share of cells belonging to a clone of at least min_size cells
 pct_expanded <- function(clono, min_size = MIN_CLONE) {
   tab <- table(clono)
   as.numeric(sum(tab[tab >= min_size]) / sum(tab) * 100)
@@ -67,11 +74,11 @@ med_by_group <- function(df, var) {
 
 # ---- 1. Load -----------------------------------------------------------
 
-seu <- readRDS(here("Objects", "06_LUSC_seu_functional_scores.rds"))
-tcr <- read_csv(here("Data", "GSE243013_T_with_TCR_annotation.csv.gz"),
-                show_col_types = FALSE)
+seu <- readRDS(IN_OBJ)
+message("CD8.TEX cells loaded: ", ncol(seu))
+stopifnot(ncol(seu) == EXPECTED_TEX_CELLS)
 
-# Sanity check: one row per cell
+tcr <- read_csv(IN_TCR, show_col_types = FALSE)
 stopifnot(!any(duplicated(tcr$cellID)))
 
 # ---- 2. TEX metadata + clonotype join ----------------------------------
@@ -82,23 +89,20 @@ md <- seu@meta.data %>%
   select(cellID, sampleID, pathological_response) %>%
   left_join(tcr %>% select(cellID, clonotype), by = "cellID")
 
-# Keep only TCR-bearing cells: avoids false zeros from patients with no
-# TCR library (LUSC: 7 patients, one with 468 TEX cells)
 dat <- md %>% filter(!is.na(clonotype))
+message("TEX cells with a recovered TCR: ", nrow(dat), " of ", nrow(md))
 
 # ---- 3. Patient threshold ----------------------------------------------
 
-keep <- dat %>% count(sampleID) %>% filter(n >= MIN_CELLS) %>% pull(sampleID)
+keep <- dat %>% dplyr::count(sampleID) %>% filter(n >= MIN_CELLS) %>% pull(sampleID)
 dat  <- dat %>% filter(sampleID %in% keep)
 
-cat("Patients retained:\n")
+cat("Patients retained (>=", MIN_CELLS, "TCR-bearing CD8.TEX cells):\n")
 print(table(distinct(dat, sampleID, pathological_response)$pathological_response))
-# expected: 28 MPR / 58 non-MPR
 
 # ---- 4. Patient-level metrics ------------------------------------------
 
-# Clone size computed over ALL T cells (sensitivity definition)
-size_global <- tcr %>% count(clonotype, name = "size_global")
+size_global <- tcr %>% dplyr::count(clonotype, name = "size_global")
 
 res <- dat %>%
   left_join(size_global, by = "clonotype") %>%
@@ -106,10 +110,10 @@ res <- dat %>%
   summarise(
     n_cells             = n(),
     n_clonotypes        = n_distinct(clonotype),
-    pct_expanded        = pct_expanded(clonotype),               # primary
-    shannon             = shannon_H(clonotype),                  # primary
-    gini_simpson        = gini_simpson(clonotype),               # sensitivity
-    pct_expanded_global = 100 * mean(size_global >= MIN_CLONE),  # sensitivity
+    pct_expanded        = pct_expanded(clonotype),
+    shannon             = shannon_H(clonotype),
+    gini_simpson        = gini_simpson(clonotype),
+    pct_expanded_global = 100 * mean(size_global >= MIN_CLONE),
     .groups = "drop"
   ) %>%
   arrange(pathological_response, sampleID)
@@ -134,8 +138,6 @@ tests <- tibble(
 cat("\n=== PRIMARY tests ===\n"); print(tests)
 
 # ---- 6. Sensitivity A: Gini-Simpson ------------------------------------
-# Tested OUTSIDE the primary BH correction: adding it to p.adjust would
-# retroactively change the adjusted p-values of the pre-specified metrics.
 
 gs_med <- med_by_group(res, "gini_simpson")
 cat("\n=== Gini-Simpson (sensitivity) ===\n")
@@ -192,9 +194,9 @@ print(wilcox.test(pct_expanded_global ~ pathological_response, data = res))
 
 # ---- 10. Save ----------------------------------------------------------
 
-write_csv(res,         file.path(OUT_TAB, "11_LUSC_TEX_clonal_patient_level.csv"))
-write_csv(tests,       file.path(OUT_TAB, "11_LUSC_TEX_clonal_tests.csv"))
-write_csv(rar,         file.path(OUT_TAB, "11_LUSC_TEX_clonal_rarefied.csv"))
-write_csv(rar_medians, file.path(OUT_TAB, "11_LUSC_TEX_clonal_rarefied_medians.csv"))
+write_csv(res,         file.path(OUT_TAB, paste0("11_", HISTOLOGY, "_TEX_clonal_patient_level.csv")))
+write_csv(tests,       file.path(OUT_TAB, paste0("11_", HISTOLOGY, "_TEX_clonal_tests.csv")))
+write_csv(rar,         file.path(OUT_TAB, paste0("11_", HISTOLOGY, "_TEX_clonal_rarefied.csv")))
+write_csv(rar_medians, file.path(OUT_TAB, paste0("11_", HISTOLOGY, "_TEX_clonal_rarefied_medians.csv")))
 
 cat("\nDone —", HISTOLOGY, "\n")

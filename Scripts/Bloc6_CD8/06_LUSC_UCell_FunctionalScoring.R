@@ -1,13 +1,15 @@
 # ============================================================
-# Bloc6_CD8 — Script06_UCell_FunctionalScoring_LUSC.R
+# Bloc6_CD8 — 06_LUSC_UCell_FunctionalScoring.R
 # Purpose: score the intensity of three functional programs
 # (cytotoxicity, exhaustion, stemness) within the exhausted CD8
-# compartment, using UCell with signatures from SignatuR.
+# compartment (CD8.TEX), using UCell with signatures from SignatuR.
 #
-# Scope: restricted to CD8.TEX and CD8.TPEX within the revised CD8
-# lineage, i.e. after the cross-validation correction described in
-# Script04. CD8.TPEX is scored here but excluded from the patient-level
-# analysis (Script07) for insufficient cell numbers per patient.
+# Scope: restricted to CD8.TEX cells (purified population from
+# scGate + UCell cycling/IFN-high removal + ProjecTILs, Scripts 01-03).
+# CD8.TPEX is not scored here: it is excluded from all patient-level
+# functional analyses for insufficient cell numbers per patient (see
+# 03b_LUSC_state_testability — 86 % of patients have >=1 TPEX cell,
+# but 39.5 % of those have fewer than 10).
 #
 # Signatures: Tcell.cytotoxicity, Tcell.exhaustion and Tcell.stemness
 # from the human collection of SignatuR (Carmona et al., 2020), the
@@ -32,19 +34,21 @@ HISTOLOGY <- "LUSC"
 IN_OBJ  <- here("Objects", paste0("03_", HISTOLOGY, "_seu_projectils.rds"))
 OUT_OBJ <- here("Objects", paste0("06_", HISTOLOGY, "_seu_functional_scores.rds"))
 
-STATES <- c("CD8.TEX", "CD8.TPEX")
+STATE <- "CD8.TEX"
+EXPECTED_TEX_CELLS <- 21571   
 
 message("Loading ProjecTILs object... ", Sys.time())
 seu <- readRDS(IN_OBJ)
 message("Cells loaded: ", ncol(seu))
+stopifnot("functional.cluster" %in% colnames(seu@meta.data))
 
 # ---- Restrict to the exhausted compartment ----------------------------
-seu_ex <- subset(seu, subset = lineage_CD8_revised == TRUE &
-                   functional.cluster %in% STATES)
+seu_ex <- subset(seu, subset = functional.cluster == STATE)
 rm(seu); gc()
 
-message("Cells retained (", paste(STATES, collapse = ", "), "): ", ncol(seu_ex))
-print(table(seu_ex$functional.cluster))
+message("Cells retained (", STATE, "): ", ncol(seu_ex))
+stopifnot(ncol(seu_ex) == EXPECTED_TEX_CELLS)
+print(table(seu_ex$pathological_response))
 
 # ---- Signatures from the human collection of SignatuR ------------------
 sig <- GetSignature(SignatuR$Hs)
@@ -67,4 +71,4 @@ message("Score distributions:")
 print(summary(seu_ex@meta.data[, names(sig)]))
 
 saveRDS(seu_ex, OUT_OBJ)
-message("Script06 (functional scoring, ", HISTOLOGY, ") complete. ", Sys.time())
+message("Script 06 (functional scoring, ", HISTOLOGY, ") complete. ", Sys.time())

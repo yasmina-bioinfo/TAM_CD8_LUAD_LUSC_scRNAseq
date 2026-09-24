@@ -1,0 +1,5 @@
+step,pathological_response,n_cells,n_patients
+scGate_CD8T,MPR,9015,10
+scGate_CD8T,non-MPR,47332,40
+post_UCell_filter,MPR,8578,10
+post_UCell_filter,non-MPR,39418,40

@@ -1,0 +1,8 @@
+state,pct_patients_with_ge1_cell,pct_of_those_below_min
+CD8.CM,99,2
+CD8.EM,100,3
+CD8.MAIT,90,38.9
+CD8.NaiveLike,89,40.4
+CD8.TEMRA,89,27
+CD8.TEX,95,6.3
+CD8.TPEX,85,54.1

@@ -1,0 +1,7 @@
+Script : 03_LUSC_ProjecTILs.R
+Execution date : 2026-09-22 13:46:52.748224
+ProjecTILs : 3.7.0
+STACAS : 2.4.1
+Seurat : 5.5.1
+Reference atlas file : CD8T_human_ref_v1.rds | md5 : 524d9a554241f18ad3bb976c88c6a179
+Reference source : figshare file 41414556 (human CD8 TIL atlas)

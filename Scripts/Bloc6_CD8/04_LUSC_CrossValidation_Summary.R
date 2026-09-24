@@ -1,10 +1,29 @@
 # ============================================================
-# Bloc6_CD8 — Script04_CrossValidation_Summary_LUSC.R
-# Purpose: categorize the ProjecTILs vs CellTypist crosscheck (Script03)
-# into interpretable groups, and quantify specific cross-validation
-# patterns (MAIT confirmation, Treg/NK overlap) before deciding on any
-# downstream filtering.
+# Bloc6_CD8 — 04_LUAD_CrossValidation_Summary.R  [DEPRECATED]
+#
+# This script is no longer part of the pipeline.
+#
+# It originally answered a question raised by an earlier result:
+# scGate (Script 01) and the CellTypist lineage flag disagreed on
+# a substantial number of cells, including some CellTypist had
+# labelled as regulatory T cells. This script compared ProjecTILs
+# functional states (functional.cluster) against the CellTypist
+# annotation (annotation_final) to investigate that disagreement,
+# and led to a manual correction based on raw marker expression
+# (CD8A/CD8B/CD4/FOXP3) for the cells it flagged.
+#
+# On reflection, this comparison does not test what it appears to
+# test. ProjecTILs was run with filter.cells = FALSE on a
+# population already confirmed as CD8 by scGate, so every cell is
+# forced into a CD8 functional state regardless of its true
+# identity: functional.cluster describes function, not lineage.
+# scGate (Script 01) is the pipeline's independent identity check;
+# comparing ProjecTILs output to CellTypist re-tests nothing that
+# Script 01 did not already settle.
+#
+# Kept for traceability only. DO NOT RUN.
 # ============================================================
+stop("Script 04 is deprecated and must not be run. See header for why.")
 
 suppressPackageStartupMessages({
   library(here)

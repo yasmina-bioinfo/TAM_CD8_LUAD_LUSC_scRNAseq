@@ -1,9 +1,8 @@
 # ============================================================
-# Bloc6_CD8 — Script05_Composition_MPR_LUSC.R
+# Bloc6_CD8 — 05_LUAD_CD8_Composition.R
 # Purpose: statistical comparison and visualization of ProjecTILs CD8
-# functional-state composition (MPR vs non-MPR), restricted to the
-# revised CD8 lineage (scGate + UCell + ProjecTILs cross-validation,
-# including the Treg->CD8 reclassification from Script04).
+# functional-state composition (MPR vs non-MPR), on the purified CD8
+# population (scGate + UCell, Scripts 01-02; ProjecTILs, Script 03).
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -17,84 +16,52 @@ suppressPackageStartupMessages({
   library(tidyr)
 })
 
-IN_OBJ   <- here("Objects", "03_LUSC_seu_projectils.rds")
+IN_OBJ   <- here("Objects", "03_LUAD_seu_projectils.rds")
 REF_FILE <- here("References", "CD8T_human_ref_v1.rds")
 OUT_TAB  <- here("Results", "Bloc6_CD8", "Tables")
 OUT_FIG  <- here("Results", "Bloc6_CD8", "Figures")
 dir.create(OUT_TAB, recursive = TRUE, showWarnings = FALSE)
 dir.create(OUT_FIG, recursive = TRUE, showWarnings = FALSE)
 
+# Cells and patients expected from Script 03 (guard against a wrong input file)
+EXPECTED_CELLS    <- 47996                          # LUSC: 93584
+EXPECTED_PATIENTS <- c("MPR" = 10, "non-MPR" = 40)  # LUSC: c("MPR" = 32, "non-MPR" = 68)
+MIN_CD8_PER_PATIENT <- 50  # documented threshold: below this, a rare
+# state (~1-3% of CD8, e.g. CD8.TPEX) has a high chance of a false zero
+# purely from under-sampling, not biology.
+
 # ---- Load reference atlas (for official color palette) ----
 message("Loading reference atlas (for official color palette)...")
 ref.cd8 <- load.reference.map(REF_FILE)
 atlas_palette <- ref.cd8@misc$atlas.palette
 
-# ---- Load LUSC ProjecTILs object ----
-message("Loading LUSC ProjecTILs object... ", Sys.time())
+# ---- Load LUAD ProjecTILs object ----
+message("Loading LUAD ProjecTILs object... ", Sys.time())
 seu <- readRDS(IN_OBJ)
-stopifnot(all(c("lineage_CD8_revised", "pathological_response", "functional.cluster") %in%
+stopifnot(all(c("pathological_response", "functional.cluster", "sampleID") %in%
                 colnames(seu@meta.data)))
 
-# ---- Restrict to revised CD8 lineage ----
-cd8 <- subset(seu, subset = lineage_CD8_revised == TRUE)
-message("CD8 cells (revised lineage): ", ncol(cd8))
-message("pathological_response levels:")
-print(table(cd8$pathological_response, useNA = "ifany"))
+# ---- Population: already purified by scGate + UCell (Scripts 01-02) ----
+cd8 <- seu
+message("CD8 cells: ", ncol(cd8))
+stopifnot(ncol(cd8) == EXPECTED_CELLS)
 
-# ---- Composition table: functional.cluster x pathological_response ----
-comp_table <- table(cd8$functional.cluster, cd8$pathological_response)
-message("Composition table:")
-print(comp_table)
-
-# ---- Global chi-squared test (cell-level; kept for traceability, not
-# used for reported conclusions — see patient-level test below) ----
-chisq_res <- chisq.test(comp_table)
-message("Global chi-squared test (cell-level, archival):")
-print(chisq_res)
-
-p_display <- scales::pvalue(chisq_res$p.value, accuracy = 0.001, add_p = TRUE)
-
-# ---- Proportions per condition, for plotting ----
-df_prop <- as.data.frame(comp_table)
-colnames(df_prop) <- c("functional_cluster", "pathological_response", "n_cells")
-
-df_prop <- df_prop %>%
-  group_by(pathological_response) %>%
-  mutate(prop = n_cells / sum(n_cells)) %>%
-  ungroup()
-
-write_csv(df_prop, file.path(OUT_TAB, "05_LUSC_CD8_composition_by_MPR.csv"))
-
-# ---- Targeted prop.test per functional state (cell-level; archival) ----
-prop_results <- lapply(levels(factor(df_prop$functional_cluster)), function(state) {
-  sub <- comp_table[state, ]
-  total_by_cond <- colSums(comp_table)
-  test <- prop.test(x = sub, n = total_by_cond)
-  data.frame(
-    functional_cluster = state,
-    p_value = test$p.value,
-    estimate_diff = diff(test$estimate)
-  )
-})
-prop_results <- bind_rows(prop_results)
-message("Targeted prop.test results (cell-level, archival):")
-print(prop_results)
-write_csv(prop_results, file.path(OUT_TAB, "05_LUSC_CD8_proptest_by_state.csv"))
+obs_pat <- cd8@meta.data %>%
+  distinct(sampleID, pathological_response) %>%
+  count(pathological_response)
+print(obs_pat)
+obs_vec <- setNames(obs_pat$n, obs_pat$pathological_response)
+stopifnot(all(obs_vec[names(EXPECTED_PATIENTS)] == EXPECTED_PATIENTS))
 
 # ============================================================
 # PATIENT-LEVEL TEST (Wilcoxon rank-sum, BH-corrected)
-# Rationale: cell-level tests above treat each cell as an independent
-# observation despite within-patient correlation (pseudoreplication).
-# Following the same approach as Hu et al., 2023, Genome Medicine
-# (comparable NSCLC neoadjuvant anti-PD-1 scRNA-seq study): compute
-# per-patient state proportions, then Wilcoxon rank-sum test, BH-
-# corrected across states. This is the test used for reported
-# conclusions; cell-level results above are kept for traceability only.
+# Rationale: treating each cell as an independent observation would
+# ignore within-patient correlation (pseudoreplication). Following the
+# same approach as Hu et al., 2023, Genome Medicine (comparable NSCLC
+# neoadjuvant anti-PD-1 scRNA-seq study): compute per-patient state
+# proportions, then Wilcoxon rank-sum test, BH-corrected across states.
+# This is the test used for reported conclusions.
 # ============================================================
-
-MIN_CD8_PER_PATIENT <- 50  # documented threshold: below this, a rare
-# state (~1-3% of CD8, e.g. CD8.TPEX) has a high chance of a false zero
-# purely from under-sampling, not biology
 
 message("Computing per-patient proportions (min ", MIN_CD8_PER_PATIENT,
         " CD8 cells per patient)... ", Sys.time())
@@ -116,11 +83,12 @@ patient_prop <- patient_counts %>%
     by = "sampleID"
   )
 
-message("Patients retained: ", n_distinct(patient_prop$sampleID))
+n_patients_retained <- n_distinct(patient_prop$sampleID)
+message("Patients retained (>= ", MIN_CD8_PER_PATIENT, " CD8 cells): ", n_patients_retained)
 print(patient_prop %>% distinct(sampleID, pathological_response) %>%
         count(pathological_response))
 
-write_csv(patient_prop, file.path(OUT_TAB, "05_LUSC_CD8_patient_level_proportions.csv"))
+write_csv(patient_prop, file.path(OUT_TAB, "05_LUAD_CD8_patient_level_proportions.csv"))
 
 wilcoxon_results <- lapply(levels(factor(patient_prop$functional.cluster)), function(state) {
   sub <- patient_prop %>% filter(functional.cluster == state)
@@ -142,11 +110,31 @@ wilcoxon_results$p_display <- scales::pvalue(wilcoxon_results$p_adj_BH, accuracy
 
 message("Patient-level Wilcoxon results (BH-corrected, reported conclusions):")
 print(wilcoxon_results)
-write_csv(wilcoxon_results, file.path(OUT_TAB, "05_LUSC_CD8_patientlevel_wilcoxon.csv"))
+write_csv(wilcoxon_results, file.path(OUT_TAB, "05_LUAD_CD8_patientlevel_wilcoxon.csv"))
 
-# ---- Barplot: legend marks states significant at patient level (no
-# single caption statistic — patient-level test has no cell-level-style
-# global omnibus equivalent; see FICHE_TECHNIQUE_OUTILS) ----
+# ---- Composition table: functional.cluster x pathological_response ----
+# Restricted to the same patients as the patient-level test (>= 50 CD8
+# cells), so the figure and the statistics describe the same population.
+comp_table <- patient_counts %>%
+  filter(sampleID %in% patient_prop$sampleID) %>%
+  left_join(cd8@meta.data %>% distinct(sampleID, pathological_response), by = "sampleID") %>%
+  group_by(functional.cluster, pathological_response) %>%
+  summarise(n_cells = sum(n_state), .groups = "drop")
+message("Composition table (cells, patients with >= ", MIN_CD8_PER_PATIENT, " CD8 cells only):")
+print(comp_table)
+
+# ---- Proportions per condition, for plotting ----
+df_prop <- comp_table %>%
+  rename(functional_cluster = functional.cluster) %>%
+  group_by(pathological_response) %>%
+  mutate(prop = n_cells / sum(n_cells)) %>%
+  ungroup()
+
+write_csv(df_prop, file.path(OUT_TAB, "05_LUAD_CD8_composition_by_response.csv"))
+
+# ---- Figure A: composition barplot (legend marks patient-level
+# significant states; no single caption statistic, since the
+# patient-level test has no cell-level-style global omnibus equivalent) ----
 sig_states <- wilcoxon_results$functional_cluster[wilcoxon_results$p_adj_BH < 0.05]
 
 legend_labels <- setNames(
@@ -156,12 +144,18 @@ legend_labels <- setNames(
   names(atlas_palette)
 )
 
+caption_text <- if (length(sig_states) > 0) {
+  "* patient-level Wilcoxon test, BH-adjusted P < 0.05"
+} else {
+  "No functional state significantly different (patient-level Wilcoxon test, BH-adjusted P \u2265 0.05)"
+}
+
 p_bar <- ggplot(df_prop, aes(x = pathological_response, y = prop, fill = functional_cluster)) +
   geom_col(width = 0.8, color = "white", linewidth = 0.2) +
   scale_fill_manual(values = atlas_palette, labels = legend_labels, drop = TRUE) +
   scale_y_continuous(labels = percent_format(accuracy = 1), limits = c(0, 1.05)) +
   ylab("CD8 functional-state proportion") +
-  labs(caption = "* patient-level Wilcoxon test, BH-adjusted P < 0.05") +
+  labs(caption = caption_text) +
   theme_classic() +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_text(size = 13, face = "bold"),
@@ -171,8 +165,31 @@ p_bar <- ggplot(df_prop, aes(x = pathological_response, y = prop, fill = functio
         plot.caption = element_text(size = 8, face = "italic", hjust = 0)) +
   guides(fill = guide_legend(ncol = 1))
 
-ggsave(file.path(OUT_FIG, "05_LUSC_CD8_composition_barplot.png"), p_bar,
-       width = 8, height = 6, dpi = 300, bg = "white")
+ggsave(file.path(OUT_FIG, "05_LUAD_CD8_composition_barplot.png"), p_bar,
+       width = 8, height = 9, dpi = 300, bg = "white")
+message("Saved: composition barplot")
 
-message("Saved: barplot")
-message("Script05 (CD8 composition by MPR, LUSC) complete. ", Sys.time())
+# ---- Figure B: CD8.TEX per patient (boxplot + points), the focal
+# state of this study. CD8.TPEX is not tested at the patient level
+# (see 03b_LUAD_state_testability) and is not plotted here. ----
+tex_prop <- patient_prop %>% filter(functional.cluster == "CD8.TEX")
+tex_p_display <- wilcoxon_results$p_display[wilcoxon_results$functional_cluster == "CD8.TEX"]
+
+p_tex <- ggplot(tex_prop, aes(x = pathological_response, y = prop, fill = pathological_response)) +
+  geom_boxplot(outlier.shape = NA, width = 0.55, alpha = 0.7) +
+  geom_jitter(width = 0.08, size = 1.5, alpha = 0.7, color = "black") +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  scale_fill_manual(values = c("MPR" = "#0072B2", "non-MPR" = "#D55E00")) +
+  ylab("CD8.TEX (% of CD8 cells)") +
+  labs(caption = paste0("Wilcoxon, BH-adjusted ", tex_p_display)) +
+  theme_classic() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 13, face = "bold"),
+        legend.position = "none",
+        plot.caption = element_text(size = 8, face = "italic", hjust = 0))
+
+ggsave(file.path(OUT_FIG, "05_LUAD_CD8_TEX_boxplot.png"), p_tex,
+       width = 4, height = 5, dpi = 300, bg = "white")
+message("Saved: CD8.TEX boxplot")
+
+message("Script 05 (CD8 composition by response, LUAD) complete. ", Sys.time())

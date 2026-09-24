@@ -1,7 +1,7 @@
 # ============================================================
-# Bloc6_CD8 — Script03_ProjecTILs_LUSC.R
+# Bloc6_CD8 — 03_LUSC_ProjecTILs.R
 # Purpose: project the purified, cycling/ISG-filtered LUSC CD8 population
-# (Script02 output) onto the official human CD8 TIL reference atlas
+# (Script 02 output) onto the official human CD8 TIL reference atlas
 # (Andreatta et al., 2021, Nat Commun; atlas construction: Carmona lab,
 # CD8_human_TIL_atlas_construction), to obtain fine-grained functional
 # cluster labels and cross-validate against CellTypist/scGate.
@@ -28,6 +28,10 @@ REF_FILE  <- file.path(REF_DIR, "CD8T_human_ref_v1.rds")
 dir.create(OUT_TAB, recursive = TRUE, showWarnings = FALSE)
 dir.create(REF_DIR, recursive = TRUE, showWarnings = FALSE)
 
+# Cells kept after the UCell filter (Script 02) and patients per group
+EXPECTED_CELLS    <- 93584                        
+EXPECTED_PATIENTS <- c("MPR" = 32, "non-MPR" = 68)
+
 # ---- Download reference atlas (once; cached locally afterward) ----
 if (!file.exists(REF_FILE)) {
   message("Downloading human CD8 TIL reference atlas...")
@@ -47,6 +51,27 @@ seu <- readRDS(IN_OBJ)
 message("Query cells: ", ncol(seu))
 stopifnot("sampleID" %in% colnames(seu@meta.data))
 
+# ---- Guard: input must be the object validated at Script 02 ----
+stopifnot(ncol(seu) == EXPECTED_CELLS)
+obs_pat <- seu@meta.data %>%
+  distinct(sampleID, pathological_response) %>%
+  count(pathological_response)
+print(obs_pat)
+obs_vec <- setNames(obs_pat$n, obs_pat$pathological_response)
+stopifnot(all(obs_vec[names(EXPECTED_PATIENTS)] == EXPECTED_PATIENTS))
+
+# ---- Traceability: package versions and reference atlas fingerprint ----
+writeLines(c(
+  "Script : 03_LUSC_ProjecTILs.R",
+  paste("Execution date :", Sys.time()),
+  paste("ProjecTILs :", as.character(packageVersion("ProjecTILs"))),
+  paste("STACAS :", as.character(packageVersion("STACAS"))),
+  paste("Seurat :", as.character(packageVersion("Seurat"))),
+  paste("Reference atlas file :", basename(REF_FILE),
+        "| md5 :", unname(tools::md5sum(REF_FILE))),
+  "Reference source : figshare file 41414556 (human CD8 TIL atlas)"
+), file.path(OUT_TAB, "03_LUSC_ProjecTILs_run_info.txt"))
+
 # ---- Run ProjecTILs ----
 # filter.cells = FALSE: query already purified (scGate TME_HiRes CD8T +
 # UCell cycling/ISG+ removal), per official guidance for pre-filtered data.
@@ -62,12 +87,24 @@ query.projected <- Run.ProjecTILs(
 )
 message("Projection done. ", Sys.time())
 
+# ---- No cell should be lost (filter.cells = FALSE) ----
+message("Cells projected: ", ncol(query.projected), " of ", ncol(seu))
+stopifnot(ncol(query.projected) == ncol(seu))
+
 # ---- Distribution of predicted functional clusters ----
 message("functional.cluster distribution:")
 print(table(query.projected$functional.cluster, useNA = "ifany"))
 
 message("functional.cluster.conf summary:")
 print(summary(query.projected$functional.cluster.conf))
+
+# ---- Cells and patients per functional state and response group ----
+state_tab <- query.projected@meta.data %>%
+  group_by(functional.cluster, pathological_response) %>%
+  summarise(n_cells = n(), n_patients = n_distinct(sampleID), .groups = "drop")
+print(state_tab, n = Inf)
+write_csv(state_tab,
+          file.path(OUT_TAB, "03_LUSC_ProjecTILs_states_by_response.csv"))
 
 # ---- Cross-check against CellTypist annotation_final (CD8 substates) ----
 crosscheck <- table(
@@ -82,4 +119,4 @@ write.csv(
 
 # ---- Save ----
 saveRDS(query.projected, OUT_OBJ)
-message("Script03 (ProjecTILs, LUSC) complete. ", Sys.time())
+message("Script 03 (ProjecTILs, LUSC) complete. ", Sys.time())

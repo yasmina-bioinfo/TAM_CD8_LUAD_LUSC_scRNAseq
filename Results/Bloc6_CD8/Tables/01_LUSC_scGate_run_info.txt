@@ -1,0 +1,7 @@
+Script : 01_LUSC_scGate.R (batched)
+Execution date : 2026-09-21 09:30:20.134051
+scGate : 1.7.2
+UCell : 2.10.1
+Seurat : 5.5.1
+Cells per batch : 25000 | seed : 123
+Model : TME_HiRes, downloaded via get_scGateDB()

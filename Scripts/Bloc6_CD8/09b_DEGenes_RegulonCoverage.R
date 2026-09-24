@@ -1,5 +1,5 @@
 # ============================================================
-# Bloc6_CD8 — Script9b_DEGenes_RegulonCoverage.R
+# Bloc6_CD8 — 09b_DEGenes_RegulonCoverage.R
 # Purpose: apply to CD8.TEX the two checks performed on the myeloid
 # compartment, testing whether the absence of significant factors in
 # LUSC follows from a weaker differential signal or from regulon
@@ -17,6 +17,9 @@ suppressPackageStartupMessages({
 MIN_CELLS   <- 10
 MIN_TARGETS <- 5
 
+# Patients expected from Script 07/09 (guard against a wrong input file)
+EXPECTED_PATIENTS <- c(LUAD = 47, LUSC = 89)
+
 net <- read_tsv(here("Data", "interactions_collectri_9606.tsv.gz"),
                 show_col_types = FALSE) %>%
   filter(!str_detect(source, "COMPLEX")) %>%
@@ -29,13 +32,15 @@ check_tex <- function(histology) {
   seu <- readRDS(here("Objects", paste0("03_", histology, "_seu_projectils.rds")))
   
   retained <- seu@meta.data %>%
-    filter(lineage_CD8_revised == TRUE, functional.cluster == "CD8.TEX") %>%
+    filter(functional.cluster == "CD8.TEX") %>%
     dplyr::count(sampleID) %>%
     filter(n >= MIN_CELLS) %>%
     pull(sampleID)
   
-  seu_tex <- subset(seu, subset = lineage_CD8_revised == TRUE &
-                      functional.cluster == "CD8.TEX" &
+  message(histology, " — patients retained (>=", MIN_CELLS, " CD8.TEX cells): ", length(retained))
+  stopifnot(length(retained) == EXPECTED_PATIENTS[[histology]])
+  
+  seu_tex <- subset(seu, subset = functional.cluster == "CD8.TEX" &
                       sampleID %in% retained)
   rm(seu); gc()
   
