@@ -1,37 +1,26 @@
 # ============================================================
-# Bloc8_Communication — Script02_LUSC_MultiNicheNet_Prepare.R
+# Bloc8_Communication, Script02_LUSC_MultiNicheNet_Prepare.R
 # Purpose: build the SingleCellExperiment input for MultiNicheNet and run
-# the cell-type abundance and gene filtering diagnostics, before any
-# differential analysis.
+# the cell type abundance and gene filtering steps of the official
+# vignette (basic_analysis_steps_MISC), before any differential analysis.
 #
-# Scope: three cell groups, chosen because they are the only compartments
-# whose biology has been characterised in this cohort. Widening to NK,
-# Tregs, DC or B cells would produce interactions that could not be
-# interpreted against anything established here.
-#   - Macrophages   : full lineage_TAM, comprising scGate-confirmed cells
-#                     and transitional cells along the monocyte-to-
-#                     macrophage continuum. The restriction to
-#                     scGate-confirmed cells applied in Bloc7 followed
-#                     from the Cheng signatures describing macrophage
-#                     states; that constraint does not apply here, and
-#                     transitional cells express ligands and receptors
-#                     like any other
-#   - CD8.TEX       : ProjecTILs functional state, Bloc6
-#   - Monocytes     : classical monocytes, a distinct population rather
-#                     than a stage of the above continuum. Excluded from
-#                     Bloc7 scoring since the signatures do not describe
-#                     undifferentiated cells, but retained here as a real
-#                     source and target of signalling
+# Cell groups (three, kept separate):
+#   - CD8.TEX         : ProjecTILs functional.cluster == "CD8.TEX" (Bloc6)
+#   - Macrophage_pure : scGate_TAM_class == "Macrophage_pure" (Bloc7)
+#   - Monocyte_pure   : scGate_TAM_class == "Monocyte_pure" (Bloc7)
+# Ambiguous_double_pure and scGate_unresolved cells are not used.
+# A cell present in both the CD8 and the TAM object is excluded.
 #
-# Parameters: defaults from the official vignette are kept unless stated.
-#   min_cells = 10        : the package default, and the threshold used
-#                           throughout this project (muscat convention)
-#   fraction_cutoff = 0.05: package default; authors advise against >0.10
-#   min_sample_prop = 0.50: package default
+# Genes: the union of the genes of the two objects is kept (in LUSC the
+# CD8 object holds 34115 genes, the TAM object 26636). Genes absent from
+# the TAM object are set to zero in TAM cells. The gene filtering step of
+# MultiNicheNet then removes genes that are not expressed in a cell type.
 #
-# Input : Objects/07_LUSC_seu_TAM_scored.rds       (macrophages)
-#         Objects/06_LUSC_seu_functional_scores.rds (CD8.TEX)
-#         Objects/05_LUSC_seu_annotated.rds         (monocytes)
+# Parameters: defaults from the official vignette are kept.
+#   min_cells = 10, fraction_cutoff = 0.05, min_sample_prop = 0.50
+#
+# Input : Objects/03_LUSC_seu_projectils.rds
+#         Objects/04b_LUSC_seu_TAM_classified.rds
 # Output: Objects/08_LUSC_sce_multinichenet.rds
 # ============================================================
 
@@ -53,36 +42,86 @@ FRACTION_CUTOFF <- 0.05
 MIN_SAMPLE_PROP <- 0.50
 
 # ---- 1. Assemble the three cell groups ---------------------------------
-message("Loading macrophages (scGate-confirmed)... ", Sys.time())
-seu_mac <- readRDS(here("Objects", "07_LUSC_seu_TAM_scored.rds"))
-mac_cells <- colnames(seu_mac)
-rm(seu_mac); gc()
+f_tex <- here("Objects", "03_LUSC_seu_projectils.rds")
+f_tam <- here("Objects", "04b_LUSC_seu_TAM_classified.rds")
+stopifnot(file.exists(f_tex), file.exists(f_tam))
 
-message("Loading CD8 object... ")
-seu_cd8 <- readRDS(here("Objects", "06_LUSC_seu_functional_scores.rds"))
-tex_cells <- colnames(seu_cd8)[seu_cd8$functional.cluster == "CD8.TEX"]
-rm(seu_cd8); gc()
+message("Loading CD8 object... ", Sys.time())
+seu_tex <- readRDS(f_tex)
+message("Loading TAM object... ", Sys.time())
+seu_tam <- readRDS(f_tam)
 
-message("Loading full annotated object... ")
-seu     <- readRDS(here("Objects", "05_LUSC_seu_annotated.rds"))
-mono_cells <- colnames(seu)[seu$lineage_TAM_related & !seu$lineage_TAM]
+stopifnot(all(c("sampleID", "pathological_response", "functional.cluster") %in%
+                colnames(seu_tex@meta.data)))
+stopifnot(all(c("sampleID", "pathological_response", "scGate_TAM_class") %in%
+                colnames(seu_tam@meta.data)))
 
-cat("\n=== cells per group ===\n")
-cat("Macrophages (full lineage_TAM):", length(mac_cells), "\n")
+# A cell found in both objects cannot carry two labels: it is excluded
+shared_cells <- intersect(colnames(seu_tex), colnames(seu_tam))
+cat("\ncells present in both objects (excluded):", length(shared_cells), "\n")
+
+tex_cells  <- setdiff(colnames(seu_tex)[seu_tex$functional.cluster %in% "CD8.TEX"],
+                      shared_cells)
+mac_cells  <- setdiff(colnames(seu_tam)[seu_tam$scGate_TAM_class %in% "Macrophage_pure"],
+                      shared_cells)
+mono_cells <- setdiff(colnames(seu_tam)[seu_tam$scGate_TAM_class %in% "Monocyte_pure"],
+                      shared_cells)
+
 cat("CD8.TEX:", length(tex_cells), "\n")
-cat("Classical monocytes:", length(mono_cells), "\n")
+cat("Macrophage_pure:", length(mac_cells), "\n")
+cat("Monocyte_pure:", length(mono_cells), "\n")
 
-# Build the cell type column
-seu$mnn_celltype <- NA_character_
-seu$mnn_celltype[colnames(seu) %in% mac_cells]  <- "Macrophage"
-seu$mnn_celltype[colnames(seu) %in% tex_cells]  <- "CD8_TEX"
-seu$mnn_celltype[colnames(seu) %in% mono_cells] <- "Monocyte"
+# Raw counts of the RNA assay. The objects may hold disk-backed (BPCells)
+# matrices, so they are converted to in-memory sparse matrices.
+counts_tex <- GetAssayData(seu_tex, assay = "RNA", layer = "counts")[, tex_cells]
+counts_tam <- GetAssayData(seu_tam, assay = "RNA", layer = "counts")[, c(mac_cells, mono_cells)]
+cat("matrix classes:", class(counts_tex)[1], "|", class(counts_tam)[1], "\n")
 
-seu_sub <- subset(seu, cells = colnames(seu)[!is.na(seu$mnn_celltype)])
-rm(seu); gc()
+counts_tex <- as(counts_tex, "dgCMatrix")
+counts_tam <- as(counts_tam, "dgCMatrix")
+stopifnot(inherits(counts_tex, "dgCMatrix"), inherits(counts_tam, "dgCMatrix"))
 
-cat("\n=== final composition ===\n")
+# Union of genes: pad the TAM matrix with zero rows for the genes it lacks
+genes_all <- rownames(counts_tex)
+stopifnot(all(rownames(counts_tam) %in% genes_all))
+
+s <- Matrix::summary(counts_tam)
+counts_tam_full <- Matrix::sparseMatrix(
+  i = match(rownames(counts_tam), genes_all)[s$i], j = s$j, x = s$x,
+  dims = c(length(genes_all), ncol(counts_tam)),
+  dimnames = list(genes_all, colnames(counts_tam))
+)
+counts_all <- cbind(counts_tex, counts_tam_full)
+
+# Cell metadata: one label per cell
+mk_meta <- function(seu, cells, label) {
+  data.frame(sampleID = as.character(seu@meta.data[cells, "sampleID"]),
+             pathological_response = as.character(seu@meta.data[cells, "pathological_response"]),
+             mnn_celltype = label,
+             row.names = cells, stringsAsFactors = FALSE)
+}
+meta <- rbind(mk_meta(seu_tex, tex_cells,  "CD8.TEX"),
+              mk_meta(seu_tam, mac_cells,  "Macrophage_pure"),
+              mk_meta(seu_tam, mono_cells, "Monocyte_pure"))
+meta <- meta[colnames(counts_all), ]
+
+# Guards
+stopifnot(!anyDuplicated(colnames(counts_all)),
+          nrow(meta) == ncol(counts_all),
+          !anyNA(meta$sampleID),
+          all(meta$pathological_response %in% c("MPR", "non-MPR")))
+
+rm(seu_tex, seu_tam, counts_tex, counts_tam, counts_tam_full); gc()
+
+# Seurat object with the same normalisation as the rest of the project
+seu_sub <- CreateSeuratObject(counts = counts_all, meta.data = meta, assay = "RNA")
+seu_sub <- NormalizeData(seu_sub, normalization.method = "LogNormalize",
+                         scale.factor = 10000, verbose = FALSE)
+rm(counts_all); gc()
+
+cat("\n=== final composition (cells) ===\n")
 print(table(seu_sub$mnn_celltype, seu_sub$pathological_response))
+cat("genes:", nrow(seu_sub), "| patients:", length(unique(seu_sub$sampleID)), "\n")
 
 # ---- 2. Syntactically valid names (required by MultiNicheNet) ----------
 seu_sub$mnn_sample   <- make.names(seu_sub$sampleID)
@@ -111,9 +150,7 @@ batches     <- NA
 senders_oi   <- SummarizedExperiment::colData(sce)[, celltype_id] %>% unique()
 receivers_oi <- senders_oi
 
-# Both directions are declared explicitly: MultiNicheNet does not test the
-# reverse contrast automatically, so a single direction would only reveal
-# interactions specific to one group.
+# Both contrast directions are declared explicitly, as in the vignette.
 contrasts_oi <- c("'MPR-non.MPR','non.MPR-MPR'")
 contrast_tbl <- tibble(contrast = c("MPR-non.MPR", "non.MPR-MPR"),
                        group    = c("MPR", "non.MPR"))
@@ -121,7 +158,7 @@ contrast_tbl <- tibble(contrast = c("MPR-non.MPR", "non.MPR-MPR"),
 cat("\n=== check that contrast labels match the group labels ===\n")
 print(unique(SummarizedExperiment::colData(sce)[, group_id]))
 
-# ---- 5. Cell type abundance diagnostics --------------------------------
+# ---- 5. Cell type filtering (vignette step 1) --------------------------
 message("\nComputing abundance info... ", Sys.time())
 abundance_info <- get_abundance_info(
   sce = sce,
@@ -135,7 +172,6 @@ p_abund <- abundance_info$abund_plot_sample
 ggsave(file.path(OUT_FIG, "02_LUSC_abundance_per_sample.png"),
        p_abund, width = 10, height = 6, dpi = 300, bg = "white")
 
-# Which cell types are absent or condition-specific?
 abundance_df_summarized <- abundance_info$abundance_data %>%
   mutate(keep = as.logical(keep)) %>%
   group_by(group_id, celltype_id) %>%
@@ -152,9 +188,40 @@ celltypes_present_one_condition <- abundance_df_summarized %>%
 condition_specific_celltypes <- intersect(celltypes_absent_one_condition,
                                           celltypes_present_one_condition)
 
-cat("\ncondition-specific cell types:", 
+total_nr_conditions <- SummarizedExperiment::colData(sce)[, group_id] %>%
+  unique() %>% length()
+
+absent_celltypes <- abundance_df_summarized %>%
+  filter(samples_present < 2) %>%
+  group_by(celltype_id) %>%
+  count() %>%
+  filter(n == total_nr_conditions) %>%
+  pull(celltype_id)
+
+cat("\ncondition-specific cell types:",
     ifelse(length(condition_specific_celltypes) == 0, "none",
            paste(condition_specific_celltypes, collapse = ", ")), "\n")
+cat("absent cell types:",
+    ifelse(length(absent_celltypes) == 0, "none",
+           paste(absent_celltypes, collapse = ", ")), "\n")
+
+# Vignette default: condition-specific cell types are not analysed
+analyse_condition_specific_celltypes <- FALSE
+
+if (analyse_condition_specific_celltypes == TRUE) {
+  senders_oi   <- senders_oi   %>% setdiff(absent_celltypes)
+  receivers_oi <- receivers_oi %>% setdiff(absent_celltypes)
+} else {
+  senders_oi   <- senders_oi   %>% setdiff(union(absent_celltypes, condition_specific_celltypes))
+  receivers_oi <- receivers_oi %>% setdiff(union(absent_celltypes, condition_specific_celltypes))
+}
+
+sce <- sce[, SummarizedExperiment::colData(sce)[, celltype_id] %in%
+             c(senders_oi, receivers_oi)]
+
+# Guard: the three cell groups must all be kept
+stopifnot(setequal(senders_oi, c("CD8.TEX", "Macrophage_pure", "Monocyte_pure")))
+cat("\ncell types kept:", paste(senders_oi, collapse = ", "), "\n")
 
 # ---- 6. Gene filtering --------------------------------------------------
 message("\nComputing expressed genes... ", Sys.time())

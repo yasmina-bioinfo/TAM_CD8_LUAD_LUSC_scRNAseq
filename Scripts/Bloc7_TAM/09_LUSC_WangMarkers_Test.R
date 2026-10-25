@@ -16,8 +16,20 @@
 # them would drop the most extreme values and bias the comparison —
 # the same pitfall encountered in Bloc5 with count(.drop = FALSE).
 #
-# Input : Objects/07_LUSC_seu_TAM_scored.rds
-# Output: Results/Bloc7_TAM/Tables/09_LUSC_WangMarkers_fullLineage_tests.csv
+# Input : Objects/05_LUSC_seu_TAM_Macrophage_pure_scored.rds  (scored in Script05)
+# Output: Results/Bloc7_TAM/Tables/09_LUSC_WangMarkers_tests.csv
+
+# Note on scope: this script tests an exploratory characterization
+# framework for the TAM compartment (Wang et al. 2022 subtype markers,
+# applied here as a threshold on four genes, not a reproduction of the
+# source study's clustering pipeline). No consensual, established method
+# exists for classifying TAM activation states or subtype identity at
+# single-cell resolution in this literature (Murray et al., 2014,
+# Immunity). For this reason, results from this script are documented
+# in the README (Bloc7_TAM, "Functional and subtype scoring frameworks
+# (exploratory)") but are not reported in the preprint, which relies on
+# compositional analysis and CollecTRI transcription factor activity
+# for TAM characterization instead.
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -26,7 +38,7 @@ suppressPackageStartupMessages({
 })
 
 HISTOLOGY <- "LUSC"
-seu <- readRDS(here("Objects", "07_LUSC_seu_TAM_scored.rds"))
+seu <- readRDS(here("Objects", "05_LUSC_seu_TAM_Macrophage_pure_scored.rds"))
 OUT_TAB <- here("Results", "Bloc7_TAM", "Tables")
 
 MK        <- c("FABP4","FCN1","SPP1","SELENOP")
@@ -90,7 +102,7 @@ tests <- res %>%
 cat("\n=== TESTS (Wilcoxon patient-level, BH across 4 marker groups) ===\n")
 print(tests)
 
-write_csv(res,   file.path(OUT_TAB, "09_LUSC_WangMarkers_fullLineage_patient_level.csv"))
-write_csv(tests, file.path(OUT_TAB, "09_LUSC_WangMarkers_fullLineage_tests.csv"))
+write_csv(res,   file.path(OUT_TAB, "09_LUSC_WangMarkers_patient_level.csv"))
+write_csv(tests, file.path(OUT_TAB, "09_LUSC_WangMarkers_tests.csv"))
 
 cat("\nScript09 (Wang marker tests,", HISTOLOGY, ") complete.\n")

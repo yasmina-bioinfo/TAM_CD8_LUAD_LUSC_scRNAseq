@@ -1,5 +1,5 @@
 # ============================================================
-# Bloc7_TAM — Script10_HallmarkMetabolic_LUAD.R
+# Bloc7_TAM — Script10_HallmarkMetabolic_LUSC.R
 # Purpose: test whether metabolic programme activity differs between MPR
 # and non-MPR macrophages, using four MSigDB Hallmark gene sets.
 #
@@ -14,20 +14,43 @@
 #
 # Rationale for selecting these four sets, fixed BEFORE any computation:
 # Yang et al. (2021, Front Immunol) show that the two immunosuppressive
-# TAM subtypes they identify in NSCLC differ by metabolism rather than by
-# phenotype: SPP1+ macrophages rely on glycolysis and promote angiogenesis
-# and matrix remodelling, while CCL18+ macrophages show high fatty acid
-# oxidative phosphorylation. This cohort is dominated by SPP1-assigned
-# macrophages (66.3 percent in LUAD, 45.3 percent in LUSC, Script08).
-# The remaining 46 Hallmark sets were not tested.
+# ============================================================
+# Bloc7_TAM — Script10_HallmarkMetabolic_LUSC.R
+# Purpose: test whether metabolic programme activity differs between MPR
+# and non-MPR macrophages, using four MSigDB Hallmark gene sets.
 #
-# PRE-REGISTERED PREDICTION (before computation):
-#   non-MPR -> HIGHER glycolysis and hypoxia
-#   MPR     -> HIGHER oxidative phosphorylation and fatty acid metabolism
-#   Falsification: no difference on any of the four
+# Status: EXPLORATORY, and the THIRD characterisation framework tested on
+# this compartment (after the four Cheng axes and the four Wang subtype
+# markers). Declared as such.
 #
-# Input : Objects/07_LUAD_seu_TAM_scored.rds
-# Output: Results/Bloc7_TAM/Tables/10_LUAD_Hallmark_metabolic_fullLineage_*.csv
+# Perimeter: Macrophage_pure (scGate-confirmed macrophages), consistent
+# with Script08/09 and with the classification established in Script04b.
+#
+# Rationale for selecting these four sets: Yang et al. (2021, Front
+# Immunol) report that two immunosuppressive TAM subtypes they identify
+# in NSCLC differ by metabolism rather than phenotype (SPP1+ macrophages
+# glycolytic/angiogenic, CCL18+ macrophages fatty-acid-oxidative). This
+# motivated testing glycolysis, hypoxia, OXPHOS and fatty acid metabolism
+# here, since this cohort's macrophage compartment is SPP1-dominant
+# (Script08). No directional prediction is made: whether this metabolic
+# axis tracks response status in a post anti-PD-1, treatment-exposed
+# cohort is not established by Yang et al.'s treatment-naive data, and
+# asserting a direction without a validated cohort-specific basis would
+# overstate what is known. This is a purely exploratory, two-sided test.
+#
+# Input : Objects/05_LUSC_seu_TAM_Macrophage_pure_scored.rds  (scored in Script05)
+# Output: Results/Bloc7_TAM/Tables/10_LUSC_Hallmark_metabolic_*.csv
+#
+# Note on scope: this script tests an exploratory characterization
+# framework for the TAM compartment (MSigDB Hallmark metabolic gene sets,
+# applied via UCell independently of any established TAM metabolic
+# classification). No consensual, established method exists for scoring
+# TAM metabolic state at single-cell resolution in this literature
+# (Murray et al., 2014, Immunity). For this reason, results from this
+# script are documented in the README (Bloc7_TAM, "Functional and
+# subtype scoring frameworks (exploratory)") but are not reported in
+# the preprint, which relies on compositional analysis and CollecTRI
+# transcription factor activity for TAM characterization instead.
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -38,7 +61,7 @@ suppressPackageStartupMessages({
 set.seed(42)
 
 HISTOLOGY <- "LUSC"
-seu <- readRDS(here("Objects", "07_LUSC_seu_TAM_scored.rds"))
+seu <- readRDS(here("Objects", "05_LUSC_seu_TAM_Macrophage_pure_scored.rds"))
 OUT_TAB <- here("Results", "Bloc7_TAM", "Tables")
 
 MIN_CELLS <- 10

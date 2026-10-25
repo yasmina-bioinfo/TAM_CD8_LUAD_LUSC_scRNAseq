@@ -6,16 +6,15 @@
 # ligand-receptor / target expression correlation.
 #
 # Input : Objects/08_LUAD_sce_multinichenet.rds
-#         References/nichenet_lr_network_all_human.rds
+#         References/nichenet_lr_network_human.rds
 #         References/nichenet_ligand_target_matrix_human.rds
 # Output: Objects/08_LUAD_multinichenet_output.rds
 #         Results/Bloc8_Communication/Tables/03_LUAD_*.csv
 #
-# p_val_adj = FALSE here. The package authors apply the p-value cutoff to
-# raw p-values by default, since most multi-sample single-cell datasets
-# have few samples per group, and recommend adjusted p-values only when
-# the smallest group has at least 20 samples. LUAD has 9 MPR patients,
-# so raw p-values are used. LUSC, with 29 to 34, uses TRUE.
+# p_val_adj: the package authors apply the p-value cutoff to raw p-values by
+# default, and recommend adjusted p-values when the smallest group has at
+# least 20 samples. The choice is made after the geneset/background ratio
+# check (section 4, which prints both options) and documented in the Methods.
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -37,7 +36,7 @@ dir.create(OUT_TAB, recursive = TRUE, showWarnings = FALSE)
 # ---- Parameters ---------------------------------------------------------
 LOGFC_THRESHOLD <- 0.50
 P_VAL_THRESHOLD <- 0.05
-P_VAL_ADJ       <- FALSE     # LUAD: smallest group = 9 patients
+P_VAL_ADJ       <- FALSE     # to be confirmed by the ratio check in section 4
 TOP_N_TARGET    <- 250
 SCENARIO        <- "regular"
 LIGAND_ACT_DOWN <- FALSE
@@ -45,6 +44,10 @@ N_CORES         <- 4
 
 # ---- 1. Load prepared object and reference networks --------------------
 message("Loading prepared object... ", Sys.time())
+stopifnot(file.exists(IN_OBJ),
+          file.exists(here("References", "nichenet_lr_network_human.rds")),
+          file.exists(here("References", "nichenet_ligand_target_matrix_human.rds")))
+
 prep <- readRDS(IN_OBJ)
 sce            <- prep$sce
 frq_list       <- prep$frq_list
@@ -65,7 +68,10 @@ covariates <- NA
 senders_oi   <- SummarizedExperiment::colData(sce)[, celltype_id] %>% unique()
 receivers_oi <- senders_oi
 
-lr_network_all <- readRDS(here("References", "nichenet_lr_network_all_human.rds"))
+stopifnot(setequal(senders_oi, c("CD8.TEX", "Macrophage_pure", "Monocyte_pure")),
+          setequal(unique(SummarizedExperiment::colData(sce)[, group_id]),
+                   c("MPR", "non.MPR")))
+
 lr_network     <- readRDS(here("References", "nichenet_lr_network_human.rds"))
 ligand_target_matrix <- readRDS(here("References",
                                      "nichenet_ligand_target_matrix_human.rds"))
@@ -160,6 +166,9 @@ ligand_activities_targets_DEgenes <- suppressMessages(suppressWarnings(
   )
 ))
 
+cat("sender-receiver DE rows:", nrow(sender_receiver_de), "\n")
+print(names(ligand_activities_targets_DEgenes))
+
 # ---- 7. Prioritisation --------------------------------------------------
 message("\nGenerating prioritisation tables... ", Sys.time())
 sender_receiver_tbl <- sender_receiver_de %>% distinct(sender, receiver)
@@ -186,7 +195,8 @@ prioritization_tables <- suppressMessages(generate_prioritization_tables(
 cat("\n=== top 20 prioritised interactions ===\n")
 print(prioritization_tables$group_prioritization_tbl %>%
         select(group, sender, receiver, ligand, receptor,
-               prioritization_score) %>% head(20))
+               prioritization_score) %>%
+        arrange(desc(prioritization_score)) %>% head(20))
 
 cat("\n=== number of interactions per group ===\n")
 print(table(prioritization_tables$group_prioritization_tbl$group))
@@ -204,6 +214,9 @@ lr_target_prior_cor <- lr_target_prior_cor_inference(
   p_val_threshold = P_VAL_THRESHOLD,
   p_val_adj = P_VAL_ADJ
 )
+
+cat("LR-target correlation table:", nrow(lr_target_prior_cor), "rows,",
+    ncol(lr_target_prior_cor), "columns\n")
 
 # ---- 9. Save ------------------------------------------------------------
 multinichenet_output <- list(

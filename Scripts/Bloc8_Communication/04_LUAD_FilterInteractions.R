@@ -1,7 +1,6 @@
 # ============================================================
 # Bloc8_Communication — Script04_FilterInteractions_LUAD.R
-# Purpose: restrict the prioritised interactions to those that can be
-# interpreted, by removing autocrine pairs.
+# Purpose: restriction to CD8.TEX–myeloid interactions
 #
 # Rationale: sender and receiver being the same cell type cannot be
 # resolved from dissociated data.
@@ -18,54 +17,47 @@ suppressPackageStartupMessages({
 })
 
 HISTOLOGY <- "LUAD"
-N_TOP     <- 50   # interactions retained per group
 
 OUT_TAB <- here("Results", "Bloc8_Communication", "Tables")
 
 # ---- 1. Load the MultiNicheNet output ---------------------------------
-output <- readRDS(here("Objects",
-                       paste0("08_", HISTOLOGY, "_multinichenet_output.rds")))
+f_out <- here("Objects", paste0("08_", HISTOLOGY, "_multinichenet_output.rds"))
+stopifnot(file.exists(f_out))
+output <- readRDS(f_out)
 
-prior <- output$prioritization_tables$group_prioritization_tbl
+stopifnot(all(c("group", "top_group", "sender", "receiver", "ligand", "receptor",
+                "id", "prioritization_score",
+                "fraction_expressing_ligand_receptor") %in%
+                colnames(output$prioritization_tables$group_prioritization_tbl)),
+          setequal(unique(output$prioritization_tables$group_prioritization_tbl$group),
+                   c("MPR", "non.MPR")))
 
-# ---- 2. Filter -------------------------------------------------------
-filtered <- prior %>%
-  filter(sender != receiver)
+# ---- 2. Select and filter ----------------------------------------------
+all_pairs <- get_top_n_lr_pairs(output$prioritization_tables, top_n = 10000)
 
-cat("all prioritised      :", nrow(prior), "\n")
-cat("non-autocrine        :", sum(prior$sender != prior$receiver), "\n")
+# Keep only CD8.TEX <-> myeloid interactions (research question)
+filtered <- all_pairs %>% ungroup() %>%
+  filter(sender != receiver,
+         sender == "CD8.TEX" | receiver == "CD8.TEX")
 
-top <- filtered %>%
+full <- filtered %>%
   group_by(group) %>%
-  arrange(desc(prioritization_score)) %>%
-  slice_head(n = N_TOP) %>%
+  arrange(desc(prioritization_score), .by_group = TRUE) %>%
+  mutate(rank_non_autocrine = row_number()) %>%
   ungroup()
 
-cat("\n=== retained per group ===\n")
-print(table(top$group))
-
-cat("\n=== top interactions, non-MPR ===\n")
-print(as.data.frame(top %>% filter(group == "non.MPR") %>%
-                      select(sender, receiver, ligand, receptor,
-                             prioritization_score) %>%
-                      slice_head(n = 50)))
-
-cat("\n=== top interactions, MPR ===\n")
-print(as.data.frame(top %>% filter(group == "MPR") %>%
-                      select(sender, receiver, ligand, receptor,
-                             prioritization_score) %>%
-                      slice_head(n = 50)))
+cat("all prioritised      :", nrow(all_pairs), "\n")
+cat("CD8.TEX-myeloid      :", nrow(full), "\n")
 
 # ---- 3. Direction of the dialogue -------------------------------------
 cat("\n=== interactions by direction ===\n")
 print(as.data.frame(
-  top %>%
+  full %>%
     dplyr::count(group, sender, receiver) %>%
-    tidyr::pivot_wider(names_from = group, values_from = n,
-                       values_fill = 0) %>%
+    tidyr::pivot_wider(names_from = group, values_from = n, values_fill = 0) %>%
     arrange(desc(non.MPR))
 ))
 
-
-write_csv(top, file.path(OUT_TAB,
-                         paste0("04_", HISTOLOGY, "_filtered_interactions.csv")))
+# ---- 4. Export ----------------------------------------------------------
+write_csv(full, file.path(OUT_TAB,
+                          paste0("04_", HISTOLOGY, "_filtered_interactions_FULL.csv")))

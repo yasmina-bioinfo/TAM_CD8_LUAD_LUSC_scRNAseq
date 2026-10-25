@@ -3,9 +3,9 @@
 # Purpose: compare UCell functional axis scores between MPR and non-MPR
 # tumors at the patient level, within scGate-confirmed macrophages.
 #
-# Input : Objects/07_LUAD_seu_TAM_pure_scored.rds  (scored in Script05)
-# Output: Results/Bloc7_TAM/Tables/06_LUAD_TAM_patient_level.csv
-#         Results/Bloc7_TAM/Tables/06_LUAD_TAM_tests.csv
+# Input : Objects/05_LUAD_seu_TAM_Macrophage_pure_scored.rds  (scored in Script05)
+# Output: Results/Bloc7_TAM/Tables/06_LUAD_TAM_FunctionalScoring_UCell_patient_level.csv
+#         Results/Bloc7_TAM/Tables/06_LUAD_TAM_FunctionalScoring_UCell_tests.csv
 #
 # Design:
 #   - Per-patient summary = MEDIAN of the UCell score (as in Bloc6)
@@ -19,6 +19,18 @@
 # between these two axes must not be presented as two independent
 # results. The empirical correlation between axes is measured in
 # section 3 and may differ between histologies.
+#
+# Note on scope: this script tests an exploratory characterization
+# framework for the TAM compartment (Cheng et al. 2021 functional
+# signatures, applied via UCell independently of the clustering
+# pipeline the source study used to derive them). No consensual,
+# established method exists for classifying TAM activation states or
+# scoring TAM function at single-cell resolution in this literature
+# (Murray et al., 2014, Immunity). For this reason, results from this
+# script are documented in the README (Bloc7_TAM, "Functional and
+# subtype scoring frameworks (exploratory)") but are not reported in
+# the preprint, which relies on compositional analysis and CollecTRI
+# transcription factor activity for TAM characterization instead.
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -27,7 +39,7 @@ suppressPackageStartupMessages({
 })
 
 HISTOLOGY <- "LUAD"
-IN_OBJ    <- here("Objects", "07_LUAD_seu_TAM_pure_scored.rds")
+IN_OBJ    <- here("Objects", "05_LUAD_seu_TAM_Macrophage_pure_scored.rds")
 OUT_TAB   <- here("Results", "Bloc7_TAM", "Tables")
 
 MIN_CELLS <- 10

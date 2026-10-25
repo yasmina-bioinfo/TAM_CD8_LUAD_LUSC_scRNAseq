@@ -16,8 +16,20 @@
 # A lower score could reflect reduced inflammation OR reduced IFN-gamma
 # signalling — two different biological readings.
 #
-# Input : Objects/07_LUSC_seu_TAM_pure_scored.rds
+# Input : Objects/05_LUSC_seu_TAM_Macrophage_pure_scored.rds  (scored in Script05)
 # Output: Results/Bloc7_TAM/Tables/07_LUSC_M1_decomposition.csv
+#
+# Note on scope: this script tests an exploratory characterization
+# framework for the TAM compartment (Cheng et al. 2021 functional
+# signatures, applied via UCell independently of the clustering
+# pipeline the source study used to derive them). No consensual,
+# established method exists for classifying TAM activation states or
+# scoring TAM function at single-cell resolution in this literature
+# (Murray et al., 2014, Immunity). For this reason, results from this
+# script are documented in the README (Bloc7_TAM, "Functional and
+# subtype scoring frameworks (exploratory)") but are not reported in
+# the preprint, which relies on compositional analysis and CollecTRI
+# transcription factor activity for TAM characterization instead.
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -28,7 +40,7 @@ suppressPackageStartupMessages({
 set.seed(42)
 
 HISTOLOGY <- "LUSC"
-seu <- readRDS(here("Objects", "07_LUSC_seu_TAM_pure_scored.rds"))
+seu <- readRDS(here("Objects", "05_LUSC_seu_TAM_Macrophage_pure_scored.rds"))
 OUT_TAB <- here("Results", "Bloc7_TAM", "Tables")
 
 sub_sig <- list(

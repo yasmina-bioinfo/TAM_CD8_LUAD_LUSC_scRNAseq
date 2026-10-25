@@ -1,4 +1,27 @@
 # ============================================================
+# ** NOT RUN — SUPERSEDED BY Script04b **
+#
+# Reason for replacement: two methodology decisions changed after this
+# script was written. (1) scGate is now the pipeline's identity-deciding
+# method for the TAM compartment (Macrophage_pure / Monocyte_pure /
+# scGate_unresolved), not a validation step alongside CellTypist — no
+# crosscheck between the two is performed, consistent with Bloc6 (CD8):
+# CellTypist is an exploratory first-pass triage, scGate adjudicates on
+# a curated reference atlas; comparing the two re-tests a decision
+# already made, not a new result (see Bloc6_CD8/04_LUAD_CrossValidation_
+# Summary.R for the same reasoning applied to CD8). (2) UCell scoring
+# moved to Script05, restricted to Macrophage_pure only (Cheng et al.
+# signatures describe macrophage states, not monocyte states).
+#
+# See Script04b_scGate_Classification_LUAD.R for the current logic.
+# Outputs below are kept in Results/Bloc7_TAM/Tables/ for the record
+# (methodological traceability, possible reuse) — do not regenerate them
+# by running this script; do not treat them as current pipeline output.
+# ============================================================
+
+stop("Script04 is superseded by Script04b — see header above. Do not run.")
+
+# ============================================================
 # Bloc7_TAM — Script04_scGate_UCell_LUAD.R
 # Purpose: cross-validate the CellTypist macrophage annotation with a
 # marker-based scGate model, then score four functional axes with UCell.
@@ -49,8 +72,6 @@ seu <- readRDS(IN_OBJ)
 message("Total cells: ", ncol(seu))
 
 # ---- 2. scGate purification (independent of CellTypist) -----------------
-# DietSeurat with dimreducs = "harmony" is mandatory before scGate
-# (established in Bloc6: passing NULL breaks downstream steps).
 message("Running scGate with TME_HiRes/Macrophage model... ", Sys.time())
 
 models <- get_scGateDB()
@@ -60,7 +81,6 @@ seu_diet <- scGate(seu_diet,
                    model  = models$human$TME_HiRes$Macrophage,
                    ncores = 4)
 
-# Carry the scGate call back onto the full object
 seu$scGate_Macrophage <- seu_diet$is.pure[colnames(seu)]
 rm(seu_diet); gc()
 
@@ -68,12 +88,6 @@ message("scGate result:")
 print(table(seu$scGate_Macrophage, useNA = "ifany"))
 
 # ---- 3. Cross-check scGate against CellTypist ---------------------------
-# KEY CHECK (see cahier, Script03): the scGate Macrophage signature
-# contains NO alveolar marker (no FABP4, MARCO, MCEMP1). If LUSC cells
-# labelled "Alveolar macrophages" were genuine tissue-resident alveolar
-# macrophages, they would risk being discarded here. A retention rate
-# comparable to LUAD is therefore a fourth independent confirmation that
-# both labels describe recruited TAMs.
 crosscheck <- table(annotation_final = seu$annotation_final,
                     scGate_pure      = seu$scGate_Macrophage,
                     useNA = "ifany")
@@ -100,16 +114,10 @@ for (lab in myeloid_labels) {
 }
 
 # ---- 4. Subset to the TAM compartment for scoring -----------------------
-# Scoring is performed on lineage_TAM (the CellTypist-defined compartment).
-# scGate serves as validation, not as the selection filter: switching the
-# selection to scGate output would change the population between blocs and
-# break comparability with the Bloc5 composition results.
 seu_tam <- subset(seu, subset = lineage_TAM)
 message("\nTAM cells retained for scoring: ", ncol(seu_tam))
 
 # ---- 5. UCell functional scoring ----------------------------------------
-# Four axes from Cheng et al. (2021), Table S5, plus GOBP_PHAGOCYTOSIS
-# as a sensitivity check on the 4-gene phagocytosis signature.
 sig <- list(
   M1  = c("IL23A","TNF","CXCL9","CXCL10","CXCL11","CD86","IL1A","IL1B","IL6",
           "CCL5","IRF5","IRF1","CD40","IDO1","KYNU","CCR7"),

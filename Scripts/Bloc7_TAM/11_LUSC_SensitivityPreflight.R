@@ -28,7 +28,20 @@
 #
 # Input : Objects/07_LUSC_seu_TAM_scored.rds
 # Output: Results/Bloc7_TAM/Tables/10_LUSC_Hallmark_metabolic_fullLineage_*.csv
-# ============================================================
+# ------------------------------------------------------------------------------
+# DEPRECATED — DO NOT RUN.
+#
+# Why: the perimeter decision this script was meant to inform has since been
+# settled. Macrophage_pure (scGate-confirmed macrophages only) is now the
+# single perimeter used throughout Bloc7 — Cheng functional scoring, Wang
+# subtype markers, and Hallmark metabolic programs all run on Macrophage_pure
+# only, because the source studies for all three frameworks characterize
+# macrophages, not monocytes or transitional states. The sensitivity
+# comparison this preflight check would have fed (Script12) is therefore no
+# longer relevant to any current analysis. Kept for traceability only.
+# ------------------------------------------------------------------------------
+
+stop("Script11 is superseded — the Pure vs full-lineage perimeter decision has been settled in favor of Macrophage_pure throughout Bloc7 (Cheng, Wang, Hallmark). See header above. Do not run.")
 
 suppressPackageStartupMessages({
   library(here); library(Seurat); library(UCell); library(msigdbr)

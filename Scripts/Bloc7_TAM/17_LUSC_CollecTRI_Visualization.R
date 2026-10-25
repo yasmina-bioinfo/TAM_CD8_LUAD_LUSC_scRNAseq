@@ -1,13 +1,14 @@
 # ============================================================
 # Bloc7_TAM — Script17_CollecTRI_DotPlot_LUSC.R
-# Purpose: dot plot of differential TF activity across the three myeloid
-# groups, following the same visual convention as the CD8.TEX figure:
-# one dot per TF, colored by activity score, sized inversely to p-value.
-# No pre-selection of TFs shown.
+# Purpose: dot plot of differential TF activity in the two myeloid
+# populations (Macrophage_pure, Monocyte), following the same visual
+# convention as the CD8.TEX figure: one dot per TF, colored by activity
+# score, sized by -log10(p). No pre-selection of TFs shown.
 #
-# ⚠ Sign convention differs from Bloc6: here the DESeq2 contrast is
-# MPR vs non-MPR, so a positive score means higher in responders. The
-# axis label states this explicitly.
+# Sign convention: the DESeq2 contrast is MPR vs non-MPR, so a positive
+# score means higher inferred activity in responders (MPR, blue) and a
+# negative score higher in non-responders (non-MPR, orange).
+# Colors: Okabe-Ito, as for all MPR vs non-MPR figures of the project.
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -16,9 +17,11 @@ suppressPackageStartupMessages({
 })
 
 HISTOLOGY <- "LUSC"
-GROUPS    <- c("Macrophage_pure", "Transitional", "Monocyte")
-LABELS    <- c("Gating-confirmed macrophages", "Transitional cells",
-               "Classical monocytes")
+GROUPS <- c("Macrophage_pure", "Monocyte")   
+LABELS <- c("Macrophage_pure", "Monocyte_pure")
+
+COL_MPR    <- "#0072B2"
+COL_NONMPR <- "#D55E00"
 
 IN_RESULTS <- here("Results", "Bloc7_TAM", "Tables",
                    paste0("13_", HISTOLOGY, "_CollecTRI_myeloid.csv"))
@@ -26,6 +29,11 @@ OUT_FIG <- here("Results", "Bloc7_TAM", "Figures")
 dir.create(OUT_FIG, recursive = TRUE, showWarnings = FALSE)
 
 acts <- read_csv(IN_RESULTS, show_col_types = FALSE)
+
+# Input guard: right file, right histology, expected groups only
+stopifnot(all(acts$histology == HISTOLOGY),
+          all(GROUPS %in% acts$group),
+          !"Transitional" %in% acts$group)
 
 make_panel <- function(g, label) {
   
@@ -36,47 +44,44 @@ make_panel <- function(g, label) {
   
   n_sig <- sum(df$significant)
   
-  # Threshold on the raw p-value scale corresponding to BH-adjusted 0.05,
-  # not a fixed -log10(0.05) line
+  # Threshold on the raw p-value scale corresponding to BH-adjusted 0.05
   threshold_y <- if (n_sig > 0)
     -log10(max(df$p_value[df$significant], na.rm = TRUE)) else NA
   
-  # Top 5 by p-value on each side, to avoid a label set dominated by the
-  # non-responder-skewed signal
+  # Top 5 by p-value on each side
   label_df <- bind_rows(
     df %>% filter(score > 0) %>% arrange(p_value) %>% slice_head(n = 5),
     df %>% filter(score < 0) %>% arrange(p_value) %>% slice_head(n = 5)
   )
   
+  lim <- max(abs(df$score))
+  
   ggplot(df, aes(x = score, y = neg_log10_p)) +
     geom_point(aes(size = neg_log10_p, color = score), alpha = 0.7) +
     geom_text_repel(data = label_df, aes(label = source),
                     size = 3.5, max.overlaps = 20, seed = 1) +
-    scale_color_distiller(palette = "PRGn", name = "Activity\nscore",
-                          limits = c(-max(abs(df$score)), max(abs(df$score)))) +
+    scale_color_gradient2(low = COL_NONMPR, mid = "grey85", high = COL_MPR,
+                          midpoint = 0, limits = c(-lim, lim),
+                          name = "Activity\nscore") +
     scale_size_continuous(range = c(1, 5), guide = "none") +
     { if (!is.na(threshold_y))
       geom_hline(yintercept = threshold_y, linetype = "dashed",
                  color = "grey50") } +
     geom_vline(xintercept = 0, linetype = "dotted", color = "grey70") +
-    labs(subtitle = paste0(label, " — ", n_sig, " significant of ",
+    labs(subtitle = paste0(label, ": ", n_sig, " significant of ",
                            nrow(df), " tested"),
          x = NULL, y = expression(-log[10](p~value))) +
     theme_classic() +
-    theme(plot.subtitle = element_text(size = 11, face = "bold"),
-          legend.position = "none")
+    theme(plot.subtitle = element_text(size = 11, face = "bold"))
 }
 
 panels <- Map(make_panel, GROUPS, LABELS)
 
-p_final <- (panels[[1]] | panels[[2]] | panels[[3]]) +
-  plot_annotation(
-    title = paste0(HISTOLOGY, " — myeloid differential TF activity, MPR vs non-MPR"),
-    caption = "Dashed line = BH-adjusted p = 0.05. Positive score = higher in responding tumors.",
-    theme = theme(plot.title = element_text(size = 12, face = "bold"),
-                  plot.caption = element_text(size = 10, face = "italic", hjust = 0)))
+# No title/caption in the figure: they are written in the preprint legend
+p_final <- (panels[[1]] | panels[[2]]) +
+  plot_layout(guides = "collect")
 
 ggsave(file.path(OUT_FIG, paste0("17_", HISTOLOGY, "_CollecTRI_dotplot.png")),
-       plot = p_final, width = 18, height = 6.5, dpi = 300, bg = "white")
+       plot = p_final, width = 12, height = 6.5, dpi = 300, bg = "white")
 
 message("Script17 (CollecTRI dot plot, ", HISTOLOGY, ") complete.")

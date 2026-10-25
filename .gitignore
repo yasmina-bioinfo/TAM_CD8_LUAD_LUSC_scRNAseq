@@ -13,3 +13,14 @@ test_*.R
 References/
 *.pdf
 omnipathr-log/
+venv/
+tmp_*
+.DS_Store
+scGateDB/
+Results/Bloc6_CD8/Tables/05_*_CD8_proptest_by_state.csv
+Results/Bloc7_TAM/Tables/04_*_TAM_scores_percell.csv
+Results/Bloc7_TAM/Tables/04_LUAD_scGate_crosscheck.csv
+Results/Bloc7_TAM/Tables/11_sensitivity_full_lineage_tests.csv
+*Copie*
+*copie*
+/Tables/

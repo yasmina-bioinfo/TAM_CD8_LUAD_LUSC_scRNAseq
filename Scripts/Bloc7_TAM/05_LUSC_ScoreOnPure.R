@@ -1,15 +1,18 @@
 # ============================================================
-# Bloc7_TAM — Script05_RescoreOnPure_LUSC.R
+# Bloc7_TAM — Script05_ScoreOnPure_LUSC.R
 # Purpose: restrict the TAM compartment to scGate-confirmed macrophages
-# and recompute the functional scores on that population.
+# and compute functional scores on that population.
 #
-# Rationale: cells not retained by scGate carry a monocyte-leaning
-# profile (reduced C1QA/B/C and APOE, elevated S100A8/A9, FCN1, VCAN).
-# The Cheng et al. signatures describe macrophage states; including
-# transitional cells would produce scores of unclear meaning.
+# Rationale: Macrophage_pure is the population scGate confidently
+# assigns as macrophage identity (see Script04b). Monocyte_pure,
+# scGate_unresolved and Ambiguous_double_pure cells are excluded here:
+# the Cheng et al. signatures describe macrophage states, and no
+# consensus reference exists to characterise the excluded groups
+# further (see Bloc7 Methods).
 #
-# Input : Objects/07_LUSC_seu_TAM_scored.rds  (all lineage_TAM cells)
-# Output: Objects/07_LUSC_seu_TAM_pure_scored.rds
+# Input : Objects/04b_LUSC_seu_TAM_classified.rds  (Script04b output,
+#         lineage_TAM | lineage_TAM_related, scGate-classified)
+# Output: Objects/05_LUSC_seu_TAM_Macrophage_pure_scored.rds
 #         Results/Bloc7_TAM/Tables/05_LUSC_TAM_pure_scores_percell.csv
 # ============================================================
 
@@ -21,25 +24,21 @@ suppressPackageStartupMessages({
 set.seed(42)
 
 HISTOLOGY <- "LUSC"
-IN_OBJ    <- here("Objects", "07_LUSC_seu_TAM_scored.rds")
-OUT_OBJ   <- here("Objects", "07_LUSC_seu_TAM_pure_scored.rds")
+IN_OBJ    <- here("Objects", "04b_LUSC_seu_TAM_classified.rds")
+OUT_OBJ   <- here("Objects", "05_LUSC_seu_TAM_Macrophage_pure_scored.rds")
 OUT_TAB   <- here("Results", "Bloc7_TAM", "Tables")
 
 seu <- readRDS(IN_OBJ)
 message("Cells before filtering: ", ncol(seu))
 
 # ---- Restrict to scGate-confirmed macrophages --------------------------
-seu <- subset(seu, subset = scGate_Macrophage == "Pure")
+seu <- subset(seu, subset = scGate_TAM_class == "Macrophage_pure")
 message("Cells after scGate filtering: ", ncol(seu))
 
-cat("\n=== patients and cells per response group ===\n")
+cat("\n=== cells per response group ===\n")
 print(table(seu$pathological_response))
 
-# ---- Recompute scores on the restricted population ---------------------
-# UCell scores are rank-based within each cell, so they are unaffected by
-# which other cells are present. Recomputing is therefore not strictly
-# required, but is done here so that the saved object contains scores
-# unambiguously attached to the final population.
+# ---- Compute scores on the restricted population ------------------------
 sig <- list(
   M1  = c("IL23A","TNF","CXCL9","CXCL10","CXCL11","CD86","IL1A","IL1B","IL6",
           "CCL5","IRF5","IRF1","CD40","IDO1","KYNU","CCR7"),
@@ -57,7 +56,7 @@ sig <- list(
 seu <- AddModuleScore_UCell(seu, features = sig, ncores = 4)
 score_cols <- paste0(names(sig), "_UCell")
 
-cat("\n=== score distributions (pure macrophages only) ===\n")
+cat("\n=== score distributions (Macrophage_pure only) ===\n")
 print(summary(seu@meta.data[, score_cols]))
 
 # ---- Cells per patient, at the analysis threshold ----------------------

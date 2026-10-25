@@ -1,21 +1,19 @@
 # ============================================================
 # Bloc8_Communication — Script05_ExpressionChecks.R
-# Purpose: two expression checks used to interpret the prioritised
-# interactions.
-#
-# 1. Myeloid receptors appearing in mis-oriented pairs: are they more
-#    expressed in LUSC than in LUAD? This tests whether their higher
-#    frequency in the LUSC ranking follows from expression levels.
-# 2. TGFB1 and its receptors by response group: is the ligand restricted
-#    to the compartment the inference assigns as sender?
-#
-# Input : Objects/08_{HIST}_sce_multinichenet.rds
-# Output: console only
+# DEPRECATED: not part of the final analysis, do not run.
+# Written to interpret mis-oriented pairs and the TGFB1 axis in the
+# 200-interaction literature check, an approach later replaced by the
+# search for known axes in the full interaction tables (done outside the scripts, 
+# from the full tables of Script04).
+# Kept for traceability only. Output was console-only; no result in
+# the README or the preprint depends on it.
 # ============================================================
 
 suppressPackageStartupMessages({
   library(here); library(dplyr); library(tidyr)
 })
+
+stop("Script05_ExpressionChecks.R is deprecated and is not part of the final analysis. Do not run.")
 
 # ---- helper ------------------------------------------------------------
 get_freq <- function(histology, genes, by_group = FALSE) {

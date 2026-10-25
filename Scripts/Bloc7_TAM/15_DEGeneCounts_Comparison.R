@@ -17,19 +17,15 @@ suppressPackageStartupMessages({
 
 MIN_CELLS    <- 10
 MIN_PATIENTS <- 4
-GROUPS       <- c("Macrophage_pure", "Transitional", "Monocyte")
+GROUPS       <- c("Macrophage_pure", "Monocyte")
 
 count_de <- function(histology) {
   
-  seu <- readRDS(here("Objects", paste0("05_", histology, "_seu_annotated.rds")))
-  seu_tam <- readRDS(here("Objects", paste0("07_", histology, "_seu_TAM_scored.rds")))
-  pure_cells <- colnames(seu_tam)[seu_tam$scGate_Macrophage == "Pure"]
-  rm(seu_tam); gc()
+  seu <- readRDS(here("Objects", paste0("04b_", histology, "_seu_TAM_classified.rds")))
   
   seu$myeloid_group <- NA_character_
-  seu$myeloid_group[seu$lineage_TAM & colnames(seu) %in% pure_cells]    <- "Macrophage_pure"
-  seu$myeloid_group[seu$lineage_TAM & !(colnames(seu) %in% pure_cells)] <- "Transitional"
-  seu$myeloid_group[seu$lineage_TAM_related & !seu$lineage_TAM]         <- "Monocyte"
+  seu$myeloid_group[seu$scGate_TAM_class == "Macrophage_pure"] <- "Macrophage_pure"
+  seu$myeloid_group[seu$scGate_TAM_class == "Monocyte_pure"]   <- "Monocyte"      
   
   out <- lapply(GROUPS, function(g) {
     
@@ -57,17 +53,17 @@ count_de <- function(histology) {
     condition <- factor(keep$pathological_response, levels = c("non-MPR", "MPR"))
     dge <- edgeR::DGEList(counts = pb, group = condition)
     pb <- pb[edgeR::filterByExpr(dge, group = condition), ]
+    n_genes_filterByExpr <- nrow(pb)   # aligné sur Script13/Script16
     
     dds <- DESeqDataSetFromMatrix(round(pb), coldata, ~ condition)
     dds <- DESeq(dds, quiet = TRUE)
     res <- results(dds, contrast = c("condition", "MPR", "non-MPR"))
-    res <- res[!is.na(res$padj), ]
     
     tibble(histology = histology, group = g,
            n_patients = ncol(pb),
-           n_genes_tested = nrow(res),
-           n_padj_05  = sum(res$padj < 0.05),
-           n_padj_01  = sum(res$padj < 0.01),
+           n_genes_tested = n_genes_filterByExpr,
+           n_padj_05  = sum(res$padj < 0.05, na.rm = TRUE),
+           n_padj_01  = sum(res$padj < 0.01, na.rm = TRUE),
            n_p_raw_05 = sum(res$pvalue < 0.05, na.rm = TRUE),
            median_abs_stat = round(median(abs(res$stat), na.rm = TRUE), 3))
   })

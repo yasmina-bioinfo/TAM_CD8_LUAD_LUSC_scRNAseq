@@ -75,7 +75,7 @@ test_composition <- function(obj_path, histology) {
 luad <- test_composition(here("Objects", "05_LUAD_seu_annotated.rds"), "LUAD")
 lusc <- test_composition(here("Objects", "05_LUSC_seu_annotated.rds"), "LUSC")
 
-OUT_TAB <- here("Results", "Bloc5_Annotation", "Tables")
+OUT_TAB <- here("Results", "Bloc5_Annotation_TME", "Tables")
 dir.create(OUT_TAB, recursive = TRUE, showWarnings = FALSE)
 
 write_csv(bind_rows(luad$res, lusc$res),

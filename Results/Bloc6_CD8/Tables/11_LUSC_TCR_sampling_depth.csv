@@ -1,0 +1,2 @@
+histology,n_MPR,n_nonMPR,median_MPR,median_nonMPR,p_value
+LUSC,24,57,146,129,0.7999447003843778

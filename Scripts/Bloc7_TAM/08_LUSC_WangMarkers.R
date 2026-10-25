@@ -6,7 +6,7 @@
 #
 # Context: Wang et al. clustered 11,016 macrophages from 19 TREATMENT-NAIVE
 # NSCLC patients into four subtypes named by marker gene: FABP4, FCN1,
-# SPP1, SELENOP. FABP4-Mphi dominated LUSC (35.6% vs 7.3%), SPP1-Mphi
+# SPP1, SELENOP. FABP4-Mphi dominated LUAD (35.6% vs 7.3%), SPP1-Mphi
 # dominated LUSC (44.6% vs 39.9%).
 #
 # Caveats to keep in mind:
@@ -20,6 +20,18 @@
 #
 # Input : Objects/07_LUSC_seu_TAM_pure_scored.rds
 # Output: console + Results/Bloc7_TAM/Tables/08_LUSC_WangMarkers.csv
+#
+# Note on scope: this script tests an exploratory characterization
+# framework for the TAM compartment (Wang et al. 2022 subtype markers,
+# applied here as a threshold on four genes, not a reproduction of the
+# source study's clustering pipeline). No consensual, established method
+# exists for classifying TAM activation states or subtype identity at
+# single-cell resolution in this literature (Murray et al., 2014,
+# Immunity). For this reason, results from this script are documented
+# in the README (Bloc7_TAM, "Functional and subtype scoring frameworks
+# (exploratory)") but are not reported in the preprint, which relies on
+# compositional analysis and CollecTRI transcription factor activity
+# for TAM characterization instead.
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -28,16 +40,18 @@ suppressPackageStartupMessages({
 })
 
 HISTOLOGY <- "LUSC"
-seu <- readRDS(here("Objects", "07_LUSC_seu_TAM_pure_scored.rds"))
+seu <- readRDS(here("Objects", "05_LUSC_seu_TAM_Macrophage_pure_scored.rds"))
 OUT_TAB <- here("Results", "Bloc7_TAM", "Tables")
 
 MK <- c("FABP4","FCN1","SPP1","SELENOP")
 stopifnot(all(MK %in% rownames(seu)))
 
 # ---- 1. Overall expression level of the four markers -------------------
+expr_all <- GetAssayData(seu, assay = "RNA", layer = "data")[MK, ]
+mean_expr <- log1p(rowMeans(expm1(as.matrix(expr_all))))
+
 cat("=== mean expression, all pure macrophages (", HISTOLOGY, ") ===\n")
-print(round(AverageExpression(seu, features = MK, assays = "RNA",
-                              layer = "data")$RNA, 2))
+print(round(mean_expr, 2))
 
 # ---- 2. Fraction of cells expressing each marker ----------------------
 # A cell is counted as positive if the gene has any non-zero count.

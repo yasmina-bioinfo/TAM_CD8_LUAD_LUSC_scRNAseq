@@ -50,9 +50,9 @@ make_panel <- function(hist) {
   )
   
   subtitle <- if (n_sig > 0)
-    paste0(hist, " — ", n_sig, " significant of ", nrow(df), " tested")
+    paste0(hist, " : ", n_sig, " significant of ", nrow(df), " tested")
   else
-    paste0(hist, " — none significant of ", nrow(df), " tested")
+    paste0(hist, " : none significant of ", nrow(df), " tested")
   
   ggplot(df, aes(x = score, y = neg_log10_p)) +
     geom_point(aes(size = neg_log10_p, color = score), alpha = 0.7) +

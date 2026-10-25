@@ -137,7 +137,28 @@ tests <- tibble(
 
 cat("\n=== PRIMARY tests ===\n"); print(tests)
 
-# ---- 6. Sensitivity A: Gini-Simpson ------------------------------------
+# --- 6. Sampling depth control: TCR-bearing CD8.TEX cells per patient ---
+
+depth_mpr    <- res$n_cells[res$pathological_response == "MPR"]
+depth_nonmpr <- res$n_cells[res$pathological_response == "non-MPR"]
+depth_test   <- wilcox.test(depth_nonmpr, depth_mpr, exact = FALSE)
+
+depth_res <- data.frame(
+  histology     = "LUSC",
+  n_MPR         = length(depth_mpr),
+  n_nonMPR      = length(depth_nonmpr),
+  median_MPR    = median(depth_mpr),
+  median_nonMPR = median(depth_nonmpr),
+  p_value       = depth_test$p.value
+)
+print(depth_res)
+
+readr::write_csv(
+  depth_res,
+  here::here("Results", "Bloc6_CD8", "Tables", "11_LUSC_TCR_sampling_depth.csv")
+)
+
+# ---- 7. Sensitivity A: Gini-Simpson ------------------------------------
 
 gs_med <- med_by_group(res, "gini_simpson")
 cat("\n=== Gini-Simpson (sensitivity) ===\n")
@@ -145,13 +166,13 @@ cat("median MPR =", round(gs_med["MPR"], 4),
     "| median non-MPR =", round(gs_med["nonMPR"], 4),
     "| p =", signif(run_test(res, "gini_simpson"), 3), "\n")
 
-# ---- 7. Sensitivity B: residual link between Shannon and depth ---------
+# ---- 8. Sensitivity B: residual link between Shannon and depth ---------
 
 sp <- suppressWarnings(cor.test(res$shannon, res$n_cells, method = "spearman"))
 cat("\nSpearman Shannon ~ n_cells: rho =", round(sp$estimate, 3),
     "| p =", signif(sp$p.value, 3), "\n")
 
-# ---- 8. Sensitivity C: rarefaction to common depth ---------------------
+# ---- 9. Sensitivity C: rarefaction to common depth ---------------------
 
 DEPTH    <- 30
 N_DRAWS  <- 100
@@ -187,12 +208,12 @@ print(tibble(metric  = names(p_rar),
              p_adj   = p.adjust(as.numeric(p_rar), method = "BH")))
 cat("Gini-Simpson rarefied: p =", signif(run_test(rar, "gini_rar"), 3), "\n")
 
-# ---- 9. Sensitivity D: expansion defined over all T cells --------------
+# ---- 10. Sensitivity D: expansion defined over all T cells --------------
 
 cat("\n=== Expansion defined over all T cells ===\n")
 print(wilcox.test(pct_expanded_global ~ pathological_response, data = res))
 
-# ---- 10. Save ----------------------------------------------------------
+# ---- 11. Save ----------------------------------------------------------
 
 write_csv(res,         file.path(OUT_TAB, paste0("11_", HISTOLOGY, "_TEX_clonal_patient_level.csv")))
 write_csv(tests,       file.path(OUT_TAB, paste0("11_", HISTOLOGY, "_TEX_clonal_tests.csv")))

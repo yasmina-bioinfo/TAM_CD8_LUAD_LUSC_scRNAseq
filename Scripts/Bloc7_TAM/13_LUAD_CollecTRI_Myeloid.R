@@ -1,8 +1,8 @@
 # ============================================================
-# Bloc7_TAM — Script13_CollecTRI_Myeloid_LUAD.R
+# Bloc7_TAM — Script13_CollecTRI_Myeloid_LUSC.R
 # Purpose: infer transcription factor activity in the myeloid compartment,
-# comparing MPR and non-MPR within each of three groups along the
-# monocyte-to-macrophage continuum.
+# comparing MPR and non-MPR within each of two groups confirmed by scGate: 
+# Macrophage_pure and Monocyte_pure.
 #
 # Status: EXPLORATORY, no directional prediction. This is not a further
 # phenotypic framework but a different level of analysis: CollecTRI
@@ -18,10 +18,10 @@
 # the earlier project-specific filters, which differed between Bloc6 and
 # Bloc7 and were therefore not directly comparable.
 #
-# Input : Objects/05_LUAD_seu_annotated.rds
-#         Objects/07_LUAD_seu_TAM_scored.rds  (for the scGate column)
+# Input : Objects/05_LUSC_seu_annotated.rds
+#         Objects/04b_LUSC_seu_TAM_classified.rds  (for the scGate column)
 #         Data/interactions_collectri_9606.tsv.gz
-# Output: Results/Bloc7_TAM/Tables/13_LUAD_CollecTRI_myeloid.csv
+# Output: Results/Bloc7_TAM/Tables/13_LUSC_CollecTRI_myeloid.csv
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -32,26 +32,21 @@ suppressPackageStartupMessages({
 
 set.seed(42)
 
-HISTOLOGY <- "LUAD"
+HISTOLOGY <- "LUSC"
 OUT_TAB   <- here("Results", "Bloc7_TAM", "Tables")
 dir.create(OUT_TAB, recursive = TRUE, showWarnings = FALSE)
 
 MIN_CELLS    <- 10   # per patient, within each group
 MIN_PATIENTS <- 4    # per response group, to run the contrast
 
-# ---- 1. Build the three-group column -----------------------------------
-message("Loading annotated object... ", Sys.time())
-seu <- readRDS(here("Objects", paste0("05_", HISTOLOGY, "_seu_annotated.rds")))
+# ---- 1. Build the two-group column -------------------------------------
 
-message("Recovering the scGate flag from the Bloc7 object... ")
-seu_tam <- readRDS(here("Objects", paste0("07_", HISTOLOGY, "_seu_TAM_scored.rds")))
-pure_cells <- colnames(seu_tam)[seu_tam$scGate_Macrophage == "Pure"]
-rm(seu_tam); gc()
+message("Loading TAM-classified object (Bloc7)... ", Sys.time())
+seu <- readRDS(here("Objects", paste0("04b_", HISTOLOGY, "_seu_TAM_classified.rds")))
 
 seu$myeloid_group <- NA_character_
-seu$myeloid_group[seu$lineage_TAM & colnames(seu) %in% pure_cells]    <- "Macrophage_pure"
-seu$myeloid_group[seu$lineage_TAM & !(colnames(seu) %in% pure_cells)] <- "Transitional"
-seu$myeloid_group[seu$lineage_TAM_related & !seu$lineage_TAM]         <- "Monocyte"
+seu$myeloid_group[seu$scGate_TAM_class == "Macrophage_pure"] <- "Macrophage_pure"
+seu$myeloid_group[seu$scGate_TAM_class == "Monocyte_pure"]   <- "Monocyte"
 
 cat("\n=== cells per group and response ===\n")
 print(table(seu$myeloid_group, seu$pathological_response, useNA = "no"))
@@ -144,7 +139,6 @@ run_group <- function(group_name) {
 
 results_all <- bind_rows(
   run_group("Macrophage_pure"),
-  run_group("Transitional"),
   run_group("Monocyte")
 )
 

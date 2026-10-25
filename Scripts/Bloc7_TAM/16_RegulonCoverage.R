@@ -17,7 +17,7 @@ suppressPackageStartupMessages({
 
 MIN_CELLS   <- 10
 MIN_TARGETS <- 5
-GROUPS      <- c("Macrophage_pure", "Transitional", "Monocyte")
+GROUPS      <- c("Macrophage_pure", "Monocyte")
 
 # ---- CollecTRI network, filtered as in Script13 ------------------------
 net <- read_tsv(here("Data", "interactions_collectri_9606.tsv.gz"),
@@ -32,15 +32,11 @@ cat("CollecTRI: ", n_distinct(net$source), " factors\n", sep = "")
 # ---- Genes retained per group and histology ---------------------------
 coverage <- function(histology) {
   
-  seu <- readRDS(here("Objects", paste0("05_", histology, "_seu_annotated.rds")))
-  seu_tam <- readRDS(here("Objects", paste0("07_", histology, "_seu_TAM_scored.rds")))
-  pure_cells <- colnames(seu_tam)[seu_tam$scGate_Macrophage == "Pure"]
-  rm(seu_tam); gc()
+  seu <- readRDS(here("Objects", paste0("04b_", histology, "_seu_TAM_classified.rds")))
   
   seu$myeloid_group <- NA_character_
-  seu$myeloid_group[seu$lineage_TAM & colnames(seu) %in% pure_cells]    <- "Macrophage_pure"
-  seu$myeloid_group[seu$lineage_TAM & !(colnames(seu) %in% pure_cells)] <- "Transitional"
-  seu$myeloid_group[seu$lineage_TAM_related & !seu$lineage_TAM]         <- "Monocyte"
+  seu$myeloid_group[seu$scGate_TAM_class == "Macrophage_pure"] <- "Macrophage_pure"
+  seu$myeloid_group[seu$scGate_TAM_class == "Monocyte_pure"]   <- "Monocyte"      
   
   out <- lapply(GROUPS, function(g) {
     

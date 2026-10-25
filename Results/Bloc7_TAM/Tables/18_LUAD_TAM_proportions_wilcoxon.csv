@@ -1,0 +1,2 @@
+histology,n_MPR,n_nonMPR,median_MPR,median_nonMPR,p_value,p_display
+LUAD,8,36,0.37400315907077086,0.40848214285714285,0.776777099850808,p=0.777

@@ -4,12 +4,11 @@
 # three myeloid groups and which are specific to one, from the output of
 # Script13.
 #
-# Rationale: Script13 tests each group separately along the
-# monocyte-to-macrophage continuum. The question this script answers is
-# whether the significant factors form a common set, which would point to
-# a shared response to the microenvironment, or differ by differentiation
-# stage. Factors specific to a single group are listed separately, since
-# they are what distinguishes one stage from the others.
+# Rationale: Script13 tests each group separately along two myeloid groups. 
+# The question this script answers is whether the significant factors form 
+# a common set, which would point to a shared response to the microenvironment, 
+# or differ by differentiation stage. Factors specific to a single group are listed 
+# separately, since they are what distinguishes one stage from the others.
 #
 # No recomputation: this reads the exported table and cross-tabulates it.
 #
@@ -22,7 +21,7 @@ suppressPackageStartupMessages({
 })
 
 HISTOLOGY <- "LUSC"
-GROUPS    <- c("Macrophage_pure", "Transitional", "Monocyte")
+GROUPS    <- c("Macrophage_pure", "Monocyte")
 
 acts <- read_csv(here("Results", "Bloc7_TAM", "Tables",
                       paste0("13_", HISTOLOGY, "_CollecTRI_myeloid.csv")),
@@ -46,12 +45,12 @@ cat("=== factors by number of groups in which they are significant ===\n")
 print(shared %>% dplyr::count(n_groups, groups, sort = TRUE), n = Inf)
 
 # ---- 2. The set shared across all three groups -------------------------
-core <- shared %>% filter(n_groups == 3) %>% pull(source)
-cat("\n=== significant in ALL THREE groups (", length(core), ") ===\n", sep = "")
+core <- shared %>% filter(n_groups == 2) %>% pull(source)
+cat("\n=== significant in BOTH groups (", length(core), ") ===\n", sep = "")
 print(sort(core))
 
 cat("\ndirections within the shared set:\n")
-print(shared %>% filter(n_groups == 3) %>% dplyr::count(direction))
+print(shared %>% filter(n_groups == 2) %>% dplyr::count(direction))
 
 # ---- 3. What is specific to each group ---------------------------------
 for (g in GROUPS) {

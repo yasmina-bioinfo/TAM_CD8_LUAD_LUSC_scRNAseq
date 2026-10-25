@@ -21,6 +21,10 @@ library(here); library(Seurat); library(dplyr); library(tibble)
 
 HISTOLOGY <- "LUSC"
 seu <- readRDS(here("Objects", "05_LUSC_seu_annotated.rds"))
+stopifnot(
+  "Cohort mismatch: expected 100 LUSC patients (corrected cohort)" =
+    n_distinct(seu$sampleID) == 100
+)
 
 # ---- 1. Composition of the TAM lineage flags ---------------------------
 cat("=== annotation_final labels flagged as TAM ===\n")

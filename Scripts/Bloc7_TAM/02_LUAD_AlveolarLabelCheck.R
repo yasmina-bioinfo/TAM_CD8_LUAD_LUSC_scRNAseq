@@ -1,24 +1,29 @@
 # ============================================================
-# Bloc7_TAM — Script02_AlveolarLabelCheck_LUAD.R
-# Purpose: test whether cells labelled "Alveolar macrophages" by
-# CellTypist are genuine tissue-resident alveolar macrophages or
-# recruited TAMs mislabelled by the reference.
+# ** NOT RUN — EXCLUDED FROM THE Bloc7_TAM PIPELINE **
 #
-# Rationale: the TAM lineage has a different label composition across
-# histologies (LUAD: Macrophages only; LUSC: 96% Alveolar macrophages).
-# Since alveolar macrophages are developmentally distinct from
-# monocyte-derived TAMs, and since the Cheng et al. signatures describe
-# recruited TAM states, this asymmetry would invalidate the cross-
-# histology comparison if the labels were biologically accurate.
+# Original rationale: the TAM lineage includes a substantial fraction of
+# cells labelled "Alveolar macrophages" / "Intermediate macrophages" by
+# CellTypist (Bloc5). Alveolar macrophages are developmentally distinct,
+# tissue-resident cells, whereas the Cheng et al. (2021) signatures used
+# for functional scoring (Script04+) describe recruited TAM states. This
+# script tested whether a marker-based check could distinguish resident
+# from recruited cells within lineage_TAM.
 #
-# Marker logic:
-#   MARCO, FABP4, MCEMP1, PPARG -> tissue-resident alveolar
-#   SPP1, C1QC, APOE, TREM2     -> recruited TAM states
-#   CD68, CD14                  -> pan-macrophage control
+# Reason for exclusion: TAM annotation has no consensus reference atlas
+# (unlike ProjecTILs for CD8, Bloc6). Layering an additional, non-
+# consensual marker-based test on top of CellTypist + scGate risks
+# introducing bias rather than resolving it, with no arbiter to
+# adjudicate disagreements between the three. See README / Cahier de
+# notes for the full discussion.
 #
-# Input : Objects/05_LUAD_seu_annotated.rds
-# Output: console only
+# This script produces no output consumed by any downstream script
+# (Script03/04 onward). Kept for the record only — do not source.
 # ============================================================
+
+# ============================================================
+# Bloc7_TAM — Script02_AlveolarLabelCheck_LUAD.R
+
+stop("Script02 is excluded from the Bloc7_TAM pipeline — see header above. Do not run.")
 
 library(here); library(Seurat); library(dplyr)
 

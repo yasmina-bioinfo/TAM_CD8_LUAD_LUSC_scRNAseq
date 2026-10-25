@@ -21,6 +21,10 @@ library(here); library(Seurat); library(dplyr); library(tibble)
 
 HISTOLOGY <- "LUAD"
 seu <- readRDS(here("Objects", "05_LUAD_seu_annotated.rds"))
+stopifnot(
+  "Cohort mismatch: expected 50 LUAD patients (corrected cohort)" =
+    n_distinct(seu$sampleID) == 50
+)
 
 # ---- 1. Composition of the TAM lineage flags ---------------------------
 cat("=== annotation_final labels flagged as TAM ===\n")

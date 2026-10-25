@@ -13,7 +13,21 @@
 #
 # Input : Objects/07_{HIST}_seu_TAM_scored.rds
 # Output: Results/Bloc7_TAM/Tables/11_{HIST}_sensitivity_full_lineage.csv
-# ============================================================
+# ------------------------------------------------------------------------------
+# DEPRECATED — DO NOT RUN.
+#
+# Why: this script would have run the full sensitivity comparison (transitional
+# cells included vs excluded) that Script11's preflight fed into. That
+# perimeter decision has since been settled: Macrophage_pure (scGate-confirmed
+# macrophages only) is now the single perimeter used throughout Bloc7 — Cheng
+# functional scoring, Wang subtype markers, and Hallmark metabolic programs
+# all run on Macrophage_pure only, because the source studies for all three
+# frameworks characterize macrophages, not monocytes or transitional states.
+# This sensitivity analysis is therefore no longer relevant to any current
+# analysis. Kept for traceability only.
+# ------------------------------------------------------------------------------
+
+stop("Script12 is superseded — the Pure vs full-lineage perimeter decision has been settled in favor of Macrophage_pure throughout Bloc7 (Cheng, Wang, Hallmark). See header above. Do not run.")
 
 suppressPackageStartupMessages({
   library(here); library(Seurat); library(dplyr)
@@ -86,11 +100,19 @@ run_sensitivity <- function(histology) {
                  across(c(p_value, p_adj), ~ round(.x, 4))) %>%
           arrange(axis, perimeter), n = Inf)
   
+  # ---- 5. Correlation between the four axes, full lineage --------------
+  # The four axes are not independent measures. Computed at the patient
+  # level so that concordance between axes is not mistaken for
+  # independent confirmation.
+  cat("\n=== Spearman correlation between axes (full lineage) ===\n")
+  print(round(cor(res_full[, AXES], method = "spearman"), 2))
+  
   list(tests = tests, res_full = res_full)
 }
 
 luad <- run_sensitivity("LUAD")
 lusc <- run_sensitivity("LUSC")
+
 
 OUT_TAB <- here("Results", "Bloc7_TAM", "Tables")
 write_csv(bind_rows(luad$tests, lusc$tests),

@@ -8,8 +8,20 @@
 # This script decides nothing on its own. It is descriptive: it verifies that
 # UCell scores can be reused as-is, and reports which patients enter each
 # perimeter. No statistical test is run here.
-# ==============================================================================
+# ------------------------------------------------------------------------------
+# DEPRECATED — DO NOT RUN.
+#
+# Why: the perimeter decision this script was meant to inform has since been
+# settled. Macrophage_pure (scGate-confirmed macrophages only) is now the
+# single perimeter used throughout Bloc7 — Cheng functional scoring, Wang
+# subtype markers, and Hallmark metabolic programs all run on Macrophage_pure
+# only, because the source studies for all three frameworks characterize
+# macrophages, not monocytes or transitional states. The sensitivity
+# comparison this preflight check would have fed (Script12) is therefore no
+# longer relevant to any current analysis. Kept for traceability only.
+# ------------------------------------------------------------------------------
 
+stop("Script11 is superseded — the Pure vs full-lineage perimeter decision has been settled in favor of Macrophage_pure throughout Bloc7 (Cheng, Wang, Hallmark). See header above. Do not run.")
 library(Seurat)
 library(dplyr)
 library(here)
