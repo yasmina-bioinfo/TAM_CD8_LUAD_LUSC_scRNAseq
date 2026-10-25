@@ -205,7 +205,7 @@ Each block's methodology, chosen parameters and rationale are documented below.
 
 ### Bloc5_Annotation_TME
 
-*Script order (Scripts/Bloc5_Annotation_TME/): 01 exploratory manual annotation (FindAllMarkers, canonical markers, sanity-check only, not merged); 02 CellTypist export/import (02_LUAD_SingleR.R deprecated, traceability only); 03 mixed-cluster resolution, SingleR (03_LUAD_MixedClusters_Resolution_SingleR.R deprecated, traceability only); 04 mixed-cluster resolution, CellTypist (per-label marker verification, all 20 clusters both histologies, supersedes 95%-homogeneity threshold); 05 final annotation build (annotation_final, lineage_CD8, lineage_TAM, lineage_TAM_related); 06 TME visualization and patient-level testing (Wilcoxon, Benjamini-Hochberg across every confirmed population).*
+*Script order (Scripts/Bloc5_Annotation_TME/): 01 exploratory manual annotation (FindAllMarkers, canonical markers, sanity-check only, not merged); 02 CellTypist export/import (02_LUAD_SingleR.R deprecated, traceability only); 03 mixed-cluster resolution, SingleR (03_LUAD_MixedClusters_Resolution_SingleR.R deprecated, traceability only); 04 mixed-cluster resolution, CellTypist (per-label marker verification, all 20 clusters both histologies, supersedes 95%-homogeneity threshold); 05 final annotation build (annotation_final, lineage_CD8, lineage_TAM, lineage_TAM_related); 06 TME visualization and patient-level testing (Wilcoxon, Benjamini-Hochberg across every confirmed population); 07 patient-level composition of the TAM and CD8 populations (figure panel).*
 
 **Methodology (common to both histologies):**
 
