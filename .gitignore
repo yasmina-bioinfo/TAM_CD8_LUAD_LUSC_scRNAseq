@@ -1,6 +1,5 @@
 Objects/
-Data/*.gz
-Data/*.mtx
+Data/
 .RData
 .Rhistory
 .Rproj.user/

@@ -1,3 +1,56 @@
+## Bloc6_CD8: TCR repertoire within CD8.TEX
+
+### Methodology
+
+#### Scope
+
+Clonal expansion was assessed within CD8.TEX using TCR data as a line of evidence independent of gene expression: clone size records past proliferation rather than current transcriptional state. The analysis tests a hypothesis raised by the transcription factor results: that the CD8.TEX compartment is less engaged in responding tumors, which predicts less clonal expansion and greater repertoire diversity in MPR than in non-MPR tumors. This prediction was recorded before the analysis, with its falsification criterion: no difference on either metric.
+
+Apart from the expansion threshold, the construction choices below (metrics, application of the 10-cell minimum to TCR-bearing cells, depth controls) are the author's own.
+
+#### Data
+
+Clonotype assignments were taken directly from the authors' annotation file (`GSE243013_T_with_TCR_annotation.csv.gz`) and joined to the Seurat object by cell ID. Clonotype identifiers are patient-specific: each identifier occurs in a single patient (255,451 clonotypes in the file). The pre-computed `expansion` column of that file was not used, its threshold being undocumented.
+
+#### Metrics
+
+Two complementary metrics were computed per patient within CD8.TEX: the percentage of cells belonging to an expanded clone, using the ≥3-cell threshold defined by the original dataset publication (Liu et al., 2025, *Cell*, STAR Methods), and Shannon diversity (natural logarithm). 
+Both were calculated explicitly rather than through package defaults. The two metrics are non-redundant: the first quantifies the share of the compartment held by proliferating lineages, the second the overall balance of the repertoire.
+
+- **Denominator and patient threshold for repertoire metrics**: TCR recovery is incomplete and varies between patients (median 74–85% of TEX cells), and several patients yielded no TCR data at all despite substantial TEX cell numbers (LUSC: 7 patients, including one with 468 TEX cells; LUAD: 2 patients). Using all TEX cells as the denominator would have assigned these patients spurious values of 0% expansion and a Shannon diversity of 0. Both metrics were therefore computed over TCR-bearing TEX cells only, and patients were required to contribute at least 10 such cells — the same 10-cell minimum applied in the functional scoring analysis, but applied to the TCR-bearing subset rather than to all TEX cells. This retained 44 LUAD patients (9 MPR, 35 non-MPR) and 81 LUSC patients (24 MPR, 57 non-MPR). Per-patient values were compared between MPR and non-MPR using the Wilcoxon rank-sum test with Benjamini-Hochberg correction across the two metrics, consistent with all other patient-level comparisons in Bloc6.
+  
+- **Sampling-depth bias and its control**: Shannon diversity is systematically underestimated when few cells are sampled (Mika et al., 2025). Consistent with this, per-patient Shannon diversity increased with the number of cells sampled in the present data (Spearman rho = 0.621 in LUAD, 0.523 in LUSC), so a group sampled less deeply could appear less diverse for technical reasons alone. To rule this out, the number of TCR-bearing CD8.TEX cells per patient was therefore compared between MPR and non-MPR patients before interpreting the diversity results (see TCR repertoire in the results below).
+
+- **Two sensitivity analyses, status fixed before the analysis was run**: metrics recomputed after rarefying patients to a common depth of 30 cells (100 random draws per patient, averaged), which excluded patients with fewer than 30 TCR-bearing cells (37 of 44 retained in LUAD, 70 of 81 in LUSC); and clone size redefined over all T cells rather than within CD8.TEX, since the source threshold does not specify a reference population. The unrarefied within-TEX analysis remains the primary analysis throughout.
+
+- **Gini-Simpson index**: diversity was also recomputed with the Gini-Simpson index as a sensitivity analysis, unrarefied and rarefied.
+
+### Results
+
+- **Neither clonal expansion nor diversity differs**, in either histology, under any of the analytical variants tested.
+
+| Histology | Metric | Median MPR | Median non-MPR | BH-adjusted P |
+|---|---|---|---|---|
+| LUAD | % cells in expanded clones | 66.5 | 65.9 | 0.474 |
+| LUAD | Shannon diversity | 3.53 | 3.33 | 0.474 |
+| LUSC | % cells in expanded clones | 74.7 | 67.8 | 0.515 |
+| LUSC | Shannon diversity | 2.89 | 2.90 | 0.481 |
+
+Patients contributing fewer than 10 TCR-bearing CD8.TEX cells were excluded (LUAD: 44/48 retained, 9 MPR / 35 non-MPR; LUSC: 81/96, 24 MPR / 57 non-MPR). Sensitivity analyses were likewise non-significant: Gini-Simpson (LUAD P = 0.098, LUSC P = 0.22), rarefaction to 30 cells (LUAD adjusted P = 0.148 for both metrics, LUSC 0.394 for both), Gini-Simpson rarefied (LUAD P = 0.117, LUSC P = 0.424), and clone size defined over all T cells rather than CD8.TEX alone (LUAD P = 0.352, LUSC P = 0.653).
+
+Sampling depth, the number of TCR-bearing CD8.TEX cells per patient, did not differ between response groups in either histology:
+
+| Histology | Patients (MPR / non-MPR) | Median TCR-bearing CD8.TEX cells, MPR | Median TCR-bearing CD8.TEX cells, non-MPR | Wilcoxon P |
+|---|---|---|---|---|
+| LUAD | 9 / 35 | 187 | 168 | 0.67 |
+| LUSC | 24 / 57 | 146 | 129 | 0.80 |
+
+Source: `Results/Bloc6_CD8/Tables/11_LUAD_TCR_sampling_depth.csv` and `Results/Bloc6_CD8/Tables/11_LUSC_TCR_sampling_depth.csv`.
+
+- **The median differences should not be read as trends.** For % expanded clones, MPR is nominally higher than non-MPR in both histologies, the opposite of the prediction stated before the analysis, but the difference is negligible in LUAD (+0.6 points) and neither reaches significance. For Shannon diversity, LUAD shows a small difference in the predicted direction (MPR higher) while LUSC shows essentially none (a difference of 0.01). No pattern is consistent enough, in either metric or either histology, to read as a real effect rather than noise.
+
+- **This tests a hypothesis and does not support it.** The idea that the TEX compartment is less engaged in responders was advanced to account for the asymmetry in transcription factor activity. The clonal repertoire does not support it, and that asymmetry therefore remains unexplained.
+
 ## Bloc7_TAM: functional and subtype scoring frameworks
 
 ### Methodology

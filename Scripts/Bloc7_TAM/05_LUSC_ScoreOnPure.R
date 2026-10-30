@@ -14,6 +14,11 @@
 #         lineage_TAM | lineage_TAM_related, scGate-classified)
 # Output: Objects/05_LUSC_seu_TAM_Macrophage_pure_scored.rds
 #         Results/Bloc7_TAM/Tables/05_LUSC_TAM_pure_scores_percell.csv
+#
+# Note on scope: exploratory scoring of macrophage states in the TAM
+# compartment (Cheng et al. signatures). No consensual method exists for
+# classifying TAM activation states (Murray et al., 2014, Immunity), so
+# this script is exploratory and not reported in the preprint.
 # ============================================================
 
 suppressPackageStartupMessages({

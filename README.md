@@ -24,7 +24,7 @@ How does CD8 and TAM biology (transcriptional activity, subtype heterogeneity, c
 
 Results by block are given further down; this section summarizes what the analyses converged on.
 
-**Abundance of the major populations largely does not separate response groups, but the state of CD8 cells does**. At the patient level, the proportions of macrophages and of cytotoxic Tem/Trm cells (the display-level proxy for CD8 cells) do not differ between responders and non-responders in either histology. The only difference in the composition of the microenvironment is a higher proportion of regulatory T cells in non-responders in squamous carcinoma (median 18.0 versus 9.81 percent; adjusted P = 2.6e-4). Within the exhausted CD8 compartment, CD8.TEX cells of non-responders score higher for both cytotoxicity and exhaustion in both histologies (adjusted P from 0.001 to 0.008), and are more abundant in non-responders in squamous carcinoma only (median 22.6 versus 9.0 percent; adjusted P = 0.005). These are transcriptional scores and do not measure cytotoxic capacity. Clonal expansion and diversity of the TCR repertoire within CD8.TEX did not differ between response groups in either histology.
+**Abundance of the major populations largely does not separate response groups, but the state of CD8 cells does**. At the patient level, the proportions of macrophages and of cytotoxic Tem/Trm cells (the display-level proxy for CD8 cells) do not differ between responders and non-responders in either histology. The only difference in the composition of the microenvironment is a higher proportion of regulatory T cells in non-responders in squamous carcinoma (median 18.0 versus 9.81 percent; adjusted P = 2.6e-4). Within the exhausted CD8 compartment, CD8.TEX cells of non-responders score higher for both cytotoxicity and exhaustion in both histologies (adjusted P from 0.001 to 0.008), and are more abundant in non-responders in squamous carcinoma only (median 22.6 versus 9.0 percent; adjusted P = 0.005). These are transcriptional scores and do not measure cytotoxic capacity. 
 
 **Regulatory activity does separate them in most populations, and almost entirely on one side.** In the myeloid compartment, the factors reaching significance were more active in non-responders in both populations and both histologies: in LUAD, 62 of 64 in Macrophage_pure and 33 of 34 in Monocyte_pure; in LUSC, 7 of 8 and 8 of 11. In exhausted CD8 cells, 7 factors differed in LUAD, all more active in non-responders, and none reached significance in LUSC.
 
@@ -89,7 +89,7 @@ All paths are relative, managed via the `here` package (`here()` / `here("Data",
 | Bloc3_Harmony | Batch integration | Done |
 | Bloc4_Clustering_UMAP | Clustering, UMAP visualization | Done |
 | Bloc5_Annotation_TME | TME annotation with CellTypist | Done |
-| Bloc6_CD8 | ProjecTILs CD8 subtyping, UCell signature scoring, CollecTRI regulon activity, TCR repertoire | Done |
+| Bloc6_CD8 | ProjecTILs CD8 subtyping, UCell signature scoring, CollecTRI regulon activity; the exploratory TCR repertoire analysis is described in `Exploratory_analyses.md` | Done |
 | Bloc7_TAM | TAM purification (scGate), composition of Macrophage_pure and Monocyte_pure, CollecTRI regulon activity; exploratory scoring analyses are described in `Exploratory_analyses.md` | Done |
 | Bloc8_Communication | MultiNicheNet differential cell-cell communication | Done |
 
@@ -121,7 +121,6 @@ Each block's methodology, chosen parameters and rationale are documented below.
 | edgeR | Gene filtering before differential expression (`filterByExpr`) | Chen et al., 2016, *F1000Research* | Bloc6, Bloc7 |
 | DESeq2 | Pseudobulk differential expression | Love et al., 2014, *Genome Biology* | Bloc6, Bloc7 |
 | MultiNicheNet | Differential cell-cell communication, multi-sample multi-condition design | Browaeys et al., 2023, *bioRxiv*; builds on NicheNet: Browaeys et al., 2020, *Nature Methods* | Bloc8 |
-| TCR repertoire analysis | Clonal expansion and diversity within CD8.TEX; clonotypes from the authors' annotation file, metrics computed explicitly | Expansion threshold: Liu et al., 2025, *Cell*; diversity indices: Mika et al., 2025 | Bloc6 |
 | muscat | Pseudobulk framework; source of the default 10-cell minimum per patient and sample | Crowell et al., 2020, *Nature Communications* | Bloc6, Bloc7, Bloc8 |
 
 ---
@@ -229,7 +228,7 @@ Each block's methodology, chosen parameters and rationale are documented below.
 
 ### Bloc6_CD8
 
-*Script order (`Scripts/Bloc6_CD8/`): 01 scGate CD8 purification, batched (01a whole-object reconstruction, LUAD only; 01b batch verification, full cross-check LUAD only, structural checks both histologies); 02 UCell cycling/IFN-high removal; 03 ProjecTILs state projection (03b per-patient state testability); 04 deprecated (cross-validation vs CellTypist, superseded by direct filtering on CD8.TEX); 05 composition test and visualization; 06 UCell functional scoring (CD8.TEX); 07 functional scoring patient-level test; 08 functional scoring visualization; 09 CollecTRI pseudobulk TF activity (09b regulon coverage, 09c network coverage); 10 CollecTRI visualization; 11 TCR repertoire clonal analysis.*
+*Script order (`Scripts/Bloc6_CD8/`): 01 scGate CD8 purification, batched (01a whole-object reconstruction, LUAD only; 01b batch verification, full cross-check LUAD only, structural checks both histologies); 02 UCell cycling/IFN-high removal; 03 ProjecTILs state projection (03b per-patient state testability); 04 deprecated (cross-validation vs CellTypist, superseded by direct filtering on CD8.TEX); 05 composition test and visualization; 06 UCell functional scoring (CD8.TEX); 07 functional scoring patient-level test; 08 functional scoring visualization; 09 CollecTRI pseudobulk TF activity (09b regulon coverage, 09c network coverage); 10 CollecTRI visualization; 11 TCR repertoire clonal analysis (described in `Exploratory_analyses.md`).*
 
 - **CD8 purification strategy**: rather than subsetting on the CellTypist-derived `lineage_CD8` flag, CD8 T cells were re-isolated independently on the full TME object of each histology using scGate (`TME_HiRes` model, human), following the same isolation-then-projection strategy used in the official construction of the human CD8 TIL reference atlas (Andreatta et al., 2021, *Nat Commun*; atlas construction pipeline: scGate → UCell cycling/ISG+ removal → STACAS). This avoids circularity with the project's own CellTypist-based annotation and keeps downstream steps methodologically consistent with the reference space used for later ProjecTILs projection.
 
@@ -265,14 +264,6 @@ Each block's methodology, chosen parameters and rationale are documented below.
 
 - **Network coverage check**: because no factor reached significance in LUSC despite a larger differential gene set than in LUAD, the coverage of those genes by the network was examined after the fact, counting the documented regulators of each differentially expressed gene and comparing the distributions between histologies.
   
-- **TCR repertoire analysis within CD8.TEX**: to test whether the MPR/non-MPR asymmetry observed in the transcription factor analysis reflects a less-engaged TEX compartment in responders, clonal expansion was assessed using TCR data as a line of evidence independent of gene expression — clone size records past proliferation rather than current transcriptional state. Clonotype assignments were taken directly from the authors' annotation file accompanying GSE243013 (`GSE243013_T_with_TCR_annotation.csv.gz`), joined to the Seurat object by cell barcode; clonotype identifiers are patient-prefixed and non-overlapping across patients (verified: 255,451 clonotypes, none shared). Two complementary metrics were computed per patient within CD8.TEX: (i) the percentage of cells belonging to an expanded clone, using the ≥3-cell threshold defined by the original dataset publication (Liu et al., 2025, *Cell*, STAR Methods), and (ii) Shannon diversity (H = -Σ pᵢ ln pᵢ). Both were calculated explicitly rather than through package defaults, and the pre-computed `expansion` column of the annotation file was deliberately not reused, its underlying threshold being undocumented. The two metrics are non-redundant: the first quantifies the share of the compartment held by proliferating lineages, the second the overall balance of the repertoire.
-  
-- **Denominator and patient threshold for repertoire metrics**: TCR recovery is incomplete and varies between patients (median 74–85% of TEX cells), and several patients yielded no TCR data at all despite substantial TEX cell numbers (LUSC: 7 patients, including one with 468 TEX cells; LUAD: 2 patients). Using all TEX cells as the denominator would have assigned these patients spurious values of 0% expansion and H = 0. Both metrics were therefore computed over TCR-bearing TEX cells only, and patients were required to contribute at least 10 such cells — the same 10-cell minimum applied in the functional scoring analysis, but applied to the TCR-bearing subset rather than to all TEX cells. This retained 44 LUAD patients (9 MPR, 35 non-MPR) and 81 LUSC patients (24 MPR, 57 non-MPR). Per-patient values were compared between MPR and non-MPR using the Wilcoxon rank-sum test with Benjamini-Hochberg correction across the two metrics, consistent with all other patient-level comparisons in Bloc6.
-  
-- **Sampling-depth bias and its control**: Shannon diversity is systematically underestimated when few cells are sampled (Mika et al., 2025). Consistent with this, per-patient Shannon diversity increased with the number of cells sampled in the present data (Spearman rho = 0.621 in LUAD, 0.523 in LUSC), so a group sampled less deeply could appear less diverse for technical reasons alone. To rule this out, the number of TCR-bearing CD8.TEX cells per patient was therefore compared between MPR and non-MPR patients before interpreting the diversity results (see TCR repertoire in the results below).
-
-- **Two sensitivity analyses, status fixed before the analysis was run**: metrics recomputed after rarefying patients to a common depth of 30 cells (100 random draws per patient, averaged), which excluded patients with fewer than 30 TCR-bearing cells (37 of 44 retained in LUAD, 70 of 81 in LUSC); and clone size redefined over all T cells rather than within CD8.TEX, since the source threshold does not specify a reference population. The unrarefied within-TEX analysis remains the primary analysis throughout.
-
 ### Bloc7_TAM
 
 *Script order (`Scripts/Bloc7_TAM/`): 01 preflight checks; 02 alveolar label check (abandoned, kept for traceability); 03 scGate model inspection; 04 deprecated (superseded by 04b); 04b scGate classification of the myeloid compartment; 04c composition test (Macrophage_pure and Monocyte_pure); 05–10 exploratory functional and subtype scoring, described in `Exploratory_analyses.md`; 11–12 deprecated (perimeter sensitivity, superseded by the Macrophage_pure decision); 13–14 CollecTRI TF activity and overlap; 15–17 DE gene counts, regulon coverage, CollecTRI visualization.*
@@ -587,35 +578,12 @@ LUSC
 
 #### TCR repertoire
 
-- **Neither clonal expansion nor diversity differs**, in either histology, under any of the analytical variants tested.
-
-| Histology | Metric | Median MPR | Median non-MPR | BH-adjusted P |
-|---|---|---|---|---|
-| LUAD | % cells in expanded clones | 66.5 | 65.9 | 0.474 |
-| LUAD | Shannon diversity | 3.53 | 3.33 | 0.474 |
-| LUSC | % cells in expanded clones | 74.7 | 67.8 | 0.515 |
-| LUSC | Shannon diversity | 2.89 | 2.90 | 0.481 |
-
-Patients contributing fewer than 10 TCR-bearing CD8.TEX cells were excluded (LUAD: 44/48 retained, 9 MPR / 35 non-MPR; LUSC: 81/96, 24 MPR / 57 non-MPR). Sensitivity analyses were likewise non-significant: Gini-Simpson (LUAD P = 0.098, LUSC P = 0.22), rarefaction to 30 cells (LUAD adjusted P = 0.148 for both metrics, LUSC 0.394 for both), Gini-Simpson rarefied (LUAD P = 0.117, LUSC P = 0.424), and clone size defined over all T cells rather than CD8.TEX alone (LUAD P = 0.352, LUSC P = 0.653).
-
-Sampling depth, the number of TCR-bearing CD8.TEX cells per patient, did not differ between response groups in either histology:
-
-| Histology | Patients (MPR / non-MPR) | Median TCR-bearing CD8.TEX cells, MPR | Median TCR-bearing CD8.TEX cells, non-MPR | Wilcoxon P |
-|---|---|---|---|---|
-| LUAD | 9 / 35 | 187 | 168 | 0.67 |
-| LUSC | 24 / 57 | 146 | 129 | 0.80 |
-
-Source: `Results/Bloc6_CD8/Tables/11_LUAD_TCR_sampling_depth.csv` and `Results/Bloc6_CD8/Tables/11_LUSC_TCR_sampling_depth.csv`.
-
-- **The median differences should not be read as trends.** For % expanded clones, MPR is nominally higher than non-MPR in both histologies, the opposite of the prediction stated before the analysis, but the difference is negligible in LUAD (+0.6 points) and neither reaches significance. For Shannon diversity, LUAD shows a small difference in the predicted direction (MPR higher) while LUSC shows essentially none (a difference of 0.01). No pattern is consistent enough, in either metric or either histology, to read as a real effect rather than noise.
-
-- **This tests a hypothesis and does not support it.** The idea that the TEX compartment is less engaged in responders was advanced to account for the asymmetry in transcription factor activity. The clonal repertoire does not support it, and that asymmetry therefore remains unexplained.
+**Exploratory TCR repertoire analysis within CD8.TEX** is described and reported separately in `Exploratory_analyses.md`; this analysis is not part of the preprint.
 
 #### Summary
 
 Across the three planned analyses of the CD8 lineage, functional scoring separated response groups in both histologies, whereas composition reached significance in LUSC only and transcription factor activity in LUAD only.
 
-A fourth analysis, TCR clonality, was added to test whether the asymmetry towards non-responders observed in the transcription factor analysis could reflect reduced clonal engagement of the TEX compartment in responders. It did not: clonal expansion and diversity were indistinguishable between response groups in both histologies, and the asymmetry remains unexplained.
 
 ### Bloc7_TAM
 

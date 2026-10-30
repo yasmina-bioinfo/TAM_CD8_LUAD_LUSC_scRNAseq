@@ -1,8 +1,8 @@
 # ============================================================
-# Bloc6_CD8 — 11_LUAD_TCR_ClonalAnalysis.R
+# Bloc6_CD8 — 11_LUSC_TCR_ClonalAnalysis.R
 # TCR clonal analysis of the CD8.TEX compartment
 #
-# Input   : Objects/06_LUAD_seu_functional_scores.rds
+# Input   : Objects/06_LUSC_seu_functional_scores.rds
 #           Data/GSE243013_T_with_TCR_annotation.csv.gz
 # Output  : patient-level tables + tests (Results/)
 #
@@ -25,13 +25,15 @@
 #
 # All count() calls are namespaced dplyr::count() — matrixStats also
 # exports a count() that masks dplyr's when loaded first in the session.
+#
+# STATUS: EXPLORATORY — not part of the preprint.
 # ============================================================
 
 library(here); library(Seurat); library(dplyr); library(readr); library(tibble)
 
 set.seed(42)
 
-HISTOLOGY <- "LUAD"
+HISTOLOGY <- "LUSC"
 IN_OBJ    <- here("Objects", paste0("06_", HISTOLOGY, "_seu_functional_scores.rds"))
 IN_TCR    <- here("Data", "GSE243013_T_with_TCR_annotation.csv.gz")
 OUT_TAB   <- here("Results", "Bloc6_CD8", "Tables")
@@ -41,7 +43,7 @@ MIN_CLONE <- 3    # Liu et al. 2025
 MIN_CELLS <- 10   # per patient, TCR-bearing TEX cells only
 
 # CD8.TEX cells expected from Script 06 (guard against a wrong input file)
-EXPECTED_TEX_CELLS <- 14865  
+EXPECTED_TEX_CELLS <- 21571   
 
 # ---- Helper functions --------------------------------------------------
 
@@ -144,7 +146,7 @@ depth_nonmpr <- res$n_cells[res$pathological_response == "non-MPR"]
 depth_test   <- wilcox.test(depth_nonmpr, depth_mpr, exact = FALSE)
 
 depth_res <- data.frame(
-  histology     = "LUAD",
+  histology     = "LUSC",
   n_MPR         = length(depth_mpr),
   n_nonMPR      = length(depth_nonmpr),
   median_MPR    = median(depth_mpr),
@@ -155,7 +157,7 @@ print(depth_res)
 
 readr::write_csv(
   depth_res,
-  here::here("Results", "Bloc6_CD8", "Tables", "11_LUAD_TCR_sampling_depth.csv")
+  here::here("Results", "Bloc6_CD8", "Tables", "11_LUSC_TCR_sampling_depth.csv")
 )
 
 # ---- 7. Sensitivity A: Gini-Simpson ------------------------------------
